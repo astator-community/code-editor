@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.Http.Json</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.Http.Json.HttpClientJsonExtensions">
+      <summary>包含要以 JSON 形式发送/接收 HTTP 内容的扩展方法。</summary>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync(System.Net.Http.HttpClient,System.String,System.Type,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="type">要反序列化并返回的对象的类型。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync(System.Net.Http.HttpClient,System.String,System.Type,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="type">要反序列化并返回的对象的类型。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync(System.Net.Http.HttpClient,System.Uri,System.Type,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="type">要反序列化并返回的对象的类型。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync(System.Net.Http.HttpClient,System.Uri,System.Type,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="type">要反序列化并返回的对象的类型。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync``1(System.Net.Http.HttpClient,System.String,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要反序列化为的目标类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync``1(System.Net.Http.HttpClient,System.String,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要反序列化为的目标类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync``1(System.Net.Http.HttpClient,System.Uri,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要反序列化为的目标类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync``1(System.Net.Http.HttpClient,System.Uri,System.Threading.CancellationToken)">
+      <summary>将 GET 请求发送到指定 URI，并在异步操作中以 JSON 的形式返回反序列化响应正文生成的值。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要反序列化为的目标类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 POST 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <summary>将 POST 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 POST 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary>将 POST 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 PUT 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <summary>将 PUT 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将 PUT 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary>将 PUT 请求发送到指定 URI，该 URI 包含在请求正文中序列化为 JSON 的 <paramref name="value" />。</summary>
+      <param name="client">用于发送请求的客户端。</param>
+      <param name="requestUri">请求发送到的 URI。</param>
+      <param name="value">要序列化的值。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="T:System.Net.Http.Json.HttpContentJsonExtensions">
+      <summary>包含用于从 JSON 读取和分析 <see cref="T:System.Net.Http.HttpContent" /> 的扩展方法。</summary>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync(System.Net.Http.HttpContent,System.Type,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>读取 HTTP 内容，并返回在异步操作中将内容反序列化为 JSON 产生的值。</summary>
+      <param name="content">要读取的内容。</param>
+      <param name="type">要反序列化并返回的对象的类型。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync``1(System.Net.Http.HttpContent,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>读取 HTTP 内容，并返回在异步操作中将内容反序列化为 JSON 产生的值。</summary>
+      <param name="content">要读取的内容。</param>
+      <param name="options">用于控制反序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <param name="cancellationToken">可由其他对象或线程用以接收取消通知的取消标记。</param>
+      <typeparam name="T">要反序列化为的目标类型。</typeparam>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="T:System.Net.Http.Json.JsonContent">
+      <summary>提供基于 JSON 的 HTTP 内容。</summary>
+    </member>
+    <member name="M:System.Net.Http.Json.JsonContent.Create(System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue,System.Text.Json.JsonSerializerOptions)">
+      <summary>创建将包含序列化为 JSON 的 <paramref name="inputValue" /> 的 <see cref="T:System.Net.Http.Json.JsonContent" /> 类的新实例。</summary>
+      <param name="inputValue">要序列化的值。</param>
+      <param name="inputType">要序列化的值的类型。</param>
+      <param name="mediaType">要用于该内容的媒体。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <returns>一个 <see cref="T:System.Net.Http.Json.JsonContent" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Http.Json.JsonContent.Create``1(``0,System.Net.Http.Headers.MediaTypeHeaderValue,System.Text.Json.JsonSerializerOptions)">
+      <summary>创建将包含序列化为 JSON 的 <paramref name="inputValue" /> 的 <see cref="T:System.Net.Http.Json.JsonContent" /> 类的新实例。</summary>
+      <param name="inputValue">要序列化的值。</param>
+      <param name="mediaType">要用于该内容的媒体。</param>
+      <param name="options">用于控制序列化过程中的行为的选项，默认选项为 <see cref="F:System.Text.Json.JsonSerializerDefaults.Web" />。</param>
+      <typeparam name="T">要序列化的值的类型。</typeparam>
+      <returns>一个 <see cref="T:System.Net.Http.Json.JsonContent" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.Http.Json.JsonContent.ObjectType">
+      <summary>获取此实例要序列化的 <see cref="P:System.Net.Http.Json.JsonContent.Value" /> 的类型。</summary>
+      <returns>
+        <see cref="P:System.Net.Http.Json.JsonContent.Value" />此实例要序列化的的类型。</returns>
+    </member>
+    <member name="P:System.Net.Http.Json.JsonContent.Value">
+      <summary>获取要序列化并用作发送此实例的 <see cref="T:System.Net.Http.HttpRequestMessage" /> 的正文的值。</summary>
+      <returns>要进行序列化并用作发送此实例的的正文的值 <see cref="T:System.Net.Http.HttpRequestMessage" /> 。</returns>
+    </member>
+  </members>
+</doc>

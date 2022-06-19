@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Runtime.CompilerServices.VisualC</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.CompilerServices.CompilerMarshalOverride">
+      <summary>指示修饰的变量实例在封送时与其真实类型不同。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.CppInlineNamespaceAttribute">
+      <summary>在 C++/CLI 中定义内联命名空间。</summary>
+    </member>
+    <member name="M:System.Runtime.CompilerServices.CppInlineNamespaceAttribute.#ctor(System.String)">
+      <summary>使用指定的以点分隔的命名空间名称初始化 <see cref="T:System.Runtime.CompilerServices.CppInlineNamespaceAttribute" /> 类的新实例。</summary>
+      <param name="dottedName">定义的命名空间以点分隔的名称。</param>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.HasCopySemanticsAttribute">
+      <summary>.NET Framework 2.0 版不使用此类，它被保留以备将来之用。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Runtime.CompilerServices.HasCopySemanticsAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.CompilerServices.HasCopySemanticsAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsBoxed">
+      <summary>指示修饰的引用类型是装箱的值类型。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsByValue">
+      <summary>指示修饰的方法参数应解释为具有按值传递对象的语义。 此修饰应用于引用类型。  此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsCopyConstructed">
+      <summary>指示对此类型的值的任何复制操作都必须使用由该类型提供的复制构造函数。  此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsExplicitlyDereferenced">
+      <summary>指示托管指针表示某方法签名内的指针参数。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsImplicitlyDereferenced">
+      <summary>指示修饰的垃圾回收引用表示某方法签名内的引用参数。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsJitIntrinsic">
+      <summary>指示某一修饰的方法是一个内部值，实时 (JIT) 编译器可对它执行特殊代码生成。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsLong">
+      <summary>指示修饰的整数是标准 C++ <see langword="long" /> 值。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsPinned">
+      <summary>指示修饰的实例固定在内存中。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsSignUnspecifiedByte">
+      <summary>指示修饰符既非有符号，也非无符号。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.IsUdtReturn">
+      <summary>指示返回类型是用户定义的类型。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.NativeCppClassAttribute">
+      <summary>将指示类型为非托管类型的元数据应用到程序集。  此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Runtime.CompilerServices.NativeCppClassAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.CompilerServices.NativeCppClassAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.RequiredAttributeAttribute">
+      <summary>指定导入编译器必须完全理解类型定义的语义，或拒绝使用它。  此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Runtime.CompilerServices.RequiredAttributeAttribute.#ctor(System.Type)">
+      <summary>初始化 <see cref="T:System.Runtime.CompilerServices.RequiredAttributeAttribute" /> 类的新实例。</summary>
+      <param name="requiredContract">导入编译器必须完全理解的类型。  
+  
+ .NET Framework 版本 2.0 及更高版本不支持此参数。</param>
+    </member>
+    <member name="P:System.Runtime.CompilerServices.RequiredAttributeAttribute.RequiredContract">
+      <summary>获取导入编译器必须完全理解的类型。</summary>
+      <returns>导入编译器必须完全理解的类型。</returns>
+    </member>
+    <member name="T:System.Runtime.CompilerServices.ScopelessEnumAttribute">
+      <summary>指示本机枚举未由枚举类型名称限定。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Runtime.CompilerServices.ScopelessEnumAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.CompilerServices.ScopelessEnumAttribute" /> 类的新实例。</summary>
+    </member>
+  </members>
+</doc>

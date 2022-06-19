@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Reflection.Emit.Lightweight</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.Emit.DynamicILInfo">
+      <summary>提供对多种用来为动态方法生成 Microsoft 中间语言 (MSIL) 和元数据的其他方式的支持，包括用来创建标记和插入代码的方法、异常处理，以及局部变量签名 Blob。</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.Byte[])">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示关联动态方法的签名。</summary>
+      <param name="signature">包含签名的数组。</param>
+      <returns>一个标记，该标记可嵌入关联动态方法的元数据和 MSIL 流中。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.Reflection.Emit.DynamicMethod)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将从关联方法调用的动态方法。</summary>
+      <param name="method">要调用的动态方法。</param>
+      <returns>一个标记，可以嵌入关联动态方法的 MSIL 流中，作为 MSIL 指令的目标。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeFieldHandle)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将从关联动态方法访问的字段。</summary>
+      <param name="field">要访问的字段。</param>
+      <returns>当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象的范围内的一个标记，可用作访问字段的 MSIL 指令的操作数。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeFieldHandle,System.RuntimeTypeHandle)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将从关联动态方法访问的字段；该字段在指定的泛型类型上。</summary>
+      <param name="field">要访问的字段。</param>
+      <param name="contextType">该字段所属的泛型类型。</param>
+      <returns>当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象的范围内的一个标记，可用作访问字段的 MSIL 指令的操作数。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeMethodHandle)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将从关联动态方法访问的方法。</summary>
+      <param name="method">要访问的方法。</param>
+      <returns>当前 <see cref="F:System.Reflection.Emit.OpCodes.Call" /> 对象的范围内的一个标记，可以用作访问方法的 MSIL 指令的操作数（如 <see cref="F:System.Reflection.Emit.OpCodes.Ldtoken" /> 或 <see cref="T:System.Reflection.Emit.DynamicILInfo" />）。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeMethodHandle,System.RuntimeTypeHandle)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示泛型类型上的一个方法。</summary>
+      <param name="method">方法。</param>
+      <param name="contextType">该方法所属的泛型类型。</param>
+      <returns>当前 <see cref="F:System.Reflection.Emit.OpCodes.Call" /> 对象的范围内的一个标记，可以用作访问方法的 MSIL 指令的操作数（如 <see cref="F:System.Reflection.Emit.OpCodes.Ldtoken" /> 或 <see cref="T:System.Reflection.Emit.DynamicILInfo" />）。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeTypeHandle)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将在关联动态方法中使用的类型。</summary>
+      <param name="type">要使用的类型。</param>
+      <returns>当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象的范围内的一个标记，可以用作需要一个类型的 MSIL 指令的操作数。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.String)">
+      <summary>获取一个在当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 的范围内有效的标记，它表示将在关联动态方法中使用的字符串。</summary>
+      <param name="literal">要使用的字符串。</param>
+      <returns>当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象的范围内的一个标记，可用作需要一个字符串的 MSIL 指令的操作数。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetCode(System.Byte*,System.Int32,System.Int32)">
+      <summary>设置关联动态方法的代码体。</summary>
+      <param name="code">指向包含 MSIL 流的字节数组的指针。</param>
+      <param name="codeSize">MSIL 流中的字节数。</param>
+      <param name="maxStackSize">执行方法时操作数堆栈上的项的最大数目。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="code" /> 为 <see langword="null" /> 且 <paramref name="codeSize" /> 大于零。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="codeSize" /> 小于 0。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetCode(System.Byte[],System.Int32)">
+      <summary>设置关联动态方法的代码体。</summary>
+      <param name="code">包含 MSIL 流的数组。</param>
+      <param name="maxStackSize">执行方法时操作数堆栈上的项的最大数目。</param>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetExceptions(System.Byte*,System.Int32)">
+      <summary>设置关联动态方法的异常元数据。</summary>
+      <param name="exceptions">指向包含异常元数据的字节数组的指针。</param>
+      <param name="exceptionsSize">异常元数据的字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="exceptions" /> 为 <see langword="null" /> 且 <paramref name="exceptionSize" /> 大于零。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="exceptionSize" /> 小于 0。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetExceptions(System.Byte[])">
+      <summary>设置关联动态方法的异常元数据。</summary>
+      <param name="exceptions">包含异常元数据的数组。</param>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetLocalSignature(System.Byte*,System.Int32)">
+      <summary>设置描述关联动态方法的局部变量布局的局部变量签名。</summary>
+      <param name="localSignature">一个数组，其中包含关联 <see cref="T:System.Reflection.Emit.DynamicMethod" /> 的局部变量布局。</param>
+      <param name="signatureSize">签名中的字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="localSignature" /> 为 <see langword="null" /> 且 <paramref name="signatureSize" /> 大于零。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="signatureSize" /> 小于 0。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetLocalSignature(System.Byte[])">
+      <summary>设置描述关联动态方法的局部变量布局的局部变量签名。</summary>
+      <param name="localSignature">一个数组，其中包含关联 <see cref="T:System.Reflection.Emit.DynamicMethod" /> 的局部变量布局。</param>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicILInfo.DynamicMethod">
+      <summary>获取动态方法，该方法的方法体由当前实例生成。</summary>
+      <returns>一个 <see cref="T:System.Reflection.Emit.DynamicMethod" /> 对象，当前 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象正在为该对象所表示的动态方法生成代码。</returns>
+    </member>
+    <member name="T:System.Reflection.Emit.DynamicMethod">
+      <summary>定义并表示可以编译、执行和丢弃的一种动态方法。 丢弃的方法可用于垃圾回收。</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Reflection.MethodAttributes,System.Reflection.CallingConventions,System.Type,System.Type[],System.Reflection.Module,System.Boolean)">
+      <summary>创建一个对模块全局有效的动态方法，指定方法名称、属性、调用约定、返回类型、参数类型和模块，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="attributes">用于指定动态方法属性的 <see cref="T:System.Reflection.MethodAttributes" /> 值的按位组合。 允许的唯一组合为 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" />。</param>
+      <param name="callingConvention">动态方法的调用约定。 必须是 <see cref="F:System.Reflection.CallingConventions.Standard" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="m">一个 <see cref="T:System.Reflection.Module" />，表示动态方法将与之逻辑关联的模块。</param>
+      <param name="skipVisibility">若要跳过对动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="m" /> 是为动态方法提供匿名承载的模块。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="m" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="attributes" /> 是标志的组合，而不是 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" /> 的组合。  
+  
+- 或 - 
+ <paramref name="callingConvention" /> 不是 <see cref="F:System.Reflection.CallingConventions.Standard" />。  
+  
+- 或 - 
+ <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Reflection.MethodAttributes,System.Reflection.CallingConventions,System.Type,System.Type[],System.Type,System.Boolean)">
+      <summary>创建一个动态方法，指定方法名称、属性、调用约定、返回类型、参数类型，以及与该动态方法逻辑上相关联的类型，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="attributes">用于指定动态方法属性的 <see cref="T:System.Reflection.MethodAttributes" /> 值的按位组合。 允许的唯一组合为 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" />。</param>
+      <param name="callingConvention">动态方法的调用约定。 必须是 <see cref="F:System.Reflection.CallingConventions.Standard" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="owner">动态方法与之在逻辑上相关联的 <see cref="T:System.Type" />。 动态方法有权访问此类型的所有成员。</param>
+      <param name="skipVisibility">若要跳过对动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 是一个接口、数组、开放式泛型类型，或者是泛型类型或方法的类型参数。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="attributes" /> 是标志的组合，而不是 <see cref="F:System.Reflection.MethodAttributes.Public" /> 和 <see cref="F:System.Reflection.MethodAttributes.Static" /> 的组合。  
+  
+- 或 - 
+ <paramref name="callingConvention" /> 不是 <see cref="F:System.Reflection.CallingConventions.Standard" />。  
+  
+- 或 - 
+ <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[])">
+      <summary>初始化匿名托管的动态方法，指定方法名称、返回类型和参数类型。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Boolean)">
+      <summary>初始化匿名托管的动态方法，同时指定方法名称、返回类型、参数类型并指定是否应针对动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员跳过实时 (JIT) 可见性检查。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="restrictedSkipVisibility">如果为 <see langword="true" />，则跳过针对动态方法的 MSIL 访问的类型和成员进行的 JIT 可见性检查，含此限制：包含这些类型和成员的程序集的信任级别必须等于或小于发出动态方法的调用堆栈的信任级别；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Reflection.Module)">
+      <summary>创建一个对模块全局有效的动态方法，指定方法名称、返回类型、参数类型和模块。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="m">一个 <see cref="T:System.Reflection.Module" />，表示动态方法将与之逻辑关联的模块。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="m" /> 是为动态方法提供匿名承载的模块。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="m" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Reflection.Module,System.Boolean)">
+      <summary>创建一个对模块全局有效的动态方法，指定方法名称、返回类型、参数类型和模块，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="m">一个 <see cref="T:System.Reflection.Module" />，表示动态方法将与之逻辑关联的模块。</param>
+      <param name="skipVisibility">若要跳过对动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="m" /> 是为动态方法提供匿名承载的模块。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="m" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是一种 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Type)">
+      <summary>创建动态方法，并指定方法的名称、返回类型、参数类型和此动态方法与之在逻辑上相关联的类型。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="owner">动态方法与之在逻辑上相关联的 <see cref="T:System.Type" />。 动态方法有权访问此类型的所有成员。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 是一个接口、数组、开放式泛型类型，或者是泛型类型或方法的类型参数。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是 <see langword="null" />，或 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Type,System.Boolean)">
+      <summary>创建一个动态方法，指定方法名称、返回类型、参数类型，以及与该动态方法逻辑上相关联的类型，并指定动态方法的 Microsoft 中间语言 (MSIL) 访问的类型和成员是否应跳过实时 (JIT) 可见性检查。</summary>
+      <param name="name">动态方法的名称。 它可以是长度为零的字符串，但不能为 <see langword="null" />。</param>
+      <param name="returnType">一个 <see cref="T:System.Type" /> 对象，用于指定动态方法的返回类型，如果此方法没有返回类型，则为 <see langword="null" />。</param>
+      <param name="parameterTypes">指定动态方法的参数类型的 <see cref="T:System.Type" /> 对象数组，如果此方法不具有任何参数，则为 <see langword="null" />。</param>
+      <param name="owner">动态方法与之在逻辑上相关联的 <see cref="T:System.Type" />。 动态方法有权访问此类型的所有成员。</param>
+      <param name="skipVisibility">若要跳过对动态方法的 MSIL 访问的类型和成员的 JIT 可见性检查，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameterTypes" /> 的元素为 <see langword="null" /> 或 <see cref="T:System.Void" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 是一个接口、数组、开放式泛型类型，或者是泛型类型或方法的类型参数。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="owner" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 是 <see langword="null" />，或 <see cref="P:System.Type.IsByRef" /> 为其返回 <see langword="true" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.CreateDelegate(System.Type)">
+      <summary>完成动态方法并创建一个可执行此方法的委托。</summary>
+      <param name="delegateType">其签名与动态方法匹配的委托类型。</param>
+      <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="delegateType" /> 的参数数量或参数类型不正确。</exception>
+      <returns>可用于执行此动态方法的指定类型的委托。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.CreateDelegate(System.Type,System.Object)">
+      <summary>完成动态方法并创建一个可用于执行该方法的委托，指定委托类型和委托绑定到的对象。</summary>
+      <param name="delegateType">一个签名与动态方法的签名匹配的委托类型，不包括第一个参数。</param>
+      <param name="target">委托绑定到的对象。 其类型必须与动态方法的第一个参数的类型相同。</param>
+      <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="target" /> 的类型与动态方法的第一个参数的类型不同，不能赋值给该类型。  
+  
+- 或 - 
+ <paramref name="delegateType" /> 的参数数量或参数类型不正确。</exception>
+      <returns>一个指定类型的委托，可用于对指定的目标对象执行动态方法。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.DefineParameter(System.Int32,System.Reflection.ParameterAttributes,System.String)">
+      <summary>定义动态方法的参数。</summary>
+      <param name="position">参数在参数列表中的位置。 通过第一个参数以数字 1 开头对参数编制索引。</param>
+      <param name="attributes">用于指定参数属性的 <see cref="T:System.Reflection.ParameterAttributes" /> 值的按位组合。</param>
+      <param name="parameterName">参数的名称。 名称可以是长度为零的字符串。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">此方法没有参数。  
+  
+- 或 - 
+ <paramref name="position" /> 小于 0。  
+  
+- 或 - 
+ <paramref name="position" /> 大于此方法的参数数目。</exception>
+      <returns>始终返回 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetBaseDefinition">
+      <summary>返回方法的基实现。</summary>
+      <returns>方法的基实现。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetCustomAttributes(System.Boolean)">
+      <summary>返回为该方法定义的所有自定义属性。</summary>
+      <param name="inherit">如果为 <see langword="true" />，则搜索方法的继承链以查找自定义属性；如果为 <see langword="false" />，则仅检查当前方法。</param>
+      <returns>一个对象数组，这些对象表示此方法的所有自定义属性。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetCustomAttributes(System.Type,System.Boolean)">
+      <summary>返回已应用到此方法的指定类型的自定义属性。</summary>
+      <param name="attributeType">表示要返回的自定义属性的类型的 <see cref="T:System.Type" />。</param>
+      <param name="inherit">如果为 <see langword="true" />，则搜索方法的继承链以查找自定义属性；如果为 <see langword="false" />，则仅检查当前方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="attributeType" /> 为 <see langword="null" />。</exception>
+      <returns>对象的数组，其中的对象表示方法的类型为 <paramref name="attributeType" /> 的属性，或从类型 <paramref name="attributeType" /> 派生的属性。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo">
+      <summary>返回 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象，该对象可以用于从元数据标记、范围和 Microsoft 中间语言 (MSIL) 流中生成方法主体。</summary>
+      <returns>可以用于从元数据标记、范围和 MSIL 流中生成方法主体的 <see cref="T:System.Reflection.Emit.DynamicILInfo" /> 对象。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetILGenerator">
+      <summary>为具有默认 64 字节 Microsoft 中间语言 (MSIL) 流大小的方法返回 MSIL 生成器。</summary>
+      <returns>该方法的 <see cref="T:System.Reflection.Emit.ILGenerator" /> 对象。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetILGenerator(System.Int32)">
+      <summary>为方法返回一个具有指定 MSIL 流大小的 Microsoft 中间语言 (MSIL) 生成器。</summary>
+      <param name="streamSize">MSIL 流的大小（以字节为单位）。</param>
+      <returns>方法的 <see cref="T:System.Reflection.Emit.ILGenerator" /> 对象，具有指定的 MSIL 流大小。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags">
+      <summary>为此方法返回实现标志。</summary>
+      <returns>表示此方法的实现标志的 <see cref="T:System.Reflection.MethodImplAttributes" /> 值的按位组合。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetParameters">
+      <summary>返回动态方法的参数。</summary>
+      <returns>表示动态方法的参数的 <see cref="T:System.Reflection.ParameterInfo" /> 对象数组。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.Invoke(System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)">
+      <summary>在指定的活页夹的约束下，用指定的区域性信息，使用指定的参数调用动态方法。</summary>
+      <param name="obj">对动态方法忽略此参数，因为它们是静态的。 指定 <see langword="null" />。</param>
+      <param name="invokeAttr">
+        <see cref="T:System.Reflection.BindingFlags" /> 值的按位组合。</param>
+      <param name="binder">一个 <see cref="T:System.Reflection.Binder" /> 对象，用于启用绑定、对参数类型的强制、对成员的调用，以及通过反射对 <see cref="T:System.Reflection.MemberInfo" /> 对象的检索。 如果 <paramref name="binder" /> 为 <see langword="null" />，则使用默认联编程序。 如需了解详情，请访问 <see cref="T:System.Reflection.Binder" />。</param>
+      <param name="parameters">自变量列表。 此自变量数组在数量、顺序和类型方面与要调用的方法的参数相同。 如果不存在任何参数，则此参数应为 <see langword="null" />。</param>
+      <param name="culture">用于控制类型强制的 <see cref="T:System.Globalization.CultureInfo" /> 的实例。 如果这是 <see langword="null" />，则使用当前线程的 <see cref="T:System.Globalization.CultureInfo" />。 例如，需要此信息将表示 1000 的 <see cref="T:System.String" /> 正确转换为 <see cref="T:System.Double" /> 值，因为不同的区域性以不同的方式表示 1000。</param>
+      <exception cref="T:System.NotSupportedException">不支持 <see cref="F:System.Reflection.CallingConventions.VarArgs" /> 调用约定。</exception>
+      <exception cref="T:System.Reflection.TargetParameterCountException">
+        <paramref name="parameters" /> 中的元素数与动态方法中的参数数目不匹配。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameters" /> 的一个或多个元素的类型与动态方法的相应参数的类型不匹配。</exception>
+      <exception cref="T:System.Reflection.TargetInvocationException">动态方法与模块关联、未以匿名方式托管，并且在 <paramref name="skipVisibility" /> 设置为 <see langword="false" /> 的情况下构造，但动态方法访问不是 <see langword="public" /> 或 <see langword="internal" />（Visual Basic 中的 <see langword="Friend" />）的成员。  
+  
+- 或 - 
+动态方法被以匿名方式托管，并在 <paramref name="skipVisibility" /> 设置为 <see langword="false" /> 的情况下构造，但是它访问不是 <see langword="public" /> 的成员。  
+  
+- 或 - 
+动态方法包含无法验证的代码。 请参阅“验证”部分中的 <see cref="T:System.Reflection.Emit.DynamicMethod" /> 注释。</exception>
+      <returns>一个 <see cref="T:System.Object" />，它包含被调用的方法的返回值。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.IsDefined(System.Type,System.Boolean)">
+      <summary>表示是否定义了指定的自定义属性类型。</summary>
+      <param name="attributeType">表示要搜索的自定义属性的类型的 <see cref="T:System.Type" />。</param>
+      <param name="inherit">如果为 <see langword="true" />，则搜索方法的继承链以查找自定义属性；如果为 <see langword="false" />，则仅检查当前方法。</param>
+      <returns>如果定义了指定的自定义属性类型，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.ToString">
+      <summary>返回表示为字符串的方法的签名。</summary>
+      <returns>一个表示方法签名的字符串。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Attributes">
+      <summary>创建动态方法后获取指定的属性。</summary>
+      <returns>表示此方法的属性的 <see cref="T:System.Reflection.MethodAttributes" /> 的值的按位组合。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.CallingConvention">
+      <summary>创建动态方法后获取指定的调用约定。</summary>
+      <returns>表示此方法的调用约定的一个 <see cref="T:System.Reflection.CallingConventions" /> 的值。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.DeclaringType">
+      <summary>获取声明方法的类型，对于动态方法，此类型始终为 <see langword="null" />。</summary>
+      <returns>总是为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.InitLocals">
+      <summary>获取或设置一个值，该值指示方法中的本地变量是否初始化为零。</summary>
+      <returns>如果该方法中的本地变量初始化为零，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecurityCritical">
+      <summary>获取一个值，该值指示当前的动态方法是否为安全关键或安全可靠关键，以执行关键操作。</summary>
+      <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
+      <returns>如果当前的动态方法是安全关键或安全可靠关键，则为 <see langword="true" />；如果它是透明的，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical">
+      <summary>获取一个值，该值指示当前动态方法在当前信任级别上是否是安全可靠关键的；即它是否可以执行关键操作并可以由透明代码访问。</summary>
+      <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
+      <returns>如果当前动态方法在当前信任级别上是安全可靠关键的，则为 <see langword="true" />；如果它是安全关键的或透明的，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent">
+      <summary>获取一个值，该值指示当前的动态方法是否在当前的信任级别是透明的，并因此无法执行关键操作。</summary>
+      <exception cref="T:System.InvalidOperationException">动态方法没有方法体。</exception>
+      <returns>如果动态方法在当前的信任级为安全透明的，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.MethodHandle">
+      <summary>不支持动态方法。</summary>
+      <exception cref="T:System.InvalidOperationException">不允许动态方法。</exception>
+      <returns>不支持动态方法。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Module">
+      <summary>获取动态方法与之在逻辑上相关联的模块。</summary>
+      <returns>当前动态方法与之相关联的 <see cref="T:System.Reflection.Module" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Name">
+      <summary>获取动态方法的名称。</summary>
+      <returns>方法的简单名称。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReflectedType">
+      <summary>获取在反射中用于获取该方法的类。</summary>
+      <returns>总是为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnParameter">
+      <summary>获取动态方法的返回参数。</summary>
+      <returns>总是为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnType">
+      <summary>获取动态方法的返回值的类型。</summary>
+      <returns>一个 <see cref="T:System.Type" />，表示当前方法的返回值的类型；如果该方法没有返回类型，则为 <see cref="T:System.Void" />。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnTypeCustomAttributes">
+      <summary>获取动态方法的返回类型的自定义属性。</summary>
+      <returns>表示动态方法的返回类型的自定义属性的 <see cref="T:System.Reflection.ICustomAttributeProvider" />。</returns>
+    </member>
+  </members>
+</doc>

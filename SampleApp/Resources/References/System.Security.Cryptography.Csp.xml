@@ -1,0 +1,1085 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Csp</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AesCryptoServiceProvider">
+      <summary>使用高级加密标准 (AES) 算法的加密应用程序编程接口 (CAPI) 实现来执行对称加密和解密。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.AesCryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">不存在当前平台支持的密钥大小。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor">
+      <summary>使用当前的密钥和初始化向量 (IV) 创建对称 AES 解密器对象。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">当前密钥无效或缺失。</exception>
+      <returns>对称 AES 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的密钥和初始化向量 (IV) 创建对称 AES 解密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 或 <paramref name="iv" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 无效。</exception>
+      <returns>对称 AES 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor">
+      <summary>使用当前的密钥和初始化向量 (IV) 创建对称 AES 加密器对象。</summary>
+      <returns>对称 AES 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的密钥和初始化向量 (IV) 创建对称加密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 或 <paramref name="iv" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 无效。</exception>
+      <returns>对称 AES 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateIV">
+      <summary>生成用于该算法的随机初始化向量 (IV)。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能生成初始化向量 (IV)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateKey">
+      <summary>生成用于该算法的随机密钥。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能生成密钥。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.BlockSize">
+      <summary>获取或设置加密操作的块大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">块大小无效。</exception>
+      <returns>块大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.FeedbackSize">
+      <summary>获取或设置针对密码反馈 (CFB) 和输出反馈 (OFB) 密码模式的加密操作的反馈大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">反馈大小大于块大小。</exception>
+      <returns>反馈大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.IV">
+      <summary>获取或设置对称算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+      <exception cref="T:System.ArgumentNullException">试图将初始化向量设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">试图将初始化向量设置为无效大小。</exception>
+      <returns>初始化向量。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Key">
+      <summary>获取或设置用于加密和解密的对称密钥。</summary>
+      <exception cref="T:System.ArgumentNullException">密钥值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥大小无效。</exception>
+      <returns>用于加密和解密的对称密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.KeySize">
+      <summary>获取或设置密钥的大小（以位为单位）。</summary>
+      <returns>密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalBlockSizes">
+      <summary>获取对称算法支持的块大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的块大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalKeySizes">
+      <summary>获取对称算法支持的密钥大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Mode">
+      <summary>获取或设置对称算法的运算模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该密码模式不是 <see cref="T:System.Security.Cryptography.CipherMode" /> 值之一。</exception>
+      <returns>对称算法的运算模式。 默认值为 <see cref="F:System.Security.Cryptography.CipherMode.CBC" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Padding">
+      <summary>获取或设置对称算法中使用的填充模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该填充模式不是 <see cref="T:System.Security.Cryptography.PaddingMode" /> 值之一。</exception>
+      <returns>对称算法中使用的填充模式。 默认值为 <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CspKeyContainerInfo">
+      <summary>提供有关加密密钥对的附加信息。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspKeyContainerInfo.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定参数初始化 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 类的新实例。</summary>
+      <param name="parameters">一个 <see cref="T:System.Security.Cryptography.CspParameters" /> 对象，提供有关密钥的信息。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Accessible">
+      <summary>获取一个值，该值指示密钥容器中的某个密钥是否可访问。</summary>
+      <exception cref="T:System.NotSupportedException">该密钥类型不受支持。</exception>
+      <returns>如果该密钥可访问，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Exportable">
+      <summary>获取一个值，该值指示某个密钥是否可从密钥容器中导出。</summary>
+      <exception cref="T:System.NotSupportedException">该密钥类型不受支持。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法找到加密服务提供程序。  
+  
+ - 或 -  
+  
+ 未找到密钥容器。</exception>
+      <returns>如果该密钥可以导出，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.HardwareDevice">
+      <summary>获取一个值，该值指示某个密钥是否为硬件密钥。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法找到加密服务提供程序。</exception>
+      <returns>如果该密钥是硬件密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyContainerName">
+      <summary>获取密钥容器名称。</summary>
+      <returns>密钥容器名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyNumber">
+      <summary>获取一个值，该值描述非对称密钥被创建为签名密钥还是交换密钥。</summary>
+      <returns>描述非对称密钥被创建为签名密钥还是交换密钥的其中一个 <see cref="T:System.Security.Cryptography.KeyNumber" /> 值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.MachineKeyStore">
+      <summary>获取一个值，该值指示某个密钥是否来自计算机密钥集。</summary>
+      <returns>如果该密钥来自计算机密钥集，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Protected">
+      <summary>获取一个值，该值指示某个密钥对是否受到保护。</summary>
+      <exception cref="T:System.NotSupportedException">该密钥类型不受支持。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法找到加密服务提供程序。  
+  
+ - 或 -  
+  
+ 未找到密钥容器。</exception>
+      <returns>如果该密钥对受到保护，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderName">
+      <summary>获取密钥的提供程序名称。</summary>
+      <returns>提供程序名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderType">
+      <summary>获取密钥的提供程序类型。</summary>
+      <returns>提供程序类型。 默认值为 1。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.RandomlyGenerated">
+      <summary>获取一个值，该值表示是否由托管加密类随机生成密钥容器。</summary>
+      <returns>如果随机生成了密钥容器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Removable">
+      <summary>获取一个值，该值指示某个密钥是否能从密钥容器中移除。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未找到加密服务提供程序 (CSP)。</exception>
+      <returns>如果该密钥是可移除的，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.UniqueKeyContainerName">
+      <summary>获取唯一的密钥容器名称。</summary>
+      <exception cref="T:System.NotSupportedException">该密钥类型不受支持。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法找到加密服务提供程序。  
+  
+ - 或 -  
+  
+ 未找到密钥容器。</exception>
+      <returns>唯一的密钥容器名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CspParameters">
+      <summary>包含一些参数，这些参数传递到指定加密计算的加密服务提供程序 (CSP)。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyContainerName">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的密钥容器名称。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyNumber">
+      <summary>指定非对称密钥被创建为签名密钥还是交换密钥。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderName">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的提供程序名称。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderType">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的提供程序类型代码。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32)">
+      <summary>使用指定的提供程序类型代码初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 类的新实例。</summary>
+      <param name="dwTypeIn">指定要创建的提供程序类型的提供程序类型代码。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String)">
+      <summary>使用指定的提供程序类型代码和名称初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 类的新实例。</summary>
+      <param name="dwTypeIn">指定要创建的提供程序类型的提供程序类型代码。</param>
+      <param name="strProviderNameIn">提供程序名称。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String,System.String)">
+      <summary>使用指定的提供程序类型代码和名称以及指定的容器名称初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 类的新实例。</summary>
+      <param name="dwTypeIn">指定要创建的提供程序类型的提供程序类型代码。</param>
+      <param name="strProviderNameIn">提供程序名称。</param>
+      <param name="strContainerNameIn">容器名称。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.Flags">
+      <summary>表示修改加密服务提供程序 (CSP) 的行为的 <see cref="T:System.Security.Cryptography.CspParameters" /> 的标志。</summary>
+      <exception cref="T:System.ArgumentException">值不是有效的枚举值。</exception>
+      <returns>枚举值或枚举值的按位组合。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.KeyPassword">
+      <summary>获取或设置与智能卡密钥相关的密码。</summary>
+      <returns>与智能卡密钥相关的密码。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.ParentWindowHandle">
+      <summary>获取或设置智能卡密码对话框的非托管父级窗口的句柄。</summary>
+      <returns>智能卡密码对话框的父级窗口的句柄。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CspProviderFlags">
+      <summary>指定修改加密服务提供程序 (CSP) 行为的标志。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.CreateEphemeralKey">
+      <summary>创建一个在关闭关联的 Rivest-Shamir-Adleman (RSA) 对象时释放的临时密钥。 如果希望密钥与 RSA 对象无关，则不要使用此标志。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoFlags">
+      <summary>不指定任何设置。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoPrompt">
+      <summary>阻止 CSP 显示此上下文的任何用户界面 (UI)。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseArchivableKey">
+      <summary>允许导出密钥以便存档或恢复。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseDefaultKeyContainer">
+      <summary>使用默认密钥容器中的密钥信息。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseExistingKey">
+      <summary>使用当前密钥的密钥信息。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseMachineKeyStore">
+      <summary>使用计算机的密钥存储区中的密钥信息。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseNonExportableKey">
+      <summary>使用无法导出的密钥信息。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseUserProtectedKey">
+      <summary>当某些操作尝试使用密钥时，通过对话框或另一种方法通知用户。  此标志与 <see cref="F:System.Security.Cryptography.CspProviderFlags.NoPrompt" /> 标志不兼容。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DESCryptoServiceProvider">
+      <summary>定义访问数据加密标准 (<see cref="T:System.Security.Cryptography.DES" />) 算法的加密服务提供程序 (CSP) 版本的包装对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.DESCryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">数据加密标准 (<see cref="T:System.Security.Cryptography.DES" />) 加密服务提供程序不可用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称解密器对象。</summary>
+      <returns>对称解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="T:System.Security.Cryptography.DES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 创建对称数据加密标准 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 解密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+  
+- 或 - 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 属性的值不是 8。  
+  
+- 或 - 
+使用了无效的密钥大小。  
+  
+- 或 - 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.DES" /> 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称加密器对象。</summary>
+      <returns>对称加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="T:System.Security.Cryptography.DES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 创建对称数据加密标准 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 加密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+  
+- 或 - 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 属性的值不是 8。  
+  
+- 或 - 
+使用了无效的密钥大小。  
+  
+- 或 - 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.DES" /> 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateIV">
+      <summary>生成用于该算法的随机初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateKey">
+      <summary>生成用于该算法的随机密钥 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.DSA" /> 算法的加密服务提供程序 (CSP) 实现的包装对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>使用指定的密钥大小初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="dwKeySize">不对称算法的密钥的大小（以位为单位）。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>用加密服务提供程序 (CSP) 的指定密钥大小和参数初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="dwKeySize">加密算法的密钥的大小（以位为单位）。</param>
+      <param name="parameters">CSP 的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取 CSP。  
+  
+ - 或 -  
+  
+ 无法创建密钥。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="dwKeySize" /> 超出范围。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>用加密服务提供程序 (CSP) 的指定参数初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="parameters">CSP 的参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>创建指定数据的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</summary>
+      <param name="rgbHash">要签名的数据。</param>
+      <returns>指定数据的数字签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>导出包含与 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 对象关联的密钥信息的 Blob。</summary>
+      <param name="includePrivateParameters">若包括私钥，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>一个字节数组，包含与 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 对象关联的密钥信息。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>导出 <see cref="T:System.Security.Cryptography.DSAParameters" />。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥无法导出。</exception>
+      <returns>
+        <see cref="T:System.Security.Cryptography.DSA" /> 的参数。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>导入一个表示 DSA 密钥信息的 Blob。</summary>
+      <param name="keyBlob">一个表示 DSA 密钥 Blob 的字节数组。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>导入指定的 <see cref="T:System.Security.Cryptography.DSAParameters" />。</summary>
+      <param name="parameters">
+        <see cref="T:System.Security.Cryptography.DSA" /> 的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+- 或 - 
+<paramref name="parameters" /> 参数具有丢失字段。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[])">
+      <summary>计算指定字节数组的哈希值并对结果哈希值签名。</summary>
+      <param name="buffer">要为其计算哈希的输入数据。</param>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>对字节数组从指定起始点到指定结束点进行签名。</summary>
+      <param name="buffer">要签名的输入数据。</param>
+      <param name="offset">数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="count">数组中用作数据的字节数。</param>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.IO.Stream)">
+      <summary>计算指定输入流的哈希值并对结果哈希值签名。</summary>
+      <param name="inputStream">要为其计算哈希的输入数据。</param>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>计算指定的哈希值的签名，方法是将其与私钥一起加密。</summary>
+      <param name="rgbHash">待签名数据的哈希值。</param>
+      <param name="str">用于创建数据哈希值的哈希算法的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+ - 或 -  
+  
+ 不存在私钥。</exception>
+      <returns>指定哈希值的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyData(System.Byte[],System.Byte[])">
+      <summary>通过将指定的签名数据与为指定数据计算的签名进行比较来验证指定的签名数据。</summary>
+      <param name="rgbData">已签名的数据。</param>
+      <param name="rgbSignature">要验证的签名数据。</param>
+      <returns>如果签名验证为有效，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>通过将指定的签名数据与为指定哈希值计算的签名进行比较来验证指定的签名数据。</summary>
+      <param name="rgbHash">待签名数据的哈希值。</param>
+      <param name="str">用于创建数据哈希值的哈希算法的名称。</param>
+      <param name="rgbSignature">要验证的签名数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="rgbSignature" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+ - 或 -  
+  
+ 无法验证签名。</exception>
+      <returns>如果签名验证为有效，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>验证指定数据的 <see cref="T:System.Security.Cryptography.DSA" /> 签名。</summary>
+      <param name="rgbHash">用 <paramref name="rgbSignature" /> 签名的数据。</param>
+      <param name="rgbSignature">要为 <paramref name="rgbData" /> 验证的签名。</param>
+      <returns>如果 <paramref name="rgbSignature" /> 与使用指定的哈希算法和密钥在 <paramref name="rgbHash" /> 上计算出的签名匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>获取描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</summary>
+      <returns>描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>获取密钥交换算法的名称。</summary>
+      <returns>密钥交换算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeySize">
+      <summary>获取不对称算法使用的密钥的大小（以位为单位）。</summary>
+      <returns>不对称算法使用的密钥的大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.LegalKeySizes">
+      <summary>获取非对称算法支持的密钥大小。</summary>
+      <returns>不对称算法只支持与此数组中的项匹配的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>获取或设置一个值，该值指示是否应在加密服务提供程序 (CSP) 中保留此密钥。</summary>
+      <returns>如果应在 CSP 中保留此密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PublicOnly">
+      <summary>获取一个值，该值指示 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 对象是否仅包含公钥。</summary>
+      <returns>如果 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 对象仅包含公钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>获取签名算法的名称。</summary>
+      <returns>签名算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>获取或设置一个值，该值指示是否应在计算机的密钥存储而不是用户配置文件存储中保留密钥。</summary>
+      <returns>如果应在计算机密钥存储中保留密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ICspAsymmetricAlgorithm">
+      <summary>定义允许 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 类枚举密钥容器信息，并导入和导出与 Microsoft 加密 API (CAPI) 兼容的密钥 blob 的方法。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ExportCspBlob(System.Boolean)">
+      <summary>导出包含与 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象关联的密钥信息的 blob。</summary>
+      <param name="includePrivateParameters">若包括私钥，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>包含与 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象关联的密钥信息的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ImportCspBlob(System.Byte[])">
+      <summary>导入表示非对称密钥信息的 blob。</summary>
+      <param name="rawData">表示非对称密钥 blob 的字节数组。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.ICspAsymmetricAlgorithm.CspKeyContainerInfo">
+      <summary>获取描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</summary>
+      <returns>描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyNumber">
+      <summary>指定是创建非对称签名密钥还是非对称交换密钥。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Exchange">
+      <summary>一个交换密钥对，用于加密会话密钥，以便可以安全地存储以及与其他用户交换会话密钥。 此值对应于非托管 Microsoft 加密 API (CAPI) 中使用的 AT_KEYEXCHANGE 值。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Signature">
+      <summary>一个签名密钥对，用于对数字签名的消息或文件进行身份验证。 此值对应于非托管 Microsoft 加密 API (CAPI) 中使用的 AT_SIGNATURE 值。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.MD5CryptoServiceProvider">
+      <summary>使用加密服务提供程序 (CSP) 提供的实现，计算输入数据的 <see cref="T:System.Security.Cryptography.MD5" /> 哈希值。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.InvalidOperationException">未使用符合 FIPS 的算法策略。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> 的实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PasswordDeriveBytes">
+      <summary>使用 PBKDF1 算法的扩展从密码派生密钥。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[])">
+      <summary>通过指定用来派生密钥的密码和密钥 salt 初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="password">为其派生密钥的密码。</param>
+      <param name="salt">用以导出密钥的密钥 salt。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>通过指定用来派生密钥的密码、密钥 salt 和加密服务提供程序 (CSP) 初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="password">为其派生密钥的密码。</param>
+      <param name="salt">用以导出密钥的密钥 salt。</param>
+      <param name="cspParams">用于操作的加密服务提供程序 (CSP) 参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32)">
+      <summary>通过指定用来派生密钥的密码、密钥 salt、哈希名和迭代数初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="password">为其派生密钥的密码。</param>
+      <param name="salt">用以导出密钥的密钥 salt。</param>
+      <param name="hashName">用于派生密钥的哈希算法。</param>
+      <param name="iterations">用于派生密钥的迭代数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>通过指定用来派生密钥的密码、密钥 salt、哈希名、迭代数和加密服务提供程序 (CSP) 初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="password">为其派生密钥的密码。</param>
+      <param name="salt">用以导出密钥的密钥 salt。</param>
+      <param name="hashName">用于派生密钥的哈希算法。</param>
+      <param name="iterations">用于派生密钥的迭代数。</param>
+      <param name="cspParams">用于操作的加密服务提供程序 (CSP) 参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[])">
+      <summary>使用用来导出密钥的密码和密钥 salt 初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="strPassword">从其导出密钥的密码。</param>
+      <param name="rgbSalt">用以导出密钥的密钥 salt。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>使用用来导出密钥的密码、密钥 salt 和加密服务提供程序 (CSP) 参数初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="strPassword">从其导出密钥的密码。</param>
+      <param name="rgbSalt">用以导出密钥的密钥 salt。</param>
+      <param name="cspParams">操作的 CSP 参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32)">
+      <summary>使用用来导出密钥的密码、密钥 salt、哈希名和迭代数初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="strPassword">从其导出密钥的密码。</param>
+      <param name="rgbSalt">用以导出密钥的密钥 salt。</param>
+      <param name="strHashName">操作的哈希算法的名称。</param>
+      <param name="iterations">操作的迭代数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>使用用来导出密钥的密码、密钥 salt、哈希名、迭代数和加密服务提供程序 (CSP) 参数初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类的新实例。</summary>
+      <param name="strPassword">从其导出密钥的密码。</param>
+      <param name="rgbSalt">用以导出密钥的密钥 salt。</param>
+      <param name="strHashName">操作的哈希算法的名称。</param>
+      <param name="iterations">操作的迭代数。</param>
+      <param name="cspParams">操作的 CSP 参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.CryptDeriveKey(System.String,System.String,System.Int32,System.Byte[])">
+      <summary>从 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 对象导出加密密钥。</summary>
+      <param name="algname">为其导出密钥的算法名称。</param>
+      <param name="alghashname">用于导出密钥的哈希算法名称。</param>
+      <param name="keySize">要导出的密钥的大小（以位为单位）。</param>
+      <param name="rgbIV">用于导出密钥的初始化向量 (IV)。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> 参数不正确。  
+  
+- 或 - 
+无法获取加密服务提供程序 (CSP)。  
+  
+- 或 - 
+<paramref name="algname" /> 参数不是有效的算法名称。  
+  
+- 或 - 
+<paramref name="alghashname" /> 参数不是有效的哈希算法名称。</exception>
+      <returns>导出的密钥。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Dispose(System.Boolean)">
+      <summary>释放 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 类使用的非托管资源，并可以选择释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.GetBytes(System.Int32)">
+      <summary>返回伪随机密钥字节。</summary>
+      <param name="cb">要生成的伪随机密钥字节数。</param>
+      <returns>由伪随机密钥字节组成的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Reset">
+      <summary>重置操作的状态。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.HashName">
+      <summary>获取或设置操作的哈希算法的名称。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">哈希值的名称是固定的，尝试更改该值。</exception>
+      <returns>操作的哈希算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.IterationCount">
+      <summary>获取或设置操作的迭代数。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">迭代数是固定的，尝试更改该值。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">无法设置此属性，因为其值超出了范围。 此属性需要非负数。</exception>
+      <returns>操作的迭代数。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.Salt">
+      <summary>获取或设置操作的密钥 salt 值。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥 salt 值是固定的，尝试更改该值。</exception>
+      <returns>操作的密钥 salt 值。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.RC2CryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.RC2" /> 算法的加密服务提供程序 (CSP) 实现的包装对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RC2CryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。</exception>
+      <exception cref="T:System.InvalidOperationException">找到不兼容的 FIPS 算法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称的 <see cref="T:System.Security.Cryptography.RC2" /> 解密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">使用了 <see cref="F:System.Security.Cryptography.CipherMode.OFB" /> 密码模式。  
+  
+- 或 - 
+使用了反馈大小不是 8 位的 <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> 密码模式。  
+  
+- 或 - 
+使用了无效的密钥大小。  
+  
+- 或 - 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.RC2" /> 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="T:System.Security.Cryptography.RC2" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 创建对称的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" /> 加密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">使用了 <see cref="F:System.Security.Cryptography.CipherMode.OFB" /> 密码模式。  
+  
+- 或 - 
+使用了反馈大小不是 8 位的 <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> 密码模式。  
+  
+- 或 - 
+使用了无效的密钥大小。  
+  
+- 或 - 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.RC2" /> 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateIV">
+      <summary>生成用于该算法的随机初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateKey">
+      <summary>生成用于该算法的随机密钥 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.RC2" /> 算法所用密钥的有效大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+        <see cref="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize" /> 属性被设置为 <see cref="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue" /> 属性以外的值。</exception>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RC2" /> 算法使用的有效密钥大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt">
+      <summary>获取或设置一个值，该值确定是否创建一个具有 11 字节长的零值 salt 的密钥。</summary>
+      <returns>如果应该创建具有 11 字节长的零值 salt 的密钥，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.RNGCryptoServiceProvider">
+      <summary>使用加密服务提供程序 (CSP) 提供的实现来实现加密随机数生成器 (RNG)。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Byte[])">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="rgb">一个字节数组。 忽略此值。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的参数初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="cspParams">传递给加密服务提供程序 (CSP) 的参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="str">字符串输入。 忽略此参数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[])">
+      <summary>用经过加密的强随机值序列填充字节数组。</summary>
+      <param name="data">用经过加密的强随机值序列填充的数组。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[],System.Int32,System.Int32)">
+      <summary>使用加密型强随机值序列填充指定字节数组（从指定索引处开始，填充指定字节数）。</summary>
+      <param name="data">要用加密型强随机字节填充的数组。</param>
+      <param name="offset">开始填充操作的数组的索引。</param>
+      <param name="count">要填充的字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 加上 <paramref name="count" /> 超过 <paramref name="data" /> 的长度。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Span{System.Byte})">
+      <summary>使用加密型强随机字节填充范围。</summary>
+      <param name="data">要用加密型强随机字节填充的范围。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Byte[])">
+      <summary>用经过加密的强随机非零值序列填充字节数组。</summary>
+      <param name="data">用经过加密的强随机非零值序列填充的数组。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Span{System.Byte})">
+      <summary>使用加密型强随机非零值序列填充字节范围。</summary>
+      <param name="data">要用加密型强随机非零字节填充的范围。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACryptoServiceProvider">
+      <summary>使用加密服务提供程序 (CSP) 提供的 <see cref="T:System.Security.Cryptography.RSA" /> 算法的实现执行非对称加密和解密。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor">
+      <summary>使用随机的密钥对初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>使用指定密钥大小的随机密钥对来初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="dwKeySize">要使用的密钥的大小（以位为单位）。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的密钥大小和参数初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="dwKeySize">要使用的密钥的大小（以位为单位）。</param>
+      <param name="parameters">要传递给加密服务提供程序 (CSP) 的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取 CSP。  
+  
+ - 或 -  
+  
+ 无法创建密钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的参数初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 类的新实例。</summary>
+      <param name="parameters">要传递给加密服务提供程序 (CSP) 的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取 CSP。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Boolean)">
+      <summary>使用 <see cref="T:System.Security.Cryptography.RSA" /> 算法加密数据。</summary>
+      <param name="rgb">要解密的数据。</param>
+      <param name="fOAEP">若要使用 OAEP 填充执行直接 <see cref="T:System.Security.Cryptography.RSA" /> 解密，则为 <see langword="true" />；若要使用 PKCS#1 v1.5 填充，则为 <see langword="false" />。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+- 或 - 
+参数 <paramref name="fOAEP" /> 的值为 <see langword="true" />，并且 <paramref name="rgb" /> 参数的长度大于 <see cref="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize" />。  
+  
+- 或 - 
+此密钥与解密数据不匹配。 但是，异常用词可能不准确。 例如，可能显示 <c>存储空间不够，无法处理此命令</c>。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> 为 <see langword="null" />。</exception>
+      <returns>已解密的数据，它是加密前的原始纯文本。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>使用指定填充对以前通过 <see cref="T:System.Security.Cryptography.RSA" /> 算法加密的数据进行解密。</summary>
+      <param name="data">要解密的数据。</param>
+      <param name="padding">填充。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">不支持该填充模式。</exception>
+      <returns>已解密的数据。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.DecryptValue(System.Byte[])">
+      <summary>当前版本不支持此方法。</summary>
+      <param name="rgb">要解密的数据。</param>
+      <exception cref="T:System.NotSupportedException">当前版本不支持此方法。</exception>
+      <returns>已解密的数据，它是加密前的原始纯文本。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Boolean)">
+      <summary>使用 <see cref="T:System.Security.Cryptography.RSA" /> 算法加密数据。</summary>
+      <param name="rgb">要加密的数据。</param>
+      <param name="fOAEP">如果为 <see langword="true" />，则使用 OAEP 填充（仅可用于运行 Windows XP 及更高版本的计算机）执行直接 <see cref="T:System.Security.Cryptography.RSA" /> 加密；否则，如果为 <see langword="false" />，则使用 PKCS#1 v1.5 填充。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+- 或 - 
+<paramref name="rgb" /> 参数的长度大于允许的最大长度。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> 为 <see langword="null" />。</exception>
+      <returns>已加密的数据。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>使用指定的填充，借助 <see cref="T:System.Security.Cryptography.RSA" /> 算法对数据加密。</summary>
+      <param name="data">要加密的数据。</param>
+      <param name="padding">填充。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">不支持该填充模式。</exception>
+      <returns>已加密的数据。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.EncryptValue(System.Byte[])">
+      <summary>当前版本不支持此方法。</summary>
+      <param name="rgb">要加密的数据。</param>
+      <exception cref="T:System.NotSupportedException">当前版本不支持此方法。</exception>
+      <returns>已加密的数据。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>导出包含与 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 对象关联的密钥信息的 blob。</summary>
+      <param name="includePrivateParameters">若包括私钥，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>包含与 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 对象关联的密钥信息的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>导出 <see cref="T:System.Security.Cryptography.RSAParameters" />。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥无法导出。</exception>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RSA" /> 的参数。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>导入表示 RSA 密钥信息的 blob。</summary>
+      <param name="keyBlob">表示 RSA 密钥 blob 的字节数组。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>导入指定的 <see cref="T:System.Security.Cryptography.RSAParameters" />。</summary>
+      <param name="parameters">
+        <see cref="T:System.Security.Cryptography.RSA" /> 的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+- 或 - 
+<paramref name="parameters" /> 参数具有丢失字段。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>使用指定的哈希算法计算指定字节数组子集的哈希值，并对生成的哈希值进行签名。</summary>
+      <param name="buffer">要进行哈希处理和签名的输入数据。</param>
+      <param name="offset">数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="count">数组中用作数据的字节数。</param>
+      <param name="halg">要用于创建哈希值的哈希算法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 参数不是有效的类型。</exception>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.RSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>使用指定的哈希算法计算指定字节数组的哈希值，并对生成的哈希值进行签名。</summary>
+      <param name="buffer">要进行哈希处理和签名的输入数据。</param>
+      <param name="halg">要用于创建哈希值的哈希算法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 参数不是有效的类型。</exception>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.RSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>使用指定的哈希算法计算指定输入流的哈希值，并对生成的哈希值进行签名。</summary>
+      <param name="inputStream">要进行哈希处理和签名的输入流。</param>
+      <param name="halg">要用于创建哈希值的哈希算法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 参数不是有效的类型。</exception>
+      <returns>指定数据的 <see cref="T:System.Security.Cryptography.RSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>使用指定的填充计算指定的哈希值的签名。</summary>
+      <param name="hash">待签名数据的哈希值。</param>
+      <param name="hashAlgorithm">要用于创建数据哈希值的哈希算法名称。</param>
+      <param name="padding">填充。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />。</exception>
+      <returns>指定哈希值的 <see cref="T:System.Security.Cryptography.RSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>计算指定哈希值的签名。</summary>
+      <param name="rgbHash">待签名数据的哈希值。</param>
+      <param name="str">用于创建数据哈希值的哈希算法标识符 (OID)。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+ - 或 -  
+  
+ 不存在私钥。</exception>
+      <returns>指定哈希值的 <see cref="T:System.Security.Cryptography.RSA" /> 签名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>通过使用提供的公钥计算签名中的哈希值，然后将其与提供的数据的哈希值进行比较，从而验证数字签名是否有效。</summary>
+      <param name="buffer">已签名的数据。</param>
+      <param name="halg">用于创建数据哈希值的哈希算法的名称。</param>
+      <param name="signature">要验证的签名数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 参数不是有效的类型。</exception>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>通过使用指定的哈希算法和填充确定签名中的哈希值，并将其与提供的哈希值进行比较，以此验证数字签名是否有效。</summary>
+      <param name="hash">已签名数据的哈希值。</param>
+      <param name="signature">要验证的签名数据。</param>
+      <param name="hashAlgorithm">用于创建哈希值的哈希算法。</param>
+      <param name="padding">填充。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />。</exception>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>通过使用提供的公钥计算签名中的哈希值，然后将其与提供的哈希值进行比较来验证数字签名是否有效。</summary>
+      <param name="rgbHash">已签名数据的哈希值。</param>
+      <param name="str">用于创建数据哈希值的哈希算法标识符 (OID)。</param>
+      <param name="rgbSignature">要验证的签名数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="rgbSignature" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法获取加密服务提供程序 (CSP)。  
+  
+ - 或 -  
+  
+ 无法验证签名。</exception>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>获取描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</summary>
+      <returns>描述有关加密密钥对的附加信息的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>获取可用于 <see cref="T:System.Security.Cryptography.RSA" /> 的此实现的密钥交换算法的名称。</summary>
+      <returns>如果存在的话则为密钥交换算法的名称；否则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize">
+      <summary>获取当前密钥的大小。</summary>
+      <returns>密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.LegalKeySizes">
+      <summary>获取非对称算法支持的密钥大小。</summary>
+      <returns>一个数组，它包含非对称算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>获取或设置一个值，该值指示是否应在加密服务提供程序 (CSP) 中保留此密钥。</summary>
+      <returns>如果应在 CSP 中保留此密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PublicOnly">
+      <summary>获取一个值，该值指示 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 对象是否仅包含公钥。</summary>
+      <returns>如果 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 对象仅包含公钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>获取可用于此 <see cref="T:System.Security.Cryptography.RSA" /> 的实现的签名算法的名称。</summary>
+      <returns>签名算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>获取或设置一个值，该值指示是否应在计算机的密钥存储而不是用户配置文件存储中保留密钥。</summary>
+      <returns>如果应在计算机密钥存储中保留密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA1CryptoServiceProvider">
+      <summary>使用加密服务提供程序 (CSP) 提供的实现，计算输入数据的 <see cref="T:System.Security.Cryptography.SHA1" /> 哈希值。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 的实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA256CryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.SHA256" /> 算法的加密服务提供程序 (CSP) 实现的包装对象。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA256CryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化哈希算法的实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA384CryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.SHA384" /> 算法的加密服务提供程序 (CSP) 实现的包装对象。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA384CryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化哈希算法的实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA512CryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.SHA512" /> 算法的加密服务提供程序 (CSP) 实现的包装对象。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA512CryptoServiceProvider" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化哈希算法的实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCryptoServiceProvider">
+      <summary>定义访问 <see cref="T:System.Security.Cryptography.TripleDES" /> 算法的加密服务提供程序 (CSP) 版本的包装对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.TripleDESCryptoServiceProvider" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="T:System.Security.Cryptography.TripleDES" /> 加密服务提供程序不可用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称解密器对象。</summary>
+      <returns>对称解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称的 <see cref="T:System.Security.Cryptography.TripleDES" /> 解密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+  
+或 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 属性的值不是 8。  
+  
+或 
+使用了无效的密钥大小。  
+  
+或 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.TripleDES" /> 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称加密器对象。</summary>
+      <returns>对称加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥 (<see cref="T:System.Security.Cryptography.TripleDES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 创建对称的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" /> 加密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。  
+  
+ <para>注意：初始化向量必须长 8 字节。 如果它的长度大于 8 字节，则会截断它，而不会引发异常。 调用 <see cref="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])" /> 之前，请检查初始化向量的长度，如果此向量长度太长，则将引发异常。</para></param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+  
+或 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 属性的值为 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 属性的值不是 8。  
+  
+或 
+使用了无效的密钥大小。  
+  
+或 
+算法密钥大小不可用。</exception>
+      <returns>对称 <see cref="T:System.Security.Cryptography.TripleDES" /> 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateIV">
+      <summary>生成用于该算法的随机初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateKey">
+      <summary>生成用于该算法的随机 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.BlockSize">
+      <summary>获取或设置加密操作的块大小（以位为单位）。</summary>
+      <returns>块大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.FeedbackSize">
+      <summary>获取或设置针对密码反馈 (CFB) 和输出反馈 (OFB) 密码模式的加密操作的反馈大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">反馈大小大于块大小。</exception>
+      <returns>反馈大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.IV">
+      <summary>获取或设置对称算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+      <exception cref="T:System.ArgumentNullException">试图将初始化向量设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">试图将初始化向量设置为无效大小。</exception>
+      <returns>初始化向量。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Key">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.TripleDES" /> 算法的密钥。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.TripleDES" /> 算法的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.KeySize">
+      <summary>获取或设置密钥的大小（以位为单位）。</summary>
+      <returns>密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.LegalBlockSizes">
+      <summary>获取对称算法支持的块大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的块大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.LegalKeySizes">
+      <summary>获取对称算法支持的密钥大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Mode">
+      <summary>获取或设置对称算法的运算模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该密码模式不是 <see cref="T:System.Security.Cryptography.CipherMode" /> 值之一。</exception>
+      <returns>对称算法的运算模式。 默认值为 <see cref="F:System.Security.Cryptography.CipherMode.CBC" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Padding">
+      <summary>获取或设置对称算法中使用的填充模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该填充模式不是 <see cref="T:System.Security.Cryptography.PaddingMode" /> 值之一。</exception>
+      <returns>对称算法中使用的填充模式。 默认值为 <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />。</returns>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Threading.Channels</name>
+  </assembly>
+  <members>
+    <member name="T:System.Threading.Channels.BoundedChannelFullMode">
+      <summary>指定写入到已满的有限通道时要使用的行为。</summary>
+    </member>
+    <member name="F:System.Threading.Channels.BoundedChannelFullMode.DropNewest">
+      <summary>删除并忽略通道中的最新项，以便为要写入的项留出空间。</summary>
+    </member>
+    <member name="F:System.Threading.Channels.BoundedChannelFullMode.DropOldest">
+      <summary>删除并忽略通道中的最旧项，以便为要写入的项留出空间。</summary>
+    </member>
+    <member name="F:System.Threading.Channels.BoundedChannelFullMode.DropWrite">
+      <summary>删除要写入的项。</summary>
+    </member>
+    <member name="F:System.Threading.Channels.BoundedChannelFullMode.Wait">
+      <summary>等待空间可用以便完成写入操作。</summary>
+    </member>
+    <member name="T:System.Threading.Channels.BoundedChannelOptions">
+      <summary>提供用于控制有界 <see cref="T:System.Threading.Channels.Channel`1" /> 实例的行为的选项。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.BoundedChannelOptions.#ctor(System.Int32)">
+      <summary>初始化选项。</summary>
+      <param name="capacity">有限通道可能会存储的最大项数。</param>
+    </member>
+    <member name="P:System.Threading.Channels.BoundedChannelOptions.Capacity">
+      <summary>获取或设置有限通道可能会存储的最大项数。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.BoundedChannelOptions.FullMode">
+      <summary>获取或设置通道已满时由写入操作引起的行为。</summary>
+    </member>
+    <member name="T:System.Threading.Channels.Channel">
+      <summary>提供用于创建通道的静态方法。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.Channel.CreateBounded``1(System.Int32)">
+      <summary>创建具有指定的最大容量的通道。</summary>
+      <param name="capacity">通道可能会存储的最大项数。</param>
+      <typeparam name="T">指定通道中的数据类型。</typeparam>
+      <returns>创建的通道。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.Channel.CreateBounded``1(System.Threading.Channels.BoundedChannelOptions)">
+      <summary>创建具有指定的最大容量的通道。</summary>
+      <param name="options">用于指导通道行为的选项。</param>
+      <typeparam name="T">指定通道中的数据类型。</typeparam>
+      <returns>创建的通道。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.Channel.CreateUnbounded``1">
+      <summary>创建可由任意数量的读取器和编写器同时使用的无限通道。</summary>
+      <typeparam name="T">通道中的数据类型。</typeparam>
+      <returns>创建的通道。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.Channel.CreateUnbounded``1(System.Threading.Channels.UnboundedChannelOptions)">
+      <summary>根据提供的选项创建无限通道。</summary>
+      <param name="options">用于指导通道行为的选项。</param>
+      <typeparam name="T">指定通道中的数据类型。</typeparam>
+      <returns>创建的通道。</returns>
+    </member>
+    <member name="T:System.Threading.Channels.Channel`1">
+      <summary>提供支持读取和写入类型 <typeparamref name="T" /> 的元素的通道的基类。</summary>
+      <typeparam name="T">指定通道中可读和可写的数据类型。</typeparam>
+    </member>
+    <member name="M:System.Threading.Channels.Channel`1.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.Channel`1" /> 类的实例。</summary>
+    </member>
+    <member name="T:System.Threading.Channels.Channel`2">
+      <summary>提供支持读取类型 <typeparamref name="TRead" /> 的元素和写入类型 <typeparamref name="TWrite" /> 的元素的通道的基类。</summary>
+      <typeparam name="TWrite">指定可能写入到通道中的数据的类型。</typeparam>
+      <typeparam name="TRead">指定可以从通道读取的数据的类型。</typeparam>
+    </member>
+    <member name="M:System.Threading.Channels.Channel`2.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.Channel`2" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.Channel`2.op_Implicit(System.Threading.Channels.Channel{`0,`1})~System.Threading.Channels.ChannelReader{`1}">
+      <summary>从 <see cref="T:System.Threading.Channels.Channel`2" /> 隐式强制转换为其可读取部分。</summary>
+      <param name="channel">要强制转换的 <see cref="T:System.Threading.Channels.Channel`2" />。</param>
+      <returns>可读取部分。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.Channel`2.op_Implicit(System.Threading.Channels.Channel{`0,`1})~System.Threading.Channels.ChannelWriter{`0}">
+      <summary>将 <see cref="T:System.Threading.Channels.Channel`2" /> 隐式强制转换为其可写入部分。</summary>
+      <param name="channel">要强制转换的 <see cref="T:System.Threading.Channels.Channel`2" />。</param>
+      <returns>可写入部分。</returns>
+    </member>
+    <member name="P:System.Threading.Channels.Channel`2.Reader">
+      <summary>获取此通道的可读取部分。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.Channel`2.Writer">
+      <summary>获取此通道的可写入部分。</summary>
+    </member>
+    <member name="T:System.Threading.Channels.ChannelClosedException">
+      <summary>关闭通道后使用该通道时引发的异常。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelClosedException.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelClosedException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelClosedException.#ctor(System.Exception)">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelClosedException" /> 类的新实例。</summary>
+      <param name="innerException">导致此异常的异常。</param>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelClosedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Threading.Channels.ChannelClosedException" /> 类的新实例。</summary>
+      <param name="info">承载序列化对象数据的对象。</param>
+      <param name="context">关于来源和目标的上下文信息</param>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelClosedException.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelClosedException" /> 类的新实例。</summary>
+      <param name="message">描述错误的消息。</param>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelClosedException.#ctor(System.String,System.Exception)">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelClosedException" /> 类的新实例。</summary>
+      <param name="message">描述错误的消息。</param>
+      <param name="innerException">导致此异常的异常。</param>
+    </member>
+    <member name="T:System.Threading.Channels.ChannelOptions">
+      <summary>提供用于控制通道实例的行为的选项。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelOptions.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelOptions" /> 类的实例。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelOptions.AllowSynchronousContinuations">
+      <summary>如果通道上执行的操作可能以同步方式调用已订阅挂起异步操作的通知的延续，则为 <see langword="true" />；如果应以异步方式调用所有延续，则为 <see langword="false" />。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelOptions.SingleReader">
+      <summary>如果通道中的读取器保证一次最多仅执行一个读取操作，则为 <see langword="true" />；如果未保证此类约束，则为 <see langword="false" />。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelOptions.SingleWriter">
+      <summary>如果写入到通道的编写器保证一次最多仅执行一个写入操作，则为 <see langword="true" />；如果未保证此类约束，则为 <see langword="false" />。</summary>
+    </member>
+    <member name="T:System.Threading.Channels.ChannelReader`1">
+      <summary>提供用于从通道中读取的基类。</summary>
+      <typeparam name="T">指定可以从通道读取的数据的类型。</typeparam>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelReader`1.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelReader`1" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelReader`1.ReadAllAsync(System.Threading.CancellationToken)">
+      <summary>创建允许从通道中读取所有数据的 <see cref="T:System.Collections.Generic.IAsyncEnumerable`1" />。</summary>
+      <param name="cancellationToken">用于取消枚举的取消令牌。</param>
+      <returns>创建的异步可枚举项。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelReader`1.ReadAsync(System.Threading.CancellationToken)">
+      <summary>以异步方式从通道中读取项。</summary>
+      <param name="cancellationToken">用于取消读取操作的 <see cref="T:System.Threading.CancellationToken" />。</param>
+      <returns>表示异步读取操作的 <see cref="T:System.Threading.Tasks.ValueTask`1" />。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelReader`1.TryRead(`0@)">
+      <summary>尝试从通道中读取项。</summary>
+      <param name="item">读取的项，或者如果无法读取任何项，则为默认值。</param>
+      <returns>如果项已读取，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelReader`1.WaitToReadAsync(System.Threading.CancellationToken)">
+      <summary>返回将在有数据可供读取时完成的 <see cref="T:System.Threading.Tasks.ValueTask`1" />。</summary>
+      <param name="cancellationToken">用于取消等待操作的 <see cref="T:System.Threading.CancellationToken" />。</param>
+      <returns>
+        <para>
+          <see cref="T:System.Threading.Tasks.ValueTask`1" />，它将在有数据可供读取时完成，并返回 <see langword="true" /> 结果；或将在因通道成功完成而不再有数据可供读取时完成，并返回 <see langword="false" /> 结果。</para>
+        <para>如果通道完成但出现异常，则任务也将在异常情况下完成。</para>
+      </returns>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelReader`1.CanCount">
+      <summary>获取一个值，该值指示 <see cref="P:System.Threading.Channels.ChannelReader`1.Count" /> 是否可在此 <see cref="T:System.Threading.Channels.ChannelReader`1" /> 实例上使用。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelReader`1.Completion">
+      <summary>获取无法再从此通道中读取数据时完成的 <see cref="T:System.Threading.Tasks.Task" />。</summary>
+    </member>
+    <member name="P:System.Threading.Channels.ChannelReader`1.Count">
+      <summary>获取此通道读取器中可用的当前项数。</summary>
+      <exception cref="T:System.NotSupportedException">此实例不支持计数。</exception>
+    </member>
+    <member name="T:System.Threading.Channels.ChannelWriter`1">
+      <summary>提供用于写入到通道的基类。</summary>
+      <typeparam name="T">指定可能写入到通道中的数据的类型。</typeparam>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.ChannelWriter`1" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.Complete(System.Exception)">
+      <summary>将通道标记为正在完成，表示不再将项写入到该通道。</summary>
+      <param name="error">可选异常，该异常指示无法完成通道。</param>
+      <exception cref="T:System.InvalidOperationException">该通道已标记为完成。</exception>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.TryComplete(System.Exception)">
+      <summary>尝试将通道标记为正在完成，表示不再将项写入到该通道。</summary>
+      <param name="error">
+        <see cref="T:System.Exception" />，该异常指示无法再写入数据或没有成功。</param>
+      <returns>如果此操作成功完成通道，则为 <see langword="true" />；如果无法将通道标记为完成（例如由于已标记为此类状态或由于不支持完成），则为 <see langword="false" />。
+.</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.TryWrite(`0)">
+      <summary>尝试将指定的项写入到通道。</summary>
+      <param name="item">要写入的项。</param>
+      <returns>如果已写入该项，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.WaitToWriteAsync(System.Threading.CancellationToken)">
+      <summary>返回将在有可用空间写入项时完成的 <see cref="T:System.Threading.Tasks.ValueTask`1" />。</summary>
+      <param name="cancellationToken">用于取消等待操作的 <see cref="T:System.Threading.CancellationToken" />。</param>
+      <returns>将在有可用空间写入项时完成并返回 <see langword="true" /> 结果或将在不再允许执行写入操作时完成并返回 <see langword="false" /> 结果的 <see cref="T:System.Threading.Tasks.ValueTask`1" />。</returns>
+    </member>
+    <member name="M:System.Threading.Channels.ChannelWriter`1.WriteAsync(`0,System.Threading.CancellationToken)">
+      <summary>以异步方式将项写入到通道。</summary>
+      <param name="item">要写入到通道的值。</param>
+      <param name="cancellationToken">用于取消写入操作的 <see cref="T:System.Threading.CancellationToken" />。</param>
+      <returns>表示异步写入操作的 <see cref="T:System.Threading.Tasks.ValueTask" />。</returns>
+    </member>
+    <member name="T:System.Threading.Channels.UnboundedChannelOptions">
+      <summary>提供用于控制无界 <see cref="T:System.Threading.Channels.Channel`1" /> 实例的行为的选项。</summary>
+    </member>
+    <member name="M:System.Threading.Channels.UnboundedChannelOptions.#ctor">
+      <summary>初始化 <see cref="T:System.Threading.Channels.UnboundedChannelOptions" /> 类的新实例。</summary>
+    </member>
+  </members>
+</doc>

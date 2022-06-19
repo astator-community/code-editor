@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.WebSockets</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.WebSockets.ValueWebSocketReceiveResult">
+      <summary>表示对 <see cref="T:System.Net.WebSockets.WebSocket" /> 执行单个 <see cref="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.Memory{System.Byte},System.Threading.CancellationToken)" /> 操作所得到的结果。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.ValueWebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean)">
+      <summary>初始化 <see cref="T:System.Net.WebSockets.ValueWebSocketReceiveResult" /> 结构的新实例。 此结构的实例表示对 <see cref="T:System.Net.WebSockets.WebSocket" /> 执行单个 <c>ReceiveAsync</c> 操作所得到的结果。</summary>
+      <param name="count">
+        <see cref="T:System.Net.WebSockets.WebSocket" /> 收到的字节数。</param>
+      <param name="messageType">枚举值之一，指示当前消息是 UTF-8 消息还是二进制消息。</param>
+      <param name="endOfMessage">
+        <see langword="true" />，指示已完整收到消息；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Net.WebSockets.ValueWebSocketReceiveResult.Count">
+      <summary>获取 <see cref="T:System.Net.WebSockets.WebSocket" /> 收到的字节数。</summary>
+      <returns>
+        <see cref="T:System.Net.WebSockets.WebSocket" /> 收到的字节数。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.ValueWebSocketReceiveResult.EndOfMessage">
+      <summary>指示是否已完整收到该消息。</summary>
+      <returns>
+        <see langword="true" /> 如果消息已完全接收，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.ValueWebSocketReceiveResult.MessageType">
+      <summary>获取当前消息的类型。</summary>
+      <returns>枚举值之一，指定当前消息是 UTF-8、二进制还是关闭消息。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocket">
+      <summary>WebSocket 类允许应用程序在 WebSocket 升级完成后发送和接收数据。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.#ctor">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocket" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.Abort">
+      <summary>中止 WebSocket 连接并取消任何挂起的 IO 操作。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <summary>使用在 WebSocket 协议规范第 7 节中定义的关闭握手关闭作为异步操作的 WebSocket 连接。</summary>
+      <param name="closeStatus">指示关闭 WebSocket 连接的原因。</param>
+      <param name="statusDescription">指定一个可读的解释为连接关闭的原因。</param>
+      <param name="cancellationToken">标记可用于传播取消操作的通知。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <summary>启动或完成 WebSocket 协议规范第 7 节中定义的关闭握手。</summary>
+      <param name="closeStatus">指示关闭 WebSocket 连接的原因。</param>
+      <param name="statusDescription">允许应用程序指定一个可读的解释为连接关闭的原因。</param>
+      <param name="cancellationToken">可用于传播有关应取消操作的通知的令牌。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CreateClientBuffer(System.Int32,System.Int32)">
+      <summary>创建用于此 <see cref="T:System.Net.WebSockets.WebSocket" /> 实例的客户端缓冲区。</summary>
+      <param name="receiveBufferSize">客户端接收缓冲区的大小（以字节为单位）。</param>
+      <param name="sendBufferSize">发送缓冲区的大小（以字节为单位）。</param>
+      <returns>一个包含客户端缓冲区的数组。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CreateClientWebSocket(System.IO.Stream,System.String,System.Int32,System.Int32,System.TimeSpan,System.Boolean,System.ArraySegment{System.Byte})">
+      <summary>允许调用方创建客户端 WebSocket 类，此类为组帧目的将使用 WSPC。</summary>
+      <param name="innerStream">将用于 IO 操作的连接。</param>
+      <param name="subProtocol">被客户端接受的子协议。</param>
+      <param name="receiveBufferSize">客户 WebSocket 接收缓冲区的大小（以字节为单位）。</param>
+      <param name="sendBufferSize">客户端 WebSocket 发送缓冲区的大小（以字节为单位）。</param>
+      <param name="keepAliveInterval">确定帧是如何定期通过维弧连接发送的。 仅当连接空闲时应用。</param>
+      <param name="useZeroMaskingKey">指示随机键或静态键（仅指零）是否应针对 WebSocket 掩码而使用。</param>
+      <param name="internalBuffer">在 WPC 中将用作内部缓冲区。 大小必须至少为 <c>2 * ReceiveBufferSize + SendBufferSize + 256 + 20（32 位上的 16）</c>。</param>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocket" />。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CreateFromStream(System.IO.Stream,System.Boolean,System.String,System.TimeSpan)">
+      <summary>创建在指定流上操作的新 <see cref="T:System.Net.WebSockets.WebSocket" /> 对象，它表示一个 Web 套接字连接。</summary>
+      <param name="stream">连接的流。</param>
+      <param name="isServer">要指示它是连接的服务器端，则为 <see langword="true" />；如果是客户端，则为 <see langword="false" />。</param>
+      <param name="subProtocol">创建连接时使用的已约定的子协议。</param>
+      <param name="keepAliveInterval">要使用的保持活动状态间隔，或禁用保持活动状态的 <see cref="F:System.Threading.Timeout.InfiniteTimeSpan" />。</param>
+      <returns>新的 Web 套接字。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.CreateServerBuffer(System.Int32)">
+      <summary>创建 WebSocket 服务器缓冲区。</summary>
+      <param name="receiveBufferSize">以字节为单位的所需的缓冲区的大小。</param>
+      <returns>返回 <see cref="T:System.ArraySegment`1" />。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.Dispose">
+      <summary>用于清理 ASP.NET 和自承载实现的非托管资源。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.IsApplicationTargeting45">
+      <summary>返回指示 WebSocket 实例是否以 .NET Framework 4.5 为目标的值。</summary>
+      <returns>如果 <see cref="T:System.Net.WebSockets.WebSocket" /> 以 .NET Framework 4.5 为目标，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.IsStateTerminal(System.Net.WebSockets.WebSocketState)">
+      <summary>返回指示 WebSocket 实例的状态是“已关闭”还是“已中止”的值。</summary>
+      <param name="state">WebSocket 的当前状态。</param>
+      <returns>如果 <see cref="T:System.Net.WebSockets.WebSocket" /> 已关闭或已中止，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)">
+      <summary>从 <see cref="T:System.Net.WebSockets.WebSocket" /> 连接异步接收数据。</summary>
+      <param name="buffer">引用应用程序缓冲区，其为已接收数据的存储位置。</param>
+      <param name="cancellationToken">传播有关应取消操作的通知。</param>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回表示已接收数据的 <see cref="T:System.Net.WebSockets.WebSocketReceiveResult" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从 <see cref="T:System.Net.WebSockets.WebSocket" /> 连接异步接收数据。</summary>
+      <param name="buffer">应用程序缓冲区是接收数据的存储位置。</param>
+      <param name="cancellationToken">用于取消接收操作的取消令牌。</param>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.ValueTask`1.Result" /> 属性将返回表示已接收数据的 <see cref="T:System.Net.WebSockets.ValueWebSocketReceiveResult" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.RegisterPrefixes">
+      <summary>允许调用方注册 WebSocket 请求的前缀（ws 和 wss）。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
+      <summary>通过 <see cref="T:System.Net.WebSockets.WebSocket" /> 连接异步发送数据。</summary>
+      <param name="buffer">要通过连接发送的缓冲区。</param>
+      <param name="messageType">指示应用程序是发送二进制消息还是发送文本消息。</param>
+      <param name="endOfMessage">指示“缓冲区”中的数据是否是消息的最后一部分。</param>
+      <param name="cancellationToken">传播有关应取消操作的通知的标记。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.SendAsync(System.ReadOnlyMemory{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
+      <summary>通过 <see cref="T:System.Net.WebSockets.WebSocket" /> 连接异步发送数据。</summary>
+      <param name="buffer">要通过连接发送的缓冲区。</param>
+      <param name="messageType">枚举值之一，指示应用程序是在发送二进制消息还是在发送文本消息。</param>
+      <param name="endOfMessage">如果指示“缓冲区”中的数据是消息的最后一部分，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="cancellationToken">用于取消发送操作的取消令牌。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocket.ThrowOnInvalidState(System.Net.WebSockets.WebSocketState,System.Net.WebSockets.WebSocketState[])">
+      <summary>验证连接是否处于预期状态。</summary>
+      <param name="state">要对有效状态的列表测试的 WebSocket 的当前状态。</param>
+      <param name="validStates">有效的连接状态列表。</param>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocket.CloseStatus">
+      <summary>指示远程终结点启动关闭握手的原因。</summary>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocketCloseStatus" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocket.CloseStatusDescription">
+      <summary>允许远程终结点描述关闭该连接的原因。</summary>
+      <returns>返回 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocket.DefaultKeepAliveInterval">
+      <summary>获取默认 WebSocket 协议保持活动状态的间隔。</summary>
+      <returns>默认 WebSocket 协议保持活动状态的间隔。 此间隔的典型值为30秒， (由 OS 或 .NET 平台) 定义。 它用于初始化 <see cref="P:System.Net.WebSockets.ClientWebSocketOptions.KeepAliveInterval" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocket.State">
+      <summary>返回 WebSocket 连接的当前状态。</summary>
+      <returns>WebSocket 连接的当前状态。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocket.SubProtocol">
+      <summary>获取在打开握手期间协商的子协议。</summary>
+      <returns>在打开握手期间协商的子协议。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketCloseStatus">
+      <summary>表示在 WebSocket 协议规范的第 11.7 节中定义的常见 WebSocket 关闭代码。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.Empty">
+      <summary>未指定错误。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.EndpointUnavailable">
+      <summary>（1001）表示终结点正被移除。 服务器或客户端将不可用。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.InternalServerError">
+      <summary>(1011) 由于服务器出错，连接将由服务器关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidMessageType">
+      <summary>(1003) 因为无法接受已收到的数据类型，客户端或服务器正在终止连接。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidPayloadData">
+      <summary>（1007）因为已接收到的数据类型与该消息类型不一致，客户端或服务器将停止连接。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.MandatoryExtension">
+      <summary>(1010) 因为需要服务器协商扩展，客户端正在终止连接。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.MessageTooBig">
+      <summary>(1009) 客户端或服务器正在终止连接，因为收到的消息对它而言过大，无法处理。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.NormalClosure">
+      <summary>(1000) 完成请求后，连接关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.PolicyViolation">
+      <summary>（1008）因为终结点接收了违反其策略的消息，连接将关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketCloseStatus.ProtocolError">
+      <summary>（1002）由于协议错误，客户端或服务器将停止该连接。</summary>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketContext">
+      <summary>用于访问 WebSocket 握手中的信息。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketContext.#ctor">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketContext" /> 类的实例。</summary>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.CookieCollection">
+      <summary>在打开握手期间，传递到服务器的 cookie。</summary>
+      <returns>返回 <see cref="T:System.Net.CookieCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.Headers">
+      <summary>在打开握手期间，被发送到服务器的 HTTP 标题。</summary>
+      <returns>返回 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.IsAuthenticated">
+      <summary>不否对 WebSocket 客户端进行身份验证。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.IsLocal">
+      <summary>WebSocket 客户端是否从本地计算进行连接。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.IsSecureConnection">
+      <summary>是否使用安全套接字层 (SSL) 保护 WebSocket 连接。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.Origin">
+      <summary>包括打开握手 Origin HTTP 标题的值。</summary>
+      <returns>返回 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.RequestUri">
+      <summary>WebSocket 客户端请求的 URI。</summary>
+      <returns>返回 <see cref="T:System.Uri" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.SecWebSocketKey">
+      <summary>包括在打开握手中 SecWebSocketKey HTTP 标题的值。</summary>
+      <returns>返回 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.SecWebSocketProtocols">
+      <summary>包括在打开握手中 SecWebSocketKey HTTP 标题的值。</summary>
+      <returns>返回 <see cref="T:System.Collections.Generic.IEnumerable`1" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.SecWebSocketVersion">
+      <summary>由 WebSocket 客户请求的子协议列表。</summary>
+      <returns>返回 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.User">
+      <summary>用于获取标识、身份验证信息和 WebSocket 客户的安全角色的对象。</summary>
+      <returns>返回 <see cref="T:System.Security.Principal.IPrincipal" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketContext.WebSocket">
+      <summary>用于与 WebSocket 交互（送信/受信/关闭/等）的 WebSocket 实例。</summary>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocket" />。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketError">
+      <summary>包含可能的 WebSocket 错误列表。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.ConnectionClosedPrematurely">
+      <summary>指示连接意外终止。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.Faulted">
+      <summary>指示常规错误。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.HeaderError">
+      <summary>指示在打开握手时分析 HTTP 头时发生一个错误。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.InvalidMessageType">
+      <summary>指示接收带有未知操作码的一个 WebSocket 帧。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.InvalidState">
+      <summary>指示 WebSocket 对于特定操作是无效状态(例如关闭或放弃)。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.NativeError">
+      <summary>指示发生未知本地错误。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.NotAWebSocket">
+      <summary>指示传入请求不是一个合法的 websocket 请求。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.Success">
+      <summary>指示异常不存在本地错误信息。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.UnsupportedProtocol">
+      <summary>指示该客户端请求一个不受支持的 WebSocket subprotocol。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketError.UnsupportedVersion">
+      <summary>指示客户端请求 WebSocket 协议的不受支持的版本。</summary>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketException">
+      <summary>表示在 WebSocket 连接上执行操作时发生的异常。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="nativeError">异常的本机错误代码。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="nativeError">异常的本机错误代码。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.String)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="nativeError">异常的本机错误代码。</param>
+      <param name="message">对错误的说明。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="nativeError">异常的本机错误代码。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="nativeError">异常的本机错误代码。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="nativeError">异常的本机错误代码。</param>
+      <param name="message">对错误的说明。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="nativeError">异常的本机错误代码。</param>
+      <param name="message">对错误的说明。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="message">对错误的说明。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="error">WebSocketError 枚举中的错误。</param>
+      <param name="message">对错误的说明。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.String)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="message">对错误的说明。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.#ctor(System.String,System.Exception)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketException" /> 类的实例。</summary>
+      <param name="message">对错误的说明。</param>
+      <param name="innerException">指示引发当前异常的上一个异常。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>方法使用文件名以及发生此异常的行号来设置 SerializationInfo 对象。</summary>
+      <param name="info">SerializationInfo 对象。</param>
+      <param name="context">关于来源和目标的上下文信息</param>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketException.ErrorCode">
+      <summary>发生的异常的本机错误代码。</summary>
+      <returns>返回 <see cref="T:System.Int32" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketException.WebSocketErrorCode">
+      <summary>返回 WebSocketError，它指示发生的错误的类型。</summary>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocketError" />。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketMessageType">
+      <summary>指示消息类型：</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketMessageType.Binary">
+      <summary>消息采用二进制格式。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketMessageType.Close">
+      <summary>因为收到关闭的消息，接受已完成。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketMessageType.Text">
+      <summary>该消息是明文形式。</summary>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketReceiveResult">
+      <summary>此类的实例表示在 WebSocket 上执行单个 ReceiveAsync 操作所得到的结果。</summary>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketReceiveResult" /> 类的实例。</summary>
+      <param name="count">收到的字节数。</param>
+      <param name="messageType">收到的消息的类型。</param>
+      <param name="endOfMessage">指示是否是最后一条消息。</param>
+    </member>
+    <member name="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Net.WebSockets.WebSocketCloseStatus},System.String)">
+      <summary>创建 <see cref="T:System.Net.WebSockets.WebSocketReceiveResult" /> 类的实例。</summary>
+      <param name="count">收到的字节数。</param>
+      <param name="messageType">收到的消息的类型。</param>
+      <param name="endOfMessage">指示是否是最后一条消息。</param>
+      <param name="closeStatus">指示连接的 <see cref="T:System.Net.WebSockets.WebSocketCloseStatus" />。</param>
+      <param name="closeStatusDescription">对 <paramref name="closeStatus" /> 的描述。</param>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatus">
+      <summary>指示远程终结点启动关闭握手的原因。</summary>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocketCloseStatus" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatusDescription">
+      <summary>返回描述关闭握手由远程终结点启动的原因的可选说明。</summary>
+      <returns>返回 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketReceiveResult.Count">
+      <summary>指示 WebSocket 接收的字节数。</summary>
+      <returns>返回 <see cref="T:System.Int32" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketReceiveResult.EndOfMessage">
+      <summary>指示是否已完整收到该消息。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.WebSocketReceiveResult.MessageType">
+      <summary>指示当前消息是 UTF-8 消息还是二进制消息。</summary>
+      <returns>返回 <see cref="T:System.Net.WebSockets.WebSocketMessageType" />。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.WebSocketState">
+      <summary>定义 WebSockets 事例可能性的不同状态。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.Aborted">
+      <summary>留待将来使用。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.Closed">
+      <summary>指示正常完成 WebSocket 关闭握手。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.CloseReceived">
+      <summary>自该远程终结点接收的关闭消息。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.CloseSent">
+      <summary>向远程终结点发送了关闭消息。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.Connecting">
+      <summary>连接到远程终结点处的链接。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.None">
+      <summary>留待将来使用。</summary>
+    </member>
+    <member name="F:System.Net.WebSockets.WebSocketState.Open">
+      <summary>在 HTTP 握手完成之后的初始状态。</summary>
+    </member>
+  </members>
+</doc>

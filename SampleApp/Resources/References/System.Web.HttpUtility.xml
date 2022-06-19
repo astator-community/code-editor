@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.HttpUtility</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.HttpUtility">
+      <summary>提供在处理 Web 请求时用于编码和解码 URL 的方法。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Web.HttpUtility.#ctor">
+      <summary>初始化 <see cref="T:System.Web.HttpUtility" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlAttributeEncode(System.String)">
+      <summary>将字符串最小限度地转换为 HTML 编码的字符串。</summary>
+      <param name="s">要编码的字符串。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlAttributeEncode(System.String,System.IO.TextWriter)">
+      <summary>将字符串最小限度地转换为 HTML 编码的字符串，并将编码的字符串发送到 <see cref="T:System.IO.TextWriter" /> 输出流。</summary>
+      <param name="s">要编码的字符串</param>
+      <param name="output">
+        <see cref="T:System.IO.TextWriter" /> 输出流。</param>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlDecode(System.String)">
+      <summary>将已经为 HTTP 传输进行过 HTML 编码的字符串转换为已解码的字符串。</summary>
+      <param name="s">要解码的字符串。</param>
+      <returns>已解码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlDecode(System.String,System.IO.TextWriter)">
+      <summary>将已经过 HTML 编码的字符串转换为已解码的字符串并将其发送给 <see cref="T:System.IO.TextWriter" /> 输出流。</summary>
+      <param name="s">要解码的字符串。</param>
+      <param name="output">
+        <see cref="T:System.IO.TextWriter" /> 输出流。</param>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlEncode(System.Object)">
+      <summary>将对象的字符串表示形式转换为 HTML 编码的字符串，并返回已编码的字符串。</summary>
+      <param name="value">一个对象。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlEncode(System.String)">
+      <summary>将字符串转换为 HTML 编码字符串。</summary>
+      <param name="s">要编码的字符串。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.HtmlEncode(System.String,System.IO.TextWriter)">
+      <summary>将字符串转换为 HTML 编码的字符串，并以 <see cref="T:System.IO.TextWriter" /> 输出流的形式返回输出。</summary>
+      <param name="s">要编码的字符串</param>
+      <param name="output">
+        <see cref="T:System.IO.TextWriter" /> 输出流。</param>
+    </member>
+    <member name="M:System.Web.HttpUtility.JavaScriptStringEncode(System.String)">
+      <summary>对字符串进行编码。</summary>
+      <param name="value">要编码的字符串。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.JavaScriptStringEncode(System.String,System.Boolean)">
+      <summary>对字符串进行编码。</summary>
+      <param name="value">要编码的字符串。</param>
+      <param name="addDoubleQuotes">一个指示双引号是否将包含在已编码字符串周围的值。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.ParseQueryString(System.String)">
+      <summary>使用 <see cref="P:System.Text.Encoding.UTF8" /> 编码将查询字符串分析成一个 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</summary>
+      <param name="query">要分析的查询字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="query" /> 为 <see langword="null" />。</exception>
+      <returns>查询参数和值的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.ParseQueryString(System.String,System.Text.Encoding)">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将查询字符串分析成一个 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</summary>
+      <param name="query">要分析的查询字符串。</param>
+      <param name="encoding">要使用的 <see cref="T:System.Text.Encoding" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="query" /> 为 <see langword="null" />。
+
+- 或 -
+
+ <paramref name="encoding" /> 为 <see langword="null" />。</exception>
+      <returns>查询参数和值的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecode(System.Byte[],System.Int32,System.Int32,System.Text.Encoding)">
+      <summary>使用指定的编码对象将 URL 编码字节数据转换为已解码的字符串，从数组中的指定位置开始，直到指定的字节数。</summary>
+      <param name="bytes">要解码的字节数组。</param>
+      <param name="offset">字节中开始解码的位置。</param>
+      <param name="count">要解码的字节数。</param>
+      <param name="e">指定解码方案的 <see cref="T:System.Text.Encoding" /> 对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bytes" /> 为 <see langword="null" />，但是 <paramref name="count" /> 不等于 <see langword="0" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 小于 <see langword="0" /> 或大于 <paramref name="bytes" /> 数组的长度。
+
+- 或 -
+
+ <paramref name="count" /> 小于 <see langword="0" />，或 <paramref name="count" /> + <paramref name="offset" /> 大于 <paramref name="bytes" /> 数组的长度。</exception>
+      <returns>已解码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecode(System.Byte[],System.Text.Encoding)">
+      <summary>使用指定的解码对象将 URL 编码的字节数组转换为解码的字符串。</summary>
+      <param name="bytes">要解码的字节数组。</param>
+      <param name="e">指定解码方案的 <see cref="T:System.Text.Encoding" />。</param>
+      <returns>已解码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecode(System.String)">
+      <summary>将已编码用于 URL 传输的字符串转换为解码的字符串。</summary>
+      <param name="str">要解码的字符串。</param>
+      <returns>已解码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecode(System.String,System.Text.Encoding)">
+      <summary>使用指定的编码对象将 URL 编码的字符串转换为解码的字符串。</summary>
+      <param name="str">要解码的字符串。</param>
+      <param name="e">指定解码方案的 <see cref="T:System.Text.Encoding" />。</param>
+      <returns>已解码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecodeToBytes(System.Byte[])">
+      <summary>将 URL 编码的字节数组转换为解码后的字节数组。</summary>
+      <param name="bytes">要解码的字节数组。</param>
+      <returns>一个已解码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecodeToBytes(System.Byte[],System.Int32,System.Int32)">
+      <summary>从数组中的指定位置开始一直到指定的字节数为止，将 URL 编码的字节数组转换为已解码的字节数组。</summary>
+      <param name="bytes">要解码的字节数组。</param>
+      <param name="offset">字节数组中开始解码的位置。</param>
+      <param name="count">要解码的字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bytes" /> 为 <see langword="null" />，但是 <paramref name="count" /> 不等于 <see langword="0" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 小于 <see langword="0" /> 或大于 <paramref name="bytes" /> 数组的长度。
+
+- 或 -
+
+ <paramref name="count" /> 小于 <see langword="0" />，或 <paramref name="count" /> + <paramref name="offset" /> 大于 <paramref name="bytes" /> 数组的长度。</exception>
+      <returns>一个已解码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecodeToBytes(System.String)">
+      <summary>将 URL 编码的字符串转换为解码的字节数组。</summary>
+      <param name="str">要解码的字符串。</param>
+      <returns>一个已解码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlDecodeToBytes(System.String,System.Text.Encoding)">
+      <summary>使用指定的解码对象将 URL 编码的字符串转换为已解码的字节数组。</summary>
+      <param name="str">要解码的字符串。</param>
+      <param name="e">指定解码方案的 <see cref="T:System.Text.Encoding" /> 对象。</param>
+      <returns>一个已解码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncode(System.Byte[])">
+      <summary>将字节数组转换为编码的 URL 字符串。</summary>
+      <param name="bytes">要编码的字节数组。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncode(System.Byte[],System.Int32,System.Int32)">
+      <summary>从数组中指定位置开始，按照指定字节数量，将字节数组转换为 URL 编码的字符串。</summary>
+      <param name="bytes">要编码的字节数组。</param>
+      <param name="offset">从其开始编码的字节数组中的位置。</param>
+      <param name="count">要编码的字节数。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncode(System.String)">
+      <summary>对 URL 字符串进行编码。</summary>
+      <param name="str">要编码的文本。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncode(System.String,System.Text.Encoding)">
+      <summary>使用指定的编码对象，对 URL 字符串进行编码。</summary>
+      <param name="str">要编码的文本。</param>
+      <param name="e">指定编码方案的 <see cref="T:System.Text.Encoding" /> 对象。</param>
+      <returns>已编码的字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeToBytes(System.Byte[])">
+      <summary>将字节数组转换为 URL 编码的字节数组。</summary>
+      <param name="bytes">要编码的字节数组。</param>
+      <returns>编码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeToBytes(System.Byte[],System.Int32,System.Int32)">
+      <summary>将字节数组转换为 URL 编码的字节数组，从数组中指定位置开始，以指定字节数继续。</summary>
+      <param name="bytes">要编码的字节数组。</param>
+      <param name="offset">从其开始编码的字节数组中的位置。</param>
+      <param name="count">要编码的字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bytes" /> 为 <see langword="null" />，但是 <paramref name="count" /> 不等于 <see langword="0" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 小于 <see langword="0" /> 或大于 <paramref name="bytes" /> 数组的长度。
+
+- 或 -
+
+ <paramref name="count" /> 小于 <see langword="0" />，或 <paramref name="count" /> + <paramref name="offset" /> 大于 <paramref name="bytes" /> 数组的长度。</exception>
+      <returns>编码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeToBytes(System.String)">
+      <summary>将字符串转换为 URL 编码的字节数组。</summary>
+      <param name="str">要编码的字符串。</param>
+      <returns>编码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeToBytes(System.String,System.Text.Encoding)">
+      <summary>使用指定的编码对象将字符串转换为 URL 编码的字节数组。</summary>
+      <param name="str">要编码的字符串</param>
+      <param name="e">指定编码方案的 <see cref="T:System.Text.Encoding" />。</param>
+      <returns>编码的字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeUnicode(System.String)">
+      <summary>将字符串转换为 Unicode 字符串。</summary>
+      <param name="str">要转换的字符串。</param>
+      <returns>采用 %<paramref name="UnicodeValue" /> 表示法的 Unicode 字符串。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlEncodeUnicodeToBytes(System.String)">
+      <summary>将 Unicode 字符串转换为字节数组。</summary>
+      <param name="str">要转换的字符串。</param>
+      <returns>一个字节数组。</returns>
+    </member>
+    <member name="M:System.Web.HttpUtility.UrlPathEncode(System.String)">
+      <summary>请勿使用；仅适用于浏览器兼容性。 请使用 <see cref="M:System.Web.HttpUtility.UrlEncode(System.String)" />。</summary>
+      <param name="str">要编码的文本。</param>
+      <returns>编码的文本。</returns>
+    </member>
+  </members>
+</doc>

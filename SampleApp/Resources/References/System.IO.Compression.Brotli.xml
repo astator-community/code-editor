@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.Compression.Brotli</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Compression.BrotliDecoder">
+      <summary>提供未分配的高性能 Brotli 解压缩方法。 方法在不使用 <see cref="T:System.IO.Compression.BrotliStream" /> 实例的情况下以单次传递的形式解压缩。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliDecoder.Decompress(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32@)">
+      <summary>解压缩用 Brotli 算法压缩的数据。</summary>
+      <param name="source">包含已压缩数据的缓冲区。</param>
+      <param name="destination">此方法返回时，为包含解压缩数据的字节范围。</param>
+      <param name="bytesConsumed">从 <paramref name="source" /> 读取的总字节数。</param>
+      <param name="bytesWritten">写入 <paramref name="destination" /> 的总字节数。</param>
+      <returns>用于指示解压缩操作状态的枚举值之一。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliDecoder.Dispose">
+      <summary>释放由当前 Brotli 解码器实例使用的所有资源。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliDecoder.TryDecompress(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+      <summary>尝试解压缩用 Brotli 算法压缩的数据。</summary>
+      <param name="source">包含已压缩数据的缓冲区。</param>
+      <param name="destination">此方法返回时，为包含解压缩数据的字节范围。</param>
+      <param name="bytesWritten">写入 <paramref name="destination" /> 的总字节数。</param>
+      <returns>如果成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.IO.Compression.BrotliEncoder">
+      <summary>提供方法和静态方法，以便使用 Brotli 数据格式规范以无流、非分配和高性能的方式对数据进行编码和解码。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.#ctor(System.Int32,System.Int32)">
+      <summary>使用指定的质量和窗口初始化 <see cref="T:System.IO.Compression.BrotliEncoder" /> 结构的新实例。</summary>
+      <param name="quality">一个数字，表示 Brotli 压缩的质量。 0 为最小值（无压缩），11 为最大值。</param>
+      <param name="window">一个数字，表示编码器窗口位数。 最小值为 10，最大值为 24。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="quality" /> 不介于最小值 0 和最大值 11 之间。
+
+- 或 -
+
+<paramref name="window" /> 不介于最小值 10 和最大值 24 之间。</exception>
+      <exception cref="T:System.IO.IOException">无法创建 <see cref="T:System.IO.Compression.BrotliEncoder" /> 实例。</exception>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.Compress(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32@,System.Boolean)">
+      <summary>将只读字节范围压缩为目标范围。</summary>
+      <param name="source">包含要压缩的源数据的只读字节范围。</param>
+      <param name="destination">此方法返回时，存储了压缩数据的字节范围。</param>
+      <param name="bytesConsumed">此方法返回时，已从 <paramref name="source" /> 中读取的字节总数。</param>
+      <param name="bytesWritten">此方法返回时，已写入 <paramref name="destination" /> 的字节总数。</param>
+      <param name="isFinalBlock">若要完成内部流，以防止在此方法返回时添加更多输入数据，则为 <see langword="true" />；若要允许编码器将输出的生产推迟到处理完足够的输入为止，则为 <see langword="false" />。</param>
+      <returns>一个枚举值，用于描述基于范围的操作完成时的状态。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.Dispose">
+      <summary>释放和处理非托管资源。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.Flush(System.Span{System.Byte},System.Int32@)">
+      <summary>将空的只读字节范围压缩到其目标，以确保为所有已处理的输入生成输出。 源耗尽并且目标中有足够空间可用于剩余数据时，将执行实际刷新。</summary>
+      <param name="destination">此方法返回时，存储了压缩数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，已写入 <paramref name="destination" /> 的字节总数。</param>
+      <returns>一个枚举值，用于描述操作完成时的状态。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.GetMaxCompressedLength(System.Int32)">
+      <summary>获取所提供的输入大小的最大预期压缩长度。</summary>
+      <param name="inputSize">从中获取最大预期压缩长度的输入大小。 必须大于或等于 0 且小于或等于 <see cref="F:System.Int32.MaxValue" /> - 515。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputSize" /> 小于 0（允许的最小输入大小），或大于 <see cref="F:System.Int32.MaxValue" /> - 515（允许的最大输入大小）。</exception>
+      <returns>一个数字，表示所提供的输入大小的最大压缩长度。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.TryCompress(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+      <summary>尝试将源字节范围压缩到目标范围。</summary>
+      <param name="source">包含要压缩的源数据的只读字节范围。</param>
+      <param name="destination">此方法返回时，存储了压缩数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，已写入 <paramref name="destination" /> 的字节总数。</param>
+      <returns>如果压缩操作成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliEncoder.TryCompress(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32,System.Int32)">
+      <summary>尝试使用提供的压缩质量水平和编码器窗口位数将源字节范围压缩到目标字节范围。</summary>
+      <param name="source">包含要压缩的源数据的只读字节范围。</param>
+      <param name="destination">此方法返回时，存储了压缩数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，已写入 <paramref name="destination" /> 的字节总数。</param>
+      <param name="quality">一个数字，表示 Brotli 压缩的质量。 0 为最小值（无压缩），11 为最大值。</param>
+      <param name="window">一个数字，表示编码器窗口位数。 最小值为 10，最大值为 24。</param>
+      <returns>如果压缩操作成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.IO.Compression.BrotliStream">
+      <summary>使用 Brotli 数据格式规范提供用于压缩和解压缩流的方法和属性。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <summary>用指定的流和压缩级别初始化 <see cref="T:System.IO.Compression.BrotliStream" /> 类的新实例。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary>使用指定的流和压缩级别，初始化 <see cref="T:System.IO.Compression.BrotliStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.BrotliStream" /> 对象之后打开流，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <summary>用指定的流和压缩模式初始化 <see cref="T:System.IO.Compression.BrotliStream" /> 类的新实例。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <summary>使用指定的流和压缩模式，初始化 <see cref="T:System.IO.Compression.BrotliStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.BrotliStream" /> 对象后保持流处于打开状态，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步读操作。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="buffer">要从中读取数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始读取流中的数据。</param>
+      <param name="count">要读取的最大字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成读取操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步读取请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试异步读取超过了流的结尾，或者发生了磁盘错误。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see cref="T:System.IO.Compression.BrotliStream" /> 实现不支持读取操作。</exception>
+      <exception cref="T:System.InvalidOperationException">无法完成此调用。</exception>
+      <returns>表示异步读取操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步写操作。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="buffer">要向其中写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始写入从流中读取的数据。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成写入操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步写入请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试异步写入超过流的结尾的方法或发生错误的磁盘。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see cref="T:System.IO.Compression.BrotliStream" /> 实现不支持写入操作。</exception>
+      <exception cref="T:System.InvalidOperationException">由于流已关闭，因此无法执行写入操作。</exception>
+      <returns>表示异步写入操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.DisposeAsync">
+      <summary>异步释放 <see cref="T:System.IO.Compression.BrotliStream" /> 使用的非托管资源。</summary>
+      <returns>一个表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.EndRead(System.IAsyncResult)">
+      <summary>等待挂起的异步读取完成。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">对要完成的挂起异步请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.IO.Compression.BrotliStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.InvalidOperationException">由于流已关闭，因此无法执行结束操作。</exception>
+      <returns>从流中读取的字节数，介于 0（零）和你请求的字节数之间。 <see cref="T:System.IO.Compression.BrotliStream" /> 仅在流的末尾返回零 (0)；否则将一直阻塞，只到至少有一个字节可用。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.EndWrite(System.IAsyncResult)">
+      <summary>处理异步写入操作的结束。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">表示异步调用的对象。</param>
+      <exception cref="T:System.InvalidOperationException">基础流已关闭或 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Flush">
+      <summary>此方法的当前实现没有任何功能。</summary>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步清理这个 Brotli 流的所有缓冲区，并使所有缓冲数据写入基础设备，并且监控取消请求。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>将若干解压缩的字节读入指定的字节数组。</summary>
+      <param name="buffer">用于存储解压缩字节的数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，将在此处放置读取的字节。</param>
+      <param name="count">最多要读取的解压缩字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">创建对象时，<see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Compress" />，或者此流上已存在活动的异步操作。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 长度减去索引起始点小于 <paramref name="count" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException">数据的格式无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">基础流为 NULL 或已关闭。</exception>
+      <returns>解压缩到字节数组中的字节数。 如果已到达流的末尾，则返回 0 或已读取的字节数。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Read(System.Span{System.Byte})">
+      <summary>将当前 Brotli 流中的一个字节序列读取到字节范围，并按读取的字节数向前移动 Brotli 流中的位置。</summary>
+      <param name="buffer">内存的区域。 当此方法返回时，此区域的内容将替换为从当前源读取的字节。</param>
+      <returns>读入缓冲区中的总字节数。 如果很多字节当前不可用，则这可小于在缓冲区中分配的字节数；如果已到达流结尾，则为零 (0)。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>读取当前 Brotli 流中的一个字节序列，将其写入从指定索引处开始的字节数组，按读取的字节数向前移动 Brotli 流中的位置，并监视取消请求。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从该偏移量开始写入从 Brotli 流中读取的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到 <paramref name="buffer" /> 中的任务。 如果当前可用字节数少于所请求的字节数，则该结果值可小于所请求的字节数；如果已到达 Brotli 流结尾时，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从当前 Brotli 流异步读取字节的序列，将其写入字节内存范围，按读取的字节数向前移动 Brotli 流中的位置，并监视取消请求。</summary>
+      <param name="buffer">要将数据写入的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到缓冲区中的任务。 如果很多字节当前不可用，则结果值可小于在缓冲区中分配的字节数；如果已到达 Brotli 流结尾，则结果值可以为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="offset">流中的位置。</param>
+      <param name="origin">
+        <see cref="T:System.IO.SeekOrigin" /> 值之一。</param>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.SetLength(System.Int64)">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="value">流的长度。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>从指定的字节数组中将压缩的字节写入基础流。</summary>
+      <param name="buffer">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，将在此处读取字节。</param>
+      <param name="count">最多写入的字节数。</param>
+      <exception cref="T:System.ObjectDisposedException">由于流已关闭，因此无法执行写入操作。</exception>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.Write(System.ReadOnlySpan{System.Byte})">
+      <summary>将一个字节序列从只读字节范围写入当前 Brotli 缓冲流，并按写入的字节数向前移动此 Brotli 流中的当前位置。</summary>
+      <param name="buffer">内存的区域。 此方法将此区域的内容复制到当前 Brotli 流。</param>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从指定的字节数组中将压缩的字节异步写入基础 Brotli 流。</summary>
+      <param name="buffer">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的从零开始的字节偏移量，从此处开始将字节复制到 Brotli 流。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.BrotliStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
+      <summary>将压缩的字节从指定的字节内存范围异步写入基础 Brotli 流。</summary>
+      <param name="buffer">要从中写入数据的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.BaseStream">
+      <summary>获取对基础流的引用。</summary>
+      <exception cref="T:System.ObjectDisposedException">基础流已关闭。</exception>
+      <returns>表示基础流的流对象。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.CanRead">
+      <summary>获取一个值，该值指示流是否支持在解压缩文件的过程中读取文件。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Decompress," /> 而且基础流未关闭并支持读取，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.CanSeek">
+      <summary>获取一个值，该值指示流是否支持查找。</summary>
+      <returns>在所有情况下均为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.CanWrite">
+      <summary>获取一个值，该值指示流是否支持写入。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Compress" /> 而且基础流未关闭并支持写入，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.Length">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="P:System.IO.Compression.BrotliStream.Position">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+  </members>
+</doc>

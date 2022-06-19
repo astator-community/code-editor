@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Runtime.Serialization.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.Serialization.CollectionDataContractAttribute">
+      <summary>当应用于集合类型时，可用来对集合项元素进行自定义指定。 此属性只能应用于被 <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 视为有效的可序列化集合的类型。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.CollectionDataContractAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.CollectionDataContractAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsItemNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.CollectionDataContractAttribute.ItemName" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置项名称，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsKeyNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.CollectionDataContractAttribute.KeyName" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置键名称，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.CollectionDataContractAttribute.Name" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置名称，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsNamespaceSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.CollectionDataContractAttribute.Namespace" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置项命名空间，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsReference">
+      <summary>获取或设置一个值，该值指示是否保留对象引用数据。</summary>
+      <returns>如果保留对象引用数据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsReferenceSetExplicitly">
+      <summary>获取是否已显式设置引用。</summary>
+      <returns>如果已显式设置引用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.IsValueNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.CollectionDataContractAttribute.ValueName" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置了值名称，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.ItemName">
+      <summary>获取或设置集合元素的自定义名称。</summary>
+      <returns>要应用于集合元素的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.KeyName">
+      <summary>获取或设置字典键名称的自定义名称。</summary>
+      <returns>要取代默认字典键名称而使用的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.Name">
+      <summary>获取或设置集合类型的数据协定名称。</summary>
+      <returns>集合类型的数据协定名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.Namespace">
+      <summary>获取或设置数据协定的命名空间。</summary>
+      <returns>数据协定的命名空间。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.CollectionDataContractAttribute.ValueName">
+      <summary>获取或设置字典值名称的自定义名称。</summary>
+      <returns>要取代默认字典值名称而使用的名称。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ContractNamespaceAttribute">
+      <summary>指定数据协定的 CLR 命名空间和 XML 命名空间。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ContractNamespaceAttribute.#ctor(System.String)">
+      <summary>使用提供的命名空间初始化 <see cref="T:System.Runtime.Serialization.ContractNamespaceAttribute" /> 类的新实例。</summary>
+      <param name="contractNamespace">协定的命名空间。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.ContractNamespaceAttribute.ClrNamespace">
+      <summary>获取或设置数据协定类型的 CLR 命名空间。</summary>
+      <returns>类型的 CLR 合法命名空间。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.ContractNamespaceAttribute.ContractNamespace">
+      <summary>获取数据协定成员的命名空间。</summary>
+      <returns>数据协定成员的命名空间。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.DataContractAttribute">
+      <summary>指定该类型要定义或实现一个数据协定，并可由序列化程序（如 <see cref="T:System.Runtime.Serialization.DataContractSerializer" />）进行序列化。 若要使其类型可序列化，类型作者必须为其类型定义数据协定。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.DataContractAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.IsNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.DataContractAttribute.Name" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置名称，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.IsNamespaceSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.DataContractAttribute.Namespace" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置命名空间，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.IsReference">
+      <summary>获取或设置一个值，该值指示是否保留对象引用数据。</summary>
+      <returns>如果使用标准 XML 保留对象引用数据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.IsReferenceSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.DataContractAttribute.IsReference" /> 是否已显式设置。</summary>
+      <returns>如果已显式设置引用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.Name">
+      <summary>获取或设置类型的数据协定的名称。</summary>
+      <returns>数据协定的本地名称。 默认值是应用了该属性的类的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractAttribute.Namespace">
+      <summary>获取或设置类型的数据协定的命名空间。</summary>
+      <returns>协定的命名空间。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.DataMemberAttribute">
+      <summary>当应用于类型的成员时，指定该成员是数据协定的一部分并可由 <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 进行序列化。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.DataMemberAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.DataMemberAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataMemberAttribute.EmitDefaultValue">
+      <summary>获取或设置一个值，该值指定是否序列化正在序列化的字段或属性的默认值。</summary>
+      <returns>如果应该在序列化流中生成成员的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataMemberAttribute.IsNameSetExplicitly">
+      <summary>获取 <see cref="P:System.Runtime.Serialization.DataMemberAttribute.Name" /> 是否已显式设置。</summary>
+      <returns>
+        <see langword="true" /> 如果已显式设置名称，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataMemberAttribute.IsRequired">
+      <summary>获取或设置一个值，该值指示序列化引擎该成员在读取或反序列化时必须存在。</summary>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">该成员不存在。</exception>
+      <returns>如果该成员是必需的，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataMemberAttribute.Name">
+      <summary>获取或设置数据成员名称。</summary>
+      <returns>该数据成员的名称。 默认值是应用该属性的目标的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataMemberAttribute.Order">
+      <summary>获取或设置成员的序列化和反序列化的顺序。</summary>
+      <returns>序列化或反序列化的数字顺序。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.EnumMemberAttribute">
+      <summary>指定字段为枚举成员并且应该序列化。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.EnumMemberAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.EnumMemberAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.EnumMemberAttribute.IsValueSetExplicitly">
+      <summary>获取是否已显式设置 <see cref="P:System.Runtime.Serialization.EnumMemberAttribute.Value" />。</summary>
+      <returns>如果已显式设置该值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.EnumMemberAttribute.Value">
+      <summary>获取或设置与应用了该特性的枚举成员关联的值。</summary>
+      <returns>与枚举成员关联的值。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.IgnoreDataMemberAttribute">
+      <summary>当应用于类型的成员时，指定该成员不是数据协定的一部分且没有进行序列化。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.IgnoreDataMemberAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.IgnoreDataMemberAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.InvalidDataContractException">
+      <summary>
+        <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 或 <see cref="T:System.Runtime.Serialization.NetDataContractSerializer" /> 在序列化和反序列化的过程中遇到无效的数据协定时引发的异常。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.InvalidDataContractException.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.InvalidDataContractException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.InvalidDataContractException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用指定的 <see cref="T:System.Runtime.Serialization.InvalidDataContractException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="info">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，它包含序列化和反序列化对象所需的数据。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它指定序列化和反序列化过程中的用户上下文。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.InvalidDataContractException.#ctor(System.String)">
+      <summary>使用指定的错误消息初始化 <see cref="T:System.Runtime.Serialization.InvalidDataContractException" /> 类的新实例。</summary>
+      <param name="message">对错误的说明。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.InvalidDataContractException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和内部异常初始化 <see cref="T:System.Runtime.Serialization.InvalidDataContractException" /> 类的新实例。</summary>
+      <param name="message">对错误的说明。</param>
+      <param name="innerException">原始 <see cref="T:System.Exception" />。</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.ISerializationSurrogateProvider">
+      <summary>提供构造用于扩展 <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 的序列化代理项所需的方法。 在序列化和反序列化期间，使用序列化代理项将一种类型替换为另一类型。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogateProvider.GetDeserializedObject(System.Object,System.Type)">
+      <summary>在反序列化期间，返回一个替换指定对象的对象。</summary>
+      <param name="obj">要替换的反序列化对象。</param>
+      <param name="targetType">应将被替换的对象分配到的 <see cref="T:System.Type" />。</param>
+      <returns>被替换的反序列化对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogateProvider.GetObjectToSerialize(System.Object,System.Type)">
+      <summary>在序列化期间，返回一个替换指定对象的对象。</summary>
+      <param name="obj">要替换的对象。</param>
+      <param name="targetType">应将被替换的对象分配到的 <see cref="T:System.Type" />。</param>
+      <returns>将要序列化的被替换对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogateProvider.GetSurrogateType(System.Type)">
+      <summary>在序列化、反序列化以及架构导入和导出期间，返回一个替换指定类型的数据协定类型。</summary>
+      <param name="type">要替换的类型。</param>
+      <returns>替换 <see cref="T:System.Type" /> 值的 <paramref name="type" />。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.KnownTypeAttribute">
+      <summary>指定 <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 在序列化或反序列化给定类型时应识别的类型。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.KnownTypeAttribute.#ctor(System.String)">
+      <summary>使用能够返回已知类型的 <see cref="T:System.Runtime.Serialization.KnownTypeAttribute" /> 的方法的名称初始化 <see cref="T:System.Collections.IEnumerable" /> 类的新实例。</summary>
+      <param name="methodName">能够返回在序列化或反序列化数据时使用的类型的 <see cref="T:System.Collections.IEnumerable" /> 的方法的名称。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.KnownTypeAttribute.#ctor(System.Type)">
+      <summary>使用指定的类型初始化 <see cref="T:System.Runtime.Serialization.KnownTypeAttribute" /> 类的新实例。</summary>
+      <param name="type">在序列化或反序列化数据时作为已知类型包括在其中的 <see cref="T:System.Type" />。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.KnownTypeAttribute.MethodName">
+      <summary>获取能够返回在序列化或反序列化过程中应识别的类型列表的方法名称。</summary>
+      <returns>一个 <see cref="T:System.String" />，它包含 <see cref="T:System.Runtime.Serialization.KnownTypeAttribute" /> 类所定义的类型上的方法的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.KnownTypeAttribute.Type">
+      <summary>获取在 <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> 进行序列化或反序列化的过程中应识别的类型。</summary>
+      <returns>在序列化或反序列化过程中使用的 <see cref="T:System.Type" />。</returns>
+    </member>
+  </members>
+</doc>

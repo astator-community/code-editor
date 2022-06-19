@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Threading.Thread</name>
+  </assembly>
+  <members>
+    <member name="T:System.LocalDataStoreSlot">
+      <summary>封装内存槽以存储本地数据。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.LocalDataStoreSlot.Finalize">
+      <summary>确保垃圾回收器回收 <see cref="T:System.LocalDataStoreSlot" /> 对象时释放资源并执行其他清理操作。</summary>
+    </member>
+    <member name="T:System.Threading.ApartmentState">
+      <summary>指定 <see cref="T:System.Threading.Thread" /> 的单元状态。</summary>
+    </member>
+    <member name="F:System.Threading.ApartmentState.MTA">
+      <summary>
+        <see cref="T:System.Threading.Thread" /> 将创建并进入一个多线程单元。</summary>
+    </member>
+    <member name="F:System.Threading.ApartmentState.STA">
+      <summary>
+        <see cref="T:System.Threading.Thread" /> 将创建并进入一个单线程单元。</summary>
+    </member>
+    <member name="F:System.Threading.ApartmentState.Unknown">
+      <summary>尚未设置 <see cref="P:System.Threading.Thread.ApartmentState" /> 属性。</summary>
+    </member>
+    <member name="T:System.Threading.CompressedStack">
+      <summary>提供方法用于设置和捕获当前线程上的压缩堆栈。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Threading.CompressedStack.Capture">
+      <summary>从当前线程捕获压缩堆栈。</summary>
+      <returns>
+        <see cref="T:System.Threading.CompressedStack" /> 对象。</returns>
+    </member>
+    <member name="M:System.Threading.CompressedStack.CreateCopy">
+      <summary>创建当前压缩堆栈的副本。</summary>
+      <returns>一个 <see cref="T:System.Threading.CompressedStack" /> 对象，表示当前压缩堆栈。</returns>
+    </member>
+    <member name="M:System.Threading.CompressedStack.GetCompressedStack">
+      <summary>获取当前线程的压缩堆栈。</summary>
+      <exception cref="T:System.Security.SecurityException">调用链中的调用方无权访问非托管代码。  
+  
+- 或 - 
+对 <see cref="T:System.Security.Permissions.StrongNameIdentityPermission" /> 的请求失败。</exception>
+      <returns>当前线程的 <see cref="T:System.Threading.CompressedStack" />。</returns>
+    </member>
+    <member name="M:System.Threading.CompressedStack.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用重新创建此执行上下文的实例所需的逻辑上下文信息设置 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象。</summary>
+      <param name="info">要用序列化信息填充的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象。</param>
+      <param name="context">表示序列化的目标上下文的 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 结构。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="info" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Threading.CompressedStack.Run(System.Threading.CompressedStack,System.Threading.ContextCallback,System.Object)">
+      <summary>在当前线程上的指定压缩堆栈中运行某个方法。</summary>
+      <param name="compressedStack">要设置的 <see cref="T:System.Threading.CompressedStack" />。</param>
+      <param name="callback">一个 <see cref="T:System.Threading.ContextCallback" />，表示要在指定安全上下文中运行的方法。</param>
+      <param name="state">要传递给该回调方法的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="compressedStack" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Threading.ParameterizedThreadStart">
+      <summary>表示在 <see cref="T:System.Threading.Thread" /> 上执行的方法。</summary>
+      <param name="obj">包含线程过程的数据的对象。</param>
+    </member>
+    <member name="T:System.Threading.Thread">
+      <summary>创建和控制线程，设置其优先级并获取其状态。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.#ctor(System.Threading.ParameterizedThreadStart)">
+      <summary>初始化 <see cref="T:System.Threading.Thread" /> 类的新实例，指定允许对象在线程启动时传递给线程的委托。</summary>
+      <param name="start">一个委托，它表示此线程开始执行时要调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="start" /> 上声明的默认值为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.#ctor(System.Threading.ParameterizedThreadStart,System.Int32)">
+      <summary>初始化 <see cref="T:System.Threading.Thread" /> 类的新实例，指定允许对象在线程启动时传递给线程的委托，并指定线程的最大堆栈大小。</summary>
+      <param name="start">表示开始执行此线程时要调用的方法的 <see cref="T:System.Threading.ParameterizedThreadStart" /> 委托。</param>
+      <param name="maxStackSize">线程要使用的最大堆栈大小（以字节为单位）；如果为 0，则使用可执行文件的文件头中指定的默认最大堆栈大小。  
+  
+重要事项：对于部分受信任的代码，如果 <paramref name="maxStackSize" /> 大于默认堆栈大小，则会将其忽略。 不引发异常。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="start" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="maxStackSize" /> 小于零。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.#ctor(System.Threading.ThreadStart)">
+      <summary>初始化 <see cref="T:System.Threading.Thread" /> 类的新实例。</summary>
+      <param name="start">表示开始执行此线程时要调用的方法的 <see cref="T:System.Threading.ThreadStart" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="start" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.#ctor(System.Threading.ThreadStart,System.Int32)">
+      <summary>初始化 <see cref="T:System.Threading.Thread" /> 类的新实例，指定线程的最大堆栈大小。</summary>
+      <param name="start">表示开始执行此线程时要调用的方法的 <see cref="T:System.Threading.ThreadStart" /> 委托。</param>
+      <param name="maxStackSize">线程要使用的最大堆栈大小（以字节为单位）；如果为 0，则使用可执行文件的文件头中指定的默认最大堆栈大小。  
+  
+重要事项：对于部分受信任的代码，如果 <paramref name="maxStackSize" /> 大于默认堆栈大小，则会将其忽略。 不引发异常。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="start" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="maxStackSize" /> 小于零。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Abort">
+      <summary>在调用此方法的线程上引发 <see cref="T:System.Threading.ThreadAbortException" />，以开始终止此线程的过程。 调用此方法通常会终止线程。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在所有情况下。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">正在中止的线程当前已挂起。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Abort(System.Object)">
+      <summary>引发在其上调用的线程中的 <see cref="T:System.Threading.ThreadAbortException" /> 以开始处理终止线程，同时提供有关线程终止的异常信息。 调用此方法通常会终止线程。</summary>
+      <param name="stateInfo">一个对象，它包含应用程序特定的信息（如状态），该信息可供正被中止的线程使用。</param>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在所有情况下。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">正在中止的线程当前已挂起。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.AllocateDataSlot">
+      <summary>在所有线程上分配未命名的数据槽。 为了获得更好的性能，请改用以 <see cref="T:System.ThreadStaticAttribute" /> 特性标记的字段。</summary>
+      <returns>所有线程上已分配的命名数据槽。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.AllocateNamedDataSlot(System.String)">
+      <summary>在所有线程上分配已命名的数据槽。 为了获得更好的性能，请改用以 <see cref="T:System.ThreadStaticAttribute" /> 特性标记的字段。</summary>
+      <param name="name">要分配的数据槽的名称。</param>
+      <exception cref="T:System.ArgumentException">已存在具有指定名称的命名的数据槽。</exception>
+      <returns>所有线程上已分配的命名数据槽。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.BeginCriticalRegion">
+      <summary>通知宿主执行将要进入一个代码区域，在该代码区域内线程中止或未经处理异常的影响可能会危害应用程序域中的其他任务。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.BeginThreadAffinity">
+      <summary>通知主机托管代码将要执行依赖于当前物理操作系统线程的标识的指令。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.DisableComObjectEagerCleanup">
+      <summary>对于当前线程关闭运行时可调用包装 (RCW) 的自动清理。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.EndCriticalRegion">
+      <summary>通知主机执行将要进入一个代码区域，在该代码区域内线程中止或未经处理异常的影响限于当前任务。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.EndThreadAffinity">
+      <summary>通知主机托管代码已执行完依赖于当前物理操作系统线程的标识的指令。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Finalize">
+      <summary>确保垃圾回收器回收 <see cref="T:System.Threading.Thread" /> 对象时释放资源并执行其他清理操作。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.FreeNamedDataSlot(System.String)">
+      <summary>为进程中的所有线程消除名称与槽之间的关联。 为了获得更好的性能，请改用以 <see cref="T:System.ThreadStaticAttribute" /> 特性标记的字段。</summary>
+      <param name="name">要释放的数据槽的名称。</param>
+    </member>
+    <member name="M:System.Threading.Thread.GetApartmentState">
+      <summary>返回表示单元状态的 <see cref="T:System.Threading.ApartmentState" /> 值。</summary>
+      <returns>其中一个表示托管线程的单元状态的 <see cref="T:System.Threading.ApartmentState" /> 值。 默认值为 <see cref="F:System.Threading.ApartmentState.Unknown" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetCompressedStack">
+      <summary>返回 <see cref="T:System.Threading.CompressedStack" /> 对象，此对象可用于获取当前线程的堆栈。</summary>
+      <exception cref="T:System.InvalidOperationException">在所有情况下。</exception>
+      <returns>无。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetCurrentProcessorId">
+      <summary>获取用于指示当前线程正在哪个处理器上执行的 ID。</summary>
+      <returns>表示缓存的处理器 ID 的整数。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetData(System.LocalDataStoreSlot)">
+      <summary>在当前线程的当前域中从当前线程上指定的槽中检索值。 为了获得更好的性能，请改用以 <see cref="T:System.ThreadStaticAttribute" /> 特性标记的字段。</summary>
+      <param name="slot">要从其获取值的 <see cref="T:System.LocalDataStoreSlot" />。</param>
+      <returns>检索到的值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetDomain">
+      <summary>返回当前线程正在其中运行的当前域。</summary>
+      <returns>表示正在运行的线程的当前应用程序域的 <see cref="T:System.AppDomain" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetDomainID">
+      <summary>返回唯一的应用程序域标识符。</summary>
+      <returns>唯一标识应用程序域的 32 位有符号整数。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetHashCode">
+      <summary>返回当前线程的哈希代码。</summary>
+      <returns>整数哈希代码值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.GetNamedDataSlot(System.String)">
+      <summary>查找命名的数据槽。 为了获得更好的性能，请改用以 <see cref="T:System.ThreadStaticAttribute" /> 特性标记的字段。</summary>
+      <param name="name">本地数据槽的名称。</param>
+      <returns>为此线程分配的 <see cref="T:System.LocalDataStoreSlot" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.Interrupt">
+      <summary>中断处于 <see cref="F:System.Threading.ThreadState.WaitSleepJoin" /> 线程状态的线程。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有适当的 <see cref="T:System.Security.Permissions.SecurityPermission" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Join">
+      <summary>在继续执行标准的 COM 和 <see langword="SendMessage" /> 消息泵处理期间，阻止调用线程，直到由该实例表示的线程终止。</summary>
+      <exception cref="T:System.Threading.ThreadStateException">调用方尝试加入处于 <see cref="F:System.Threading.ThreadState.Unstarted" /> 状态的线程。</exception>
+      <exception cref="T:System.Threading.ThreadInterruptedException">线程在等待时中断。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Join(System.Int32)">
+      <summary>在继续执行标准的 COM 和 SendMessage 消息泵处理期间，阻止调用线程，直到由该实例表示的线程终止或经过了指定时间为止。</summary>
+      <param name="millisecondsTimeout">等待线程终止的毫秒数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="millisecondsTimeout" /> 的值为负数，且不等于 <see cref="F:System.Threading.Timeout.Infinite" />（以毫秒为单位）。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">该线程尚未启动。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="millisecondsTimeout" /> 小于 -1 (Timeout.Infinite)。</exception>
+      <exception cref="T:System.Threading.ThreadInterruptedException">线程在等待时中断。</exception>
+      <returns>如果线程已终止，则为 <see langword="true" />；如果 <see langword="false" /> 参数指定的时间量已过之后还未终止线程，则为 <paramref name="millisecondsTimeout" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.Join(System.TimeSpan)">
+      <summary>在继续执行标准的 COM 和 SendMessage 消息泵处理期间，阻止调用线程，直到由该实例表示的线程终止或经过了指定时间为止。</summary>
+      <param name="timeout">设置等待线程终止的时间量的 <see cref="T:System.TimeSpan" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 的值为负数，且不等于 <see cref="F:System.Threading.Timeout.Infinite" />（以毫秒为单位），或大于 <see cref="F:System.Int32.MaxValue" /> 毫秒。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">调用方尝试加入处于 <see cref="F:System.Threading.ThreadState.Unstarted" /> 状态的线程。</exception>
+      <returns>如果线程已终止，则为 <see langword="true" />；如果 <see langword="false" /> 参数指定的时间量已过之后还未终止线程，则为 <paramref name="timeout" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.MemoryBarrier">
+      <summary>按如下方式同步内存访问：执行当前线程的处理器在对指令重新排序时，不能采用先执行 <see cref="M:System.Threading.Thread.MemoryBarrier" /> 调用之后的内存存取，再执行 <see cref="M:System.Threading.Thread.MemoryBarrier" /> 调用之前的内存存取的方式。</summary>
+    </member>
+    <member name="M:System.Threading.Thread.ResetAbort">
+      <summary>取消当前线程所请求的 <see cref="M:System.Threading.Thread.Abort(System.Object)" />。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在所有情况下。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">未在当前线程上调用 <see langword="Abort" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有当前线程要求的安全权限。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Resume">
+      <summary>继续已挂起的线程。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在所有情况下。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">该线程尚未启动、 已死或未处于挂起状态。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有适当的 <see cref="T:System.Security.Permissions.SecurityPermission" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.SetApartmentState(System.Threading.ApartmentState)">
+      <summary>在线程启动前设置其单元状态。</summary>
+      <param name="state">新的单元状态。</param>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在 macOS 和 Linux 上的所有情况下。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="state" /> 不是有效的单元状态。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">线程已启动。</exception>
+      <exception cref="T:System.InvalidOperationException">已初始化单元状态。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.SetCompressedStack(System.Threading.CompressedStack)">
+      <summary>将捕获的 <see cref="T:System.Threading.CompressedStack" /> 应用到当前线程。</summary>
+      <param name="stack">将被应用到当前线程的 <see cref="T:System.Threading.CompressedStack" /> 对象。</param>
+      <exception cref="T:System.InvalidOperationException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.SetData(System.LocalDataStoreSlot,System.Object)">
+      <summary>在当前正在运行的线程上为此线程的当前域在指定槽中设置数据。 为了提高性能，请改用用 <see cref="T:System.ThreadStaticAttribute" /> 属性标记的字段。</summary>
+      <param name="slot">在其中设置值的 <see cref="T:System.LocalDataStoreSlot" />。</param>
+      <param name="data">要设置的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.Sleep(System.Int32)">
+      <summary>将当前线程挂起指定的毫秒数。</summary>
+      <param name="millisecondsTimeout">挂起线程的毫秒数。 如果 <paramref name="millisecondsTimeout" /> 参数的值为零，则该线程会将其时间片的剩余部分让给任何已经准备好运行的、具有同等优先级的线程。 如果没有其他已经准备好运行的、具有同等优先级的线程，则不会挂起当前线程的执行。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">超时值为负且不等于 <see cref="F:System.Threading.Timeout.Infinite" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Sleep(System.TimeSpan)">
+      <summary>将当前线程挂起指定的时间。</summary>
+      <param name="timeout">挂起线程的时间量。 如果 <paramref name="timeout" /> 参数的值为 <see cref="F:System.TimeSpan.Zero" />，则该线程会将其时间片的剩余部分让给任何已经准备好运行的、具有同等优先级的线程。 如果没有其他已经准备好运行的、具有同等优先级的线程，则不会挂起当前线程的执行。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 的值为负数，且不等于 <see cref="F:System.Threading.Timeout.Infinite" />（以毫秒为单位），或大于 <see cref="F:System.Int32.MaxValue" /> 毫秒。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.SpinWait(System.Int32)">
+      <summary>导致线程等待由 <paramref name="iterations" /> 参数定义的时间量。</summary>
+      <param name="iterations">定义线程等待的时间长短的 32 位有符号整数。</param>
+    </member>
+    <member name="M:System.Threading.Thread.Start">
+      <summary>导致操作系统将当前实例的状态更改为 <see cref="F:System.Threading.ThreadState.Running" />。</summary>
+      <exception cref="T:System.Threading.ThreadStateException">线程已启动。</exception>
+      <exception cref="T:System.OutOfMemoryException">内存不足，无法启动此线程。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Start(System.Object)">
+      <summary>导致操作系统将当前实例的状态更改为 <see cref="F:System.Threading.ThreadState.Running" />，并选择提供包含线程执行的方法要使用的数据的对象。</summary>
+      <param name="parameter">一个对象，包含线程执行的方法要使用的数据。</param>
+      <exception cref="T:System.Threading.ThreadStateException">线程已启动。</exception>
+      <exception cref="T:System.OutOfMemoryException">内存不足，无法启动此线程。</exception>
+      <exception cref="T:System.InvalidOperationException">该线程是使用 <see cref="T:System.Threading.ThreadStart" /> 委托而不是 <see cref="T:System.Threading.ParameterizedThreadStart" /> 委托创建的。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.Suspend">
+      <summary>挂起线程，或者如果线程已挂起，则不起作用。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在所有情况下。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">线程尚未启动或已终止。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有适当的 <see cref="T:System.Security.Permissions.SecurityPermission" />。</exception>
+    </member>
+    <member name="M:System.Threading.Thread.TrySetApartmentState(System.Threading.ApartmentState)">
+      <summary>在线程启动前设置其单元状态。</summary>
+      <param name="state">新的单元状态。</param>
+      <exception cref="T:System.PlatformNotSupportedException">.NET 5.0 及更高版本与 .NET Core：在 macOS 和 Linux 上的所有情况下。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="state" /> 不是有效的单元状态。</exception>
+      <exception cref="T:System.Threading.ThreadStateException">线程曾启动但已终止，或未在线程运行时从线程的上下文中进行调用。</exception>
+      <returns>如果设置了单元状态，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Byte@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Double@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Int16@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Int32@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Int64@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.IntPtr@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Object@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.SByte@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.Single@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.UInt16@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.UInt32@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.UInt64@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileRead(System.UIntPtr@)">
+      <summary>读取字段值。 无论处理器的数目或处理器缓存的状态如何，该值都是由计算机的任何处理器写入的最新值。</summary>
+      <param name="address">要读取的字段。</param>
+      <returns>由任何处理器写入字段的最新值。</returns>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Byte@,System.Byte)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Double@,System.Double)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Int16@,System.Int16)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Int32@,System.Int32)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Int64@,System.Int64)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.IntPtr@,System.IntPtr)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Object@,System.Object)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.SByte@,System.SByte)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.Single@,System.Single)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.UInt16@,System.UInt16)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.UInt32@,System.UInt32)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.UInt64@,System.UInt64)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.VolatileWrite(System.UIntPtr@,System.UIntPtr)">
+      <summary>立即向字段写入一个值，以使该值对计算机中的所有处理器都可见。</summary>
+      <param name="address">将向其中写入值的字段。</param>
+      <param name="value">要写入的值。</param>
+    </member>
+    <member name="M:System.Threading.Thread.Yield">
+      <summary>导致调用线程执行准备好在当前处理器上运行的另一个线程。 由操作系统选择要执行的线程。</summary>
+      <returns>如果操作系统转而执行另一个线程，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.ApartmentState">
+      <summary>获取或设置此线程的单元状态。</summary>
+      <exception cref="T:System.ArgumentException">尝试将此属性设置为不是有效单元状态的状态 （单线程单元 (<see langword="STA" />) 或多线程单元 (<see langword="MTA" />) 以外的状态）。</exception>
+      <returns>
+        <see cref="T:System.Threading.ApartmentState" /> 值之一。 初始值为 <see langword="Unknown" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.CurrentCulture">
+      <summary>获取或设置当前线程的区域性。</summary>
+      <exception cref="T:System.ArgumentNullException">属性设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">仅限 .NET Core：不支持从一个线程读取或写入另一个线程的区域性。</exception>
+      <returns>表示当前线程的区域性的对象。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.CurrentPrincipal">
+      <summary>获取或设置线程的当前负责人（对基于角色的安全性而言）。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有设置该主体所需的权限。</exception>
+      <returns>表示安全上下文的 <see cref="T:System.Security.Principal.IPrincipal" /> 值。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.CurrentThread">
+      <summary>获取当前正在运行的线程。</summary>
+      <returns>
+        <see cref="T:System.Threading.Thread" />，表示当前正在运行的线程。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.CurrentUICulture">
+      <summary>获取或设置资源管理器使用的当前区域性以便在运行时查找区域性特定的资源。</summary>
+      <exception cref="T:System.ArgumentNullException">属性设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">该属性设置为不能用于定位资源文件的区域性名称。 资源文件名必须仅包含字母、数字、连字符或下划线。</exception>
+      <exception cref="T:System.InvalidOperationException">仅限 .NET Core：不支持从一个线程读取或写入另一个线程的区域性。</exception>
+      <returns>表示当前区域性的对象。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.ExecutionContext">
+      <summary>获取 <see cref="T:System.Threading.ExecutionContext" /> 对象，该对象包含有关当前线程的各种上下文的信息。</summary>
+      <returns>一个 <see cref="T:System.Threading.ExecutionContext" /> 对象，包含当前线程的上下文信息。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.IsAlive">
+      <summary>获取指示当前线程的执行状态的值。</summary>
+      <returns>如果此线程已启动并且尚未正常终止或中止，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.IsBackground">
+      <summary>获取或设置一个值，该值指示某个线程是否为后台线程。</summary>
+      <exception cref="T:System.Threading.ThreadStateException">线程终止。</exception>
+      <returns>如果此线程为或将成为后台线程，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.IsThreadPoolThread">
+      <summary>获取指示线程是否属于托管线程池的值。</summary>
+      <returns>如果此线程属于托管线程池，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.ManagedThreadId">
+      <summary>获取当前托管线程的唯一标识符。</summary>
+      <returns>一个整数，表示此托管线程的唯一标识符。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.Name">
+      <summary>获取或设置线程的名称。</summary>
+      <exception cref="T:System.InvalidOperationException">已请求集运算，但 <see langword="Name" /> 属性已设置。</exception>
+      <returns>包含线程名称的字符串或 <see langword="null" />（如果未设置名称）。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.Priority">
+      <summary>获取或设置指示线程的调度优先级的值。</summary>
+      <exception cref="T:System.Threading.ThreadStateException">线程已到达最终状态，如 <see cref="F:System.Threading.ThreadState.Aborted" />。</exception>
+      <exception cref="T:System.ArgumentException">为集运算指定的值不是有效的 <see cref="T:System.Threading.ThreadPriority" /> 值。</exception>
+      <returns>
+        <see cref="T:System.Threading.ThreadPriority" /> 值之一。 默认值为 <see cref="F:System.Threading.ThreadPriority.Normal" />。</returns>
+    </member>
+    <member name="P:System.Threading.Thread.ThreadState">
+      <summary>获取一个值，该值包含当前线程的状态。</summary>
+      <returns>其中一个表示当前线程的状态的 <see cref="T:System.Threading.ThreadState" /> 值。 初始值为 <see cref="F:System.Threading.ThreadState.Unstarted" />。</returns>
+    </member>
+    <member name="T:System.Threading.ThreadAbortException">
+      <summary>当对 <see cref="M:System.Threading.Thread.Abort(System.Object)" /> 方法发出调用时引发的异常。 此类不能被继承。</summary>
+    </member>
+    <member name="P:System.Threading.ThreadAbortException.ExceptionState">
+      <summary>获取一个对象，该对象包含与线程中止相关的应用程序特定的信息。</summary>
+      <returns>包含应用程序特定的信息的对象。</returns>
+    </member>
+    <member name="T:System.Threading.ThreadExceptionEventArgs">
+      <summary>为 <see cref="E:System.Windows.Forms.Application.ThreadException" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadExceptionEventArgs.#ctor(System.Exception)">
+      <summary>初始化 <see cref="T:System.Threading.ThreadExceptionEventArgs" /> 类的新实例。</summary>
+      <param name="t">已发生的 <see cref="T:System.Exception" />。</param>
+    </member>
+    <member name="P:System.Threading.ThreadExceptionEventArgs.Exception">
+      <summary>获取已发生的 <see cref="T:System.Exception" />。</summary>
+      <returns>已发生的 <see cref="T:System.Exception" />。</returns>
+    </member>
+    <member name="T:System.Threading.ThreadExceptionEventHandler">
+      <summary>表示将要处理 <see cref="T:System.Windows.Forms.Application" /> 的 <see cref="E:System.Windows.Forms.Application.ThreadException" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.Threading.ThreadExceptionEventArgs" />。</param>
+    </member>
+    <member name="T:System.Threading.ThreadInterruptedException">
+      <summary>中断处于等待状态的 <see cref="T:System.Threading.Thread" /> 时引发的异常。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadInterruptedException.#ctor">
+      <summary>使用默认属性初始化 <see cref="T:System.Threading.ThreadInterruptedException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadInterruptedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Threading.ThreadInterruptedException" /> 类的新实例。</summary>
+      <param name="info">包含有关所引发异常的序列化对象数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含关于源或目标的上下文信息。</param>
+    </member>
+    <member name="M:System.Threading.ThreadInterruptedException.#ctor(System.String)">
+      <summary>用指定的错误消息初始化 <see cref="T:System.Threading.ThreadInterruptedException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+    </member>
+    <member name="M:System.Threading.ThreadInterruptedException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和对作为此异常原因的内部异常的引用来初始化 <see cref="T:System.Threading.ThreadInterruptedException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+      <param name="innerException">导致当前异常的异常。 如果 <paramref name="innerException" /> 参数不为 <see langword="null" />，则当前异常将在处理内部异常的 <see langword="catch" /> 块中引发。</param>
+    </member>
+    <member name="T:System.Threading.ThreadPriority">
+      <summary>指定 <see cref="T:System.Threading.Thread" /> 的调度优先级。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadPriority.AboveNormal">
+      <summary>可以将 <see cref="T:System.Threading.Thread" /> 安排在具有 <see langword="Highest" /> 优先级的线程之后，在具有 <see langword="Normal" /> 优先级的线程之前。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadPriority.BelowNormal">
+      <summary>可以将 <see cref="T:System.Threading.Thread" /> 安排在具有 <see langword="Normal" /> 优先级的线程之后，在具有 <see langword="Lowest" /> 优先级的线程之前。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadPriority.Highest">
+      <summary>可以将 <see cref="T:System.Threading.Thread" /> 安排在具有任何其他优先级的线程之前。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadPriority.Lowest">
+      <summary>可以将 <see cref="T:System.Threading.Thread" /> 安排在具有任何其他优先级的线程之后。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadPriority.Normal">
+      <summary>可以将 <see cref="T:System.Threading.Thread" /> 安排在具有 <see langword="AboveNormal" /> 优先级的线程之后，在具有 <see langword="BelowNormal" /> 优先级的线程之前。 默认情况下，线程具有 <see langword="Normal" /> 优先级。</summary>
+    </member>
+    <member name="T:System.Threading.ThreadStart">
+      <summary>表示在 <see cref="T:System.Threading.Thread" /> 上执行的方法。</summary>
+    </member>
+    <member name="T:System.Threading.ThreadStartException">
+      <summary>当基础操作系统线程已启动但该线程尚未准备好执行用户代码前，托管线程中出现错误，则会引发异常。</summary>
+    </member>
+    <member name="T:System.Threading.ThreadState">
+      <summary>指定 <see cref="T:System.Threading.Thread" /> 的执行状态。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Aborted">
+      <summary>线程状态包括 <see cref="F:System.Threading.ThreadState.AbortRequested" /> 并且该线程现在已死，但其状态尚未更改为 <see cref="F:System.Threading.ThreadState.Stopped" />。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.AbortRequested">
+      <summary>已对线程调用了 <see cref="M:System.Threading.Thread.Abort(System.Object)" /> 方法，但线程尚未收到试图终止它的挂起的 <see cref="T:System.Threading.ThreadAbortException" />。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Background">
+      <summary>线程正作为后台线程执行（相对于前台线程而言）。 此状态可以通过设置 <see cref="P:System.Threading.Thread.IsBackground" /> 属性来控制。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Running">
+      <summary>线程已启动且尚未停止。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Stopped">
+      <summary>线程已停止。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.StopRequested">
+      <summary>正在请求线程停止。 这仅用于内部。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Suspended">
+      <summary>线程已挂起。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.SuspendRequested">
+      <summary>正在请求线程挂起。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.Unstarted">
+      <summary>尚未对线程调用 <see cref="M:System.Threading.Thread.Start" /> 方法。</summary>
+    </member>
+    <member name="F:System.Threading.ThreadState.WaitSleepJoin">
+      <summary>线程已被阻止。 这可能是调用 <see cref="M:System.Threading.Thread.Sleep(System.Int32)" /> 或 <see cref="M:System.Threading.Thread.Join" />、请求锁定（例如通过调用 <see cref="M:System.Threading.Monitor.Enter(System.Object)" /> 或 <see cref="M:System.Threading.Monitor.Wait(System.Object,System.Int32,System.Boolean)" />）或在线程同步对象上（例如 <see cref="T:System.Threading.ManualResetEvent" />）等待的结果。</summary>
+    </member>
+    <member name="T:System.Threading.ThreadStateException">
+      <summary>当 <see cref="T:System.Threading.Thread" /> 处于对方法调用无效的 <see cref="P:System.Threading.Thread.ThreadState" /> 时引发的异常。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadStateException.#ctor">
+      <summary>使用默认属性初始化 <see cref="T:System.Threading.ThreadStateException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadStateException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Threading.ThreadStateException" /> 类的新实例。</summary>
+      <param name="info">包含有关所引发异常的序列化对象数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含关于源或目标的上下文信息。</param>
+    </member>
+    <member name="M:System.Threading.ThreadStateException.#ctor(System.String)">
+      <summary>用指定的错误消息初始化 <see cref="T:System.Threading.ThreadStateException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+    </member>
+    <member name="M:System.Threading.ThreadStateException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和对作为此异常原因的内部异常的引用来初始化 <see cref="T:System.Threading.ThreadStateException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+      <param name="innerException">导致当前异常的异常。 如果 <paramref name="innerException" /> 参数不为 <see langword="null" />，则当前异常将在处理内部异常的 <see langword="catch" /> 块中引发。</param>
+    </member>
+  </members>
+</doc>

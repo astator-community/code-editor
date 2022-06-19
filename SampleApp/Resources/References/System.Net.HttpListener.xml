@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.HttpListener</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.AuthenticationSchemeSelector">
+      <summary>为 <see cref="T:System.Net.HttpListener" /> 实例选择身份验证方案。</summary>
+      <param name="httpRequest">要为其选择身份验证方案的 <see cref="T:System.Net.HttpListenerRequest" /> 实例。</param>
+      <returns>
+        <see cref="T:System.Net.AuthenticationSchemes" /> 值之一，指示要用于指定的客户端请求的身份验证方法。</returns>
+    </member>
+    <member name="T:System.Net.HttpListener">
+      <summary>提供一个简单的、可通过编程方式控制的 HTTP 协议侦听器。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Net.HttpListener.#ctor">
+      <summary>初始化 <see cref="T:System.Net.HttpListener" /> 类的新实例。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此类不能在当前操作系统上使用。 使用此类的实例需要 Windows Server 2003 或 Windows XP SP2。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Abort">
+      <summary>立刻关闭 <see cref="T:System.Net.HttpListener" /> 对象，这样会放弃所有当前排队的请求。</summary>
+    </member>
+    <member name="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)">
+      <summary>开始异步检索传入的请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托，引用客户端请求可用时要调用的方法。</param>
+      <param name="state">一个用户定义对象，其中包含操作的相关信息。 操作完成时，此对象传递给 <paramref name="callback" /> 委托。</param>
+      <exception cref="T:System.Net.HttpListenerException">Win32 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。</exception>
+      <exception cref="T:System.InvalidOperationException">此对象尚未启动或当前已停止。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>一个指示异步操作状态的 <see cref="T:System.IAsyncResult" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.Close">
+      <summary>关闭 <see cref="T:System.Net.HttpListener" />。</summary>
+    </member>
+    <member name="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)">
+      <summary>完成检索传入的客户端请求的异步操作。</summary>
+      <param name="asyncResult">启动异步操作时获得的 <see cref="T:System.IAsyncResult" /> 对象。</param>
+      <exception cref="T:System.ArgumentException">未通过调用 <see cref="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)" /> 方法获取 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.HttpListenerException">Win32 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。</exception>
+      <exception cref="T:System.InvalidOperationException">已为指定的 <paramref name="asyncResult" /> 对象调用 <see cref="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)" /> 方法。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>表示客户端请求的 <see cref="T:System.Net.HttpListenerContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContext">
+      <summary>等待传入的请求，接收到请求时返回。</summary>
+      <exception cref="T:System.Net.HttpListenerException">Win32 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。</exception>
+      <exception cref="T:System.InvalidOperationException">此对象尚未启动或当前已停止。  
+  
+- 或 - 
+<see cref="T:System.Net.HttpListener" /> 没有任何要响应的统一资源标识符 (URI) 前缀。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>表示客户端请求的 <see cref="T:System.Net.HttpListenerContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContextAsync">
+      <summary>等待传入请求以作为异步操作。</summary>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回表示客户端请求的 <see cref="T:System.Net.HttpListenerContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.Start">
+      <summary>允许此实例接收传入的请求。</summary>
+      <exception cref="T:System.Net.HttpListenerException">Win32 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Stop">
+      <summary>使此实例停止接收新的传入请求，并终止处理所有正在进行的请求。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.System#IDisposable#Dispose">
+      <summary>释放此 <see cref="T:System.Net.HttpListener" /> 对象持有的资源。</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemes">
+      <summary>获取或设置用于客户端身份验证的方案。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>指示如何对客户端进行身份验证的 <see cref="T:System.Net.AuthenticationSchemes" /> 枚举值的按位组合。 默认值是 <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemeSelectorDelegate">
+      <summary>获取或设置一个委托，调用它来确定用于客户端身份验证的协议。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.Net.AuthenticationSchemeSelector" /> 委托，它调用用于选择身份验证协议的方法。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.DefaultServiceNames">
+      <summary>获取由已注册前缀确定的服务提供程序名 (SPN) 的默认列表。</summary>
+      <returns>一个包含 SPN 列表的 <see cref="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionPolicy">
+      <summary>获取或设置用于会话的扩展保护的 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />。</summary>
+      <exception cref="T:System.ArgumentException">尝试设置 <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> 属性，但 <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> 属性不是 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentNullException">尝试将 <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> 属性设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">尝试在调用 <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> 方法后设置 <see cref="M:System.Net.HttpListener.Start" /> 属性。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement" /> 属性设置为平台上的 <see cref="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always" />，其不支持扩展的保护。</exception>
+      <returns>一个 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />，它指定要用于扩展保护的策略。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate">
+      <summary>获取或设置在确定要用于每个请求的 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> 时调用的委托。</summary>
+      <exception cref="T:System.ArgumentException">尝试设置 <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> 属性，但 <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> 属性必须为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentNullException">尝试将 <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> 属性设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">尝试在调用 <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> 方法后设置 <see cref="M:System.Net.HttpListener.Start" /> 属性。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">已试图在不支持扩展的保护的平台上设置 <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> 属性。</exception>
+      <returns>一个 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />，它指定要用于扩展保护的策略。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IgnoreWriteExceptions">
+      <summary>获取或设置 <see cref="T:System.Boolean" /> 值，该值指定应用程序是否接收 <see cref="T:System.Net.HttpListener" /> 向客户端发送响应时发生的异常。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see langword="true" /> 如果这 <see cref="T:System.Net.HttpListener" /> 不应返回向客户端发送响应时发生的异常，则为; 否则为 <see langword="false" /> 。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IsListening">
+      <summary>获取一个值，指示 <see cref="T:System.Net.HttpListener" /> 是否已启动。</summary>
+      <returns>如果已启动 <see cref="T:System.Net.HttpListener" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IsSupported">
+      <summary>获取一个值，指示 <see cref="T:System.Net.HttpListener" /> 是否可用于当前操作系统。</summary>
+      <returns>
+        <see langword="true" /> 所有平台。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.Prefixes">
+      <summary>获取由此 <see cref="T:System.Net.HttpListener" /> 对象处理的统一资源标识符 (URI) 前缀。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.Net.HttpListenerPrefixCollection" />，包含此 <see cref="T:System.Net.HttpListener" /> 对象在经配置后要处理的 URI 前缀。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.Realm">
+      <summary>获取或设置与此 <see cref="T:System.Net.HttpListener" /> 对象关联的领域或资源分区。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.String" /> 值，包含与 <see cref="T:System.Net.HttpListener" /> 对象关联的领域名。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.TimeoutManager">
+      <summary>此 <see cref="T:System.Net.HttpListener" /> 实例的超时管理器。</summary>
+      <returns>此 <see cref="T:System.Net.HttpListener" /> 实例的超时管理器。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.UnsafeConnectionNtlmAuthentication">
+      <summary>获取或设置 <see cref="T:System.Boolean" /> 值，该值控制当使用 NTLM 时是否需要对使用同一传输控制协议 (TCP) 连接的其他请求进行身份验证。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>如果第一个请求的 <see cref="T:System.Security.Principal.IIdentity" /> 将用于同一连接上的后续请求，则返回 <see langword="true" />；否则返回 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListener.ExtendedProtectionSelector">
+      <summary>在确定要用于每个 <see cref="T:System.Net.HttpListener" /> 请求的 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> 时调用的委托。</summary>
+      <param name="request">用于确定 <see cref="T:System.Net.HttpListener" /> 实例将用来提供扩展保护的扩展保护策略的 <see cref="T:System.Net.HttpListenerRequest" />。</param>
+      <returns>一个 <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> 对象，它指定用于此请求的扩展保护策略。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerBasicIdentity">
+      <summary>包含来自基本身份验证请求的用户名和密码。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerBasicIdentity.#ctor(System.String,System.String)">
+      <summary>使用指定的用户名和密码初始化 <see cref="T:System.Net.HttpListenerBasicIdentity" /> 类的新实例。</summary>
+      <param name="username">用户名。</param>
+      <param name="password">密码。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerBasicIdentity.Password">
+      <summary>指示来自基本身份验证尝试的密码。</summary>
+      <returns>包含密码的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerContext">
+      <summary>提供对 <see cref="T:System.Net.HttpListener" /> 类使用的请求和响应对象的访问。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String)">
+      <summary>接受 WebSocket 连接以作为异步操作。</summary>
+      <param name="subProtocol">支持的 WebSocket 子协议。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="subProtocol" /> 是空字符串 
+- 或 - 
+ <paramref name="subProtocol" /> 包含非法字符。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan)">
+      <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接、接受缓冲区大小和 WebSocket 保持活动状态的间隔以作为异步操作。</summary>
+      <param name="subProtocol">支持的 WebSocket 子协议。</param>
+      <param name="receiveBufferSize">接收缓冲区大小（以字节为单位）。</param>
+      <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="subProtocol" /> 是空字符串 
+- 或 - 
+ <paramref name="subProtocol" /> 包含非法字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="keepAliveInterval" /> 太小。  
+  
+- 或 - 
+ <paramref name="receiveBufferSize" /> 小于 16 字节 
+- 或 - 
+ <paramref name="receiveBufferSize" /> 大于 64K 字节。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan,System.ArraySegment{System.Byte})">
+      <summary>接受指定支持的 WebSocket 子协议的 WebSocket 连接、接受缓冲区大小和 WebSocket 保持活动状态的间隔和内部缓冲区以作为异步操作。</summary>
+      <param name="subProtocol">支持的 WebSocket 子协议。</param>
+      <param name="receiveBufferSize">接收缓冲区大小（以字节为单位）。</param>
+      <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
+      <param name="internalBuffer">用于此操作的一个内部缓冲区。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="subProtocol" /> 是空字符串 
+- 或 - 
+ <paramref name="subProtocol" /> 包含非法字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="keepAliveInterval" /> 太小。  
+  
+- 或 - 
+ <paramref name="receiveBufferSize" /> 小于 16 字节 
+- 或 - 
+ <paramref name="receiveBufferSize" /> 大于 64K 字节。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.TimeSpan)">
+      <summary>接受指定支持的 WebSocket 子协议和 WebSocket 保持活动状态的间隔的 WebSocket 连接以作为异步操作。</summary>
+      <param name="subProtocol">支持的 WebSocket 子协议。</param>
+      <param name="keepAliveInterval">WebSocket 协议保持活动状态的间隔（以毫秒为单位）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="subProtocol" /> 是空字符串 
+- 或 - 
+ <paramref name="subProtocol" /> 包含非法字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="keepAliveInterval" /> 太小。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException">发送响应以完成 WebSocket 握手时出错。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回了 <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Request">
+      <summary>获取表示客户端对资源的请求的 <see cref="T:System.Net.HttpListenerRequest" />。</summary>
+      <returns>表示客户端请求的 <see cref="T:System.Net.HttpListenerRequest" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Response">
+      <summary>获取 <see cref="T:System.Net.HttpListenerResponse" /> 对象，该对象将被发送到客户端以响应客户端的请求。</summary>
+      <returns>用于将响应发送回客户端的 <see cref="T:System.Net.HttpListenerResponse" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.User">
+      <summary>获取用于为客户端获取标识、身份验证信息和安全角色的对象，该客户端的请求由此 <see cref="T:System.Net.HttpListenerContext" /> 对象表示。</summary>
+      <returns>描述客户端的 <see cref="T:System.Security.Principal.IPrincipal" /> 对象，或者，如果提供此 <see cref="T:System.Net.HttpListener" /> 的 <see cref="T:System.Net.HttpListenerContext" /> 不需要身份验证，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerException">
+      <summary>当处理 HTTP 请求出错时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.HttpListenerException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32)">
+      <summary>使用指定的错误代码初始化 <see cref="T:System.Net.HttpListenerException" /> 类的新实例。</summary>
+      <param name="errorCode">
+        <see cref="T:System.Int32" /> 值，标识发生的错误。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32,System.String)">
+      <summary>使用指定的错误代码和信息初始化 <see cref="T:System.Net.HttpListenerException" /> 类的新实例。</summary>
+      <param name="errorCode">
+        <see cref="T:System.Int32" /> 值，标识发生的错误。</param>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.HttpListenerException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象，包含反序列化新的 <see cref="T:System.Net.HttpListenerException" /> 对象所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerException.ErrorCode">
+      <summary>获取一个值，该值标识发生的错误。</summary>
+      <returns>一个 <see cref="T:System.Int32" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerPrefixCollection">
+      <summary>表示用于存储 <see cref="T:System.Net.HttpListener" /> 对象的统一资源标识符 (URI) 前缀的集合。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Add(System.String)">
+      <summary>将统一资源标识符 (URI) 前缀添加到集合。</summary>
+      <param name="uriPrefix">用于标识在传入请求中比较的 URI 信息的 <see cref="T:System.String" />。 前缀必须以正斜杠 ("/") 结尾。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="uriPrefix" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="uriPrefix" /> 不使用 http:// 或 https:// 方案。 这些是仅有的支持 <see cref="T:System.Net.HttpListener" /> 对象的方案。  
+  
+- 或 - 
+ <paramref name="uriPrefix" /> 不是格式正确的 URI 前缀。 请确保字符串以 "/" 结尾。</exception>
+      <exception cref="T:System.ObjectDisposedException">已关闭与此集合关联的 <see cref="T:System.Net.HttpListener" />。</exception>
+      <exception cref="T:System.Net.HttpListenerException">Windows 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。 如果另一个 <see cref="T:System.Net.HttpListener" /> 已经添加了前缀 <paramref name="uriPrefix" />，将引发此异常。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Clear">
+      <summary>从该集合中移除所有的统一资源标识符 (URI) 前缀。</summary>
+      <exception cref="T:System.Net.HttpListenerException">Windows 函数调用失败。 检查异常的 <see cref="P:System.Net.HttpListenerException.ErrorCode" /> 属性以确定导致异常的原因。</exception>
+      <exception cref="T:System.ObjectDisposedException">已关闭与此集合关联的 <see cref="T:System.Net.HttpListener" />。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Contains(System.String)">
+      <summary>返回一个 <see cref="T:System.Boolean" /> 值，该值指示指定的前缀是否包含在该集合中。</summary>
+      <param name="uriPrefix">一个 <see cref="T:System.String" />，包含要测试的统一资源标识符 (URI) 前缀。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="uriPrefix" /> 为 <see langword="null" />。</exception>
+      <returns>如果此集合包含由 <paramref name="uriPrefix" /> 指定的前缀，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.Array,System.Int32)">
+      <summary>将 <see cref="T:System.Net.HttpListenerPrefixCollection" /> 的内容复制到指定的数组。</summary>
+      <param name="array">接收此集合中的统一资源标识符 (URI) 前缀字符串的一维 <see cref="T:System.Array" />。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 具有多个维数。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">此集合包含的元素比 <paramref name="array" /> 中从 <paramref name="offset" /> 开始能存储的元素更多。</exception>
+      <exception cref="T:System.ObjectDisposedException">已关闭与此集合关联的 <see cref="T:System.Net.HttpListener" />。</exception>
+      <exception cref="T:System.InvalidCastException">
+        <paramref name="array" /> 不能存储字符串值。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.String[],System.Int32)">
+      <summary>将 <see cref="T:System.Net.HttpListenerPrefixCollection" /> 的内容复制到指定的字符串数组。</summary>
+      <param name="array">接收此集合中统一资源标识符 (URI) 前缀字符串的一维字符串数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 具有多个维数。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">此集合包含的元素比 <paramref name="array" /> 中从 <paramref name="offset" /> 开始能存储的元素更多。</exception>
+      <exception cref="T:System.ObjectDisposedException">已关闭与此集合关联的 <see cref="T:System.Net.HttpListener" />。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的字符串的访问。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Remove(System.String)">
+      <summary>从由 <see cref="T:System.Net.HttpListener" /> 对象处理的前缀的列表中移除指定的统一资源标识符 (URI)。</summary>
+      <param name="uriPrefix">包含要移除的 URI 前缀的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="uriPrefix" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.HttpListenerException">Windows 函数调用失败。 若要确定异常的原因，请检查异常的错误代码。</exception>
+      <exception cref="T:System.ObjectDisposedException">已关闭与此集合关联的 <see cref="T:System.Net.HttpListener" />。</exception>
+      <returns>如果在 <see cref="T:System.Net.HttpListenerPrefixCollection" /> 中找到 <paramref name="uriPrefix" /> 并将其移除，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个可用于循环访问集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的字符串的访问。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.Count">
+      <summary>获取集合中包含的前缀数。</summary>
+      <returns>一个 <see cref="T:System.Int32" />，包含此集合中的前缀的数目。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsReadOnly">
+      <summary>获取一个值，该值指示对该集合的访问是否是只读的。</summary>
+      <returns>始终返回 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsSynchronized">
+      <summary>获取一个值，该值指示对集合的访问是否同步（线程安全）。</summary>
+      <returns>此属性始终返回 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerRequest">
+      <summary>描述传入 <see cref="T:System.Net.HttpListener" /> 对象的 HTTP 请求。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)">
+      <summary>开始对客户端的 X.509 v.3 证书的异步请求。</summary>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="state">一个用户定义对象，其中包含操作的相关信息。 操作完成后，此对象会被传递给回叫委托。</param>
+      <returns>指示操作的状态的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.EndGetClientCertificate(System.IAsyncResult)">
+      <summary>结束对客户端的 X.509 v.3 证书的异步请求。</summary>
+      <param name="asyncResult">证书的挂起请求。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">未通过调用 <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" /><paramref name="e" /> 获取 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已为 <paramref name="asyncResult" /> 标识的操作调用了此方法。</exception>
+      <returns>操作启动时返回的 <see cref="T:System.IAsyncResult" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificate">
+      <summary>检索客户端的 X.509 v.3 证书。</summary>
+      <exception cref="T:System.InvalidOperationException">对此方法的一个调用（以检索客户端的 X.509 v.3 证书）正在进行，因此无法进行对此方法的另一个调用。</exception>
+      <returns>一个 <see cref="N:System.Security.Cryptography.X509Certificates" /> 对象，其中包含客户端的 X.509 v.3 证书。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificateAsync">
+      <summary>以异步操作检索客户端的 X.509 v.3 证书。</summary>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回包含客户端的 X.509 v.3 证书的 <see cref="N:System.Security.Cryptography.X509Certificates" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.AcceptTypes">
+      <summary>获取客户端接受的 MIME 类型。</summary>
+      <returns>一个 <see cref="T:System.String" /> 数组，该数组包含在请求的 <see langword="Accept" /> 标头中指定的类型名称；如果客户端请求不包括 <see langword="null" /> 标头，则为 <see langword="Accept" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ClientCertificateError">
+      <summary>获取一个错误代码，该代码标识的问题涉及客户端提供的 <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate" />。</summary>
+      <exception cref="T:System.InvalidOperationException">尚未通过调用 <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" /> 或 <see cref="M:System.Net.HttpListenerRequest.GetClientCertificate" /> 方法初始化客户端证书 
+- 或 - 
+操作仍在进行中。</exception>
+      <returns>包含 Windows 错误代码的 <see cref="T:System.Int32" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentEncoding">
+      <summary>获取可用于随请求发送的数据的内容编码。</summary>
+      <returns>一个 <see cref="T:System.Text.Encoding" /> 对象，适于 <see cref="P:System.Net.HttpListenerRequest.InputStream" /> 属性中的数据使用。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentLength64">
+      <summary>获取包含在请求中的正文数据的长度。</summary>
+      <returns>请求的 <see langword="Content-Length" /> 标头中的值。 如果内容长度未知，则此值为 -1。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentType">
+      <summary>获取包含在请求中的正文数据的 MIME 类型。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含请求的 <see langword="Content-Type" /> 标头的文本。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Cookies">
+      <summary>获取随请求发送的 Cookie。</summary>
+      <returns>
+        <see cref="T:System.Net.CookieCollection" /> 包含伴随请求的 Cookie。 如果请求不包含 Cookie，则此属性返回空集合。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HasEntityBody">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示请求是否有关联的正文数据。</summary>
+      <returns>如果请求有关联的正文数据，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Headers">
+      <summary>获取在请求中发送的标头名称/值对的集合。</summary>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" /> 包含的 HTTP 标头包括在请求中。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HttpMethod">
+      <summary>获取由客户端指定的 HTTP 方法。</summary>
+      <returns>
+        <see cref="T:System.String" /> 包含的方法用于请求中。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.InputStream">
+      <summary>获取包含由客户端发送的正文数据的流。</summary>
+      <returns>一个可读的 <see cref="T:System.IO.Stream" /> 对象，该对象包含客户端在请求正文中发送的字节。 如果没有随请求发送任何数据，则此属性返回 <see cref="F:System.IO.Stream.Null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsAuthenticated">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示发送此请求的客户端是否经过身份验证。</summary>
+      <returns>如果客户端已经过身份验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsLocal">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示该请求是否来自本地计算机。</summary>
+      <returns>如果发出请求的计算机就是提供该请求的 <see cref="T:System.Net.HttpListener" /> 对象所在的计算机，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsSecureConnection">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示用来发送请求的 TCP 连接是否使用安全套接字层 (SSL) 协议。</summary>
+      <returns>如果 TCP 连接使用的是 SSL，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsWebSocketRequest">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示 TCP 连接是否为 WebSocket 请求。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。  
+  
+ 如果 TCP 连接是 WebSocket 请求，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.KeepAlive">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示客户端是否请求持久性连接。</summary>
+      <returns>如果连接应保持打开状态，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.LocalEndPoint">
+      <summary>获取请求定向到的服务器 IP 地址和端口号。</summary>
+      <returns>
+        <see cref="T:System.Net.IPEndPoint" /> 表示请求被发送到的 IP 地址。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ProtocolVersion">
+      <summary>获取请求客户端使用的 HTTP 版本。</summary>
+      <returns>
+        <see cref="T:System.Version" /> 用于标识 HTTP 的客户端版本。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.QueryString">
+      <summary>获取包含在请求中的查询字符串。</summary>
+      <returns>一个 <see cref="T:System.Collections.Specialized.NameValueCollection" /> 对象，其中包含的查询数据包括在请求 <see cref="P:System.Net.HttpListenerRequest.Url" /> 中。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RawUrl">
+      <summary>获取客户端请求的 URL 信息（不包括主机和端口）。</summary>
+      <returns>
+        <see cref="T:System.String" /> 包含此请求的原始 URL。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RemoteEndPoint">
+      <summary>获取发出请求的客户端 IP 地址和端口号。</summary>
+      <returns>
+        <see cref="T:System.Net.IPEndPoint" /> 表示发出请求的 IP 地址和端口号。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RequestTraceIdentifier">
+      <summary>获取传入 HTTP 请求的请求标识符。</summary>
+      <returns>
+        <see cref="T:System.Guid" /> 对象，其中包含 HTTP 请求的标识符。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ServiceName">
+      <summary>获取客户端通过请求发送的服务提供程序名称 (SPN)。</summary>
+      <returns>一个 <see cref="T:System.String" />，它包含客户端通过请求发送的 SPN。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.TransportContext">
+      <summary>获取客户端请求的 <see cref="T:System.Net.TransportContext" />。</summary>
+      <returns>客户端请求的 <see cref="T:System.Net.TransportContext" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Url">
+      <summary>获取客户端请求的 <see cref="T:System.Uri" /> 对象。</summary>
+      <returns>一个 <see cref="T:System.Uri" /> 对象，用于标识客户端请求的资源。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UrlReferrer">
+      <summary>获取将使客户端与服务器相关的资源的统一资源标识符 (URI)。</summary>
+      <returns>
+        <see cref="T:System.Uri" /> 对象，包含请求的 <see cref="F:System.Net.HttpRequestHeader.Referer" /> 标头的文本；如果请求中不包含标头，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserAgent">
+      <summary>获取客户端提供的用户代理。</summary>
+      <returns>一个 <see cref="T:System.String" /> 对象，其中包含请求的 <see langword="User-Agent" /> 标头的文本。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostAddress">
+      <summary>获取请求定向到的服务器 IP 地址和端口号。</summary>
+      <returns>包含主机地址信息的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostName">
+      <summary>获取由客户端指定的 DNS 名称和端口号（如果提供了端口号）。</summary>
+      <returns>一个 <see cref="T:System.String" /> 值，其中包含请求的 <see langword="Host" /> 标头的文本。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserLanguages">
+      <summary>获取响应的首选自然语言。</summary>
+      <returns>
+        <see cref="T:System.String" /> 数组，包含请求的 <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" /> 标头中指定的语言；如果客户端请求不包含 <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" /> 标头，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerResponse">
+      <summary>表示对 <see cref="T:System.Net.HttpListener" /> 对象正在处理的请求的响应。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Abort">
+      <summary>关闭到客户端的连接而不发送响应。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AddHeader(System.String,System.String)">
+      <summary>将指定的标头和值添加到此响应的 HTTP 标头。</summary>
+      <param name="name">要设置的 HTTP 标头的名称。</param>
+      <param name="value">
+        <paramref name="name" /> 标头的值。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" /> 或空字符串 ("")。</exception>
+      <exception cref="T:System.ArgumentException">不允许为指定的标头指定值。  
+  
+- 或 - 
+ <paramref name="name" /> 或 <paramref name="value" /> 包含无效字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">仅限 .NET Framework 和 .NET Core 2.0 - 3.1 版本：<paramref name="value" /> 的长度大于 65535 个字符。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendCookie(System.Net.Cookie)">
+      <summary>将指定的 <see cref="T:System.Net.Cookie" /> 添加到此响应的 cookie 集合。</summary>
+      <param name="cookie">要添加到集合中与此响应一起发送的 <see cref="T:System.Net.Cookie" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="cookie" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendHeader(System.String,System.String)">
+      <summary>向随此响应发送的指定 HTTP 标头追加值。</summary>
+      <param name="name">要追加 <paramref name="value" /> 的 HTTP 标头的名称。</param>
+      <param name="value">要追加到 <paramref name="name" /> 标头的值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> 为 <see langword="null" /> 或空字符串 ("")。  
+  
+- 或 - 
+不允许为指定的标头指定值。  
+  
+- 或 - 
+ <paramref name="name" /> 或 <paramref name="value" /> 包含无效字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">仅限 .NET Framework 和 .NET Core 2.0 - 3.1 版本：<paramref name="value" /> 的长度大于 65535 个字符。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close">
+      <summary>将响应发送到客户端，并释放此 <see cref="T:System.Net.HttpListenerResponse" /> 实例占用的资源。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close(System.Byte[],System.Boolean)">
+      <summary>将指定的字节数组发送到客户端，并释放此 <see cref="T:System.Net.HttpListenerResponse" /> 实例占用的资源。</summary>
+      <param name="responseEntity">包含要发送给客户端的响应的 <see cref="T:System.Byte" /> 数组。</param>
+      <param name="willBlock">如果要在刷新到客户端的流时阻止执行，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="responseEntity" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.CopyFrom(System.Net.HttpListenerResponse)">
+      <summary>将属性从指定的 <see cref="T:System.Net.HttpListenerResponse" /> 复制到此响应。</summary>
+      <param name="templateResponse">要复制的 <see cref="T:System.Net.HttpListenerResponse" /> 实例。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Redirect(System.String)">
+      <summary>配置响应以将客户端重定向到指定的 URL。</summary>
+      <param name="url">客户端应用来定位请求的资源的 URL。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.SetCookie(System.Net.Cookie)">
+      <summary>添加或更新随此响应发送的 Cookie 集合中的 <see cref="T:System.Net.Cookie" />。</summary>
+      <param name="cookie">此响应的 <see cref="T:System.Net.Cookie" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="cookie" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">该 Cookie 已经在集合中，无法替换。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.System#IDisposable#Dispose">
+      <summary>释放由 <see cref="T:System.Net.HttpListenerResponse" /> 使用的所有资源。</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentEncoding">
+      <summary>获取或设置此响应的 <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> 的 <see cref="T:System.Text.Encoding" />。</summary>
+      <returns>适合处理 <see cref="T:System.Text.Encoding" /> 属性中的数据的 <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> 对象，如果没有指定编码，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentLength64">
+      <summary>获取或设置响应中包括的正文数据的字节数。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">为设置操作指定的值小于 0。</exception>
+      <exception cref="T:System.InvalidOperationException">响应已发送。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>响应的 <see langword="Content-Length" /> 标头的值。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentType">
+      <summary>获取或设置返回内容的 MIME 类型。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值为空字符串 ("")。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.String" /> 实例，包含响应的 <see langword="Content-Type" /> 标头文本。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Cookies">
+      <summary>获取或设置随响应返回的 Cookie 集合。</summary>
+      <returns>
+        <see cref="T:System.Net.CookieCollection" />，包含随响应返回的 Cookie。 如果没有向响应添加任何 Cookie，则该集合为空。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Headers">
+      <summary>获取或设置服务器返回的标头名称/值对集合。</summary>
+      <exception cref="T:System.InvalidOperationException">为设置操作指定的 <see cref="T:System.Net.WebHeaderCollection" /> 实例对响应无效。</exception>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" /> 实例，包含要包括在响应中的所有显式设置的 HTTP 标头。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.KeepAlive">
+      <summary>获取或设置一个值，该值指示服务器是否请求持久性连接。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>如果服务器请求持久性连接，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.OutputStream">
+      <summary>获取可将响应写入其中的 <see cref="T:System.IO.Stream" /> 对象。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>将响应写入其中的 <see cref="T:System.IO.Stream" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ProtocolVersion">
+      <summary>获取或设置用于响应的 HTTP 版本。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值没有将其 <see cref="P:System.Version.Major" /> 属性设置为 1，或者没有将其 <see cref="P:System.Version.Minor" /> 属性设置为 0 或 1。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.Version" /> 对象，指示响应客户端时使用的 HTTP 版本。 请注意此属性现在已过时。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.RedirectLocation">
+      <summary>获取或设置此响应中 HTTP <see langword="Location" /> 标头的值。</summary>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值为空字符串 ("")。</exception>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <returns>
+        <see cref="T:System.String" />，包含要在 <see langword="Location" /> 标头中发送给客户端的绝对 URL。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.SendChunked">
+      <summary>获取或设置响应是否使用分块传输编码。</summary>
+      <returns>如果响应设置为使用 Chunked 传输编码，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusCode">
+      <summary>获取或设置返回给客户端的 HTTP 状态代码。</summary>
+      <exception cref="T:System.ObjectDisposedException">此对象已关闭。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">为设置操作指定的值无效。 有效值介于 100 和 999 之间（包含 100 和 999）。</exception>
+      <returns>为请求的资源指定 HTTP 状态代码的 <see cref="T:System.Int32" /> 值。 默认值为 <see cref="F:System.Net.HttpStatusCode.OK" />，指示服务器成功处理了客户端的请求并将请求的资源包括在响应正文中。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusDescription">
+      <summary>获取或设置返回给客户端的 HTTP 状态代码的文本说明。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值包含不可打印的字符。</exception>
+      <returns>返回给客户端的 HTTP 状态代码的文本说明。 默认值为 <see cref="P:System.Net.HttpListenerResponse.StatusCode" /> 属性值的 RFC 2616 说明，如果不存在 RFC 2616 说明，则为空字符串 ("")。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerTimeoutManager">
+      <summary>要用于 <see cref="T:System.Net.HttpListener" /> 对象的超时管理器。</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.DrainEntityBody">
+      <summary>获取或设置允许 <see cref="T:System.Net.HttpListener" /> 在保持的连接上侦听完实体正文的时间。</summary>
+      <returns>允许在 <see cref="T:System.Net.HttpListener" /> 保持活动连接上释放实体正文的时间。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.EntityBody">
+      <summary>获取或设置允许请求实体正文到达的时间。</summary>
+      <returns>允许请求实体正文到达的时间。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.HeaderWait">
+      <summary>获取或设置允许 <see cref="T:System.Net.HttpListener" /> 分析请求标头的时间。</summary>
+      <returns>允许用于 <see cref="T:System.Net.HttpListener" /> 分析请求标头的时间。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.IdleConnection">
+      <summary>获取或设置允许空闲连接的时间。</summary>
+      <returns>允许空闲连接的时间。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.MinSendBytesPerSecond">
+      <summary>获取或设置响应的最低发送速率（以每秒字节数为单位）。</summary>
+      <returns>响应的最低发送速率（以每秒字节数为单位）。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.RequestQueue">
+      <summary>获取或设置在 <see cref="T:System.Net.HttpListener" /> 选取请求前允许请求在请求队列中停留的时间。</summary>
+      <returns>在提取请求之前，允许请求在请求队列中保留的时间 <see cref="T:System.Net.HttpListener" /> 。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <summary>在接受 WebSocket 连接时提供对 <see cref="T:System.Net.HttpListener" /> 类接收的信息的访问权限。</summary>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection">
+      <summary>获取 WebSocket 起始握手中的 <see cref="T:System.Net.HttpListener" /> 对象接收的 Cookie。</summary>
+      <returns>
+        <see cref="T:System.Net.HttpListener" /> 对象接收的 Cookie。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers">
+      <summary>获取 WebSocket 起始握手中的 <see cref="T:System.Net.HttpListener" /> 对象接收的 HTTP 标头。</summary>
+      <returns>
+        <see cref="T:System.Net.HttpListener" /> 对象接收的 HTTP 标头。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated">
+      <summary>获取指示是否对 WebSocket 客户端进行身份验证的值。</summary>
+      <returns>
+        <see langword="true" /> 如果对 WebSocket 客户端进行身份验证，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal">
+      <summary>获取指示 WebSocket 客户端是否从本地计算机进行连接的值。</summary>
+      <returns>
+        <see langword="true" /> 如果 WebSocket 客户端从本地计算机进行连接，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection">
+      <summary>获取指示是否使用安全套接字层 (SSL) 保护 WebSocket 连接的值。</summary>
+      <returns>
+        <see langword="true" /> 如果 WebSocket 连接使用 SSL 进行保护，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin">
+      <summary>获取 WebSocket 打开握手中包含的原始 HTTP 标题的值。</summary>
+      <returns>原始 HTTP 标头的值。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri">
+      <summary>获取 WebSocket 客户端请求的 URI。</summary>
+      <returns>WebSocket 客户端请求的 URI。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey">
+      <summary>获取 WebSocket 打开握手中包含的 SecWebSocketKey HTTP 标题的值。</summary>
+      <returns>SecWebSocketKey HTTP 标头的值。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols">
+      <summary>获取 WebSocket 起始握手中包含的安全 WebSocket 协议的列表。</summary>
+      <returns>安全 WebSocket 协议的列表。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion">
+      <summary>获取由 WebSocket 客户端请求的子协议的列表。</summary>
+      <returns>WebSocket 客户端请求的子协议的列表。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.User">
+      <summary>获取用于获取标识、身份验证信息和 WebSocket 客户的安全角色的对象。</summary>
+      <returns>标识、身份验证信息和 WebSocket 客户端的安全角色。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket">
+      <summary>获取用于通过 <see cref="T:System.Net.WebSockets.WebSocket" /> 连接发送和接收数据的 <see cref="T:System.Net.WebSockets.WebSocket" /> 实例。</summary>
+      <returns>
+        <see cref="T:System.Net.WebSockets.WebSocket" />用于通过连接发送和接收数据的实例 <see cref="T:System.Net.WebSockets.WebSocket" /> 。</returns>
+    </member>
+  </members>
+</doc>

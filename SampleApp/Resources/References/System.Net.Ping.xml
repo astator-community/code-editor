@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.Ping</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.NetworkInformation.IPStatus">
+      <summary>报告向计算机发送 Internet 控制消息协议 (ICMP) 回送消息的状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.BadDestination">
+      <summary>由于目标 IP 地址无法收到 ICMP 回送请求或者永远都不应当出现在任何 IP 数据报的目标地址字段中，ICMP 回送请求失败。 例如，调用 <see cref="Overload:System.Net.NetworkInformation.Ping.Send" /> 并指定 IP 地址“000.0.0.0”将返回此状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.BadHeader">
+      <summary>由于标头无效，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.BadOption">
+      <summary>由于包含无效选项，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.BadRoute">
+      <summary>由于在源计算机和目标计算机之间没有有效的路由，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationHostUnreachable">
+      <summary>由于无法访问目标计算机，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationNetworkUnreachable">
+      <summary>由于无法访问包含目标计算机的网络，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationPortUnreachable">
+      <summary>由于目标计算机上的端口不可用，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationProhibited">
+      <summary>由于管理员禁止联系目标计算机，ICMPv6 回送请求失败。 此值仅适用于 IPv6。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationProtocolUnreachable">
+      <summary>由于无法访问 ICMP 回送消息中指定的目标计算机，ICMP 回送请求失败，这是因为目标计算机不支持数据包的协议。 此值仅适用于 IPv4。 此值在 IETF RFC 1812 中描述为“Communication Administratively Prohibited”（在管理上禁止通信）。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationScopeMismatch">
+      <summary>由于 ICMP 回送消息中指定的源地址和目标地址不在同一范围内，ICMP 回送请求失败。 这通常是因路由器使用了源地址范围以外的接口转发数据包而导致的。 地址范围（本地链接、本地站点和全局范围）确定地址在网络上的有效位置。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.DestinationUnreachable">
+      <summary>由于无法访问 ICMP 回送消息中指定的目标计算机，ICMP 回送请求失败；此问题的确切原因未知。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.HardwareError">
+      <summary>由于硬件错误，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.IcmpError">
+      <summary>由于 ICMP 协议错误，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.NoResources">
+      <summary>由于网络资源不足，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.PacketTooBig">
+      <summary>由于包含请求的数据包的大小超过了位于源和目标之间的节点（路由器或网关）的最大传输单位 (MTU)，ICMP 回送请求失败。 MTU 定义可传送数据包的最大大小。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.ParameterProblem">
+      <summary>由于节点（路由器或网关）在处理数据包标头时遇到问题，ICMP 回送请求失败。 例如，当标头包含无效的字段数据或无法识别的选项时会出现这种状况。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.SourceQuench">
+      <summary>由于已放弃数据包，ICMP 回送请求失败。 当源计算机的输出队列中没有足够的存储空间时，或者当数据包到达目标过快而无法进行处理时，就会发生这种情况。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.Success">
+      <summary>ICMP 回送请求成功；收到一个 ICMP 回送答复。 当收到此状态代码时，另一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 属性包含有效的数据。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.TimedOut">
+      <summary>在所分配的时间内未收到 ICMP 回送答复。 允许的默认答复时间为 5 秒。 可以使用带 <paramref name="timeout" /> 参数的 <see cref="Overload:System.Net.NetworkInformation.Ping.Send" /> 或 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 方法更改此值。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.TimeExceeded">
+      <summary>由于数据包的生存时间 (TTL) 值达到零，导致转发节点（路由器或网关）放弃数据包，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.TtlExpired">
+      <summary>由于数据包的生存时间 (TTL) 值达到零，导致转发节点（路由器或网关）放弃数据包，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.TtlReassemblyTimeExceeded">
+      <summary>由于数据包被分割为片段以便传输，但未在分配的时间内收到所有片段进行重组，ICMP 回送请求失败。 RFC 2460 将时间限制指定为 60 秒，必须在此时间内收到所有数据包片段。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.Unknown">
+      <summary>由于未知原因，ICMP 回送请求失败。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.IPStatus.UnrecognizedNextHeader">
+      <summary>由于“下一标头”字段中没有可识别的值，ICMP 回送请求失败。 “下一标头”字段指示扩展标头类型（如果存在）或者 IP 层上的协议（例如，TCP 或 UDP）。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.Ping">
+      <summary>允许应用程序确定是否可通过网络访问远程计算机。</summary>
+    </member>
+    <member name="E:System.Net.NetworkInformation.Ping.PingCompleted">
+      <summary>当发送 Internet 控制消息协议 (ICMP) 回送消息并接收相应 ICMP 回送答复消息的异步操作完成或被取消时发生。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.Ping" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.NetworkInformation.Ping" /> 对象使用的非托管资源，并可根据需要释放托管资源。</summary>
+      <param name="disposing">如果释放托管资源和非托管资源，则为 <see langword="true" />；如果仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.OnPingCompleted(System.Net.NetworkInformation.PingCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.NetworkInformation.Ping.PingCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.NetworkInformation.PingCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.Net.IPAddress)">
+      <summary>尝试将 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定 <see cref="T:System.Net.IPAddress" /> 的计算机，并接收来自该计算机的相应 ICMP 回送答复消息。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象。如果收到 ICMP 回送答复消息，此对象提供有关该消息的信息；如果没有收到 ICMP 回送答复消息，此对象将提供失败的原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.Net.IPAddress,System.Int32)">
+      <summary>尝试将包含指定数据缓冲区的 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并接收来自该计算机的相应 ICMP 回送应答消息。 使用此方法可以为操作指定一个超时值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象，如果收到了 ICMP 回显回复消息，则该对象提供相应消息的相关信息；如果未收到消息，则该对象提供失败原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.Net.IPAddress,System.Int32,System.Byte[])">
+      <summary>尝试将包含指定数据缓冲区的 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并接收来自该计算机的相应 ICMP 回送应答消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />，或 <paramref name="buffer" /> 大小大于 65500 字节。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象。如果已收到 ICMP 回送应答消息，此对象将提供有关该消息的信息；如果没有收到 ICMP 回送应答消息，此对象将提供失败的原因。 如果数据包的大小超过最大传输单元 (MTU)，该方法将返回 <see cref="F:System.Net.NetworkInformation.IPStatus.PacketTooBig" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.Net.IPAddress,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions)">
+      <summary>尝试将包含指定数据缓冲区的 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定 <see cref="T:System.Net.IPAddress" /> 的计算机，并接收来自该计算机的相应 ICMP 回送答复消息。 此重载允许您指定操作的超时值，并控制 ICMP 回显消息数据包的碎片和生存时间值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />，或 <paramref name="buffer" /> 大小大于 65500 字节。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象。如果已收到 ICMP 回送应答消息，此对象将提供有关该消息的信息；如果没有收到 ICMP 回送应答消息，此对象将提供失败的原因。 如果数据包的大小超过最大传输单元 (MTU)，该方法将返回 <see cref="F:System.Net.NetworkInformation.IPStatus.PacketTooBig" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.String)">
+      <summary>尝试向指定的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象。如果已收到 ICMP 回送应答消息，此对象将提供有关该消息的信息；如果没有收到 ICMP 回送应答消息，此对象将提供失败的原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.String,System.Int32)">
+      <summary>尝试向指定的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。 使用此方法可以为操作指定一个超时值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象，如果收到了 ICMP 回显回复消息，则该对象提供相应消息的相关信息；如果未收到消息，则该对象提供失败原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.String,System.Int32,System.Byte[])">
+      <summary>尝试用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回显消息发送到指定计算机，然后从该计算机接收对应的 ICMP 回显回复消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />，或 <paramref name="buffer" /> 大小大于 65500 字节。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象，如果收到了 ICMP 回显回复消息，则该对象提供相应消息的相关信息；如果未收到消息，则该对象提供失败原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.Send(System.String,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions)">
+      <summary>尝试用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回显消息发送到指定计算机，然后从该计算机接收对应的 ICMP 回显回复消息。 此重载允许您指定操作的超时值，并控制 ICMP 数据包的碎片和生存时间值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或长度为零的字符串。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />，或 <paramref name="buffer" /> 大小大于 65500 字节。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象，如果收到了 ICMP 回显回复消息，则该对象提供相应消息的相关信息；如果未收到消息，则该对象提供失败原因。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.Net.IPAddress,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions,System.Object)">
+      <summary>尝试用指定的数据缓冲区以异步方式将 Internet 控制消息协议 (ICMP) 回显消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回显回复消息。 此重载允许您指定操作的超时值，并控制 ICMP 回显消息数据包的碎片和生存时间值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.Net.IPAddress,System.Int32,System.Byte[],System.Object)">
+      <summary>尝试用指定的数据缓冲区以异步方式将 Internet 控制消息协议 (ICMP) 回显消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回显回复消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.Net.IPAddress,System.Int32,System.Object)">
+      <summary>尝试以异步方式向指定 <see cref="T:System.Net.IPAddress" /> 的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="M:System.Net.NetworkInformation.Ping.SendAsync(System.Net.IPAddress,System.Int32,System.Byte[],System.Object)" /> 方法的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.Net.IPAddress,System.Object)">
+      <summary>尝试以异步方式向指定 <see cref="T:System.Net.IPAddress" /> 的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。</summary>
+      <param name="address">标识 ICMP 回送消息目标计算机的 <see cref="T:System.Net.IPAddress" />。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 方法的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.String,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions,System.Object)">
+      <summary>尝试用指定的数据缓冲区以异步方式将 Internet 控制消息协议 (ICMP) 回显消息发送到指定计算机，并从该计算机接收对应的 ICMP 回显回复消息。 此重载允许您指定操作的超时值，并控制 ICMP 数据包的碎片和生存时间值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="hostNameOrAddress" /> 未能解析为有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.String,System.Int32,System.Byte[],System.Object)">
+      <summary>尝试用指定的数据缓冲区以异步方式将 Internet 控制消息协议 (ICMP) 回显消息发送到指定计算机，并从该计算机接收对应的 ICMP 回显回复消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="hostNameOrAddress" /> 未能解析为有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65500 字节。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.String,System.Int32,System.Object)">
+      <summary>尝试以异步方式向指定的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">一个 <see cref="T:System.Int32" /> 值，指定（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="hostNameOrAddress" /> 未能解析为有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsync(System.String,System.Object)">
+      <summary>尝试以异步方式向指定的计算机发送 Internet 控制消息协议 (ICMP) 回送消息，并从该计算机接收相应的 ICMP 回送答复消息。</summary>
+      <param name="hostNameOrAddress">一个 <see cref="T:System.String" />，它标识作为 ICMP 回送消息目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="userToken">一个对象，此对象将被传递给异步操作完成后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" /> 或是一个空字符串 ("")。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="M:System.Net.NetworkInformation.Ping.SendAsync(System.String,System.Object)" /> 方法的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="hostNameOrAddress" /> 未能解析为有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendAsyncCancel">
+      <summary>取消所有挂起的发送 Internet 控制消息协议 (ICMP) 回送消息并接收相应 ICMP 回送答复消息的异步请求。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.Net.IPAddress)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。</summary>
+      <param name="address">一个 IP 地址，它标识作为 ICMP 回送消息目标的计算机。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendPingAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.Net.IPAddress,System.Int32)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="address">一个 IP 地址，它标识作为 ICMP 回送消息目标的计算机。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.Net.IPAddress,System.Int32,System.Byte[])">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 此重载将允许您为操作指定超时值并指定用于发送和接收的缓冲区。</summary>
+      <param name="address">一个 IP 地址，它标识作为 ICMP 回送消息目标的计算机。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendPingAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65,500 字节。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.Net.IPAddress,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到具有指定的 <see cref="T:System.Net.IPAddress" /> 的计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 利用此重载，您可以指定操作的超时值和用于进行发送和接收的缓冲区，并可以控制 ICMP 回送消息数据包的碎片和生存时间值。</summary>
+      <param name="address">一个 IP 地址，它标识作为 ICMP 回送消息目标的计算机。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="timeout" /> 小于零。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="Overload:System.Net.NetworkInformation.Ping.SendPingAsync" /> 的调用正在进行中。</exception>
+      <exception cref="T:System.Net.NetworkInformation.PingException">发送或接收 ICMP 消息时引发异常。 请参见内部异常，以确切地了解所引发的异常。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="buffer" /> 的大小超过 65,500 字节。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.String)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到指定计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。</summary>
+      <param name="hostNameOrAddress">作为 ICMP 回送消息的目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.String,System.Int32)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到指定计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 此重载使您可以为操作指定一个超时值。</summary>
+      <param name="hostNameOrAddress">作为 ICMP 回送消息的目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.String,System.Int32,System.Byte[])">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到指定计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 此重载将允许您为操作指定超时值并指定用于发送和接收的缓冲区。</summary>
+      <param name="hostNameOrAddress">作为 ICMP 回送消息的目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.Ping.SendPingAsync(System.String,System.Int32,System.Byte[],System.Net.NetworkInformation.PingOptions)">
+      <summary>使用指定的数据缓冲区将 Internet 控制消息协议 (ICMP) 回送消息发送到指定计算机，并从该计算机接收对应的 ICMP 回送答复消息以作为异步操作。 利用此重载，您可以指定操作的超时值和用于进行发送和接收的缓冲区，并可以控制 ICMP 回送消息数据包的碎片和生存时间值。</summary>
+      <param name="hostNameOrAddress">作为 ICMP 回送消息的目标的计算机。 为此参数指定的值可以是主机名，也可以是以字符串形式表示的 IP 地址。</param>
+      <param name="timeout">（发送回送消息后）等待 ICMP 回送答复消息的最大毫秒数。</param>
+      <param name="buffer">一个 <see cref="T:System.Byte" /> 数组，它包含要与 ICMP 回送消息一起发送并在 ICMP 回送应答消息中返回的数据。 该数组包含的字节数不能超过 65,500 个字节。</param>
+      <param name="options">一个 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 对象，用于控制 ICMP 回显消息数据包的碎片和生存时间值。</param>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PingCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.NetworkInformation.Ping.PingCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingCompletedEventArgs.Reply">
+      <summary>获取包含数据的对象，该数据描述发送 Internet 控制消息协议 (ICMP) 回送请求消息并接受相应的 ICMP 回送答复消息的尝试。</summary>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.PingReply" /> 对象，描述 ICMP 回送请求结果。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PingCompletedEventHandler">
+      <summary>表示将处理 <see cref="T:System.Net.NetworkInformation.Ping" /> 对象的 <see cref="E:System.Net.NetworkInformation.Ping.PingCompleted" /> 事件的方法。</summary>
+      <param name="sender">
+        <see cref="E:System.Net.NetworkInformation.Ping.PingCompleted" /> 事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.NetworkInformation.PingCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PingException">
+      <summary>当 <see cref="Overload:System.Net.NetworkInformation.Ping.Send" /> 或 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 方法调用的方法引发异常时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Net.NetworkInformation.PingException" /> 类的新实例。</summary>
+      <param name="serializationInfo">承载序列化对象数据的对象。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，指定有关此序列化的源或目标的上下文信息。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PingException.#ctor(System.String)">
+      <summary>使用指定的消息初始化 <see cref="T:System.Net.NetworkInformation.PingException" /> 类的新实例。</summary>
+      <param name="message">描述该错误的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PingException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的消息和内部异常初始化 <see cref="T:System.Net.NetworkInformation.PingException" /> 类的新实例。</summary>
+      <param name="message">描述该错误的 <see cref="T:System.String" />。</param>
+      <param name="innerException">引发当前异常的异常。</param>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PingOptions">
+      <summary>用于控制如何传输 <see cref="T:System.Net.NetworkInformation.Ping" /> 数据包。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PingOptions.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PingOptions.#ctor(System.Int32,System.Boolean)">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 类的新实例，并设置生存时间和分段值。</summary>
+      <param name="ttl">一个大于零的 <see cref="T:System.Int32" /> 值，指定 <see cref="T:System.Net.NetworkInformation.Ping" /> 数据包可被转发的次数。</param>
+      <param name="dontFragment">如果为 <see langword="true" />，则禁止将发送到远程主机的数据分段；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="ttl" /> 小于或等于零。</exception>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingOptions.DontFragment">
+      <summary>获取或设置一个 <see cref="T:System.Boolean" /> 值，该值控制发送到远程主机的数据的分段。</summary>
+      <returns>如果不能在多个数据包中发送数据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingOptions.Ttl">
+      <summary>获取或设置在放弃 <see cref="T:System.Net.NetworkInformation.Ping" /> 数据之前可以转发该数据的路由节点数。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">为设置操作指定的值小于或等于零。</exception>
+      <returns>一个 <see cref="T:System.Int32" /> 值，指定 <see cref="T:System.Net.NetworkInformation.Ping" /> 数据包可被转发的次数。 默认值为 128。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PingReply">
+      <summary>提供有关 <see cref="Overload:System.Net.NetworkInformation.Ping.Send" /> 或 <see cref="Overload:System.Net.NetworkInformation.Ping.SendAsync" /> 操作的状态及产生的数据的信息。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingReply.Address">
+      <summary>获取发送 Internet 控制消息协议 (ICMP) 回送答复的主机地址。</summary>
+      <returns>包含 ICMP 回送消息目标的 <see cref="T:System.Net.IPAddress" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingReply.Buffer">
+      <summary>获取 Internet 控制消息协议 (ICMP) 回送答复消息中收到的数据缓冲区。</summary>
+      <returns>包含 ICMP 回送答复消息中收到的数据的 <see cref="T:System.Byte" /> 数组，如果没有收到答复，则为空数组。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingReply.Options">
+      <summary>获取用于将答复传输到 Internet 控制消息协议 (ICMP) 回送请求的选项。</summary>
+      <returns>如果 <see cref="T:System.Net.NetworkInformation.PingOptions" /> 是 <see cref="P:System.Net.NetworkInformation.PingReply.Status" />，则为一个包含生存时间 (TTL) 和用于传输答复的分段指令的 <see cref="F:System.Net.NetworkInformation.IPStatus.Success" /> 对象；否则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingReply.RoundtripTime">
+      <summary>获取发送 Internet 控制消息协议 (ICMP) 回显请求和接收相应 ICMP 回显回复消息所花费的毫秒数。</summary>
+      <returns>一个 <see cref="T:System.Int64" />，用于指定往返时间（以毫秒计）。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.PingReply.Status">
+      <summary>获取发送 Internet 控制消息协议 (ICMP) 回送请求并接收相应 ICMP 回送答复消息的尝试的状态。</summary>
+      <returns>指示请求结果的 <see cref="T:System.Net.NetworkInformation.IPStatus" /> 值。</returns>
+    </member>
+  </members>
+</doc>

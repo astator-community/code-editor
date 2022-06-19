@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Diagnostics.StackTrace</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.StackFrame">
+      <summary>提供关于 <see cref="T:System.Diagnostics.StackFrame" />（表示当前线程的调用堆栈中的一个函数调用）的信息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.StackFrame.OFFSET_UNKNOWN">
+      <summary>定义当本机或 Microsoft 中间语言 (Microsoft Intermediate Language, MSIL) 偏移量未知时从 <see cref="M:System.Diagnostics.StackFrame.GetNativeOffset" /> 或 <see cref="M:System.Diagnostics.StackFrame.GetILOffset" /> 方法返回的值。 此字段为常数。</summary>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例，可以选择捕获源信息。</summary>
+      <param name="needFileInfo" />
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor(System.Int32)">
+      <summary>初始化与当前堆栈帧之上的帧对应的 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例。</summary>
+      <param name="skipFrames">堆栈上要跳过的帧数。</param>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor(System.Int32,System.Boolean)">
+      <summary>初始化与当前堆栈帧之上的帧对应的 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例，可以选择捕获源信息。</summary>
+      <param name="skipFrames">堆栈上要跳过的帧数。</param>
+      <param name="needFileInfo" />
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor(System.String,System.Int32)">
+      <summary>初始化只包含给定文件名和行号的 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例。</summary>
+      <param name="fileName">文件名。</param>
+      <param name="lineNumber">指定文件中的行号。</param>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.#ctor(System.String,System.Int32,System.Int32)">
+      <summary>初始化只包含给定文件名、行号和列号的 <see cref="T:System.Diagnostics.StackFrame" /> 类的新实例。</summary>
+      <param name="fileName">文件名。</param>
+      <param name="lineNumber">指定文件中的行号。</param>
+      <param name="colNumber">指定文件中的列号。</param>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetFileColumnNumber">
+      <summary>获取文件中包含所执行代码的列号。 该信息通常从可执行文件的调试符号中提取。</summary>
+      <returns>文件列号；如果无法确定文件列号，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetFileLineNumber">
+      <summary>获取文件中包含所执行代码的行号。 该信息通常从可执行文件的调试符号中提取。</summary>
+      <returns>文件行号；如果无法确定文件行号，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetFileName">
+      <summary>获取包含所执行代码的文件名。 该信息通常从可执行文件的调试符号中提取。</summary>
+      <returns>文件名；如果无法确定文件名，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetILOffset">
+      <summary>获取离开所执行方法的 Microsoft 中间语言 (Microsoft Intermediate Language, MSIL) 代码开头的偏移量。 根据实时 (JIT) 编译器是否正在生成调试代码，此偏移量可能是近似量。 该调试信息的生成受 <see cref="T:System.Diagnostics.DebuggableAttribute" /> 控制。</summary>
+      <returns>离开所执行方法的 MSIL 代码开头的偏移量。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetMethod">
+      <summary>获取在其中执行帧的方法。</summary>
+      <returns>在其中执行帧的方法。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.GetNativeOffset">
+      <summary>获取相对于所执行方法的本机实时 (JIT) 编译代码开头的偏移量。 该调试信息的生成受 <see cref="T:System.Diagnostics.DebuggableAttribute" /> 类控制。</summary>
+      <returns>相对于所执行方法的 JIT 编译代码开头的偏移量。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrame.ToString">
+      <summary>生成堆栈跟踪的可读表示形式。</summary>
+      <returns>堆栈帧的可读表示形式。</returns>
+    </member>
+    <member name="T:System.Diagnostics.StackFrameExtensions">
+      <summary>提供用于 <see cref="T:System.Diagnostics.StackFrame" /> 类（表示当前线程的调用堆栈中的一个函数调用）的扩展方法。</summary>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.GetNativeImageBase(System.Diagnostics.StackFrame)">
+      <summary>返回一个指针，该指针指向此堆栈帧正在执行的本机映像的基址。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>指向本机映像基址的指针或指向 <see cref="F:System.IntPtr.Zero" /> 的指针（如果目标为 .NET Framework）。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.GetNativeIP(System.Diagnostics.StackFrame)">
+      <summary>获取一个接口指针，该指针指向正在执行的方法的本机代码起始位置。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>一个接口指针，该指针指向正在执行的方法的本机代码起始位置或指向 <see cref="F:System.IntPtr.Zero" />（如果目标为 .NET Framework）。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.HasILOffset(System.Diagnostics.StackFrame)">
+      <summary>指示离开正在执行的方法的 IL 代码开头的偏移量是否可用。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>如果偏移量可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.HasMethod(System.Diagnostics.StackFrame)">
+      <summary>指示有关在其中执行指定帧的方法的信息是否可用。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>如果有关在其中执行当前帧的方法的信息可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.HasNativeImage(System.Diagnostics.StackFrame)">
+      <summary>指示本机映像是否适用于指定的堆栈帧。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>如果本机映像适用于此堆栈帧，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackFrameExtensions.HasSource(System.Diagnostics.StackFrame)">
+      <summary>指示包含指定堆栈帧正在执行的代码的文件是否可用。</summary>
+      <param name="stackFrame">堆栈帧。</param>
+      <returns>如果正在执行指定堆栈帧的代码可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.StackTrace">
+      <summary>表示一个堆栈跟踪，它是一个或多个堆栈帧的有序集合。</summary>
+    </member>
+    <member name="F:System.Diagnostics.StackTrace.METHODS_TO_SKIP">
+      <summary>定义要从堆栈跟踪中省略的默认方法数。 此字段为常数。</summary>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor">
+      <summary>用调用方的帧初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Boolean)">
+      <summary>用调用方的帧初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，可以选择捕获源信息。</summary>
+      <param name="fNeedFileInfo">如果为 <see langword="true" />，则捕获文件名、行号和列号；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Diagnostics.StackFrame)">
+      <summary>初始化包含单个帧的 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例。</summary>
+      <param name="frame">
+        <see cref="T:System.Diagnostics.StackTrace" /> 对象应包含的帧。</param>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Exception)">
+      <summary>使用提供的异常对象初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例。</summary>
+      <param name="e">从其构造堆栈跟踪的异常对象。</param>
+      <exception cref="T:System.ArgumentNullException">参数 <paramref name="e" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Exception,System.Boolean)">
+      <summary>使用所提供的异常对象初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，可以选择捕获源信息。</summary>
+      <param name="e">从其构造堆栈跟踪的异常对象。</param>
+      <param name="fNeedFileInfo">如果为 <see langword="true" />，则捕获文件名、行号和列号；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">参数 <paramref name="e" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Exception,System.Int32)">
+      <summary>使用提供的异常对象初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，并跳过指定的帧数。</summary>
+      <param name="e">从其构造堆栈跟踪的异常对象。</param>
+      <param name="skipFrames">堆栈中的帧数，将从其上开始跟踪。</param>
+      <exception cref="T:System.ArgumentNullException">参数 <paramref name="e" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="skipFrames" /> 参数为负。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Exception,System.Int32,System.Boolean)">
+      <summary>使用提供的异常对象初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，跳过指定的帧数并可以选择捕获源信息。</summary>
+      <param name="e">从其构造堆栈跟踪的异常对象。</param>
+      <param name="skipFrames">堆栈中的帧数，将从其上开始跟踪。</param>
+      <param name="fNeedFileInfo">如果为 <see langword="true" />，则捕获文件名、行号和列号；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">参数 <paramref name="e" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="skipFrames" /> 参数为负。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Int32)">
+      <summary>从调用方的帧初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，跳过指定的帧数。</summary>
+      <param name="skipFrames">堆栈中的帧数，将从其上开始跟踪。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="skipFrames" /> 参数为负。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.#ctor(System.Int32,System.Boolean)">
+      <summary>从调用方的帧初始化 <see cref="T:System.Diagnostics.StackTrace" /> 类的新实例，跳过指定的帧数并可以选择捕获源信息。</summary>
+      <param name="skipFrames">堆栈中的帧数，将从其上开始跟踪。</param>
+      <param name="fNeedFileInfo">如果为 <see langword="true" />，则捕获文件名、行号和列号；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="skipFrames" /> 参数为负。</exception>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.GetFrame(System.Int32)">
+      <summary>获取指定的堆栈帧。</summary>
+      <param name="index">所请求的堆栈帧的索引。</param>
+      <returns>指定的堆栈帧。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.GetFrames">
+      <summary>返回当前堆栈跟踪中所有堆栈帧的副本。</summary>
+      <returns>
+        <see cref="T:System.Diagnostics.StackFrame" /> 类型的数组，表示堆栈跟踪中的函数调用。</returns>
+    </member>
+    <member name="M:System.Diagnostics.StackTrace.ToString">
+      <summary>生成堆栈跟踪的可读表示形式。</summary>
+      <returns>堆栈帧的可读表示形式。</returns>
+    </member>
+    <member name="P:System.Diagnostics.StackTrace.FrameCount">
+      <summary>获取堆栈跟踪中的帧数。</summary>
+      <returns>堆栈跟踪中的帧数。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolBinder">
+      <summary>表示托管代码的符号联编程序。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolBinder.GetReader(System.Int32,System.String,System.String)">
+      <summary>获取当前文件的符号读取器的接口。</summary>
+      <param name="importer">元数据导入接口。</param>
+      <param name="filename">需要读取器接口的文件名称。</param>
+      <param name="searchPath">用于查找符号文件的搜索路径。</param>
+      <returns>
+        <see cref="T:System.Diagnostics.SymbolStore.ISymbolReader" /> 接口，它读取调试符号。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolBinder1">
+      <summary>表示托管代码的符号联编程序。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolBinder1.GetReader(System.IntPtr,System.String,System.String)">
+      <summary>获取当前文件的符号读取器的接口。</summary>
+      <param name="importer">引用元数据导入接口的 <see cref="T:System.IntPtr" />。</param>
+      <param name="filename">需要读取器接口的文件名称。</param>
+      <param name="searchPath">用于查找符号文件的搜索路径。</param>
+      <returns>
+        <see cref="T:System.Diagnostics.SymbolStore.ISymbolReader" /> 接口，它读取调试符号。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolDocument">
+      <summary>表示由符号存储引用的文档。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolDocument.FindClosestLine(System.Int32)">
+      <summary>在当前文档中的一行不一定是序列点的情况下，返回作为序列点的最近的一行。</summary>
+      <param name="line">文档中的指定行。</param>
+      <returns>作为序列点的最近的一行。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolDocument.GetCheckSum">
+      <summary>获取校验和。</summary>
+      <returns>校验和。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolDocument.GetSourceRange(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary>获取指定范围内的嵌入文档源。</summary>
+      <param name="startLine">当前文档中的起始行。</param>
+      <param name="startColumn">当前文档中的起始列。</param>
+      <param name="endLine">当前文档中的结束行。</param>
+      <param name="endColumn">当前文档中的结束列。</param>
+      <returns>指定范围内的文档源。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.CheckSumAlgorithmId">
+      <summary>获取校验和算法标识符。</summary>
+      <returns>标识校验和算法的 GUID。 如果没有校验和，值为全零。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.DocumentType">
+      <summary>获取当前文档的类型。</summary>
+      <returns>当前文档的类型。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.HasEmbeddedSource">
+      <summary>检查当前文档是否存储在符号存储区中。</summary>
+      <returns>如果当前文档存储在符号存储区中，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.Language">
+      <summary>获取当前文档的语言。</summary>
+      <returns>当前文档的语言。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.LanguageVendor">
+      <summary>获取当前文档的语言供应商。</summary>
+      <returns>当前文档的语言供应商。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.SourceLength">
+      <summary>获取嵌入源的长度（以字节表示）。</summary>
+      <returns>当前文档的源长度。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.URL">
+      <summary>获取当前文档的 URL。</summary>
+      <returns>当前文档的 URL。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolDocumentWriter">
+      <summary>表示由符号存储引用的文档。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolDocumentWriter.SetCheckSum(System.Guid,System.Byte[])">
+      <summary>设置校验和信息。</summary>
+      <param name="algorithmId">表示算法 ID 的 GUID。</param>
+      <param name="checkSum">校验和。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolDocumentWriter.SetSource(System.Byte[])">
+      <summary>将文档的原始源存储在符号存储区中。</summary>
+      <param name="source">表示为无符号字节的文档源。</param>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolMethod">
+      <summary>表示符号存储区内的方法。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetNamespace">
+      <summary>获取在其中定义当前方法的命名空间。</summary>
+      <returns>在其中定义当前方法的命名空间。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetOffset(System.Diagnostics.SymbolStore.ISymbolDocument,System.Int32,System.Int32)">
+      <summary>获取与指定位置对应的方法内的 Microsoft 中间语言 (MSIL) 偏移量。</summary>
+      <param name="document">为其请求偏移量的文档。</param>
+      <param name="line">与偏移量对应的文档行。</param>
+      <param name="column">与偏移量对应的文档列。</param>
+      <returns>指定文档内的偏移量。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetParameters">
+      <summary>获取当前方法的参数。</summary>
+      <returns>当前方法的参数数组。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetRanges(System.Diagnostics.SymbolStore.ISymbolDocument,System.Int32,System.Int32)">
+      <summary>获取与 Microsoft 中间语言 (MSIL) 的范围对应的起始和结束偏移量对的数组，给定位置在此方法内包括该数组。</summary>
+      <param name="document">为其请求偏移量的文档。</param>
+      <param name="line">与范围对应的文档行。</param>
+      <param name="column">与范围对应的文档列。</param>
+      <returns>起始和结束偏移量对的数组。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetScope(System.Int32)">
+      <summary>在给定方法内的一个偏移量的情况下，返回最封闭的词法范围。</summary>
+      <param name="offset">词法范围的方法内的字节偏移量。</param>
+      <returns>方法内给定字节偏移量的最封闭的词法范围。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetSequencePoints(System.Int32[],System.Diagnostics.SymbolStore.ISymbolDocument[],System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
+      <summary>获取当前方法的序列点。</summary>
+      <param name="offsets">序列点从方法开始的字节偏移量的数组。</param>
+      <param name="documents">序列点所在的文档的数组。</param>
+      <param name="lines">序列点所在的文档中的行的数组。</param>
+      <param name="columns">序列点所在的文档中的列的数组。</param>
+      <param name="endLines">序列点结束的文档中的行的数组。</param>
+      <param name="endColumns">序列点结束的文档中的列的数组。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolMethod.GetSourceStartEnd(System.Diagnostics.SymbolStore.ISymbolDocument[],System.Int32[],System.Int32[])">
+      <summary>获取当前方法的源的起始和结束位置。</summary>
+      <param name="docs">起始和结束源文档。</param>
+      <param name="lines">对应的源文档中的起始和结束行。</param>
+      <param name="columns">对应的源文档中的起始和结束列。</param>
+      <returns>如果定义了位置，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolMethod.RootScope">
+      <summary>获取当前方法的根词法范围。 此范围包括整个方法。</summary>
+      <returns>包括整个方法的根词法范围。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolMethod.SequencePointCount">
+      <summary>获取方法中序列点的计数。</summary>
+      <returns>方法中序列点的计数。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolMethod.Token">
+      <summary>获取 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" />，它包含当前方法的元数据。</summary>
+      <returns>当前方法的元数据标记。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolNamespace">
+      <summary>表示符号存储区内的命名空间。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolNamespace.GetNamespaces">
+      <summary>获取当前命名空间的子成员。</summary>
+      <returns>当前命名空间的子成员。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolNamespace.GetVariables">
+      <summary>获取在当前命名空间的全局范围内定义的所有变量。</summary>
+      <returns>在当前命名空间的全局范围内定义的变量。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolNamespace.Name">
+      <summary>获取当前命名空间。</summary>
+      <returns>当前命名空间。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolReader">
+      <summary>表示托管代码的符号读取器。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetDocument(System.String,System.Guid,System.Guid,System.Guid)">
+      <summary>获取按语言、供应商和类型指定的文档。</summary>
+      <param name="url">标识文档的 URL。</param>
+      <param name="language">文档语言。 可以将此参数指定为 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="languageVendor">文档语言的供应商标识。 可以将此参数指定为 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="documentType">文档的类型。 可以将此参数指定为 <see cref="F:System.Guid.Empty" />。</param>
+      <returns>指定的文档。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetDocuments">
+      <summary>获取在符号存储区中定义的所有文档的数组。</summary>
+      <returns>在符号存储区中定义的所有文档的数组。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetGlobalVariables">
+      <summary>获取模块中的所有全局变量。</summary>
+      <returns>模块中所有变量的数组。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetMethod(System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>在给定方法的标识符的情况下，获取符号读取器方法对象。</summary>
+      <param name="method">方法的元数据标记。</param>
+      <returns>指定方法标识符的符号读取器方法对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetMethod(System.Diagnostics.SymbolStore.SymbolToken,System.Int32)">
+      <summary>在给定方法的标识符及其编辑和连续版本的情况下，获取符号读取器方法对象。</summary>
+      <param name="method">方法的元数据标记。</param>
+      <param name="version">方法的编辑和连续版本。</param>
+      <returns>指定方法标识符的符号读取器方法对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetMethodFromDocumentPosition(System.Diagnostics.SymbolStore.ISymbolDocument,System.Int32,System.Int32)">
+      <summary>获取包含文档中的指定位置的符号读取器方法对象。</summary>
+      <param name="document">方法所在的文档。</param>
+      <param name="line">文档内行的位置。 行带有编号，从 1 开始。</param>
+      <param name="column">文档内列的位置。 列带有编号，从 1 开始。</param>
+      <returns>文档中的指定位置的读取器方法对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetNamespaces">
+      <summary>获取在当前符号存储区的全局范围内定义的命名空间。</summary>
+      <returns>在当前符号存储区的全局范围内定义的命名空间。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetSymAttribute(System.Diagnostics.SymbolStore.SymbolToken,System.String)">
+      <summary>在给定特性名称的情况下，获取特性值。</summary>
+      <param name="parent">为其请求特性的对象的元数据标记。</param>
+      <param name="name">特性名称。</param>
+      <returns>属性的值。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolReader.GetVariables(System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>在给定父级的情况下，获取非局部变量。</summary>
+      <param name="parent">为其请求变量的类型的元数据标记。</param>
+      <returns>父级的变量的数组。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolReader.UserEntryPoint">
+      <summary>获取方法的元数据标记，它指定为模块的用户入口点（如果有的话）。</summary>
+      <returns>方法的元数据标记，它是模块的用户入口点。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolScope">
+      <summary>表示 <see cref="T:System.Diagnostics.SymbolStore.ISymbolMethod" /> 内的词法范围，提供对范围及其子范围和父范围的起始和结束偏移量的访问。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolScope.GetChildren">
+      <summary>获取当前词法范围的子词法范围。</summary>
+      <returns>当前词法范围的子词法范围。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolScope.GetLocals">
+      <summary>获取当前词法范围内的局部变量。</summary>
+      <returns>当前词法范围内的局部变量。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolScope.GetNamespaces">
+      <summary>获取在当前范围内使用的命名空间。</summary>
+      <returns>在当前范围内使用的命名空间。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.EndOffset">
+      <summary>获取当前词法范围的结束偏移量。</summary>
+      <returns>当前词法范围的结束偏移量。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.Method">
+      <summary>获取包含当前词法范围的方法。</summary>
+      <returns>包含当前词法范围的方法。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.Parent">
+      <summary>获取当前范围的父词法范围。</summary>
+      <returns>当前范围的父词法范围。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.StartOffset">
+      <summary>获取当前词法范围的起始偏移量。</summary>
+      <returns>当前词法范围的起始偏移量。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolVariable">
+      <summary>表示符号存储区内的变量。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolVariable.GetSignature">
+      <summary>获取变量签名。</summary>
+      <returns>作为不透明 Blob 的变量签名。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.AddressField1">
+      <summary>获取变量的第一个地址。</summary>
+      <returns>变量的第一个地址。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.AddressField2">
+      <summary>获取变量的第二个地址。</summary>
+      <returns>变量的第二个地址。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.AddressField3">
+      <summary>获取变量的第三个地址。</summary>
+      <returns>变量的第三个地址。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.AddressKind">
+      <summary>获取描述地址类型的 <see cref="T:System.Diagnostics.SymbolStore.SymAddressKind" /> 值。</summary>
+      <returns>地址类型。 <see cref="T:System.Diagnostics.SymbolStore.SymAddressKind" /> 值之一。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.Attributes">
+      <summary>获取变量的特性。</summary>
+      <returns>变量特性。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.EndOffset">
+      <summary>获取变量范围内的变量的结束偏移量。</summary>
+      <returns>变量的结束偏移量。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.Name">
+      <summary>获取变量名。</summary>
+      <returns>变量名。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.StartOffset">
+      <summary>获取变量范围内的变量的起始偏移量。</summary>
+      <returns>变量的起始偏移量。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.ISymbolWriter">
+      <summary>表示托管代码的符号编写器。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.Close">
+      <summary>关闭 <see cref="T:System.Diagnostics.SymbolStore.ISymbolWriter" />，并将符号提交到符号存储区。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.CloseMethod">
+      <summary>关闭当前方法。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.CloseNamespace">
+      <summary>关闭最近的命名空间。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.CloseScope(System.Int32)">
+      <summary>关闭当前词法范围。</summary>
+      <param name="endOffset">越过范围中最后一个指令的点。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineDocument(System.String,System.Guid,System.Guid,System.Guid)">
+      <summary>定义源文档。</summary>
+      <param name="url">标识文档的 URL。</param>
+      <param name="language">文档语言。 此参数可以为 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="languageVendor">文档语言的供应商标识。 此参数可以为 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="documentType">文档的类型。 此参数可以为 <see cref="F:System.Guid.Empty" />。</param>
+      <returns>表示文档的对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineField(System.Diagnostics.SymbolStore.SymbolToken,System.String,System.Reflection.FieldAttributes,System.Byte[],System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32)">
+      <summary>在类型或全局字段中定义字段。</summary>
+      <param name="parent">元数据类型或方法标记。</param>
+      <param name="name">字段名。</param>
+      <param name="attributes">字段特性的按位组合。</param>
+      <param name="signature">字段签名。</param>
+      <param name="addrKind">
+        <paramref name="addr1" /> 和 <paramref name="addr2" /> 的地址类型。</param>
+      <param name="addr1">字段规格的第一个地址。</param>
+      <param name="addr2">字段规格的第二个地址。</param>
+      <param name="addr3">字段规格的第三个地址。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineGlobalVariable(System.String,System.Reflection.FieldAttributes,System.Byte[],System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32)">
+      <summary>定义单个全局变量。</summary>
+      <param name="name">全局变量名称。</param>
+      <param name="attributes">全局变量特性的按位组合。</param>
+      <param name="signature">全局变量签名。</param>
+      <param name="addrKind">
+        <paramref name="addr1" />、<paramref name="addr2" /> 和 <paramref name="addr3" /> 的地址类型。</param>
+      <param name="addr1">全局变量规格的第一个地址。</param>
+      <param name="addr2">全局变量规格的第二个地址。</param>
+      <param name="addr3">全局变量规格的第三个地址。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineLocalVariable(System.String,System.Reflection.FieldAttributes,System.Byte[],System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary>在当前词法范围内定义单个变量。</summary>
+      <param name="name">局部变量名称。</param>
+      <param name="attributes">局部变量特性的按位组合。</param>
+      <param name="signature">局部变量签名。</param>
+      <param name="addrKind">
+        <paramref name="addr1" />、<paramref name="addr2" /> 和 <paramref name="addr3" /> 的地址类型。</param>
+      <param name="addr1">局部变量规格的第一个地址。</param>
+      <param name="addr2">局部变量规格的第二个地址。</param>
+      <param name="addr3">局部变量规格的第三个地址。</param>
+      <param name="startOffset">变量的起始偏移量。 如果此参数为零，则忽略此参数，并在整个范围内定义该变量。 如果此参数为非 0，则该变量将位于当前范围的偏移量之内。</param>
+      <param name="endOffset">变量的结束偏移量。 如果此参数为零，则忽略此参数，并在整个范围内定义该变量。 如果此参数为非 0，则该变量将位于当前范围的偏移量之内。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineParameter(System.String,System.Reflection.ParameterAttributes,System.Int32,System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32)">
+      <summary>在当前方法中定义单个参数。 每个参数的类型从它在方法的签名内的位置获取。</summary>
+      <param name="name">参数名称。</param>
+      <param name="attributes">参数特性的按位组合。</param>
+      <param name="sequence">参数签名。</param>
+      <param name="addrKind">
+        <paramref name="addr1" />、<paramref name="addr2" /> 和 <paramref name="addr3" /> 的地址类型。</param>
+      <param name="addr1">参数规格的第一个地址。</param>
+      <param name="addr2">参数规格的第二个地址。</param>
+      <param name="addr3">参数规格的第三个地址。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineSequencePoints(System.Diagnostics.SymbolStore.ISymbolDocumentWriter,System.Int32[],System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
+      <summary>在当前方法内定义一组序列点。</summary>
+      <param name="document">正在为其定义序列点的文档对象。</param>
+      <param name="offsets">从方法开始测量的序列点偏移量。</param>
+      <param name="lines">序列点的文档行。</param>
+      <param name="columns">序列点的文档位置。</param>
+      <param name="endLines">序列点的文档结束行。</param>
+      <param name="endColumns">序列点的文档结束位置。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.Initialize(System.IntPtr,System.String,System.Boolean)">
+      <summary>设置元数据发射器接口以便与编写器关联。</summary>
+      <param name="emitter">元数据发射器接口。</param>
+      <param name="filename">向其中写入调试符号的文件名。 某些编写器要求文件名，而其他编写器却不要求。 如果为不使用文件名的编写器指定文件名，则忽略此参数。</param>
+      <param name="fFullBuild">
+        <see langword="true" /> 指示这是完全重新生成的；<see langword="false" /> 指示这是增量编译。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.OpenMethod(System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>打开要向其中放入符号信息的方法。</summary>
+      <param name="method">要打开的方法的元数据标记。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.OpenNamespace(System.String)">
+      <summary>打开一个新的命名空间。</summary>
+      <param name="name">新命名空间的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.OpenScope(System.Int32)">
+      <summary>在当前方法中打开新的词法范围。</summary>
+      <param name="startOffset">从方法的开始处到词法范围内第一条指令的偏移量，以字节数表示。</param>
+      <returns>一个不透明的范围标识符，它以后可以与 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetScopeRange(System.Int32,System.Int32,System.Int32)" /> 一起使用，以定义范围的起始和结束偏移量。 在这种情况下，忽略传递到 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.OpenScope(System.Int32)" /> 和 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.CloseScope(System.Int32)" /> 的偏移量。 范围标识符只在当前方法中有效。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetMethodSourceRange(System.Diagnostics.SymbolStore.ISymbolDocumentWriter,System.Int32,System.Int32,System.Diagnostics.SymbolStore.ISymbolDocumentWriter,System.Int32,System.Int32)">
+      <summary>指定源文件内方法的真正开始和结尾。 使用 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetMethodSourceRange(System.Diagnostics.SymbolStore.ISymbolDocumentWriter,System.Int32,System.Int32,System.Diagnostics.SymbolStore.ISymbolDocumentWriter,System.Int32,System.Int32)" /> 指定方法的作用域，独立于方法内存在的序列点。</summary>
+      <param name="startDoc">包含起始位置的文档。</param>
+      <param name="startLine">起始行号。</param>
+      <param name="startColumn">起始列。</param>
+      <param name="endDoc">包含结束位置的文档。</param>
+      <param name="endLine">结束行号。</param>
+      <param name="endColumn">结束列号。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetScopeRange(System.Int32,System.Int32,System.Int32)">
+      <summary>定义指定词法范围的偏移量范围。</summary>
+      <param name="scopeID">词法范围的标识符。</param>
+      <param name="startOffset">词法范围的开始的字节偏移量。</param>
+      <param name="endOffset">词法范围的结尾的字节偏移量。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetSymAttribute(System.Diagnostics.SymbolStore.SymbolToken,System.String,System.Byte[])">
+      <summary>在给定特性名称和特性值的情况下，定义特性。</summary>
+      <param name="parent">正在为其定义特性的元数据标记。</param>
+      <param name="name">特性名称。</param>
+      <param name="data">特性值。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetUnderlyingWriter(System.IntPtr)">
+      <summary>设置基础 <see langword="ISymUnmanagedWriter" />（对应的非托管接口），托管 <see cref="T:System.Diagnostics.SymbolStore.ISymbolWriter" /> 使用它来发出符号。</summary>
+      <param name="underlyingWriter">指向表示此基础编写器的代码的指针。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.SetUserEntryPoint(System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>将用户定义的方法标识为当前模块的入口点。</summary>
+      <param name="entryMethod">方法的元数据标记，它是用户入口点。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolWriter.UsingNamespace(System.String)">
+      <summary>指定在打开的词法范围内使用给定的、完全限定的命名空间名称。</summary>
+      <param name="fullName">命名空间的完全限定名称。</param>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.SymAddressKind">
+      <summary>指定 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineLocalVariable(System.String,System.Reflection.FieldAttributes,System.Byte[],System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" /> 接口的 <see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineParameter(System.String,System.Reflection.ParameterAttributes,System.Int32,System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32)" />、<see cref="M:System.Diagnostics.SymbolStore.ISymbolWriter.DefineField(System.Diagnostics.SymbolStore.SymbolToken,System.String,System.Reflection.FieldAttributes,System.Byte[],System.Diagnostics.SymbolStore.SymAddressKind,System.Int32,System.Int32,System.Int32)" /> 和 <see cref="T:System.Diagnostics.SymbolStore.ISymbolWriter" /> 方法中的局部变量、参数和字段的地址类型。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.BitField">
+      <summary>位字段。 <paramref name="addr1" /> 参数是字段的起始位置，<paramref name="addr2" /> 参数是字段长度。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.ILOffset">
+      <summary>Microsoft 中间语言 (MSIL) 偏移量。 <paramref name="addr1" /> 参数是 MSIL 局部变量或参数索引。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeOffset">
+      <summary>本机偏移量。 <paramref name="addr1" /> 参数是距离父级起始位置的偏移量。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeRegister">
+      <summary>本机寄存器地址。 <paramref name="addr1" /> 参数是在其中存储变量的寄存器。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeRegisterRegister">
+      <summary>寄存器相对地址。 <paramref name="addr1" /> 参数是低位寄存器，<paramref name="addr2" /> 参数是高位寄存器。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeRegisterRelative">
+      <summary>寄存器相对地址。 <paramref name="addr1" /> 参数是寄存器，而 <paramref name="addr2" /> 参数是偏移量。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeRegisterStack">
+      <summary>寄存器相对地址。 <paramref name="addr1" /> 参数是低位寄存器，<paramref name="addr2" /> 参数是堆栈寄存器，<paramref name="addr3" /> 参数是距离值的高位部分堆栈指针的偏移量。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeRVA">
+      <summary>本机相关虚拟地址 (RVA)。 <paramref name="addr1" /> 参数是模块中的 RVA。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeSectionOffset">
+      <summary>本机节偏移量。 <paramref name="addr1" /> 参数是节，<paramref name="addr2" /> 参数是偏移量。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymAddressKind.NativeStackRegister">
+      <summary>寄存器相对地址。 <paramref name="addr1" /> 参数是堆栈寄存器，<paramref name="addr2" /> 参数是距离值的低位部分堆栈指针的偏移量，<paramref name="addr3" /> 参数是高位寄存器。</summary>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.SymbolToken">
+      <summary>
+        <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构是表示符号信息的标记的对象表示形式。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.#ctor(System.Int32)">
+      <summary>在给定值的情况下，初始化 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构的新实例。</summary>
+      <param name="val">要用于标记的值。</param>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.Equals(System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>确定 <paramref name="obj" /> 是否等于此实例。</summary>
+      <param name="obj">要检查的 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" />。</param>
+      <returns>如果 <see langword="true" /> 与此实例相等，则为 <paramref name="obj" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.Equals(System.Object)">
+      <summary>确定 <paramref name="obj" /> 是否为 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 的实例以及是否等于此实例。</summary>
+      <param name="obj">要检查的对象。</param>
+      <returns>如果 <paramref name="obj" /> 是 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 的一个实例并且等于此实例，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.GetHashCode">
+      <summary>生成当前标记的哈希代码。</summary>
+      <returns>当前标记的哈希代码。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.GetToken">
+      <summary>获取当前标记的值。</summary>
+      <returns>当前标记的值。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.op_Equality(System.Diagnostics.SymbolStore.SymbolToken,System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>返回一个值，该值指示两个 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 对象是否相等。</summary>
+      <param name="a">
+        <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构。</param>
+      <param name="b">
+        <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构。</param>
+      <returns>如果 <paramref name="a" /> 和 <paramref name="b" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymbolToken.op_Inequality(System.Diagnostics.SymbolStore.SymbolToken,System.Diagnostics.SymbolStore.SymbolToken)">
+      <summary>返回一个值，该值指示两个 <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 对象是否不相等。</summary>
+      <param name="a">
+        <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构。</param>
+      <param name="b">
+        <see cref="T:System.Diagnostics.SymbolStore.SymbolToken" /> 结构。</param>
+      <returns>如果 <paramref name="a" /> 和 <paramref name="b" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.SymDocumentType">
+      <summary>保存要与符号存储区一起使用的文档类型的公用 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymDocumentType.Text">
+      <summary>指定要与符号存储区一起使用的文档类型的 GUID。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymDocumentType.#ctor">
+      <summary>初始化 <see cref="T:System.Diagnostics.SymbolStore.SymDocumentType" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.SymLanguageType">
+      <summary>保存要与符号存储区一起使用的语言类型的公用 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.Basic">
+      <summary>指定要与符号存储区一起使用的 Basic 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.C">
+      <summary>指定要与符号存储区一起使用的 C 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.Cobol">
+      <summary>指定要与符号存储区一起使用的 Cobol 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.CPlusPlus">
+      <summary>指定要与符号存储区一起使用的 C++ 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.CSharp">
+      <summary>指定要与符号存储区一起使用的 C# 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.ILAssembly">
+      <summary>指定要与符号存储区一起使用的 ILAssembly 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.Java">
+      <summary>指定要与符号存储区一起使用的 Java 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.JScript">
+      <summary>指定要与符号存储区一起使用的 JScript 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.MCPlusPlus">
+      <summary>指定要与符号存储区一起使用的 C++ 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.Pascal">
+      <summary>指定要与符号存储区一起使用的 Pascal 语言类型的 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.SMC">
+      <summary>指定要与符号存储区一起使用的 SMC 语言类型的 GUID。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymLanguageType.#ctor">
+      <summary>初始化 <see cref="T:System.Diagnostics.SymbolStore.SymLanguageType" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Diagnostics.SymbolStore.SymLanguageVendor">
+      <summary>保存要与符号存储区一起使用的语言供应商的公用 GUID。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SymbolStore.SymLanguageVendor.Microsoft">
+      <summary>指定 Microsoft 语言供应商的 GUID。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymLanguageVendor.#ctor">
+      <summary>初始化 <see cref="T:System.Diagnostics.SymbolStore.SymLanguageVendor" /> 类的新实例。</summary>
+    </member>
+  </members>
+</doc>

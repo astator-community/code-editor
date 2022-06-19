@@ -1,0 +1,1011 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.IsolatedStorage</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.IsolatedStorage.INormalizeForIsolatedStorage">
+      <summary>启用独立存储和应用程序域与程序集的证据之间的比较。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.INormalizeForIsolatedStorage.Normalize">
+      <summary>当在派生类中重写时，返回在其上调用它的对象的正常化副本。</summary>
+      <returns>一个正常化的对象，它表示在其上调用该方法的实例。 该实例可以是字符串、流或任何可序列化的对象。</returns>
+    </member>
+    <member name="T:System.IO.IsolatedStorage.IsolatedStorage">
+      <summary>表示所有独立存储实现都必须从中派生的抽象基类。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorage.#ctor">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorage.IncreaseQuotaTo(System.Int64)">
+      <summary>在派生类中重写时，将提示用户批准独立存储的更大配额大小（以字节为单位）。</summary>
+      <param name="newQuotaSize">请求的新配额大小（以字节为单位），有待用户批准。</param>
+      <returns>在所有情况下均为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorage.InitStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Type)">
+      <summary>初始化新的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象。</summary>
+      <param name="scope">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 值的按位组合。</param>
+      <param name="appEvidenceType">可从调用应用程序的 <see cref="T:System.Security.Policy.Evidence" /> 列表中选择的 <see cref="T:System.Security.Policy.Evidence" /> 的类型。 如果为 <see langword="null" />，则允许 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象选择证据。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">指定的程序集没有足够的权限创建独立存储区。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorage.InitStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Type,System.Type)">
+      <summary>初始化新的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象。</summary>
+      <param name="scope">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 值的按位组合。</param>
+      <param name="domainEvidenceType">可从调用应用程序的域内存在的 <see cref="T:System.Security.Policy.Evidence" /> 列表中选择的 <see cref="T:System.Security.Policy.Evidence" /> 的类型。 如果为 <see langword="null" />，则允许 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象选择证据。</param>
+      <param name="assemblyEvidenceType">可从调用应用程序的程序集内存在的 <see cref="T:System.Security.Policy.Evidence" /> 列表中选择的 <see cref="T:System.Security.Policy.Evidence" /> 的类型。 如果为 <see langword="null" />，则允许 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象选择证据。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">指定的程序集没有足够的权限创建独立存储区。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorage.Remove">
+      <summary>当在派生类中重写时，移除个别独立存储区和包含的所有数据。</summary>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.ApplicationIdentity">
+      <summary>获取用于确定独立存储范围的应用程序标识。</summary>
+      <exception cref="T:System.Security.SecurityException">该代码缺少访问此对象所需的 <see cref="T:System.Security.Permissions.SecurityPermission" />。 这些权限由运行时基于安全策略授予。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象没有被应用程序 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 隔离。</exception>
+      <returns>表示 <see cref="T:System.Object" /> 标识的 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.AssemblyIdentity">
+      <summary>获取用于确定独立存储范围的程序集标识。</summary>
+      <exception cref="T:System.Security.SecurityException">该代码缺少访问此对象所需的 <see cref="T:System.Security.Permissions.SecurityPermission" />。</exception>
+      <exception cref="T:System.InvalidOperationException">未定义程序集。</exception>
+      <returns>表示 <see cref="T:System.Object" /> 标识的 <see cref="T:System.Reflection.Assembly" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.AvailableFreeSpace">
+      <summary>在派生类中重写时，获取独立存储的可用空间（以字节为单位）。</summary>
+      <exception cref="T:System.InvalidOperationException">执行了需要访问 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.AvailableFreeSpace" /> 的操作，但是没有为此存储区定义该属性。 由于使用了部分证据来打开存储区，因此通过使用枚举所获取的存储没有定义完善的 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.AvailableFreeSpace" />。</exception>
+      <returns>独立存储的可用空间（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.CurrentSize">
+      <summary>获取表示独立存储当前大小的值。</summary>
+      <exception cref="T:System.InvalidOperationException">独立存储区的当前大小未定义。</exception>
+      <returns>该独立存储范围内当前使用的存储单元的数目。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.DomainIdentity">
+      <summary>获取用于确定独立存储范围的域标识。</summary>
+      <exception cref="T:System.Security.SecurityException">该代码缺少访问此对象所需的 <see cref="T:System.Security.Permissions.SecurityPermission" />。 这些权限由运行时基于安全策略授予。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象没有被域 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 隔离。</exception>
+      <returns>表示 <see cref="T:System.Object" /> 标识的 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.MaximumSize">
+      <summary>获取一个值，该值表示独立存储的最大可用空间数量。 当在派生类中重写时，该值可以采用不同的度量单位。</summary>
+      <exception cref="T:System.InvalidOperationException">尚未定义配额。</exception>
+      <returns>独立存储空间的最大数量（以字节为单位）。 派生类可以返回不同单位的值。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.Quota">
+      <summary>在派生类中重写时，获取一个值，该值表示可用于独立存储的最大空间量。</summary>
+      <exception cref="T:System.InvalidOperationException">执行了需要访问 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.Quota" /> 的操作，但是没有为此存储区定义该属性。 由于使用了部分证据来打开存储区，因此通过使用枚举所获取的存储没有定义完善的 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.Quota" />。</exception>
+      <returns>独立存储空间的限制，以字节为单位。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.Scope">
+      <summary>获取指定用于隔离存储区的范围的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 枚举值。</summary>
+      <returns>值的按位组合， <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 指定用于隔离存储区的范围。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.SeparatorExternal">
+      <summary>获取可在目录字符串中使用的反斜杠字符。 当在派生类中重写后，可能会返回另一个字符。</summary>
+      <returns>默认实现返回 " \ " (反斜杠) 字符。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.SeparatorInternal">
+      <summary>获取可在目录字符串中使用的句点字符。 当在派生类中重写后，可能会返回另一个字符。</summary>
+      <returns>默认实现返回 (期间) 字符的 "."。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorage.UsedSize">
+      <summary>在派生类中重写时，获取一个值，该值表示用于独立存储的空间量。</summary>
+      <exception cref="T:System.InvalidOperationException">执行了需要访问 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.UsedSize" /> 的操作，但是没有为此存储区定义该属性。 由于使用了部分证据来打开存储区，因此通过使用枚举所获取的存储没有定义完善的 <see cref="P:System.IO.IsolatedStorage.IsolatedStorage.UsedSize" />。</exception>
+      <returns>独立存储的已用空间量，以字节为单位。</returns>
+    </member>
+    <member name="T:System.IO.IsolatedStorage.IsolatedStorageException">
+      <summary>独立存储中的操作失败时所引发的异常。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor">
+      <summary>使用默认属性初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageException" /> 类的新实例。</summary>
+      <param name="info">承载序列化对象数据的对象。</param>
+      <param name="context">关于来源和目标的上下文信息</param>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String)">
+      <summary>用指定的错误消息初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和对作为此异常原因的内部异常的引用来初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+      <param name="inner">导致当前异常的异常。 如果 <paramref name="inner" /> 参数不为 <see langword="null" />，则当前异常将在处理内部异常的 <see langword="catch" /> 块中引发。</param>
+    </member>
+    <member name="T:System.IO.IsolatedStorage.IsolatedStorageFile">
+      <summary>表示包含文件和目录的独立存储区。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.Close">
+      <summary>关闭以前用 <see cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Type,System.Type)" />、<see cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly" /> 或 <see cref="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain" /> 打开的存储区。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String)">
+      <summary>将现有文件复制到新文件。</summary>
+      <param name="sourceFileName">要复制的文件的名称。</param>
+      <param name="destinationFileName">目标文件的名称。 它不能是一个目录或现有文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+- 或 - 
+已禁用独立存储。  
+  
+- 或 - 
+ <paramref name="destinationFileName" /> 已存在。  
+  
+- 或 - 
+发生了 I/O 错误。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.CopyFile(System.String,System.String,System.Boolean)">
+      <summary>将现有文件复制到新文件，还可以覆盖现有文件。</summary>
+      <param name="sourceFileName">要复制的文件的名称。</param>
+      <param name="destinationFileName">目标文件的名称。 不能是目录。</param>
+      <param name="overwrite">如果可以覆盖目标文件，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。  
+  
+ - 或 -  
+  
+ 发生了 I/O 错误。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateDirectory(System.String)">
+      <summary>在独立存储范围中创建目录。</summary>
+      <param name="dir">要在独立存储范围中创建的目录的相对路径。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">当前代码没有足够的权限创建独立存储目录。</exception>
+      <exception cref="T:System.ArgumentNullException">目录路径为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.CreateFile(System.String)">
+      <summary>在独立存储区中创建文件。</summary>
+      <param name="path">要创建的文件的相对路径。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 中的目录不存在。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>新的独立存储文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteDirectory(System.String)">
+      <summary>删除独立存储范围中的目录。</summary>
+      <param name="dir">要在独立存储范围中删除的目录的相对路径。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">该目录未能删除。</exception>
+      <exception cref="T:System.ArgumentNullException">目录路径为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.DeleteFile(System.String)">
+      <summary>删除独立存储范围中的文件。</summary>
+      <param name="file">要在独立存储范围中删除的文件的相对路径。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">目标文件已打开或者路径不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">文件路径为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.DirectoryExists(System.String)">
+      <summary>确定指定的路径是否指的是独立存储区中的现有目录。</summary>
+      <param name="path">要测试的路径。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">独立存储关闭。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <returns>如果 <paramref name="path" /> 指的是独立存储区中的现有目录而不是 <see langword="null" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.Dispose">
+      <summary>释放由 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 使用的所有资源。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.FileExists(System.String)">
+      <summary>确定指定的路径是否指的是独立存储区中的现有文件。</summary>
+      <param name="path">要测试的路径和文件名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">独立存储关闭。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <returns>如果 <paramref name="path" /> 指的是独立存储区中的现有文件而不是 <see langword="null" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetCreationTime(System.String)">
+      <summary>返回指定文件或目录的创建日期和时间。</summary>
+      <param name="path">要获取其创建日期和时间信息的文件或目录的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <returns>指定的文件或目录的创建日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames">
+      <summary>枚举独立存储根处的目录。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.InvalidOperationException">独立存储关闭。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方不具有枚举目录的权限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到一个或多个目录。</exception>
+      <returns>独立存储根处目录的相对路径的数组。 零长度数组指定根处没有任何目录。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetDirectoryNames(System.String)">
+      <summary>枚举独立存储范围中与给定搜索模式匹配的目录。</summary>
+      <param name="searchPattern">搜索模式。 单字符（"?"）和多字符（"*"）通配符都受支持。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">独立存储关闭。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方不具有枚举从 <paramref name="searchPattern" /> 解析的目录的权限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到 <paramref name="searchPattern" /> 指定的一个或多个目录。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <returns>独立存储范围中与 <paramref name="searchPattern" /> 匹配的目录的相对路径的数组。 零长度数组指定没有任何匹配的目录。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetEnumerator(System.IO.IsolatedStorage.IsolatedStorageScope)">
+      <summary>获取独立存储范围中 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 存储区的枚举器。</summary>
+      <param name="scope">表示为其返回独立存储区的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" />。 <see langword="User" /> 和 <see langword="User|Roaming" /> 是仅有的受支持的 <see langword="IsolatedStorageScope" /> 组合。</param>
+      <returns>指定独立存储范围中 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 存储区的枚举器。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames">
+      <summary>枚举独立存储根处的文件名。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">无法确定来自独立存储区根目录的文件路径。</exception>
+      <returns>独立存储根处文件的相对路径的数组。  零长度数组指定根处没有任何文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetFileNames(System.String)">
+      <summary>获取与搜索模式匹配的文件名。</summary>
+      <param name="searchPattern">搜索模式。 单字符（"?"）和多字符（"*"）通配符都受支持。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">无法找到 <paramref name="searchPattern" /> 指定的文件路径。</exception>
+      <returns>独立存储范围中与 <paramref name="searchPattern" /> 匹配的文件的相对路径的数组。 零长度数组指定没有任何匹配的文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastAccessTime(System.String)">
+      <summary>返回上次访问指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其上次访问日期和时间信息的文件或目录的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <returns>上次访问指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetLastWriteTime(System.String)">
+      <summary>返回上次写入指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其上次写入日期和时间信息的文件或目录的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <returns>上次写入指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForApplication">
+      <summary>获取与调用代码的应用程序标识对应的计算机范围的独立存储。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">未能确定调用方的应用程序标识。  
+  
+ - 或 -  
+  
+ 未能确定为应用程序域授予的权限集。  
+  
+ - 或 -  
+  
+ 无法初始化独立的存储位置。</exception>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <returns>与基于调用代码的应用程序标识的独立存储范围对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForAssembly">
+      <summary>获取与调用代码的程序集标识对应的计算机范围的独立存储。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。</exception>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <returns>与基于调用代码的程序集标识的独立存储范围对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetMachineStoreForDomain">
+      <summary>获取与应用程序域标识和程序集标识对应的计算机范围的独立存储。</summary>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">存储区未能打开。  
+  
+ - 或 -  
+  
+ 指定的程序集没有足够的权限创建独立存储区。  
+  
+ - 或 -  
+  
+ 不能确定应用程序域的权限。  
+  
+ - 或 -  
+  
+ 无法初始化独立的存储位置。</exception>
+      <returns>与基于应用程序域标识和程序集标识组合的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Object)">
+      <summary>获取与给定应用程序标识对应的独立存储。</summary>
+      <param name="scope">枚举值的按位组合。</param>
+      <param name="applicationIdentity">包含应用程序标识证据的对象。</param>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.ArgumentNullException">尚未传入 <paramref name="applicationIdentity" /> 标识。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="scope" /> 无效。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
+      <returns>表示这些参数的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Object,System.Object)">
+      <summary>获取与给定的应用程序域和程序集证据对象相对应的独立存储。</summary>
+      <param name="scope">枚举值的按位组合。</param>
+      <param name="domainIdentity">包含应用程序域标识的证据的对象。</param>
+      <param name="assemblyIdentity">包含代码程序集标识的证据的对象。</param>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.ArgumentNullException">既不传递 <paramref name="domainIdentity" />，也不传递 <paramref name="assemblyIdentity" />。 这将验证使用的是正确的构造函数。  
+  
+- 或 - 
+<paramref name="domainIdentity" /> 或 <paramref name="assemblyIdentity" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="scope" /> 无效。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
+      <returns>表示这些参数的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Type)">
+      <summary>获取与隔离范围和应用程序标识对象对应的独立存储。</summary>
+      <param name="scope">枚举值的按位组合。</param>
+      <param name="applicationEvidenceType">包含应用程序标识的对象。</param>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.ArgumentNullException">尚未传入 <paramref name="applicationEvidence" /> 标识。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="scope" /> 无效。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能确定调用程序集的权限。</exception>
+      <returns>表示这些参数的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetStore(System.IO.IsolatedStorage.IsolatedStorageScope,System.Type,System.Type)">
+      <summary>已知应用程序域和程序集证据类型，获取与独立存储范围对应的独立存储。</summary>
+      <param name="scope">枚举值的按位组合。</param>
+      <param name="domainEvidenceType">可从调用应用程序的域内存在的 <see cref="T:System.Security.Policy.Evidence" /> 列表中选择的 <see cref="T:System.Security.Policy.Evidence" /> 的类型。 如果为 <see langword="null" />，则允许 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象选择证据。</param>
+      <param name="assemblyEvidenceType">可从调用应用程序的域内存在的 <see cref="T:System.Security.Policy.Evidence" /> 列表中选择的 <see cref="T:System.Security.Policy.Evidence" /> 的类型。 如果为 <see langword="null" />，则允许 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 对象选择证据。</param>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="scope" /> 无效。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">所提供的证据类型没有出现在程序集证据列表中。  
+  
+- 或 - 
+无法初始化独立的存储位置。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含枚举值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application" />，但不能确定调用方的应用程序标识，因为当前应用程序域的 <see cref="P:System.AppDomain.ActivationContext" /> 返回了 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含值 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain" />，但不能确定应用程序域的权限。  
+  
+- 或 - 
+ <paramref name="scope" /> 包含 <see cref="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly" />，但不能决定调用程序集的权限。</exception>
+      <returns>表示这些参数的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForApplication">
+      <summary>获取与调用代码的应用程序标识对应的用户范围的独立存储。</summary>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
+  
+- 或 - 
+未能确定调用方的应用程序标识，因为 <see cref="P:System.AppDomain.ActivationContext" /> 属性返回了 <see langword="null" />。  
+  
+- 或 - 
+不能确定应用程序域的权限。</exception>
+      <returns>与基于调用代码的程序集标识的独立存储范围对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly">
+      <summary>获取与调用代码的程序集标识对应的用户范围的独立存储。</summary>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法初始化独立的存储位置。  
+  
+ - 或 -  
+  
+ 不能确定调用程序集的权限。</exception>
+      <returns>与基于调用代码的程序集标识的独立存储范围对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForDomain">
+      <summary>获取与应用程序域标识和程序集标识对应的用户范围的独立存储。</summary>
+      <exception cref="T:System.Security.SecurityException">未授予使用独立存储的足够权限。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">存储区未能打开。  
+  
+ - 或 -  
+  
+ 指定的程序集没有足够的权限创建独立存储区。  
+  
+ - 或 -  
+  
+ 无法初始化独立的存储位置。  
+  
+ - 或 -  
+  
+ 不能确定应用程序域的权限。</exception>
+      <returns>与基于应用程序域标识和程序集标识组合的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 对应的对象。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForSite">
+      <summary>获取用户范围的独立存储，供虚拟主机域中的应用程序使用。</summary>
+      <returns>与基于调用代码的应用程序标识的独立存储范围对应的独立存储文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.IncreaseQuotaTo(System.Int64)">
+      <summary>使应用程序显式请求一个更大的配额大小，以字节为单位。</summary>
+      <param name="newQuotaSize">请求的大小，以字节为单位。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="newQuotaSize" /> 小于当前配额大小。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="newQuotaSize" /> 小于零，或小于或等于当前配额大小。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.NotSupportedException">当前作用域不是针对应用程序用户的。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <returns>如果接受新配额，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveDirectory(System.String,System.String)">
+      <summary>将指定的目录及其内容移到新位置。</summary>
+      <param name="sourceDirectoryName">要移动的目录的名称。</param>
+      <param name="destinationDirectoryName">
+        <paramref name="sourceDirectoryName" /> 的新位置的路径。 这不能是现有目录的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceDirectoryName" /> 不存在。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+- 或 - 
+已禁用独立存储。  
+  
+- 或 - 
+ <paramref name="destinationDirectoryName" /> 已存在。  
+  
+- 或 - 
+ <paramref name="sourceDirectoryName" /> 和 <paramref name="destinationDirectoryName" /> 引用相同的目录。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.MoveFile(System.String,System.String)">
+      <summary>将指定文件移到新位置，还可以允许你指定新文件名。</summary>
+      <param name="sourceFileName">要移动的文件的名称。</param>
+      <param name="destinationFileName">指向文件的新位置的路径。 如果包括文件名，则移动的文件将具有该名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode)">
+      <summary>在指定的模式中打开文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">指定如何打开文件的枚举值之一。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 中的目录不存在。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>在指定模式下打开、具有读/写访问权限且不共享的文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess)">
+      <summary>用指定的读/写访问权限在指定模式下打开文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">指定如何打开文件的枚举值之一。</param>
+      <param name="access">指定是否将用读、写或读/写访问权限打开文件的枚举值之一。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 中的目录不存在。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>用指定模式和访问权限打开且不共享的文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>用指定的读/写访问权限和共享权限在指定的模式下打开文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">指定如何打开或创建文件的枚举值之一。</param>
+      <param name="access">指定是否将用读、写或读/写访问权限打开文件的枚举值之一</param>
+      <param name="share">用于指定其他 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象对此文件具有哪种访问权限的枚举值的按位组合。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 中的目录不存在。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="M:System.IO.FileInfo.Open(System.IO.FileMode)" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>用指定的模式和访问权限以及指定的共享选项打开的文件。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.Remove">
+      <summary>移除独立存储区范围及其所有内容。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法删除独立存储区。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFile.Remove(System.IO.IsolatedStorage.IsolatedStorageScope)">
+      <summary>为所有标识移除指定的独立存储范围。</summary>
+      <param name="scope">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageScope" /> 值的按位组合。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">无法移除独立存储区。</exception>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.AvailableFreeSpace">
+      <summary>获取一个值，该值表示独立存储的可用空间量。</summary>
+      <exception cref="T:System.InvalidOperationException">独立存储关闭。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>独立存储的可用空间（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.CurrentSize">
+      <summary>获取独立存储的当前大小。</summary>
+      <exception cref="T:System.InvalidOperationException">该属性不可用。 当前存储区有漫游范围或者没有打开。</exception>
+      <exception cref="T:System.ObjectDisposedException">未定义当前对象的大小。</exception>
+      <returns>独立存储范围中当前正在使用的存储区的总字节数。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.IsEnabled">
+      <summary>获取一个值，该值指示是否启用了独立存储。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize">
+      <summary>获取一个值，该值表示在由配额设定的限制内独立存储的最大可用空间。</summary>
+      <exception cref="T:System.InvalidOperationException">该属性不可用。 如果没有来自程序集创建过程的证据，则无法确定 <see cref="P:System.IO.IsolatedStorage.IsolatedStorageFile.MaximumSize" />。 创建该对象时未能确定证据。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">发生独立存储错误。</exception>
+      <returns>独立存储空间的限制，以字节为单位。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.Quota">
+      <summary>获取一个值，该值表示独立存储的最大可用空间量。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。  
+  
+ - 或 -  
+  
+ 已禁用独立存储。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>独立存储空间的限制，以字节为单位。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFile.UsedSize">
+      <summary>获取一个值，该值表示用于独立存储的空间量。</summary>
+      <exception cref="T:System.InvalidOperationException">已关闭独立存储区。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">已移除独立存储区。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放独立存储区。</exception>
+      <returns>已用的独立存储空间，以字节为单位。</returns>
+    </member>
+    <member name="T:System.IO.IsolatedStorage.IsolatedStorageFileStream">
+      <summary>公开独立存储中的文件。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的新实例，通过该实例可以访问指定 <paramref name="mode" /> 中的 <paramref name="path" /> 指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 中的目录不存在。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" /></exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以指定的 <paramref name="mode" />、用请求类型的 <paramref name="access" /> 访问 <paramref name="path" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以使用 <paramref name="path" /> 指定的文件共享模式，以指定的 <paramref name="mode" />、用指定的文件 <paramref name="access" /> 访问 <paramref name="share" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 值的按位组合。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.Int32)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以使用 <paramref name="share" /> 指定的文件共享模式（指定了 <paramref name="buffersize" />），以指定的 <paramref name="mode" />、用指定的文件 <paramref name="access" /> 访问 <paramref name="path" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 值的按位组合。</param>
+      <param name="bufferSize">
+        <see cref="T:System.IO.FileStream" /> 缓冲区的大小。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.Int32,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以在 <paramref name="path" /> 指定的 <paramref name="mode" /> 的上下文中，使用 <paramref name="access" /> 指定的文件享模式（指定了 <paramref name="share" />），以指定的 <paramref name="buffersize" />、用指定的文件 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 来访问 <paramref name="isf" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 值的按位组合</param>
+      <param name="bufferSize">
+        <see cref="T:System.IO.FileStream" /> 缓冲区的大小。</param>
+      <param name="isf">要在其中打开 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <paramref name="isf" /> 无配额。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以在 <paramref name="isf" /> 指定的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 的上下文中，使用 <paramref name="share" /> 指定的文件共享模式，以指定的 <paramref name="mode" />、用指定的文件 <paramref name="access" /> 来访问 <paramref name="path" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 值的按位组合。</param>
+      <param name="isf">要在其中打开 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <paramref name="isf" /> 无配额。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以在 <paramref name="isf" /> 所指定的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 的上下文中，以指定的 <paramref name="mode" />、用指定的文件 <paramref name="access" /> 来访问 <paramref name="path" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值的按位组合。</param>
+      <param name="isf">要在其中打开 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">独立存储关闭。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <paramref name="isf" /> 无配额。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.#ctor(System.String,System.IO.FileMode,System.IO.IsolatedStorage.IsolatedStorageFile)">
+      <summary>初始化 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 类的一个新实例，以便可以在 <paramref name="isf" /> 指定的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" /> 的上下文中，以指定的 <paramref name="mode" /> 来访问 <paramref name="path" /> 所指定的文件。</summary>
+      <param name="path">独立存储区内文件的相对路径。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值之一。</param>
+      <param name="isf">要在其中打开 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFile" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到任何文件，且 <paramref name="mode" /> 设置为 <see cref="F:System.IO.FileMode.Open" />。</exception>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <paramref name="isf" /> 无配额。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步读。</summary>
+      <param name="array" />
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始读取。</param>
+      <param name="numBytes">最多读取的字节数。</param>
+      <param name="userCallback">异步读操作完成后调用的方法。 此参数可选。</param>
+      <param name="stateObject">异步读的状态。</param>
+      <exception cref="T:System.IO.IOException">尝试在文件的末尾后进行异步读取。</exception>
+      <returns>表示可能仍处于挂起状态的异步读取的 <see cref="T:System.IAsyncResult" /> 对象。 此 <see cref="T:System.IAsyncResult" /> 必须传递到该流的 <see cref="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.EndRead(System.IAsyncResult)" /> 方法以确定读取的字节数。 这可以通过调用 <see cref="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 的相同代码来完成，或在传递给 <see cref="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 的回调中完成。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步写。</summary>
+      <param name="array" />
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始写入。</param>
+      <param name="numBytes">最多写入的字节数。</param>
+      <param name="userCallback">异步写操作完成后调用的方法。 此参数可选。</param>
+      <param name="stateObject">异步写的状态。</param>
+      <exception cref="T:System.IO.IOException">试图超出文件末尾进行异步写入。</exception>
+      <returns>表示可能仍处于挂起状态的异步写入的 <see cref="T:System.IAsyncResult" />。 此 <see cref="T:System.IAsyncResult" /> 必须传递到该流的 <see cref="M:System.IO.Stream.EndWrite(System.IAsyncResult)" /> 方法以确保写入完成，然后相应地释放资源。 这可以通过调用 <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 的相同代码来完成，或在传递给 <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 的回调中完成。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为<see langword="true" /> ；若仅释放非托管资源，则为 <see langword="false" /> 。</param>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.DisposeAsync">
+      <summary>异步释放 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 使用的非托管资源。</summary>
+      <returns>一个表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.EndRead(System.IAsyncResult)">
+      <summary>结束挂起的异步读取请求。</summary>
+      <param name="asyncResult">挂起的异步请求。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>从流中读取的字节数，介于零和所请求的字节数之间。 流仅在到达流的结尾处时才返回零。 否则，它们将一直被阻止到至少有一个字节可用时。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.EndWrite(System.IAsyncResult)">
+      <summary>结束异步写入。</summary>
+      <param name="asyncResult">要结束的挂起的异步 I/O 请求。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Flush">
+      <summary>清除此流的缓冲区，使得所有缓冲数据都写入到文件中。</summary>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Flush(System.Boolean)">
+      <summary>清除此流的缓冲区，将所有缓冲数据都写入到文件中，并且也清除所有中间文件缓冲区。</summary>
+      <param name="flushToDisk">如果刷新所有中间文件缓冲区，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步清除此流的缓冲区，使得所有缓冲数据都写入到文件中。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Lock(System.Int64,System.Int64)">
+      <summary>防止其他进程读取或写入流。</summary>
+      <param name="position">锁定范围的起始位置。 此参数的值必须大于或等于0 (零)。</param>
+      <param name="length">用于锁定的字节数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="position" /> 或 <paramref name="length" /> 为负数。</exception>
+      <exception cref="T:System.ObjectDisposedException">文件关闭。</exception>
+      <exception cref="T:System.IO.IOException">另一个进程已锁定了文件的一部分，因此进程无法访问该文件。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>将字节从当前缓冲的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象复制到字节数组。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <param name="offset">缓冲区中开始写入的偏移量。</param>
+      <param name="count">最多读取的字节数。</param>
+      <returns>读入 <paramref name="buffer" /> 中的总字节数。 如果当前可用的字节数没有请求的字节数那么多，则总字节数可能小于请求的字节数；如果已到达流的末尾，则为零。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Read(System.Span{System.Byte})">
+      <summary>将字节从当前缓冲的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象复制到字节范围。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <returns>读入 <paramref name="buffer" /> 中的总字节数。 如果当前可用的字节数没有请求的字节数那么多，则总字节数可能小于请求的字节数；如果已到达流的末尾，则为零。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>将字节从当前缓冲的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象异步复制到字节数组。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <param name="offset">缓冲区中开始写入的偏移量。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务。 它会包装读入 <paramref name="buffer" /> 中的总字节数。 如果当前可用的字节数没有请求的字节数那么多，则总字节数可能小于请求的字节数；如果已到达流的末尾，则为零。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary>将字节从当前缓冲的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象异步复制到字节内存范围。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务。 它会包装读入 <paramref name="buffer" /> 中的总字节数。 如果当前可用的字节数没有请求的字节数那么多，则总字节数可能小于请求的字节数；如果已到达流的末尾，则为零。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.ReadByte">
+      <summary>从独立存储中的 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象读取一个字节。</summary>
+      <returns>从独立存储文件中读取的 8 位无符号整数值。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>将此 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的当前位置设置为指定值。</summary>
+      <param name="offset">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的新位置。</param>
+      <param name="origin">
+        <see cref="T:System.IO.SeekOrigin" /> 值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="origin" /> 必须为 <see cref="T:System.IO.SeekOrigin" /> 值之一。</exception>
+      <returns>
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象中的新位置。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.SetLength(System.Int64)">
+      <summary>将此 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的长度设置为指定的 <paramref name="value" />。</summary>
+      <param name="value">
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的新长度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="value" /> 为负数。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Unlock(System.Int64,System.Int64)">
+      <summary>允许其他进程访问以前锁定的某个文件的全部或部分内容。</summary>
+      <param name="position">解锁范围的起始位置。 此参数的值必须大于或等于0 (零)。</param>
+      <param name="length">要解锁的字节数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="position" /> 或 <paramref name="length" /> 为负数。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>使用从缓冲区（由字节数组组成）读取的数据将字节块写入独立存储文件流对象。</summary>
+      <param name="buffer">要从中将字节复制到当前独立存储文件流的字节数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始。</param>
+      <param name="count">最多写入的字节数。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">写入尝试次数超过了 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的配额。</exception>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.Write(System.ReadOnlySpan{System.Byte})">
+      <summary>使用从缓冲区（由只读字节范围组成）读取的数据将字节块写入独立存储文件流对象。</summary>
+      <param name="buffer">要从中将字节复制到当前独立存储文件流的只读字节范围。</param>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>使用从缓冲区（由字节数组组成）读取的数据将字节块异步写入独立存储文件流对象。</summary>
+      <param name="buffer">要从中将字节复制到当前独立存储文件流的字节数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
+      <summary>使用从缓冲区（由只读字节内存范围组成）读取的数据将字节块异步写入独立存储文件流对象。</summary>
+      <param name="buffer">要从中将字节复制到当前独立存储文件流的只读字节内存。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.IsolatedStorage.IsolatedStorageFileStream.WriteByte(System.Byte)">
+      <summary>将一个字节写入 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象。</summary>
+      <param name="value">写入独立存储文件的字节值。</param>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">写入尝试次数超过了 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的配额。</exception>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanRead">
+      <summary>获取一个布尔值，该值指示该文件是否可读。</summary>
+      <returns>如果 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象可读，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanSeek">
+      <summary>获取一个布尔值，该值指示查找操作是否受支持。</summary>
+      <returns>如果 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象支持查找操作，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.CanWrite">
+      <summary>获取一个布尔值，该值指示是否可以写入文件。</summary>
+      <returns>如果可以写入 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Handle">
+      <summary>获取当前 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象封装的文件的文件句柄。 不允许在 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象上访问此属性，如果访问，将引发 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageException" />。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <see cref="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Handle" /> 属性始终生成此异常。</exception>
+      <returns>当前 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象封装的文件的文件句柄。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.IsAsync">
+      <summary>获取一个布尔值，该值指示 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象是异步打开的还是同步打开的。</summary>
+      <returns>如果 <see langword="true" /> 对象支持异步访问，则为 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Length">
+      <summary>获取 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的长度。</summary>
+      <returns>
+        <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的长度（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.Position">
+      <summary>获取或设置当前 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的当前位置。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">该位置不能设置为负数。</exception>
+      <returns>此 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象的当前位置。</returns>
+    </member>
+    <member name="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.SafeFileHandle">
+      <summary>获取 <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle" /> 对象，它代表当前 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象所封装的文件的操作系统文件句柄。</summary>
+      <exception cref="T:System.IO.IsolatedStorage.IsolatedStorageException">
+        <see cref="P:System.IO.IsolatedStorage.IsolatedStorageFileStream.SafeFileHandle" /> 属性始终生成此异常。</exception>
+      <returns>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeFileHandle" /> 对象，它表示当前 <see cref="T:System.IO.IsolatedStorage.IsolatedStorageFileStream" /> 对象所封装的文件的操作系统文件句柄。</returns>
+    </member>
+    <member name="T:System.IO.IsolatedStorage.IsolatedStorageScope">
+      <summary>枚举受 <see cref="T:System.IO.IsolatedStorage.IsolatedStorage" /> 支持的独立存储范围级别。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.Application">
+      <summary>范围限制在应用程序内的独立存储。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.Assembly">
+      <summary>范围限制在程序集标识内的独立存储。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.Domain">
+      <summary>范围限制在应用程序域标识内的独立存储。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.Machine">
+      <summary>范围限制在计算机内的独立存储。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.None">
+      <summary>未使用独立存储。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.Roaming">
+      <summary>独立存储区可以放置在文件系统中可以漫游的位置中（如果漫游用户数据已在基础操作系统上启用）。</summary>
+    </member>
+    <member name="F:System.IO.IsolatedStorage.IsolatedStorageScope.User">
+      <summary>通过用户标识限制范围的独立存储。</summary>
+    </member>
+  </members>
+</doc>

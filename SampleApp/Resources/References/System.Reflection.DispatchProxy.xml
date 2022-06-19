@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Reflection.DispatchProxy</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.DispatchProxy">
+      <summary>提供实例化代理对象和处理其方法调度的机制。</summary>
+    </member>
+    <member name="M:System.Reflection.DispatchProxy.#ctor" />
+    <member name="M:System.Reflection.DispatchProxy.Create``2">
+      <summary>创建一个派生自类 <typeparamref name="TProxy" /> 的对象实例，并实现接口 <typeparamref name="T" />。</summary>
+      <typeparam name="T">代理应实现的接口。</typeparam>
+      <typeparam name="TProxy">要用于代理类的基类。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <typeparamref name="T" /> 是一个类，或者 <typeparamref name="TProxy" /> 是密封的，或没有无参数构造函数。</exception>
+      <returns>实现 <typeparamref name="T" /> 的对象实例。</returns>
+    </member>
+    <member name="M:System.Reflection.DispatchProxy.Invoke(System.Reflection.MethodInfo,System.Object[])">
+      <summary>每当对生成的代理类型调用任何方法时，都会调用此方法来调度控件。</summary>
+      <param name="targetMethod">调用方调用的方法。</param>
+      <param name="args">调用方传递给方法的参数。</param>
+      <returns>要返回调用方的对象，或 void 方法的 <see langword="null" />。</returns>
+    </member>
+  </members>
+</doc>

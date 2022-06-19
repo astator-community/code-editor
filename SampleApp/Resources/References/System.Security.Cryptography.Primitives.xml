@@ -1,0 +1,1119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AsymmetricAlgorithm">
+      <summary>表示非对称算法的所有实现都必须从中继承的抽象基类。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.KeySizeValue">
+      <summary>表示非对称算法所用密钥模块的大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizesValue">
+      <summary>指定非对称算法支持的密钥大小。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">派生类的实现无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Clear">
+      <summary>释放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 类使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create">
+      <summary>创建用于执行非对称算法的默认加密对象。</summary>
+      <returns>新的 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 实例，除非已使用 &lt;cryptoClass&gt; 元素更改默认设置。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create(System.String)">
+      <summary>创建非对称算法的指定实现的实例。</summary>
+      <param name="algName">要使用的非对称算法实现。 下表显示 <paramref name="algName" /> 参数的有效值以及它们映射到的算法。  
+  
+ <list type="table"><listheader><term> 参数值</term><description> 实现为其类型参数</description></listheader><item><term> System.Security.Cryptography.AsymmetricAlgorithm</term><description><see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /></description></item><item><term> RSA</term><description><see cref="T:System.Security.Cryptography.RSA" /></description></item><item><term> System.Security.Cryptography.RSA</term><description><see cref="T:System.Security.Cryptography.RSA" /></description></item><item><term> DSA</term><description><see cref="T:System.Security.Cryptography.DSA" /></description></item><item><term> System.Security.Cryptography.DSA</term><description><see cref="T:System.Security.Cryptography.DSA" /></description></item><item><term> ECDsa</term><description><see cref="T:System.Security.Cryptography.ECDsa" /></description></item><item><term> ECDsaCng</term><description><see cref="T:System.Security.Cryptography.ECDsaCng" /></description></item><item><term> System.Security.Cryptography.ECDsaCng</term><description><see cref="T:System.Security.Cryptography.ECDsaCng" /></description></item><item><term> ECDH</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellman" /></description></item><item><term> ECDiffieHellman</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellman" /></description></item><item><term> ECDiffieHellmanCng</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /></description></item><item><term> System.Security.Cryptography.ECDiffieHellmanCng</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /></description></item></list></param>
+      <returns>所指定的非对称算法实现的新实例。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose">
+      <summary>释放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 类的当前实例所使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>释放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 类使用的非托管资源，并可以选择释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters)">
+      <summary>使用基于字节的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式导出当前密钥。</summary>
+      <param name="passwordBytes">加密密钥材料时用作密码的字节。</param>
+      <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。
+
+或
+
+<paramref name="pbeParameters" /> 指示应使用需要基于 <see cref="T:System.Char" /> 密码的 <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" />。</exception>
+      <returns>包含此密钥的 PKCS#8 EncryptedPrivateKeyInfo 表示形式的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters)">
+      <summary>使用基于字符的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式导出当前密钥。</summary>
+      <param name="password">加密密钥材料时使用的密码。</param>
+      <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+      <returns>包含此密钥的 PKCS#8 EncryptedPrivateKeyInfo 表示形式的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportPkcs8PrivateKey">
+      <summary>以 PKCS#8 PrivateKeyInfo 格式导出当前密钥。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+      <returns>包含此密钥的 PKCS#8 PrivateKeyInfo 表示形式的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportSubjectPublicKeyInfo">
+      <summary>以 X.509 SubjectPublicKeyInfo 格式导出当前密钥的公钥部分。</summary>
+      <returns>包含此密钥的公钥部分的 X.509 SubjectPublicKeyInfo 表示形式的字节数组。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.FromXmlString(System.String)">
+      <summary>当在派生类中重写时，从 XML 字符串重新构造 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象。 否则，将引发 <see cref="T:System.NotImplementedException" />。</summary>
+      <param name="xmlString">用于重新构造 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象的 XML 字符串。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，使用基于字节的密码解密之后，从 PKCS#8 EncryptedPrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+      <param name="passwordBytes">解密密钥材料时用作密码的字节。</param>
+      <param name="source">ASN.1-BER 编码中 PKCS#8 EncryptedPrivateKeyInfo 结构的字节。</param>
+      <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密码不正确。
+
+或
+
+<paramref name="source" /> 的内容表示要应用的密钥派生功能 (KDF) 是旧的 PKCS#12 KDF，需要基于 <see cref="T:System.Char" /> 的密码。
+
+或
+
+<paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 EncryptedPrivateKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，使用基于字符的密码解密之后，从 PKCS#8 EncryptedPrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+      <param name="password">用于解密密钥材料的密码。</param>
+      <param name="source">ASN.1-BER 编码中 PKCS#8 EncryptedPrivateKeyInfo 结构的字节。</param>
+      <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密码不正确。
+
+或
+
+<paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 EncryptedPrivateKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromEncryptedPem(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte})">
+      <summary>在派生的类中重写时，导入已加密的 RFC 7468 PEM 编码的密钥，替换此对象的密钥。</summary>
+      <param name="input">要导入的加密密钥的 PEM 文本。</param>
+      <param name="passwordBytes">解密密钥材料时用作密码的字节。</param>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromEncryptedPem(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>在派生的类中重写时，导入已加密的 RFC 7468 PEM 编码的密钥，替换此对象的密钥。</summary>
+      <param name="input">要导入的加密密钥的 PEM 文本。</param>
+      <param name="password">用于解密密钥材料的密码。</param>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromPem(System.ReadOnlySpan{System.Char})">
+      <summary>在派生的类中重写时，导入 RFC 7468 按原文编码的密钥，替换此对象的密钥。</summary>
+      <param name="input">要导入的 PEM 密钥的文本。</param>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，解密后从 PKCS#8 PrivateKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+      <param name="source">ASN.1-BER 编码中 PKCS#8 PrivateKeyInfo 结构的字节。</param>
+      <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="source" /> 的内容不表示 ASN.1-BER 编码的 PKCS#8 PrivateKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportSubjectPublicKeyInfo(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，解密后从 X.509 SubjectPublicKeyInfo 结构中导入公/私钥对，以替换此对象的密钥。</summary>
+      <param name="source">ASN.1-DER 编码中的 X.509 SubjectPublicKeyInfo 结构的字节。</param>
+      <param name="bytesRead">此方法返回时，包含一个指示从 <paramref name="source" /> 中读取的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="source" /> 的内容不表示 ASN.1-DER 编码的 X.509 SubjectPublicKeyInfo 结构。
+
+或
+
+<paramref name="source" /> 的内容指示密钥用于此实例表示的算法以外的算法。
+
+或
+
+<paramref name="source" /> 的内容表示密钥采用的格式不受支持。
+
+或
+
+特定于算法的密钥导入失败。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ToXmlString(System.Boolean)">
+      <summary>当在派生类中重写时，创建并返回当前 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象的 XML 字符串表示形式。 否则，将引发 <see cref="T:System.NotImplementedException" />。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>当前 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 对象的 XML 字符串编码。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，尝试使用基于字节的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+      <param name="passwordBytes">加密密钥材料时用作密码的字节。</param>
+      <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+      <param name="destination">接收 PKCS#8 EncryptedPrivateKeyInfo 数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。
+
+或
+
+<paramref name="pbeParameters" /> 指示应使用需要基于 <see cref="T:System.Char" /> 密码的 <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" />。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+      <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，尝试使用基于字符的密码以 PKCS#8 EncryptedPrivateKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+      <param name="password">加密密钥材料时使用的密码。</param>
+      <param name="pbeParameters">加密密钥材料时使用的基于密码加密 (PBE) 参数。</param>
+      <param name="destination">接收 PKCS#8 EncryptedPrivateKeyInfo 数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+      <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportPkcs8PrivateKey(System.Span{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，尝试以 PKCS#8 PrivateKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+      <param name="destination">接收 PKCS#8 PrivateKeyInfo 数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+      <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportSubjectPublicKeyInfo(System.Span{System.Byte},System.Int32@)">
+      <summary>在派生的类中替代时，尝试以 X.509 SubjectPublicKeyInfo 格式将当前密钥导出到所提供的缓冲区。</summary>
+      <param name="destination">接收 X.509 SubjectPublicKeyInfo 数据的字节范围。</param>
+      <param name="bytesWritten">此方法返回时，包含一个指示写入 <paramref name="destination" /> 的字节数的值。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">未能导出密钥。</exception>
+      <exception cref="T:System.NotImplementedException">派生的类型未替代此成员。</exception>
+      <returns>如果 <paramref name="destination" /> 具有足够的大小以接收输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeyExchangeAlgorithm">
+      <summary>当在派生类中重写时，请获取密钥交换算法的名称。 否则，将引发 <see cref="T:System.NotImplementedException" />。</summary>
+      <returns>密钥交换算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeySize">
+      <summary>获取或设置非对称算法所用密钥模块的大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥模块大小无效。</exception>
+      <returns>非对称算法所用密钥模块的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizes">
+      <summary>获取非对称算法支持的密钥大小。</summary>
+      <returns>一个数组，它包含非对称算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.SignatureAlgorithm">
+      <summary>当在派生类中实现时，请获取签名算法的名称。 否则，将始终引发 <see cref="T:System.NotImplementedException" />。</summary>
+      <returns>签名算法的名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CipherMode">
+      <summary>指定要用于加密的块密码模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CBC">
+      <summary>密码块链 (<see langword="CBC" />) 模式引入了反馈。 每个纯文本块在加密前，通过按位“异或”操作与前一个块的密码文本结合。 这样确保了即使纯文本包含许多相同的块，这些块中的每一个也会加密为不同的密码文本块。 在加密块之前，初始化向量通过按位“异或”操作与第一个纯文本块结合。 如果密码文本块中有一个位出错，相应的纯文本块也将出错。 此外，后面的块中与原出错位的位置相同的位也将出错。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CFB">
+      <summary>密码反馈 (<see langword="CFB" />) 模式将少量递增的纯文本处理成密码文本，而不是一次处理整个块。 该模式使用在长度上为一个块且被分为几部分的移位寄存器。 例如，如果块大小为 8 个字节，并且每次处理一个字节，则移位寄存器被分为 8 个部分。 如果密码文本中有一个位出错，则一个纯文本位出错，并且移位寄存器损坏。 这将导致接下来若干次递增的纯文本出错，直到出错位从移位寄存器中移出为止。 默认反馈大小可以根据算法而变，但通常是 8 位或块大小的位数。 使用 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 属性，可以改变反馈位数。 支持 CFB 的算法使用此属性来设置反馈。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CTS">
+      <summary>密码文本窃用 (<see langword="CTS" />) 模式处理任何长度的纯文本并产生长度与纯文本长度匹配的密码文本。 除了最后两个纯文本块外，对于所有其他块，此模式与 <see langword="CBC" /> 模式的行为相同。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.ECB">
+      <summary>电子密码本 (<see langword="ECB" />) 模式分别加密每个块。 任何纯文本块只要相同并且在同一消息中，或者在用相同的密钥加密的不同消息中，都将被转换成同样的密码文本块。 重要事项：不建议使用此模式，因为它存在多个安全隐患。 如果要加密的纯文本包含大量重复的块，则逐块破解密码文本是可行的。 另外，还可以使用块分析来确定加密密钥。 此外，随时准备攻击的对手可能会在您没有察觉的情况下替代和交换个别的块，这能让块在不为您所知的情况下保存并插入流中的其他位置。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.OFB">
+      <summary>输出反馈 (<see langword="OFB" />) 模式将少量递增的纯文本处理成密码文本，而不是一次处理整个块。 此模式与 <see langword="CFB" /> 相似；这两种模式的唯一差别是移位寄存器的填充方式不同。 如果密码文本中有一个位出错，纯文本中相应的位也将出错。 但是，如果密码文本中有多余或者缺少的位，则那个位之后的纯文本都将出错。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicOperations">
+      <summary>提供用于处理加密的方法，以降低侧通道信息泄露的风险。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicOperations.FixedTimeEquals(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+      <summary>确定两个字节序列在一定时间内是否相等，该时间取决于序列的长度，而不取决于它们的值。</summary>
+      <param name="left">要比较的第一个缓冲区。</param>
+      <param name="right">要比较的第二个缓冲区。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 具有 <see cref="P:System.ReadOnlySpan`1.Length" /> 的相同值以及相同内容，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicOperations.ZeroMemory(System.Span{System.Byte})">
+      <summary>以零填充所提供的缓冲区。</summary>
+      <param name="buffer">要以零填充的缓冲区。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+      <summary>当加密操作中出现意外操作时引发的异常。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor">
+      <summary>使用默认属性初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 类的新实例。</summary>
+      <param name="info">承载序列化对象数据的对象。</param>
+      <param name="context">关于来源和目标的上下文信息</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String)">
+      <summary>用指定的错误消息初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和对作为此异常原因的内部异常的引用来初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+      <param name="inner">导致当前异常的异常。 如果 <paramref name="inner" /> 参数不为 <see langword="null" />，则当前异常将在处理内部异常的 <see langword="catch" /> 块中引发。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.String)">
+      <summary>以指定格式使用指定的错误消息来初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 类的新实例。</summary>
+      <param name="format">用于输出错误信息的格式。</param>
+      <param name="insert">解释异常原因的错误消息。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStream">
+      <summary>定义将数据流链接到加密转换的流。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode)">
+      <summary>用目标数据流、要使用的转换和流的模式初始化 <see cref="T:System.Security.Cryptography.CryptoStream" /> 类的新实例。</summary>
+      <param name="stream">对其执行加密转换的流。</param>
+      <param name="transform">要对流执行的加密转换。</param>
+      <param name="mode">
+        <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="stream" /> 无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode,System.Boolean)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CryptoStream" /> 类的新实例。</summary>
+      <param name="stream">对其执行加密转换的流。</param>
+      <param name="transform">要对流执行的加密转换。</param>
+      <param name="mode">流的模式。</param>
+      <param name="leaveOpen">若要在释放 <see cref="T:System.Security.Cryptography.CryptoStream" /> 对象时不关闭基础流，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步读操作。 （请考虑改用 <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" />。）</summary>
+      <param name="buffer">数据读入的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从该偏移量开始写入从流中读取的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="callback">可选的异步回调，在完成读取时调用。</param>
+      <param name="state">一个用户提供的对象，它将该特定的异步读取请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试的异步读取超过了流的结尾，或者发生了磁盘错误。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see langword="Stream" /> 实现不支持读取操作。</exception>
+      <returns>表示异步读取的 <see cref="T:System.IAsyncResult" />（可能仍处于挂起状态）。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步写操作。 （请考虑改用 <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" />。）</summary>
+      <param name="buffer">从中写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始写入。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="callback">可选的异步回调，在完成写入时调用。</param>
+      <param name="state">一个用户提供的对象，它将该特定的异步写入请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试进行的异步写入超过了流的结尾，或者发生了磁盘错误。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see langword="Stream" /> 实现不支持写入操作。</exception>
+      <returns>表示异步写入的 <see langword="IAsyncResult" />（可能仍处于挂起状态）。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Clear">
+      <summary>释放由 <see cref="T:System.Security.Cryptography.CryptoStream" /> 使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Security.Cryptography.CryptoStream" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.DisposeAsync">
+      <summary>异步释放 <see cref="T:System.Security.Cryptography.CryptoStream" /> 使用的非托管资源。</summary>
+      <returns>一个表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndRead(System.IAsyncResult)">
+      <summary>等待挂起的异步读取完成。 （请考虑改用 <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" />。）</summary>
+      <param name="asyncResult">对要完成的挂起异步请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">处于挂起状态的读取操作的句柄不可用。  
+  
+ - 或 -  
+  
+ 挂起操作不支持读取。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.IO.IOException">流已关闭或出现了内部错误。</exception>
+      <returns>从流中读取的字节数，介于零 (0) 和所请求的字节数之间。 流仅在流结尾返回零 (0)，否则在至少有 1 个字节可用之前应一直进行阻止。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndWrite(System.IAsyncResult)">
+      <summary>结束异步写操作。 （请考虑改用 <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" />。）</summary>
+      <param name="asyncResult">对未完成的异步 I/O 请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">处于挂起状态的写入操作的句柄不可用。  
+  
+ - 或 -  
+  
+ 挂起操作不支持写入。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.IO.IOException">流已关闭或出现了内部错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Flush">
+      <summary>清理当前流的所有缓冲区，并使所有缓冲数据写入基础设备。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步清理当前流的所有缓冲区，并使所有缓冲数据写入基础设备，并且监控取消请求。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <exception cref="T:System.ObjectDisposedException">已释放流。</exception>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushFinalBlock">
+      <summary>用缓冲区的当前状态更新基础数据源或存储库，随后清除缓冲区。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥已损坏，它可能会导致流的填充无效。</exception>
+      <exception cref="T:System.NotSupportedException">当前流不可写。  
+  
+ - 或 -  
+  
+ 最后一个块已被转换。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushFinalBlockAsync(System.Threading.CancellationToken)">
+      <summary>用缓冲区的当前状态异步更新基础数据源或存储库，随后清除缓冲区。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>从当前流读取字节序列，并将流中的位置向前移动读取的字节数。</summary>
+      <param name="buffer">字节数组。 从当前流中读取最多的 <paramref name="count" /> 个字节，并将它们存储在 <paramref name="buffer" /> 中。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从该偏移量开始存储从当前流中读取的数据。</param>
+      <param name="count">要从当前流中最多读取的字节数。</param>
+      <exception cref="T:System.NotSupportedException">与当前 <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 对象关联的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 与基础流不匹配。  例如，对只写的基础流使用 <see cref="F:System.Security.Cryptography.CryptoStreamMode.Read" /> 时会引发此异常。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 参数小于零。  
+  
+- 或 - 
+<paramref name="count" /> 参数小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 参数和 <paramref name="offset" /> 参数的和比缓冲区的长度长。</exception>
+      <returns>读入缓冲区中的总字节数。 如果当前可用的字节数没有请求的字节数那么多，则总字节数可能小于请求的字节数；如果已到达流的末尾，则为零。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从当前流异步读取字节序列，将此流中的位置提升读取的字节数，并监视取消请求数。</summary>
+      <param name="buffer">要写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从该偏移量开始写入从流中读取的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 为负数。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 和 <paramref name="count" /> 的总和大于缓冲区长度。</exception>
+      <exception cref="T:System.NotSupportedException">流不支持读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放流。</exception>
+      <exception cref="T:System.InvalidOperationException">之前的读取操作当前正在使用流。</exception>
+      <returns>表示异步读取操作的任务。 目标对象的 <paramref name="TResult" /> 参数的值包含多次读入缓冲区总字节数。 如果当前可用字节数少于所请求的字节数，则该结果值可能小于所请求的字节数，或者如果已到达流的末尾时，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadByte">
+      <summary>从流中读取一个字节，并将流内的位置向前提升一个字节，或者如果已到达流结尾，则返回 -1。</summary>
+      <exception cref="T:System.NotSupportedException">流不支持读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <returns>强制转换为 <see cref="T:System.Int32" /> 的无符号字节，如果到达流的末尾，则为 -1。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>设置当前流中的位置。</summary>
+      <param name="offset">相对于 <paramref name="origin" /> 参数的字节偏移量。</param>
+      <param name="origin">一个 <see cref="T:System.IO.SeekOrigin" /> 对象，该对象指示用于获得新位置的参考点。</param>
+      <exception cref="T:System.NotSupportedException">不支持此方法。</exception>
+      <returns>不支持此方法。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.SetLength(System.Int64)">
+      <summary>设置当前流的长度。</summary>
+      <param name="value">所需的当前流的长度（以字节表示）。</param>
+      <exception cref="T:System.NotSupportedException">此属性的存在只是为了支持从 <see cref="T:System.IO.Stream" /> 继承；无法使用此属性。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>将一字节序列写入当前的 <see cref="T:System.Security.Cryptography.CryptoStream" />，并将通过写入的字节数提前该流的当前位置。</summary>
+      <param name="buffer">字节数组。 此方法将 <paramref name="count" /> 个字节从 <paramref name="buffer" /> 复制到当前流。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此偏移量开始将字节复制到当前流。</param>
+      <param name="count">要写入当前流的字节数。</param>
+      <exception cref="T:System.NotSupportedException">与当前 <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 对象关联的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 与基础流不匹配。  例如，对只读的基础流使用 <see cref="F:System.Security.Cryptography.CryptoStreamMode.Write" /> 时会引发此异常。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 参数小于零。  
+  
+- 或 - 
+<paramref name="count" /> 参数小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 参数和 <paramref name="offset" /> 参数的和比缓冲区的长度长。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>将字节序列异步写入当前流，通过写入的字节数提前该流的当前位置，并监视取消请求数。</summary>
+      <param name="buffer">从中写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的从零开始的字节偏移量，从此处开始将字节写入到该流。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值为 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 为负数。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 和 <paramref name="count" /> 的总和大于缓冲区长度。</exception>
+      <exception cref="T:System.NotSupportedException">流不支持写入。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放流。</exception>
+      <exception cref="T:System.InvalidOperationException">流正在由前一次写操作使用。</exception>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteByte(System.Byte)">
+      <summary>将一个字节写入流内的当前位置，并将流内的位置向前提升一个字节。</summary>
+      <param name="value">要写入流中的字节。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">该流不支持写入，或者该流已关闭。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanRead">
+      <summary>获取一个值，该值指示当前的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 是否可读。</summary>
+      <returns>如果当前流可读，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanSeek">
+      <summary>获取一个值，该值指示您是否可以在当前 <see cref="T:System.Security.Cryptography.CryptoStream" /> 中搜索。</summary>
+      <returns>总是为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanWrite">
+      <summary>获取一个值，该值指示当前的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 是否可写。</summary>
+      <returns>如果当前流可写，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.HasFlushedFinalBlock">
+      <summary>获取一个值，该值指示最终缓冲区块是否已写入基础流。</summary>
+      <returns>如果已刷新最终块，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Length">
+      <summary>获取流的长度（以字节为单位）。</summary>
+      <exception cref="T:System.NotSupportedException">不支持此属性。</exception>
+      <returns>不支持此属性。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Position">
+      <summary>获取或设置当前流中的位置。</summary>
+      <exception cref="T:System.NotSupportedException">不支持此属性。</exception>
+      <returns>不支持此属性。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStreamMode">
+      <summary>指定加密流的模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Read">
+      <summary>对加密流的读访问。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Write">
+      <summary>对加密流的写访问。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithm">
+      <summary>表示所有加密哈希算法实现均必须从中派生的基类。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashSizeValue">
+      <summary>表示计算所得的哈希代码的大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashValue">
+      <summary>表示计算所得的哈希代码的值。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.State">
+      <summary>表示哈希计算的状态。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Clear">
+      <summary>释放 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 类使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])">
+      <summary>计算指定字节数组的哈希值。</summary>
+      <param name="buffer">要计算其哈希代码的输入。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>计算所得的哈希代码。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)">
+      <summary>计算指定字节数组的指定区域的哈希值。</summary>
+      <param name="buffer">要计算其哈希代码的输入。</param>
+      <param name="offset">字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="count">数组中用作数据的字节数。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 为无效值。  
+  
+或 
+ <paramref name="buffer" /> 长度无效。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 超出范围。 此参数需要非负数。</exception>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>计算所得的哈希代码。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)">
+      <summary>计算指定 <see cref="T:System.IO.Stream" /> 对象的哈希值。</summary>
+      <param name="inputStream">要计算其哈希代码的输入。</param>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>计算所得的哈希代码。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)">
+      <summary>异步计算指定 <see cref="T:System.IO.Stream" /> 对象的哈希值。</summary>
+      <param name="inputStream">要计算其哈希代码的输入。</param>
+      <param name="cancellationToken">要监视取消请求的标记。</param>
+      <returns>表示异步计算哈希操作并包装计算所得的哈希代码的任务。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create">
+      <summary>创建哈希算法的默认实现的实例。</summary>
+      <returns>一个新的 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 实例，除非已使用更改默认设置。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create(System.String)">
+      <summary>创建哈希算法的指定实现的实例。</summary>
+      <param name="hashName">要使用的哈希算法的实现。 下表显示 <paramref name="hashName" /> 参数的有效值以及它们映射到的算法。  
+  
+ <list type="table"><listheader><term> 参数值</term><description> 实现为其类型参数</description></listheader><item><term> SHA</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> SHA1</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.SHA1</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.HashAlgorithm</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> MD5</term><description><see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.MD5</term><description><see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /></description></item><item><term> SHA256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> SHA-256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> System.Security.Cryptography.SHA256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> SHA384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> SHA-384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> System.Security.Cryptography.SHA384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> SHA512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item><item><term> SHA-512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item><item><term> System.Security.Cryptography.SHA512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item></list></param>
+      <returns>所指定哈希算法，或 <see langword="null" /> 的新实例，如果 <paramref name="hashName" /> 不是有效哈希算法。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose">
+      <summary>释放 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 类的当前实例所使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>当在派生类中重写时，将写入对象的数据路由到哈希算法以计算哈希值。</summary>
+      <param name="array">要计算其哈希代码的输入。</param>
+      <param name="ibStart">字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="cbSize">字节数组中用作数据的字节数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})">
+      <summary>将写入对象的数据路由到哈希算法以计算哈希值。</summary>
+      <param name="source">要计算其哈希代码的输入。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashFinal">
+      <summary>在派生类中重写时，在加密哈希算法处理最后一个数据后结束哈希计算。</summary>
+      <returns>计算所得的哈希代码。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Initialize">
+      <summary>将哈希算法重置为其初始状态。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>计算输入字节数组指定区域的哈希值，并将输入字节数组指定区域复制到输出字节数组的指定区域。</summary>
+      <param name="inputBuffer">要计算其哈希代码的输入。</param>
+      <param name="inputOffset">输入字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="inputCount">输入字节数组中用作数据的字节数。</param>
+      <param name="outputBuffer">用于计算哈希代码的部分输入数组的副本。</param>
+      <param name="outputOffset">输入字节数组中的偏移量，从该位置开始使用数据。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> 使用了无效值。  
+  
+或 
+ <paramref name="inputBuffer" /> 具有无效的长度。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> 超出范围。 此参数需要非负数。</exception>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>写入的字节数</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>计算指定字节数组的指定区域的哈希值。</summary>
+      <param name="inputBuffer">要计算其哈希代码的输入。</param>
+      <param name="inputOffset">字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="inputCount">字节数组中用作数据的字节数。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> 使用了无效值。  
+  
+或 
+ <paramref name="inputBuffer" /> 具有无效偏移量长度。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> 超出范围。 此参数需要非负数。</exception>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>一个数组，该数组是输入中计算了哈希值的部分的副本。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+      <summary>尝试计算指定字节数组的哈希值。</summary>
+      <param name="source">要计算其哈希代码的输入。</param>
+      <param name="destination">要接收哈希值的缓冲区。</param>
+      <param name="bytesWritten">此方法返回时，为写入 <paramref name="destination" /> 的字节总数。 该参数未经初始化即被处理。</param>
+      <returns>
+        <paramref name="destination" /> 的长度不足以接收哈希值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <summary>在哈希算法处理最后一个数据后，尝试结束哈希计算。</summary>
+      <param name="destination">要接收哈希值的缓冲区。</param>
+      <param name="bytesWritten">此方法返回时，为写入 <paramref name="destination" /> 的字节总数。 该参数未经初始化即被处理。</param>
+      <returns>
+        <paramref name="destination" /> 的长度不足以接收哈希值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanReuseTransform">
+      <summary>获取一个值，该值指示是否可重复使用当前转换。</summary>
+      <returns>总是为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks">
+      <summary>当在派生类中重写时，获取一个值，该值指示是否可以转换多个块。</summary>
+      <returns>如果可以转换多个块，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.Hash">
+      <summary>获取计算所得的哈希代码的值。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+        <see cref="F:System.Security.Cryptography.HashAlgorithm.HashValue" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">对象已被释放。</exception>
+      <returns>计算所得的哈希代码的当前值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.HashSize">
+      <summary>获取计算所得的哈希代码的大小（以位为单位）。</summary>
+      <returns>计算所得的哈希代码的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.InputBlockSize">
+      <summary>当在派生类中重写时，获取输入块的大小。</summary>
+      <returns>输入块的大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.OutputBlockSize">
+      <summary>当在派生类中重写时，获取输出块的大小。</summary>
+      <returns>输出块的大小。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithmName">
+      <summary>指定加密哈希算法的名称。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.#ctor(System.String)">
+      <summary>初始化具有自定义名称的 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 结构的新实例。</summary>
+      <param name="name">自定义的哈希算法名称。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Object)">
+      <summary>返回一个指示当前实例是否与指定对象相等的值。</summary>
+      <param name="obj">要与当前实例进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 是 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 对象且它的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 属性等于当前实例的属性，则为 <see langword="true" />。 比较是有序的且区分大小写。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Security.Cryptography.HashAlgorithmName)">
+      <summary>返回一个值，该值指示两个 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 实例是否相等。</summary>
+      <param name="other">要与当前实例进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 属性等于当前实例的属性，则为 <see langword="true" />。 比较是有序的且区分大小写。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.FromOid(System.String)">
+      <summary>将指定的 OID 转换为哈希算法名称。</summary>
+      <param name="oidValue">哈希算法的 OID。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oidValue" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="oidValue" /> 不表示已知的哈希算法。</exception>
+      <returns>由 OID 标识的哈希算法名称。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.GetHashCode">
+      <summary>返回当前实例的哈希代码。</summary>
+      <returns>为当前实例的哈希代码；如果未向 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 构造函数硅酮任何 <paramref name="name" /> 值，则为 0。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Equality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>确定两个指定的 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 对象是否相等。</summary>
+      <param name="left">要比较的第一个对象。</param>
+      <param name="right">要比较的第二个对象。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 具有相同的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Inequality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>确定两个指定的 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 对象是否不相等。</summary>
+      <param name="left">要比较的第一个对象。</param>
+      <param name="right">要比较的第二个对象。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 均不具有同一 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.ToString">
+      <summary>返回当前 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 实例的字符串表示形式。</summary>
+      <returns>当前 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 实例的字符串表示形式。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.TryFromOid(System.String,System.Security.Cryptography.HashAlgorithmName@)">
+      <summary>尝试将指定的 OID 转换为哈希算法名称。</summary>
+      <param name="oidValue">哈希算法的 OID。</param>
+      <param name="value">此方法返回 <see langword="true" /> 时，包含哈希算法。 此方法返回 <see langword="false" /> 时，包含<c>默认值</c>。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oidValue" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <returns>如果 OID 已成功映射到哈希算法，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.MD5">
+      <summary>获取表示“MD5”的哈希算法名称。</summary>
+      <returns>表示“MD5”的哈希算法名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.Name">
+      <summary>获取算法名称的基础字符串表示形式。</summary>
+      <returns>算法名称的字符串表示形式; <see langword="default" /> 如果没有可用的哈希算法，则为。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA1">
+      <summary>获取表示“SHA1”的哈希算法名称。</summary>
+      <returns>表示“SHA1”的哈希算法名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA256">
+      <summary>获取表示“SHA256”的哈希算法名称。</summary>
+      <returns>表示“SHA256”的哈希算法名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA384">
+      <summary>获取表示“SHA384”的哈希算法名称。</summary>
+      <returns>表示“SHA384”的哈希算法名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA512">
+      <summary>获取表示“SHA512”的哈希算法名称。</summary>
+      <returns>表示“SHA512”的哈希算法名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.HMAC">
+      <summary>表示基于哈希的消息验证代码 (HMAC) 的所有实现必须从中派生的抽象类。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HMAC" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create">
+      <summary>创建基于哈希的消息验证代码 (HMAC) 默认实现的实例。</summary>
+      <returns>新的 SHA-1 实例，除非已使用 &lt;cryptoClass&gt; 元素更改默认设置。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create(System.String)">
+      <summary>创建基于哈希的消息验证代码 (HMAC) 指定实现的实例。</summary>
+      <param name="algorithmName">要使用的 HMAC 实现。 下表显示 <paramref name="algorithmName" /> 参数的有效值以及它们映射到的算法。  
+  
+ <list type="table"><listheader><term> 参数值</term><description> 实现为其类型参数</description></listheader><item><term> System.Security.Cryptography.HMAC</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.KeyedHashAlgorithm</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> System.Security.Cryptography.HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> System.Security.Cryptography.HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> System.Security.Cryptography.HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> System.Security.Cryptography.HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> System.Security.Cryptography.HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item><item><term> System.Security.Cryptography.MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item></list></param>
+      <returns>指定的 HMAC 实现的新实例。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Dispose(System.Boolean)">
+      <summary>密钥更改合法时释放由 <see cref="T:System.Security.Cryptography.HMAC" /> 类使用的非托管资源，并可选择释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>在派生类中重写时，将写入对象的数据路由到 HMAC 算法以计算 HMAC 值。</summary>
+      <param name="rgb">输入数据。</param>
+      <param name="ib">字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="cb">数组中用作数据的字节数。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.ReadOnlySpan{System.Byte})">
+      <summary>将写入对象的数据路由到 HMAC 算法以计算 HMAC 。</summary>
+      <param name="source">要计算其 HMAC 代码的输入。</param>
+      <exception cref="T:System.PlatformNotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashFinal">
+      <summary>在派生类中重写时，在算法处理最后一个数据后结束 HMAC 计算。</summary>
+      <returns>字节数组中计算得到的 HMAC 值。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Initialize">
+      <summary>初始化默认 <see cref="T:System.Security.Cryptography.HMAC" /> 实现的实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <summary>在 HMAC 算法处理最后一个数据后，尝试结束 HMAC 计算。</summary>
+      <param name="destination">要接收 HMAC 值的缓冲区。</param>
+      <param name="bytesWritten">此方法返回时，为写入 <paramref name="destination" /> 的字节总数。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.PlatformNotSupportedException">不在派生类型中重写此方法。</exception>
+      <returns>
+        <paramref name="destination" /> 的长度不足以接收 HMAC 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.BlockSizeValue">
+      <summary>获取或设置哈希值中使用的块大小。</summary>
+      <returns>哈希值中使用的块大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.HashName">
+      <summary>获取或设置用于哈希计算的哈希算法的名称。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">无法更改当前的哈希算法。</exception>
+      <returns>哈希算法的名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.Key">
+      <summary>获取或设置要在 HMAC 计算中使用的密钥。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">试图在哈希计算开始后更改 <see cref="P:System.Security.Cryptography.HMAC.Key" /> 属性。</exception>
+      <returns>要在 HMAC 计算中使用的密钥。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ICryptoTransform">
+      <summary>定义加密转换的基本操作。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>转换输入字节数组的指定区域，并将所得到的转换复制到输出字节数组的指定区域。</summary>
+      <param name="inputBuffer">要为其计算转换的输入。</param>
+      <param name="inputOffset">输入字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="inputCount">输入字节数组中用作数据的字节数。</param>
+      <param name="outputBuffer">将转换写入的输出。</param>
+      <param name="outputOffset">输入字节数组中的偏移量，从该位置开始使用数据。</param>
+      <returns>写入的字节数</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>转换指定字节数组的指定区域。</summary>
+      <param name="inputBuffer">要为其计算转换的输入。</param>
+      <param name="inputOffset">字节数组中的偏移量，从该位置开始使用数据。</param>
+      <param name="inputCount">字节数组中用作数据的字节数。</param>
+      <returns>计算所得的转换。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanReuseTransform">
+      <summary>获取一个值，该值指示是否可重复使用当前转换。</summary>
+      <returns>如果重复使用当前转换，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanTransformMultipleBlocks">
+      <summary>获取一个值，该值指示是否可以转换多个块。</summary>
+      <returns>如果可以转换多个块，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.InputBlockSize">
+      <summary>获取输入块大小。</summary>
+      <returns>输入数据块的大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.OutputBlockSize">
+      <summary>获取输出块大小。</summary>
+      <returns>输出数据块的大小（以字节为单位）。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyedHashAlgorithm">
+      <summary>显示所有加密哈希算法实现均必须从中派生的抽象类。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyedHashAlgorithm.KeyValue">
+      <summary>用于哈希算法的密钥。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create">
+      <summary>创建加密哈希算法的默认实现的实例。</summary>
+      <returns>新 <see cref="T:System.Security.Cryptography.HMACSHA1" /> 实例，除非已更改默认设置。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create(System.String)">
+      <summary>创建加密哈希算法的指定实现的实例。</summary>
+      <param name="algName">要使用的加密哈希算法实现。 下表显示 <paramref name="algName" /> 参数的有效值以及它们映射到的算法。  
+  
+ <list type="table"><listheader><term> 参数值</term><description> 实现为其类型参数</description></listheader><item><term> System.Security.Cryptography.HMAC</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.KeyedHashAlgorithm</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> System.Security.Cryptography.HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> System.Security.Cryptography.HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> System.Security.Cryptography.HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> System.Security.Cryptography.HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> System.Security.Cryptography.HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item><item><term> System.Security.Cryptography.MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item></list></param>
+      <returns>指定的加密哈希算法的新实例。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeyedHashAlgorithm.Key">
+      <summary>获取或设置用于哈希算法的密钥。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">尝试在哈希计算已开始后更改 <see cref="P:System.Security.Cryptography.KeyedHashAlgorithm.Key" /> 属性。</exception>
+      <returns>用于哈希算法的密钥。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeySizes">
+      <summary>确定对称加密算法的一组有效密钥大小。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeySizes.#ctor(System.Int32,System.Int32,System.Int32)">
+      <summary>使用指定的密钥值初始化 <see cref="T:System.Security.Cryptography.KeySizes" /> 类的新实例。</summary>
+      <param name="minSize">有效密钥的最小大小。</param>
+      <param name="maxSize">有效密钥的最大大小。</param>
+      <param name="skipSize">有效密钥大小之间的范围。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MaxSize">
+      <summary>指定最大密钥大小。</summary>
+      <returns>最大密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MinSize">
+      <summary>指定最小密钥大小。</summary>
+      <returns>最小密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.SkipSize">
+      <summary>指定有效密钥大小之间的间隔。</summary>
+      <returns>有效密钥大小之间的范围。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.PaddingMode">
+      <summary>指定在消息数据块短于加密操作所需的完整字节数时要应用的填充类型。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ANSIX923">
+      <summary>ANSIX923 填充字符串由一个字节序列组成，此字节序列的最后一个字节填充字节序列的长度，其余字节均填充数字零。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ISO10126">
+      <summary>ISO10126 填充字符串由一个字节序列组成，此字节序列的最后一个字节填充字节序列的长度，其余字节填充随机数据。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.None">
+      <summary>不填充。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.PKCS7">
+      <summary>PKCS #7 填充字符串由一个字节序列组成，每个字节填充该字节序列的长度。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.Zeros">
+      <summary>填充字符串由设置为零的字节组成。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeEncryptionAlgorithm">
+      <summary>指定要与基于密码加密 (PBE) 一起使用的加密算法。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes128Cbc">
+      <summary>指示应在采用 PKCS#7 填充的 CBC 模式下，通过 AES-128 算法执行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes192Cbc">
+      <summary>指示应在采用 PKCS#7 填充的 CBC 模式下，通过 AES-192 算法执行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes256Cbc">
+      <summary>指示在采用 PKCS#7 填充的 CBC 模式下，通过 AES-256 算法执行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12">
+      <summary>指示应在 CBC 模式（采用通过 PKCS#12 中的密钥派生功能 (KDF) 派生出的 192 位密钥）下，通过 TripleDES 算法执行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Unknown">
+      <summary>指示未选择任何加密算法。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeParameters">
+      <summary>表示用于基于密码加密 (PBE) 的参数。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PbeParameters.#ctor(System.Security.Cryptography.PbeEncryptionAlgorithm,System.Security.Cryptography.HashAlgorithmName,System.Int32)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.PbeParameters" /> 类的新实例。</summary>
+      <param name="encryptionAlgorithm">加密数据时要使用的算法。</param>
+      <param name="hashAlgorithm">与密钥派生功能 (KDF) 结合使用的哈希算法的名称，用于将密码转换为加密密钥。</param>
+      <param name="iterationCount">向密钥派生功能 (KDF) 提供的迭代计数，用于将密码转换为加密密钥。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="iterationCount" /> 小于 1。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.EncryptionAlgorithm">
+      <summary>获取加密数据时要使用的算法。</summary>
+      <returns>加密数据时要使用的算法。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.HashAlgorithm">
+      <summary>获取与密钥派生功能 (KDF) 结合使用的哈希算法的名称，用于将密码转换为加密密钥。</summary>
+      <returns>要与密钥派生函数一起使用的哈希算法的名称 (KDF) 将密码转换为加密密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.IterationCount">
+      <summary>获取向密钥派生功能 (KDF) 提供的迭代计数，用于将密码转换为加密密钥。</summary>
+      <returns>向密钥派生功能 (KDF) 提供的迭代计数，用于将密码转换为加密密钥。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.SymmetricAlgorithm">
+      <summary>表示所有对称算法的实现都必须从中继承的抽象基类。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.BlockSizeValue">
+      <summary>表示加密操作的块大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSizeValue">
+      <summary>表示加密操作的反馈大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.IVValue">
+      <summary>表示对称算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue">
+      <summary>表示对称算法使用的密钥的大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeyValue">
+      <summary>表示对称算法的密钥。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizesValue">
+      <summary>指定对称算法支持的块大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizesValue">
+      <summary>指定对称算法支持的密钥大小（以位为单位）。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.ModeValue">
+      <summary>表示对称算法中使用的密码模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.PaddingValue">
+      <summary>表示对称算法中使用的填充模式。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 类的新实例。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">从对称算法派生的类的实现无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Clear">
+      <summary>释放 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 类使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create">
+      <summary>创建用于执行对称算法的默认加密对象。</summary>
+      <returns>用于执行对称算法的默认加密对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create(System.String)">
+      <summary>创建用于执行对称算法的指定加密对象。</summary>
+      <param name="algName">要使用的 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 类的特定实现的名称。</param>
+      <returns>一个加密对象，用于执行对称算法。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称解密器对象。</summary>
+      <returns>对称解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>当在派生类中重写时，用指定的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称解密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <returns>对称解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor">
+      <summary>用当前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称加密器对象。</summary>
+      <returns>对称加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>当在派生类中重写时，用指定的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 属性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称加密器对象。</summary>
+      <param name="rgbKey">用于对称算法的密钥。</param>
+      <param name="rgbIV">用于对称算法的初始化向量。</param>
+      <returns>对称加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose">
+      <summary>释放 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 类的当前实例所使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV">
+      <summary>当在派生类中重写时，生成用于该算法的随机初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey">
+      <summary>当在派生类中重写时，生成用于该算法的随机密钥 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.ValidKeySize(System.Int32)">
+      <summary>确定指定的密钥大小对当前算法是否有效。</summary>
+      <param name="bitLength">用于检查有效密钥大小的长度（以位为单位）。</param>
+      <returns>如果指定的密钥大小对当前算法有效，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.BlockSize">
+      <summary>获取或设置加密操作的块大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">块大小无效。</exception>
+      <returns>块大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize">
+      <summary>获取或设置针对密码反馈 (CFB) 和输出反馈 (OFB) 密码模式的加密操作的反馈大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">反馈大小大于块大小。</exception>
+      <returns>反馈大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.IV">
+      <summary>获取或设置对称算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+      <exception cref="T:System.ArgumentNullException">试图将初始化向量设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">试图将初始化向量设置为无效大小。</exception>
+      <returns>初始化向量。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Key">
+      <summary>获取或设置对称算法的密钥。</summary>
+      <exception cref="T:System.ArgumentNullException">尝试将密钥设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥大小无效。</exception>
+      <returns>用于对称算法的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.KeySize">
+      <summary>获取或设置对称算法所用密钥的大小（以位为单位）。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密钥大小无效。</exception>
+      <returns>对称算法所用密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes">
+      <summary>获取对称算法支持的块大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的块大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes">
+      <summary>获取对称算法支持的密钥大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Mode">
+      <summary>获取或设置对称算法的运算模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该密码模式不是 <see cref="T:System.Security.Cryptography.CipherMode" /> 值之一。</exception>
+      <returns>对称算法的运算模式。 默认值为 <see cref="F:System.Security.Cryptography.CipherMode.CBC" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Padding">
+      <summary>获取或设置对称算法中使用的填充模式。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">该填充模式不是 <see cref="T:System.Security.Cryptography.PaddingMode" /> 值之一。</exception>
+      <returns>对称算法中使用的填充模式。 默认值为 <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />。</returns>
+    </member>
+  </members>
+</doc>

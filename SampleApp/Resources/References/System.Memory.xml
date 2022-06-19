@@ -1,0 +1,2782 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Memory</name>
+  </assembly>
+  <members>
+    <member name="T:System.Buffers.ArrayBufferWriter`1">
+      <summary>表示基于堆、使用数组的输出接收器，可向其中 <typeparam name="T" /> 写入数据。</summary>
+      <typeparam name="T">此实例中的项的类型 <see cref="T:System.Buffers.ArrayBufferWriter`1" /> 。</typeparam>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.#ctor">
+      <summary>创建具有默认初始容量的 <see cref="T:System.Buffers.ArrayBufferWriter`1" /> 实例，可向其中写入数据。</summary>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.#ctor(System.Int32)">
+      <summary>创建具有指定初始容量的 <see cref="T:System.Buffers.ArrayBufferWriter`1" /> 实例，可向其中写入数据。</summary>
+      <param name="initialCapacity">用于初始化基础缓冲区的最小容量。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="initialCapacity" /> 小于或等于 0。</exception>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.Advance(System.Int32)">
+      <summary>通知 <see cref="T:System.Buffers.IBufferWriter`1" />，<paramref name="count" /> 个项已写入 <see cref="T:System.Span`1" />/<see cref="T:System.Memory`1" /></summary>
+      <param name="count">写入的项数。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 为负数。</exception>
+      <exception cref="T:System.InvalidOperationException">方法调用尝试向前越过基础缓冲区的末尾。</exception>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.Clear">
+      <summary>清除写入基础缓冲区的数据。</summary>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.GetMemory(System.Int32)">
+      <summary>返回要向其中写入数据的 <see cref="T:System.Memory`1" />，其长度至少是 <paramref name="sizeHint" /> 指定的长度。</summary>
+      <param name="sizeHint">
+        <see cref="T:System.Memory`1" /> 的最短请求长度。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sizeHint" /> 为负数。</exception>
+      <returns>一个 <see cref="T:System.Memory`1" />，其长度至少为 <paramref name="sizeHint" />。  如果未提供 <paramref name="sizeHint" /> 或其等于 0，则返回某个非空缓冲区。</returns>
+    </member>
+    <member name="M:System.Buffers.ArrayBufferWriter`1.GetSpan(System.Int32)">
+      <summary>返回要向其中写入数据的 <see cref="T:System.Span`1" />，其长度至少为指定长度。</summary>
+      <param name="sizeHint">
+        <see cref="T:System.Span`1" /> 的最短请求长度。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sizeHint" /> 为负数。</exception>
+      <returns>一个范围，其长度至少为 <paramref name="sizeHint" />。 如果未提供 <paramref name="sizeHint" /> 或其等于 0，则返回某个非空缓冲区。</returns>
+    </member>
+    <member name="P:System.Buffers.ArrayBufferWriter`1.Capacity">
+      <summary>获取基础缓冲区内的空间总量。</summary>
+      <returns>基础缓冲区的总容量。</returns>
+    </member>
+    <member name="P:System.Buffers.ArrayBufferWriter`1.FreeCapacity">
+      <summary>获取可用于写入而不会迫使基础缓冲区增长的空间量。</summary>
+      <returns>可用于写入的空间，无需强制基础缓冲区增长。</returns>
+    </member>
+    <member name="P:System.Buffers.ArrayBufferWriter`1.WrittenCount">
+      <summary>获取写入基础缓冲区的数据量。</summary>
+      <returns>写入基础缓冲区的数据量。</returns>
+    </member>
+    <member name="P:System.Buffers.ArrayBufferWriter`1.WrittenMemory">
+      <summary>获取 <see cref="T:System.ReadOnlyMemory`1" />，其中包含迄今为止写入基础缓冲区的数据。</summary>
+      <returns>写入基础缓冲区的数据。</returns>
+    </member>
+    <member name="P:System.Buffers.ArrayBufferWriter`1.WrittenSpan">
+      <summary>获取 <see cref="T:System.ReadOnlySpan`1" />，其中包含迄今为止写入基础缓冲区的数据。</summary>
+      <returns>写入基础缓冲区的数据。</returns>
+    </member>
+    <member name="T:System.Buffers.Binary.BinaryPrimitives">
+      <summary>将字节读取为具有特定字节序的基元。</summary>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadDoubleBigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Double" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Double" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadDoubleLittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Double" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Double" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt16BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int16" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int16" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt16LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int16" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int16" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt32BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int32" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int32" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt32LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int32" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int32" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt64BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int64" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int64" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadInt64LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int64" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Int64" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadSingleBigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Single" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Single" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadSingleLittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Single" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.Single" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt16BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt16" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt16" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt16LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt16" /> 读取为小字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt16" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt32BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt32" /> 读取为大字节序。</summary>
+      <param name="source">要读取的只读跨度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt32" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt32LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt32" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt32" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt64BigEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt64" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt64" />。</exception>
+      <returns>大字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(System.ReadOnlySpan{System.Byte})">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt64" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 太小，无法包含 <see cref="T:System.UInt64" />。</exception>
+      <returns>小字节序值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.Byte)">
+      <summary>对指定 <see cref="T:System.Byte" /> 值执行字节序交换，以反转基元值，这不会影响 <see cref="T:System.Byte" />。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>未修改的传入值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.Int16)">
+      <summary>对指定 <see cref="T:System.Int16" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.Int32)">
+      <summary>对指定 <see cref="T:System.Int32" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.Int64)">
+      <summary>对指定 <see cref="T:System.Int64" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.SByte)">
+      <summary>对指定 <see cref="T:System.SByte" /> 值执行字节序交换，以反转基元值，这不会影响 <see cref="T:System.SByte" />。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>未修改的传入值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.UInt16)">
+      <summary>对指定 <see cref="T:System.UInt16" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.UInt32)">
+      <summary>对指定 <see cref="T:System.UInt32" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.ReverseEndianness(System.UInt64)">
+      <summary>对指定 <see cref="T:System.UInt64" /> 值执行字节序交换，以反转基元值。</summary>
+      <param name="value">要反转的值。</param>
+      <returns>已反转的值。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadDoubleBigEndian(System.ReadOnlySpan{System.Byte},System.Double@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Double" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，将包含作为 big endian 从字节只读范围中读取的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Double" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadDoubleLittleEndian(System.ReadOnlySpan{System.Byte},System.Double@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Double" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，将包含作为 little endian 从字节只读范围中读取的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Double" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt16BigEndian(System.ReadOnlySpan{System.Byte},System.Int16@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int16" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt16LittleEndian(System.ReadOnlySpan{System.Byte},System.Int16@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int16" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt32BigEndian(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int32" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt32LittleEndian(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int32" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt64BigEndian(System.ReadOnlySpan{System.Byte},System.Int64@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int64" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadInt64LittleEndian(System.ReadOnlySpan{System.Byte},System.Int64@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Int64" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadSingleBigEndian(System.ReadOnlySpan{System.Byte},System.Single@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Single" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，将包含作为 big endian 从字节只读范围中读取的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Single" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadSingleLittleEndian(System.ReadOnlySpan{System.Byte},System.Single@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.Single" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，将包含作为 little endian 从字节只读范围中读取的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Single" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt16BigEndian(System.ReadOnlySpan{System.Byte},System.UInt16@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt16" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt16LittleEndian(System.ReadOnlySpan{System.Byte},System.UInt16@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt16" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt32BigEndian(System.ReadOnlySpan{System.Byte},System.UInt32@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt32" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt32LittleEndian(System.ReadOnlySpan{System.Byte},System.UInt32@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt32" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt64BigEndian(System.ReadOnlySpan{System.Byte},System.UInt64@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt64" /> 读取为大字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为大字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryReadUInt64LittleEndian(System.ReadOnlySpan{System.Byte},System.UInt64@)">
+      <summary>从字节只读范围的开头，将 <see cref="T:System.UInt64" /> 读取为小字节序。</summary>
+      <param name="source">要读取的字节只读范围。</param>
+      <param name="value">此方法返回时，值作为小字节序从字节只读范围中读取。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteDoubleBigEndian(System.Span{System.Byte},System.Double)">
+      <summary>将 <see cref="T:System.Double" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Double" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteDoubleLittleEndian(System.Span{System.Byte},System.Double)">
+      <summary>将 <see cref="T:System.Double" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Double" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt16BigEndian(System.Span{System.Byte},System.Int16)">
+      <summary>将 <see cref="T:System.Int16" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt16LittleEndian(System.Span{System.Byte},System.Int16)">
+      <summary>将 <see cref="T:System.Int16" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt32BigEndian(System.Span{System.Byte},System.Int32)">
+      <summary>将 <see cref="T:System.Int32" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt32LittleEndian(System.Span{System.Byte},System.Int32)">
+      <summary>将 <see cref="T:System.Int32" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt64BigEndian(System.Span{System.Byte},System.Int64)">
+      <summary>将 <see cref="T:System.Int64" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteInt64LittleEndian(System.Span{System.Byte},System.Int64)">
+      <summary>将 <see cref="T:System.Int64" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Int64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteSingleBigEndian(System.Span{System.Byte},System.Single)">
+      <summary>将 <see cref="T:System.Single" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Single" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteSingleLittleEndian(System.Span{System.Byte},System.Single)">
+      <summary>将 <see cref="T:System.Single" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.Single" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt16BigEndian(System.Span{System.Byte},System.UInt16)">
+      <summary>将 <see cref="T:System.UInt16" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt16LittleEndian(System.Span{System.Byte},System.UInt16)">
+      <summary>将 <see cref="T:System.UInt16" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt16" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt32BigEndian(System.Span{System.Byte},System.UInt32)">
+      <summary>将 <see cref="T:System.UInt32" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt32LittleEndian(System.Span{System.Byte},System.UInt32)">
+      <summary>将 <see cref="T:System.UInt32" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt32" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt64BigEndian(System.Span{System.Byte},System.UInt64)">
+      <summary>将 <see cref="T:System.UInt64" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.TryWriteUInt64LittleEndian(System.Span{System.Byte},System.UInt64)">
+      <summary>将 <see cref="T:System.UInt64" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <returns>如果范围足够大，可以包含 <see cref="T:System.UInt64" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteDoubleBigEndian(System.Span{System.Byte},System.Double)">
+      <summary>将 <see cref="T:System.Double" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Double" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteDoubleLittleEndian(System.Span{System.Byte},System.Double)">
+      <summary>将 <see cref="T:System.Double" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Double" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt16BigEndian(System.Span{System.Byte},System.Int16)">
+      <summary>将 <see cref="T:System.Int16" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int16" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt16LittleEndian(System.Span{System.Byte},System.Int16)">
+      <summary>将 <see cref="T:System.Int16" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int16" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt32BigEndian(System.Span{System.Byte},System.Int32)">
+      <summary>将 <see cref="T:System.Int32" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int32" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(System.Span{System.Byte},System.Int32)">
+      <summary>将 <see cref="T:System.Int32" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int32" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt64BigEndian(System.Span{System.Byte},System.Int64)">
+      <summary>将 <see cref="T:System.Int64" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int64" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteInt64LittleEndian(System.Span{System.Byte},System.Int64)">
+      <summary>将 <see cref="T:System.Int64" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Int64" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteSingleBigEndian(System.Span{System.Byte},System.Single)">
+      <summary>将 <see cref="T:System.Single" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Single" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteSingleLittleEndian(System.Span{System.Byte},System.Single)">
+      <summary>将 <see cref="T:System.Single" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.Single" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(System.Span{System.Byte},System.UInt16)">
+      <summary>将 <see cref="T:System.UInt16" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt16" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt16LittleEndian(System.Span{System.Byte},System.UInt16)">
+      <summary>将 <see cref="T:System.UInt16" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt16" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(System.Span{System.Byte},System.UInt32)">
+      <summary>将 <see cref="T:System.UInt32" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt32" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt32LittleEndian(System.Span{System.Byte},System.UInt32)">
+      <summary>将 <see cref="T:System.UInt32" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt32" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt64BigEndian(System.Span{System.Byte},System.UInt64)">
+      <summary>将 <see cref="T:System.UInt64" /> 以大字节序形式写入字节范围。</summary>
+      <param name="destination">要以大字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt64" />。</exception>
+    </member>
+    <member name="M:System.Buffers.Binary.BinaryPrimitives.WriteUInt64LittleEndian(System.Span{System.Byte},System.UInt64)">
+      <summary>将 <see cref="T:System.UInt64" /> 以小字节序形式写入字节范围。</summary>
+      <param name="destination">要以小字节序形式写入值的字节范围。</param>
+      <param name="value">要写入到字节范围内的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <see cref="T:System.UInt64" />。</exception>
+    </member>
+    <member name="T:System.Buffers.BuffersExtensions">
+      <summary>为 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 提供扩展方法。</summary>
+    </member>
+    <member name="M:System.Buffers.BuffersExtensions.CopyTo``1(System.Buffers.ReadOnlySequence{``0},System.Span{``0})">
+      <summary>将 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 复制到所指定的 <see cref="T:System.Span`1" />。</summary>
+      <param name="source">源 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</param>
+      <param name="destination">目标 <see cref="T:System.Span`1" />。</param>
+      <typeparam name="T">中项的类型 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 。</typeparam>
+    </member>
+    <member name="M:System.Buffers.BuffersExtensions.PositionOf``1(System.Buffers.ReadOnlySequence{``0},``0)">
+      <summary>返回 <paramref name="item" /> 在 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 中第一次出现的位置。</summary>
+      <param name="source">源 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</param>
+      <param name="value">要在 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 中查找的项。</param>
+      <typeparam name="T">中项的类型 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 。</typeparam>
+      <returns>一个对象，其 <see cref="M:System.SequencePosition.GetInteger" /> 方法返回第一次出现 <paramref name="item" /> 的位置；或者为一个其 <see langword="Nullable&lt;SequencePosition&gt;.HasValue" /> 属性是 <see langword="false" /> 的对象。</returns>
+    </member>
+    <member name="M:System.Buffers.BuffersExtensions.ToArray``1(System.Buffers.ReadOnlySequence{``0})">
+      <summary>将 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 转换为数组。</summary>
+      <param name="sequence">要转换为数组的只读序列。</param>
+      <typeparam name="T">中项的类型 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 。</typeparam>
+      <returns>包含当前只读序列中数据的数组。</returns>
+    </member>
+    <member name="M:System.Buffers.BuffersExtensions.Write``1(System.Buffers.IBufferWriter{``0},System.ReadOnlySpan{``0})">
+      <summary>将 <paramref name="value" /> 的内容写入到 <paramref name="writer" />。</summary>
+      <param name="writer">要将 <paramref name="value" /> 写入到的缓冲区编写器。</param>
+      <param name="value">要写入到 <paramref name="writer" /> 的只读跨度。</param>
+      <typeparam name="T">中项的类型 <see cref="T:System.ReadOnlySpan`1" /> 。</typeparam>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="writer" /> 短于 <paramref name="value" />。</exception>
+    </member>
+    <member name="T:System.Buffers.IBufferWriter`1">
+      <summary>表示可以向其中写入 <typeparamref name="T" /> 数据的输出接收器。</summary>
+      <typeparam name="T">中项的类型 <see cref="T:System.Buffers.IBufferWriter`1" /> 。</typeparam>
+    </member>
+    <member name="M:System.Buffers.IBufferWriter`1.Advance(System.Int32)">
+      <summary>通知 <see cref="T:System.Buffers.IBufferWriter`1" />，已向输出 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 写入 <paramref name="count" /> 数据项。</summary>
+      <param name="count">写入 <see cref="T:System.Span`1" /> 或 <see cref="T:System.Memory`1" /> 的数据项数量。</param>
+    </member>
+    <member name="M:System.Buffers.IBufferWriter`1.GetMemory(System.Int32)">
+      <summary>返回要向其中写入数据的 <see cref="T:System.Memory`1" />，且大小至少是 <paramref name="sizeHint" /> 指定的请求大小。</summary>
+      <param name="sizeHint">返回的 <see cref="T:System.Memory`1" /> 的长度下限。 如果为 0，返回非空缓冲区。</param>
+      <exception cref="T:System.OutOfMemoryException">请求的缓冲区大小不可用。</exception>
+      <returns>大小至少是 <paramref name="sizeHint" /> 的 <see cref="T:System.Memory`1" />。 如果 <paramref name="sizeHint" /> 是 0，返回非空缓冲区。</returns>
+    </member>
+    <member name="M:System.Buffers.IBufferWriter`1.GetSpan(System.Int32)">
+      <summary>返回要向其中写入数据的 <see cref="T:System.Span`1" />，且大小至少是 <paramref name="sizeHint" /> 指定的请求大小。</summary>
+      <param name="sizeHint">返回的 <see cref="T:System.Span`1" /> 的长度下限。 如果为 0，返回非空缓冲区。</param>
+      <returns>大小至少是 <paramref name="sizeHint" /> 的 <see cref="T:System.Span`1" />。 如果 <paramref name="sizeHint" /> 是 0，返回非空缓冲区。</returns>
+    </member>
+    <member name="T:System.Buffers.MemoryPool`1">
+      <summary>表示内存块的池。</summary>
+      <typeparam name="T">内存池中项的类型。</typeparam>
+    </member>
+    <member name="M:System.Buffers.MemoryPool`1.#ctor">
+      <summary>构造内存池的新实例。</summary>
+    </member>
+    <member name="M:System.Buffers.MemoryPool`1.Dispose">
+      <summary>释放内存池使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Buffers.MemoryPool`1.Dispose(System.Boolean)">
+      <summary>释放内存池占用的非托管资源，并有选择地释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Buffers.MemoryPool`1.Rent(System.Int32)">
+      <summary>返回至少可容纳 <paramref name="minBufferSize" /> T 元素的内存块。</summary>
+      <param name="minBufferSize">内存池可容纳的 <typeparamref name="T" /> 的元素最小数量。 -1 值返回设置为池的默认大小的内存池。</param>
+      <returns>至少可容纳 <paramref name="minBufferSize" /> T 元素的内存块。</returns>
+    </member>
+    <member name="P:System.Buffers.MemoryPool`1.MaxBufferSize">
+      <summary>获取此池所支持的最大缓冲区大小。</summary>
+      <returns>此池支持的最大缓冲区大小。</returns>
+    </member>
+    <member name="P:System.Buffers.MemoryPool`1.Shared">
+      <summary>获取基于数组的内存池的单一实例。</summary>
+      <returns>内存池的单独实例。</returns>
+    </member>
+    <member name="T:System.Buffers.ReadOnlySequence`1">
+      <summary>表示可读取 <typeparamref name="T" /> 有序系列的序列。</summary>
+      <typeparam name="T">只读序列中的元素的类型。</typeparam>
+    </member>
+    <member name="F:System.Buffers.ReadOnlySequence`1.Empty">
+      <summary>返回一个空 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</summary>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.#ctor(`0[])">
+      <summary>通过 <paramref name="array" /> 创建 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的实例。</summary>
+      <param name="array">用于创建只读序列的数组。</param>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.#ctor(`0[],System.Int32,System.Int32)">
+      <summary>通过数组的一部分创建 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的实例。</summary>
+      <param name="array">用于创建只读序列的数组。</param>
+      <param name="start">数组中要包含在只读序列内的第一个元素的索引（从零开始）。</param>
+      <param name="length">要包含在只读序列中的元素数。</param>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.#ctor(System.Buffers.ReadOnlySequenceSegment{`0},System.Int32,System.Buffers.ReadOnlySequenceSegment{`0},System.Int32)">
+      <summary>通过由起始段和结束段表示的已链接内存列表及其中的相应索引创建 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的实例。</summary>
+      <param name="startSegment">链接内存列表的初始节点。</param>
+      <param name="startIndex">
+        <paramref name="startSegment" /> 内序列的起始位置。</param>
+      <param name="endSegment">链接内存列表的最终节点。</param>
+      <param name="endIndex">
+        <paramref name="endSegment" /> 内序列的结尾位置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="startSegment" /> 或 <paramref name="endSegment" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">尽管 <paramref name="startSegment" /> 不同于 <paramref name="endSegment" />，<paramref name="startSegment" /> 的运行索引大于 <paramref name="endSegment" /> 的运行索引。
+
+- 或 -
+
+<paramref name="startSegment" /> 等于 <paramref name="endSegment" />，但 <paramref name="endIndex" /> 小于 <paramref name="startIndex" />。
+
+- 或 -
+
+<paramref name="startIndex" /> 大于 <paramref name="startSegment" /> 的基础内存块的长度。</exception>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.#ctor(System.ReadOnlyMemory{`0})">
+      <summary>通过 <see cref="T:System.ReadOnlyMemory`1" /> 创建 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的实例。</summary>
+      <param name="memory">
+        <typeparamref name="T" /> 类型的元素的只读内存块。</param>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.GetEnumerator">
+      <summary>返回在 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 上面的枚举数。</summary>
+      <returns>返回在 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 上面的枚举数。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.GetOffset(System.SequencePosition)">
+      <summary>从开始处返回此序列内 <paramref name="position" /> 的偏移量。</summary>
+      <param name="position">要获取其偏移量的 <see cref="T:System.SequencePosition" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">位置超出范围。</exception>
+      <returns>距离序列开始处的偏移量。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.GetPosition(System.Int64)">
+      <summary>按从序列开头偏移 <paramref name="offset" /> 的量返回一个新的 <see cref="T:System.SequencePosition" />。</summary>
+      <param name="offset">距离序列开始处的偏移量。</param>
+      <returns>一个对象，该对象表示从序列开始处的指定 <paramref name="offset" /> 处开始的序列位置。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.GetPosition(System.Int64,System.SequencePosition)">
+      <summary>从 <paramref name="origin" /> 位置的指定偏移量开始，返回新的 <see cref="T:System.SequencePosition" />。</summary>
+      <param name="offset">距离指定 <paramref name="origin" /> 序列位置的偏移量。</param>
+      <param name="origin">表示从其开始偏移的点的序列位置。</param>
+      <returns>一个对象，该对象表示从指定的 <paramref name="origin" /> 位置对象的 <paramref name="offset" /> 处开始的序列位置。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.Int32,System.Int32)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始且包含 <paramref name="length" /> 个项目。</summary>
+      <param name="start">开始切片处的索引。</param>
+      <param name="length">切片的长度。</param>
+      <returns>一个切片，它包含从索引 <paramref name="start" /> 处开始的当前实例中的 <paramref name="length" /> 元素。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.Int32,System.SequencePosition)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始并在 <paramref name="end" /> 处（不含）结束。</summary>
+      <param name="start">开始切片处的索引。</param>
+      <param name="end">切片的末尾 <see cref="T:System.SequencePosition" />（不含）。</param>
+      <returns>一个切片，它包含从 <paramref name="start" /> 索引到当前只读序列中的 <paramref name="end" /> 序列位置（不含）之间的项目。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.Int64)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在所指定的索引处开始并一直到只读序列的末尾。</summary>
+      <param name="start">开始此切片处的起始索引。</param>
+      <returns>一个切片，它在索引 <paramref name="start" /> 处开始并一直到当前只读序列的末尾。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.Int64,System.Int64)">
+      <summary>根据所给定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始，并包含 <paramref name="length" /> 个项目。</summary>
+      <param name="start">开始切片处的索引。</param>
+      <param name="length">切片的长度。</param>
+      <returns>一个切片，它包含从索引 <paramref name="start" /> 处开始的当前实例中的 <paramref name="length" /> 元素。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.Int64,System.SequencePosition)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始并在 <paramref name="end" /> 处（不含）结束。</summary>
+      <param name="start">开始切片处的索引。</param>
+      <param name="end">切片的结尾（不含）。</param>
+      <returns>一个切片，它包含从 <paramref name="start" /> 索引到当前只读序列中的 <paramref name="end" /> 序列位置（不含）之间的项目。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.SequencePosition)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在所指定的序列位置处开始并一直到只读序列的末尾。</summary>
+      <param name="start">开始此切片处的起始（含）<see cref="T:System.SequencePosition" />。</param>
+      <returns>一个切片，它在序列位置 <paramref name="start" /> 处开始并一直到当前只读序列的末尾。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.SequencePosition,System.Int32)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始且包含 <paramref name="length" /> 个项目。</summary>
+      <param name="start">开始此切片处的起始（含）<see cref="T:System.SequencePosition" />。</param>
+      <param name="length">切片的长度。</param>
+      <returns>一个切片，它包含从序列位置 <paramref name="start" /> 开始的当前实例中的 <paramref name="length" /> 元素。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.SequencePosition,System.Int64)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始且包含 <paramref name="length" /> 个项目。</summary>
+      <param name="start">开始此切片处的起始（含）<see cref="T:System.SequencePosition" />。</param>
+      <param name="length">切片的长度。</param>
+      <returns>一个切片，它包含从序列位置 <paramref name="start" /> 开始的当前实例中的 <paramref name="length" /> 元素。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Slice(System.SequencePosition,System.SequencePosition)">
+      <summary>根据当前 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 形成一个切片，它在 <paramref name="start" /> 处开始并在 <paramref name="end" /> 处（不含）结束。</summary>
+      <param name="start">开始此切片处的起始（含）<see cref="T:System.SequencePosition" />。</param>
+      <param name="end">切片的末尾 <see cref="T:System.SequencePosition" />（不含）。</param>
+      <returns>一个切片，它包含从 <paramref name="start" /> 序列位置到当前只读序列中的 <paramref name="end" /> 序列位置（不含）之间的项目。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.ToString">
+      <summary>返回表示当前序列的字符串。</summary>
+      <returns>表示当前序列的字符串。</returns>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.TryGet(System.SequencePosition@,System.ReadOnlyMemory{`0}@,System.Boolean)">
+      <summary>尝试检索 <paramref name="position" /> 后面的下一段，并返回一个指示操作是否成功的值。</summary>
+      <param name="position">当前序列位置。</param>
+      <param name="memory">一个只读内存跨度，它包含 <paramref name="position" /> 后面的下一段。</param>
+      <param name="advance">如果 <paramref name="position" /> 应为下一段的开头，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果该方法返回下一段，则返回 <see langword="true" />；如果到达只读序列的末尾，则返回 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.End">
+      <summary>获取 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 末尾的位置。</summary>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.First">
+      <summary>从第一个段中获取 <see cref="T:System.ReadOnlyMemory`1" />。</summary>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.FirstSpan">
+      <summary>从第一个段中获取 <see cref="T:System.ReadOnlySpan`1" />。</summary>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.IsEmpty">
+      <summary>获取一个值，该值指示 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 是否为空。</summary>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.IsSingleSegment">
+      <summary>获取一个值，它指示 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 是否包含单个 <see cref="T:System.ReadOnlyMemory`1" /> 段。</summary>
+      <returns>
+        <see langword="true" /> 如果只读序列为空，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.Length">
+      <summary>获取 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的长度。</summary>
+      <returns>只读序列的长度。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.Start">
+      <summary>获取 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 的开头的位置。</summary>
+    </member>
+    <member name="T:System.Buffers.ReadOnlySequence`1.Enumerator">
+      <summary>表示 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 中的枚举器。</summary>
+      <typeparam name="T" />
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Enumerator.#ctor(System.Buffers.ReadOnlySequence{`0}@)">
+      <summary>初始化枚举器。</summary>
+      <param name="sequence">要枚举的 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</param>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequence`1.Enumerator.MoveNext">
+      <summary>移到 <see cref="T:System.ReadOnlyMemory`1" /> 中的下一个 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</summary>
+      <returns>如果枚举器成功推进到下一项，则为 <see langword="true" />；如果已到达序列的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequence`1.Enumerator.Current">
+      <summary>获取当前 <see cref="T:System.ReadOnlyMemory`1" />。</summary>
+      <returns>当前的 <see cref="T:System.ReadOnlyMemory`1" />。</returns>
+    </member>
+    <member name="T:System.Buffers.ReadOnlySequenceSegment`1">
+      <summary>表示 <see cref="T:System.ReadOnlyMemory`1" /> 节点的链接列表。</summary>
+      <typeparam name="T">只读序列段中元素的类型。</typeparam>
+    </member>
+    <member name="M:System.Buffers.ReadOnlySequenceSegment`1.#ctor">
+      <summary>初始化 <see cref="T:System.Buffers.ReadOnlySequenceSegment`1" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequenceSegment`1.Memory">
+      <summary>获取或设置当前节点的 <see cref="T:System.ReadOnlyMemory`1" /> 值。</summary>
+      <returns>
+        <see cref="T:System.ReadOnlyMemory`1" />当前节点的值。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequenceSegment`1.Next">
+      <summary>获取或设置下一个节点。</summary>
+      <returns>下一个节点。</returns>
+    </member>
+    <member name="P:System.Buffers.ReadOnlySequenceSegment`1.RunningIndex">
+      <summary>获取或设置当前节点之前的节点长度之和。</summary>
+      <returns>当前节点之前的节点长度之和。</returns>
+    </member>
+    <member name="T:System.Buffers.SequenceReader`1">
+      <summary>提供从 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 读取二进制数据和文本数据的方法，重点关注性能和最小或零堆分配。</summary>
+      <typeparam name="T">只读序列的类型。</typeparam>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.#ctor(System.Buffers.ReadOnlySequence{`0})">
+      <summary>根据给定 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 创建 <see cref="T:System.Buffers.SequenceReader`1" />。</summary>
+      <param name="sequence">用于创建 <see cref="T:System.Buffers.SequenceReader`1" /> 的只读序列。</param>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.Advance(System.Int64)">
+      <summary>将读取器向前移动指定的项数。</summary>
+      <param name="count">要前进的项数。</param>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvancePast(`0)">
+      <summary>向前跳过具有给定 <paramref name="value" /> 的连续实例。</summary>
+      <param name="value">读取器要向前越过的值。</param>
+      <returns>读取器前进的位置数。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvancePastAny(`0,`0)">
+      <summary>向前跳过具有两个指定值之一的连续实例。</summary>
+      <param name="value0">要跳过的第一个值。</param>
+      <param name="value1">要跳过的第二个值。</param>
+      <returns>读取器前进的位置数。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvancePastAny(`0,`0,`0)">
+      <summary>向前跳过具有三个指定值之一的连续实例。</summary>
+      <param name="value0">要跳过的第一个值。</param>
+      <param name="value1">要跳过的第二个值。</param>
+      <param name="value2">要跳过的第三个值。</param>
+      <returns>读取器前进的位置数。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvancePastAny(`0,`0,`0,`0)">
+      <summary>向前跳过具有四个指定值之一的连续实例。</summary>
+      <param name="value0">要跳过的第一个值。</param>
+      <param name="value1">要跳过的第二个值。</param>
+      <param name="value2">要跳过的第三个值。</param>
+      <param name="value3">要跳过的第四个值。</param>
+      <returns>读取器前进的位置数。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvancePastAny(System.ReadOnlySpan{`0})">
+      <summary>跳过具有任何指定 <paramref name="values" /> 的连续实例。</summary>
+      <param name="values">要跳过的值。</param>
+      <returns>读取器前进的位置数。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.AdvanceToEnd">
+      <summary>将读取器移动到序列末尾。</summary>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.IsNext(`0,System.Boolean)">
+      <summary>检查指定值是否是序列中的下一个值。</summary>
+      <param name="next">要与下一项进行比较的值。</param>
+      <param name="advancePast">若要跳过 <paramref name="next" /> 值（如果发现了这些值），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果这些值是序列中的后续值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.IsNext(System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>检查在只读范围中指定的值是否是序列中的下一个值。</summary>
+      <param name="next">要与下一项进行比较的范围。</param>
+      <param name="advancePast">若要跳过 <paramref name="next" /> 值（如果发现了这些值），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果这些值是序列中的后续值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.Rewind(System.Int64)">
+      <summary>将读取器向后移动指定的项数。</summary>
+      <param name="count">项数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> 为负数或大于 <see cref="P:System.Buffers.SequenceReader`1.Consumed" />。</exception>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryAdvanceTo(`0,System.Boolean)">
+      <summary>搜索指定的分隔符，并在找到该分隔符后向前越过它（可选）。</summary>
+      <param name="delimiter">要搜索的分隔符。</param>
+      <param name="advancePastDelimiter">若要越过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了给定 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryAdvanceToAny(System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>搜索大量指定分隔符中的任意分隔符，并向前越过找到的第一个分隔符（可选）。</summary>
+      <param name="delimiters">要搜索的分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过具有任意给定 <paramref name="delimiters" /> 的第一个实例，则为 <see langword="true" />；若不跳过分隔符，则为 <see langword="false" />。</param>
+      <returns>如果发现了任意给定 <paramref name="delimiters" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryCopyTo(System.Span{`0})">
+      <summary>如果有足够的数据来填充目标范围，则将当前位置的数据复制到目标范围。</summary>
+      <param name="destination">要复制到的目标范围。</param>
+      <returns>如果有足够的数据来完全填充 <paramref name="destination" /> 范围，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryPeek(`0@)">
+      <summary>查看下一个值，而不前移读取器。</summary>
+      <param name="value">下一个值，或默认值（如果在读取器末尾）。</param>
+      <returns>如果读取器未在其末尾且查看操作成功，则为 <see langword="true" />；如果在读取器末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryPeek(System.Int64,`0@)">
+      <summary>查看指定偏移量处的下一个值，而不前移读取器。</summary>
+      <param name="offset">当前位置的偏移量。</param>
+      <param name="value">下一个值，或默认值（如果在读取器末尾）。</param>
+      <returns>如果读取器未在其末尾且查看操作成功，则为 <see langword="true" />；如果在读取器末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryRead(`0@)">
+      <summary>读取下一个值，并前移读取器。</summary>
+      <param name="value">下一个值，或默认值（如果在读取器末尾）。</param>
+      <returns>如果读取器未在其末尾且读取操作成功，则为 <see langword="true" />；如果在读取器末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.Buffers.ReadOnlySequence{`0}@,`0,`0,System.Boolean)">
+      <summary>尝试读取给定 <paramref name="delimiter" /> 之前的所有内容，忽略前面为 <paramref name="delimiterEscape" /> 的分隔符。</summary>
+      <param name="sequence">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiter">要查找的分隔符。</param>
+      <param name="delimiterEscape">一个值，指示将跳过紧跟 <paramref name="delimiter" /> 之后的项。</param>
+      <param name="advancePastDelimiter">若要跳过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.Buffers.ReadOnlySequence{`0}@,`0,System.Boolean)">
+      <summary>尝试读取给定 <paramref name="delimiter" /> 之前的所有内容。</summary>
+      <param name="sequence">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiter">要查找的分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.Buffers.ReadOnlySequence{`0}@,System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>尝试读取数据，直到指定为只读范围的整个分隔符匹配。</summary>
+      <param name="sequence">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiter">一个只读范围，包含一个或多个分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.ReadOnlySpan{`0}@,`0,`0,System.Boolean)">
+      <summary>尝试读取给定 <paramref name="delimiter" /> 之前的所有内容，忽略前面为 <paramref name="delimiterEscape" /> 的分隔符。</summary>
+      <param name="span">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiter">要查找的分隔符。</param>
+      <param name="delimiterEscape">一个值，指示将跳过紧跟 <paramref name="delimiter" /> 之后的项。</param>
+      <param name="advancePastDelimiter">若要跳过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.ReadOnlySpan{`0}@,`0,System.Boolean)">
+      <summary>尝试读取给定 <paramref name="delimiter" /> 之前的所有内容。</summary>
+      <param name="span">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiter">要查找的分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过 <paramref name="delimiter" />（如果已发现），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadTo(System.ReadOnlySpan{`0}@,System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>尝试读取给定 <paramref name="delimiter" /> 之前的所有内容。</summary>
+      <param name="sequence">读取数据（若有）。</param>
+      <param name="delimiter">要查找的分隔符。</param>
+      <param name="advancePastDelimiter">若要越过 <paramref name="delimiter" />（如果找到），则为 <see langword="true" />。</param>
+      <param name="span">读取数据（若有）。</param>
+      <returns>如果发现了 <paramref name="delimiter" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadToAny(System.Buffers.ReadOnlySequence{`0}@,System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>尝试读取指定的任意 <paramref name="delimiters" /> 之前的所有内容。</summary>
+      <param name="sequence">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiters">要查找的分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过找到的第一个具有给定 <paramref name="delimiters" /> 的实例，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现任何 <see langword="false" />，则为 <see langword="true" />；否则为 <paramref name="delimiters" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReader`1.TryReadToAny(System.ReadOnlySpan{`0}@,System.ReadOnlySpan{`0},System.Boolean)">
+      <summary>尝试读取指定的任意 <paramref name="delimiters" /> 之前的所有内容。</summary>
+      <param name="span">当方法返回时，包含读取的数据（如果有）。</param>
+      <param name="delimiters">要查找的分隔符。</param>
+      <param name="advancePastDelimiter">若要跳过找到的第一个具有给定 <paramref name="delimiters" /> 的实例，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果发现任何 <see langword="false" />，则为 <see langword="true" />；否则为 <paramref name="delimiters" />。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.Consumed">
+      <summary>获取由读取器处理的 <typeparamref name="T" /> 值总数。</summary>
+      <returns>读取器处理的值的总数。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.CurrentSpan">
+      <summary>获取 <see cref="T:System.Span`1" />，它包含 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 中的当前段。</summary>
+      <returns>一个包含序列中的当前段的范围。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.CurrentSpanIndex">
+      <summary>获取 <see cref="P:System.Buffers.SequenceReader`1.CurrentSpan" /> 中的索引。</summary>
+      <returns>中的索引 <see cref="P:System.Buffers.SequenceReader`1.CurrentSpan" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.End">
+      <summary>获取一个值，该值指示 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 中是否不再有数据。</summary>
+      <returns>
+        <see langword="true" /> 如果中没有更多数据 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> ，则为; 否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.Length">
+      <summary>获取读取器的 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 中的项数。</summary>
+      <returns>读取器中项的计数 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.Position">
+      <summary>获取 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 中的当前位置。</summary>
+      <returns>中的当前位置 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.Remaining">
+      <summary>获取读取器的 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 中的剩余项。</summary>
+      <returns>读取器的剩余项 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /></returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.Sequence">
+      <summary>获取读取器的基础 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</summary>
+      <returns>读取器的基础只读序列。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.UnreadSequence">
+      <summary>获取 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 的未读取部分。</summary>
+      <returns>的未读部分 <see cref="P:System.Buffers.SequenceReader`1.Sequence" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.SequenceReader`1.UnreadSpan">
+      <summary>获取 <see cref="P:System.Buffers.SequenceReader`1.CurrentSpan" /> 的未读取部分。</summary>
+      <returns>的未读部分 <see cref="P:System.Buffers.SequenceReader`1.CurrentSpan" /> 。</returns>
+    </member>
+    <member name="T:System.Buffers.SequenceReaderExtensions">
+      <summary>为 <see cref="T:System.Buffers.SequenceReader`1" /> 类提供扩展功能，允许从二进制数据读取字节序特定数值。</summary>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadBigEndian(System.Buffers.SequenceReader{System.Byte},System.Int16@)">
+      <summary>尝试将 <see cref="T:System.Int16" /> 读取为大字节序。</summary>
+      <param name="reader">要从中读取值的字节序列读取器实例。</param>
+      <param name="value">当该方法返回时，作为大字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int16" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadBigEndian(System.Buffers.SequenceReader{System.Byte},System.Int32@)">
+      <summary>尝试将 <see cref="T:System.Int32" /> 读取为大字节序。</summary>
+      <param name="reader">从中读取值的字节序列读取器。</param>
+      <param name="value">当该方法返回时，作为大字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int32" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadBigEndian(System.Buffers.SequenceReader{System.Byte},System.Int64@)">
+      <summary>尝试将 <see cref="T:System.Int64" /> 读取为大字节序。</summary>
+      <param name="reader">要从中读取值的字节序列读取器实例。</param>
+      <param name="value">当该方法返回时，作为大字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int64" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadLittleEndian(System.Buffers.SequenceReader{System.Byte},System.Int16@)">
+      <summary>尝试将 <see cref="T:System.Int16" /> 读取为小字节序。</summary>
+      <param name="reader">要从中读取值的字节序列读取器实例。</param>
+      <param name="value">当该方法返回时，作为小字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int16" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadLittleEndian(System.Buffers.SequenceReader{System.Byte},System.Int32@)">
+      <summary>尝试将 <see cref="T:System.Int32" /> 读取为小字节序。</summary>
+      <param name="reader">要从中读取值的字节序列读取器实例。</param>
+      <param name="value">当该方法返回时，作为小字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int32" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.SequenceReaderExtensions.TryReadLittleEndian(System.Buffers.SequenceReader{System.Byte},System.Int64@)">
+      <summary>尝试将 <see cref="T:System.Int64" /> 读取为小字节序。</summary>
+      <param name="reader">要从中读取值的字节序列读取器实例。</param>
+      <param name="value">当该方法返回时，作为小字节序从字节序列读取器读取的值。</param>
+      <returns>如果读取操作成功，则为 <see langword="true" />；如果没有足够的数据用于 <see cref="T:System.Int64" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Buffers.StandardFormat">
+      <summary>表示不使用实际字符串的标准格式字符串。</summary>
+    </member>
+    <member name="F:System.Buffers.StandardFormat.MaxPrecision">
+      <summary>定义最大的有效精度值。</summary>
+    </member>
+    <member name="F:System.Buffers.StandardFormat.NoPrecision">
+      <summary>指示某个格式不使用精度或未指定精度。</summary>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.#ctor(System.Char,System.Byte)">
+      <summary>初始化 <see cref="T:System.Buffers.StandardFormat" /> 结构的新实例。</summary>
+      <param name="symbol">类型特定的格式说明符，如 G、D 或 X。</param>
+      <param name="precision">可选的精度范围从 0 到 99，或者特殊值 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />（默认值）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="symbol" /> 不为 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />，并且其值大于 <see cref="F:System.Buffers.StandardFormat.MaxPrecision" />。
+
+- 或 -
+
+<paramref name="symbol" />无法转换为 <see cref="T:System.Byte" />。</exception>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.Equals(System.Buffers.StandardFormat)">
+      <summary>返回一个值，该值指示指定的 <see cref="T:System.Buffers.StandardFormat" /> 是否与当前实例相等。</summary>
+      <param name="other">要与当前实例进行比较的格式。</param>
+      <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.Equals(System.Object)">
+      <summary>返回一个值，该值指示指定的对象是否是与当前对象相等的 <see cref="T:System.Buffers.StandardFormat" /> 对象。</summary>
+      <param name="obj">要与当前实例进行比较的对象。</param>
+      <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>此实例的哈希代码。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.op_Equality(System.Buffers.StandardFormat,System.Buffers.StandardFormat)">
+      <summary>返回一个值，该值指示两个 <see cref="T:System.Buffers.StandardFormat" /> 实例是否相等。</summary>
+      <param name="left">要比较的第一个格式。</param>
+      <param name="right">要比较的第二个格式。</param>
+      <returns>如果两个实例相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.op_Implicit(System.Char)~System.Buffers.StandardFormat">
+      <summary>将字符转换为使用 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> 精度的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+      <param name="symbol">要转换为 <see cref="T:System.Buffers.StandardFormat" /> 值的字符。</param>
+      <returns>一个格式，其 <see cref="P:System.Buffers.StandardFormat.Symbol" /> 属性等于 <paramref name="symbol" />、<see cref="P:System.Buffers.StandardFormat.Precision" /> 属性等于 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.op_Inequality(System.Buffers.StandardFormat,System.Buffers.StandardFormat)">
+      <summary>确定两个 <see cref="T:System.Buffers.StandardFormat" /> 实例是否不相等。</summary>
+      <param name="left">要比较的第一个格式。</param>
+      <param name="right">要比较的第二个格式。</param>
+      <returns>如果两个格式不相等，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.Parse(System.ReadOnlySpan{System.Char})">
+      <summary>将 <see langword="ReadOnlySpan&lt;System.Char&gt;" /> 转换为使用 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> 精度的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+      <param name="format">一个只读范围，包含要分析的字符。</param>
+      <returns>一个值，其 <see cref="P:System.Buffers.StandardFormat.Symbol" /> 属性值是 <paramref name="format" /> 中的字符、<see cref="P:System.Buffers.StandardFormat.Precision" /> 属性值是 <see cref="F:System.Buffers.StandardFormat.NoPrecision" />。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.Parse(System.String)">
+      <summary>将经典 .NET 标准格式将字符串转换为 <see cref="T:System.Buffers.StandardFormat" /> 实例。</summary>
+      <param name="format">一个经典 .NET 标准格式字符串。</param>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 不是有效的标准格式字符串。</exception>
+      <returns>一个格式。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.ToString">
+      <summary>返回此格式的字符串表示形式。</summary>
+      <returns>此格式的字符串表示形式。</returns>
+    </member>
+    <member name="M:System.Buffers.StandardFormat.TryParse(System.ReadOnlySpan{System.Char},System.Buffers.StandardFormat@)">
+      <summary>尝试将 <see langword="ReadOnlySpan&lt;Char&gt;" /> 转换为 <see cref="T:System.Buffers.StandardFormat" /> 实例并返回一个值，该值指示分析操作是否成功。</summary>
+      <param name="format">一个只读范围，包含要转换的字符。</param>
+      <param name="result">当方法返回时，如果操作成功，则包含已分析的 <see cref="T:System.Buffers.StandardFormat" /> 实例。</param>
+      <returns>如果分析操作成功，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Buffers.StandardFormat.HasPrecision">
+      <summary>获取一个值，该值指示格式是否已定义精度。</summary>
+      <returns>
+        <see langword="true" /> 如果格式的精度不是 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> ，则为; 否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.StandardFormat.IsDefault">
+      <summary>获取一个值，该值指示当前实例是否是默认格式。</summary>
+      <returns>
+        <see langword="true" /> 如果当前实例是默认格式，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Buffers.StandardFormat.Precision">
+      <summary>获取格式的精度组件。</summary>
+      <returns>精度组件，可以为 <see cref="F:System.Buffers.StandardFormat.NoPrecision" /> ，也可以介于0到9之间。</returns>
+    </member>
+    <member name="P:System.Buffers.StandardFormat.Symbol">
+      <summary>获取格式的字符组件。</summary>
+      <returns>格式的字符部分。</returns>
+    </member>
+    <member name="T:System.Buffers.Text.Base64">
+      <summary>在二进制数据和以 base 64 表示的 UTF-8 编码的文本之间转换。</summary>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.DecodeFromUtf8(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32@,System.Boolean)">
+      <summary>将表示为 base 64 的 UTF-8 编码的文本范围解码为二进制数据。 如果输入不是 4 的倍数，则它将尽可能多地解码，直到最接近 4 的倍数。</summary>
+      <param name="utf8">包含需要解码的以 base 64 表示的 UTF-8 编码文本的输入范围。</param>
+      <param name="bytes">包含操作结果（即解码的二进制数据）的输出范围。</param>
+      <param name="bytesConsumed">在操作期间使用的输入字节数。 如有必要，这可用于划分输入以供后续调用。</param>
+      <param name="bytesWritten">写入输出范围的字节数。 如有必要，这可用于划分输出以供后续调用。</param>
+      <param name="isFinalBlock">如果输入范围包含要解码的整个数据，则为 <see langword="true" />（默认值）。 如果输入范围包含部分数据且将输入更多数据，则为 <see langword="false" />。</param>
+      <returns>用于指示解码操作状态的枚举值之一。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.DecodeFromUtf8InPlace(System.Span{System.Byte},System.Int32@)">
+      <summary>将以 base 64（就地）表示的 UTF-8 编码的文本范围解码为二进制数据。 解码的二进制输出小于包含在输入中的文本数据（操作会压缩数据）。 如果输入不是 4 的倍数，该方法将无法解码任何数据。</summary>
+      <param name="buffer">包含需要解码的 base-64 文本数据的输入范围。</param>
+      <param name="bytesWritten">写入缓冲区的字节数。</param>
+      <returns>用于指示解码操作状态的枚举值之一。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.EncodeToUtf8(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32@,System.Boolean)">
+      <summary>将二进制数据的范围编码为以 base 64 表示的 UTF-8 编码的文本。</summary>
+      <param name="bytes">包含需要编码的二进制数据的输入范围。</param>
+      <param name="utf8">包含操作结果（即以 base 64 表示的 UTF-8 编码的文本）的输出范围。</param>
+      <param name="bytesConsumed">在操作期间使用的输入字节数。 如有必要，这可用于划分输入以供后续调用。</param>
+      <param name="bytesWritten">写入输出范围的字节数。 如有必要，这可用于划分输出以供后续调用。</param>
+      <param name="isFinalBlock">如果输入范围包含要编码的整个数据，则为 <see langword="true" />（默认值）。 如果输入范围包含部分数据且将输入更多数据，则为 <see langword="false" />。</param>
+      <returns>用于指示编码操作状态的枚举值之一。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.EncodeToUtf8InPlace(System.Span{System.Byte},System.Int32,System.Int32@)">
+      <summary>将二进制数据（就地）的范围编码为以 base 64 表示的 UTF-8 编码的文本。 编码的文本输出大于包含在输入中的二进制数据（操作会扩大数据）。</summary>
+      <param name="buffer">包含需要编码的二进制数据的输入范围。 由于此方法执行就地转换，因此它需要具有足够大小来存储操作结果。</param>
+      <param name="dataLength">包含在需要编码的缓冲区内的二进制数据的字节数。 此值必须小于缓冲区长度。</param>
+      <param name="bytesWritten">写入缓冲区的字节数。</param>
+      <returns>用于指示编码操作状态的枚举值之一。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.GetMaxDecodedFromUtf8Length(System.Int32)">
+      <summary>如果要解码具有指定长度的字节跨度中的 base-64 编码的文本，则返回结果的最大长度（以字节为单位）。</summary>
+      <param name="length">字节跨度的大小。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="length" /> 小于 0。</exception>
+      <returns>结果的最大长度（以字节为单位）。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Base64.GetMaxEncodedToUtf8Length(System.Int32)">
+      <summary>如果要解码具有指定长度的字节跨度中的二进制文本，则返回结果的最大长度（以字节为单位）。</summary>
+      <param name="length">字节跨度的大小。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="length" /> 小于 0 或大于 1610612733（因为编码将数据扩大了 4/3）。</exception>
+      <returns>结果的最大长度（以字节为单位）。</returns>
+    </member>
+    <member name="T:System.Buffers.Text.Utf8Formatter">
+      <summary>提供静态方法，以将常见数据类型的格式设置为 Utf8 字符串。</summary>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Boolean,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Boolean" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Byte,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Byte" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.DateTime,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.DateTime" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.DateTimeOffset,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.DateTimeOffset" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Decimal,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Decimal" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Double,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Double" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Guid,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Guid" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Int16,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Int16" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Int32,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Int32" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Int64,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Int64" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.SByte,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.SByte" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.Single,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.Single" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.TimeSpan,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.TimeSpan" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.UInt16,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.UInt16" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.UInt32,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.UInt32" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Formatter.TryFormat(System.UInt64,System.Span{System.Byte},System.Int32@,System.Buffers.StandardFormat)">
+      <summary>将 <see cref="T:System.UInt64" /> 的格式设置为 UTF8 字符串。</summary>
+      <param name="value">要格式化的值。</param>
+      <param name="destination">要写入 UTF8 格式的值的缓冲区。</param>
+      <param name="bytesWritten">方法返回时，包含格式化文本的长度（以字节为单位）。</param>
+      <param name="format">要使用的标准格式。</param>
+      <returns>如果格式设置操作成功，则为 <see langword="true" />；如果 <paramref name="buffer" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Buffers.Text.Utf8Parser">
+      <summary>提供用于将 Utf8 字符串分析为常见数据类型的静态方法。</summary>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Boolean@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Boolean" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Byte@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Byte" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.DateTime@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.DateTime" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.DateTimeOffset@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.DateTimeOffset" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Decimal@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Decimal" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Double@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Double" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Guid@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Guid" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Int16@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Int16" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Int32@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Int32" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Int64@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Int64" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.SByte@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.SByte" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.Single@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.Single" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.TimeSpan@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.TimeSpan" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.UInt16@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.UInt16" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.UInt32@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.UInt32" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Buffers.Text.Utf8Parser.TryParse(System.ReadOnlySpan{System.Byte},System.UInt64@,System.Int32@,System.Char)">
+      <summary>分析 Utf8 字符串开头的 <see cref="T:System.UInt64" />。</summary>
+      <param name="source">要分析的 Utf8 字符串。</param>
+      <param name="value">当方法返回时，如果分析操作成功，则包含从 <paramref name="source" /> 分析的值。</param>
+      <param name="bytesConsumed">当方法返回时，如果分析操作成功，则包含已分析的子字符串的字节长度。 如果方法失败，则 <paramref name="bytesConsumed" /> 设置为 0。</param>
+      <param name="standardFormat">Utf8 字符串的预期格式。</param>
+      <returns>如果成功，则为 <see langword="true" />；如果字符串在语法上无效或者出现溢出或下溢，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.MemoryExtensions">
+      <summary>为内存相关类型和跨度相关类型提供扩展方法（例如，<see cref="T:System.Memory`1" />、<see cref="T:System.ReadOnlyMemory`1" />、<see cref="T:System.Span`1" /> 和 <see cref="T:System.ReadOnlySpan`1" />）。</summary>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory(System.String)">
+      <summary>在目标字符串的一部分上创建新的 <see langword="ReadOnlyMemory&lt;Char&gt;" />。</summary>
+      <param name="text">目标字符串。</param>
+      <returns>如果 <paramref name="text" /> 为 <see langword="null" />则为字符串的只读字符内存表示形式或 <see langword="default" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory(System.String,System.Index)">
+      <summary>从指定索引处开始，在目标字符串的一部分上创建新的 <see langword="ReadOnlyMemory&lt;Char&gt;" />。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="startIndex">开始切片处的索引。</param>
+      <returns>字符串的只读字符内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory(System.String,System.Int32)">
+      <summary>从指定字符串位置开始，在目标字符串的一部分上创建新的 <see langword="ReadOnlyMemory&lt;Char&gt;" />。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="start">开始切片处的索引。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 不在 <paramref name="text" /> 的范围内（<paramref name="start" /> 为 &lt; 0 或 &gt; <c>text.Length</c>）。</exception>
+      <returns>如果 <paramref name="text" /> 为 <see langword="null" />则为字符串的只读字符内存表示形式或 <see langword="default" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory(System.String,System.Int32,System.Int32)">
+      <summary>从带有长度的指定位置开始，在目标字符串的一部分上创建新的 <see langword="ReadOnlyMemory&lt;Char&gt;" />。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="start">开始切片处的索引。</param>
+      <param name="length">切片所需的长度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="text" /> 的范围内。</exception>
+      <returns>如果 <paramref name="text" /> 为 <see langword="null" />则为字符串的只读字符内存表示形式或 <see langword="default" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory(System.String,System.Range)">
+      <summary>在目标字符串的指定范围内创建新的 <see langword="ReadOnlyMemory&lt;Char&gt;" />。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="range">表示切片后的字符串的起始和长度的范围。</param>
+      <returns>字符串的只读字符内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(``0[])">
+      <summary>在目标数组上创建新的内存区域。</summary>
+      <param name="array">要转换的数组。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(``0[],System.Index)">
+      <summary>从指定索引开始到数组的结尾，在目标数组的一部分上创建一个新的内存区域。</summary>
+      <param name="array">要转换的数组。</param>
+      <param name="startIndex">数组的第一个位置。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(``0[],System.Int32)">
+      <summary>从指定位置开始到数组的结尾，在目标数组的一部分上创建一个新的内存区域。</summary>
+      <param name="array">目标数组。</param>
+      <param name="start">开始内存的索引。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="array" /> 是协变的，数组的类型不完全是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 索引小于 0 或大于 <see langword="array.Length" />。</exception>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(``0[],System.Int32,System.Int32)">
+      <summary>从具有指定长度的指定位置开始，在目标数组的一部分上创建新的内存区域。</summary>
+      <param name="array">目标数组。</param>
+      <param name="start">开始内存区域的索引。</param>
+      <param name="length">内存区域中的项数。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="array" /> 是协变的，数组的类型不完全是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="array" /> 的范围内。</exception>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(``0[],System.Range)">
+      <summary>从范围的包含起始索引开始，到范围的不包含结束索引结束，在目标数组的一部分上创建新的内存区域。</summary>
+      <param name="array">要转换的数组。</param>
+      <param name="range">要从数组转换的范围。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(System.ArraySegment{``0})">
+      <summary>在目标数组段的一部分上创建新的内存区域。</summary>
+      <param name="segment">要转换的段。</param>
+      <typeparam name="T">段的类型。</typeparam>
+      <returns>段的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(System.ArraySegment{``0},System.Int32)">
+      <summary>从指定位置开始到段的结尾，在目标数组段的一部分上创建新的内存区域。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="start">开始内存的索引。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="segment" /> 是协变，<paramref name="segment" /> 的类型并不是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 小于 0 或大于 <see langword="segment.Count" />。</exception>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsMemory``1(System.ArraySegment{``0},System.Int32,System.Int32)">
+      <summary>从具有指定长度的指定位置开始，在目标数组段的一部分上创建新的内存区域。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="start">开始内存的索引。</param>
+      <param name="length">内存中的项数。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="segment" /> 是协变的，数组的类型不完全是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="segment" /> 的范围内。</exception>
+      <returns>整个或部分数组的内存表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan(System.String)">
+      <summary>从指定字符数量的指定位置在目标字符串的一部分上创建新的只读跨度。</summary>
+      <param name="text">目标字符串。</param>
+      <returns>字符串的只读跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan(System.String,System.Int32)">
+      <summary>从指定位置到字符串结尾，在目标字符串的一部分上创建新的只读跨度。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="start">开始切片处的索引。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="text" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 小于 0 或大于 <see langword="text.Length" />。</exception>
+      <returns>字符串的只读跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan(System.String,System.Int32,System.Int32)">
+      <summary>在字符串上创建新的只读跨度。</summary>
+      <param name="text">目标字符串。</param>
+      <param name="start">开始切片处的索引。</param>
+      <param name="length">切片所需的长度。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="text" /> 的范围内。</exception>
+      <returns>字符串的只读跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(``0[])">
+      <summary>在目标数组上创建新的跨度。</summary>
+      <param name="array">要转换的数组。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(``0[],System.Index)">
+      <summary>在由 <see cref="T:System.Index" /> 值定义的目标数组部分上创建新的跨度。</summary>
+      <param name="array">要转换的数组。</param>
+      <param name="startIndex">起始索引。</param>
+      <typeparam name="T">数组类型。</typeparam>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(``0[],System.Int32)">
+      <summary>从指定位置开始到数组的结尾，在目标数组的一部分上创建一个新的跨度。</summary>
+      <param name="array">要转换的数组。</param>
+      <param name="start">转换数组的初始索引。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(``0[],System.Int32,System.Int32)">
+      <summary>从指定长度的指定位置在目标数组的一部分上创建新的跨度。</summary>
+      <param name="array">目标数组。</param>
+      <param name="start">开始跨度处的索引。</param>
+      <param name="length">跨度中的项数。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="array" /> 是协变的，数组的类型不完全是 <see langword="T[]" />"。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="text" /> 的范围内。</exception>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(``0[],System.Range)">
+      <summary>在由 <see cref="T:System.Range" /> 值定义的目标数组部分上创建新的跨度。</summary>
+      <param name="array">要转换的数组。</param>
+      <param name="range">要转换的数组范围。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(System.ArraySegment{``0})">
+      <summary>在目标数组段上创建新的跨度。</summary>
+      <param name="segment">要写入的数组段。</param>
+      <typeparam name="T">数组段的类型。</typeparam>
+      <returns>数组段的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(System.ArraySegment{``0},System.Index)">
+      <summary>在目标数组段的一部分上创建新的跨度，从指定的索引开始，以段的末尾结束。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="startIndex">开始跨度处的索引。</param>
+      <typeparam name="T">数组段的类型。</typeparam>
+      <returns>数组段的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(System.ArraySegment{``0},System.Int32)">
+      <summary>从指定位置到段的结尾，在目标数组段的一部分上创建新的跨度。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="start">开始跨度处的索引。</param>
+      <typeparam name="T">数组段的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="segment" /> 是协变的，数组的类型不完全是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 小于 0 或大于 <see langword="segment.Count" />。</exception>
+      <returns>数组段的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(System.ArraySegment{``0},System.Int32,System.Int32)">
+      <summary>从指定长度的指定位置在目标数组段的一部分上创建新的跨度。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="start">开始跨度处的索引。</param>
+      <param name="length">跨度中的项数。</param>
+      <typeparam name="T">数组段的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="segment" /> 是协变的，数组的类型不完全是 <see langword="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" />、<paramref name="length" /> 或 <paramref name="start" /> + <paramref name="length" /> 不在 <paramref name="segment" /> 的范围内。</exception>
+      <returns>数组的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.AsSpan``1(System.ArraySegment{``0},System.Range)">
+      <summary>使用范围起始和结束索引在目标数组段的一部分上创建新的跨度。</summary>
+      <param name="segment">目标数组段。</param>
+      <param name="range">带有开始和结束索引的范围，用于对数组进行切片。</param>
+      <typeparam name="T">数组段的类型。</typeparam>
+      <returns>数组段的跨度表示形式。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``1(System.ReadOnlySpan{``0},System.IComparable{``0})">
+      <summary>使用指定的 <see cref="T:System.IComparable`1" /> 泛型接口，在整个已排序的 <see cref="T:System.ReadOnlySpan`1" /> 中搜索值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.ReadOnlySpan`1" />。</param>
+      <param name="comparable">比较时要使用的 <see cref="T:System.IComparable`1" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparable" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="comparable" />，则为已排序的 <paramref name="span" /> 中 <paramref name="comparable" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="comparable" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.ReadOnlySpan`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``1(System.Span{``0},System.IComparable{``0})">
+      <summary>使用指定的 <see cref="T:System.IComparable`1" /> 泛型接口，在整个已排序的 <see cref="T:System.Span`1" /> 中搜索值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.Span`1" />。</param>
+      <param name="comparable">比较时要使用的 <see cref="T:System.IComparable`1" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparable" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="comparable" />，则为已排序的 <paramref name="span" /> 中 <paramref name="comparable" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="comparable" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.Span`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``2(System.ReadOnlySpan{``0},``0,``1)">
+      <summary>使用指定的 <typeparamref name="TComparer" /> 泛型类型，在整个已排序的 <see cref="T:System.ReadOnlySpan`1" /> 中搜索指定值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.ReadOnlySpan`1" />。</param>
+      <param name="value">要定位的对象。 对于引用类型，该值可以为 <see langword="null" />。</param>
+      <param name="comparer">比较时要使用的 <typeparamref name="TComparer" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <typeparam name="TComparer">的特定类型 <see cref="T:System.Collections.Generic.IComparer`1" /> 。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparer" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="value" />，则为已排序的 <paramref name="span" /> 中 <paramref name="value" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="value" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.ReadOnlySpan`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``2(System.ReadOnlySpan{``0},``1)">
+      <summary>使用指定的 <typeparamref name="TComparable" /> 泛型类型，在整个已排序的 <see cref="T:System.ReadOnlySpan`1" /> 中搜索值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.ReadOnlySpan`1" />。</param>
+      <param name="comparable">比较时要使用的 <typeparamref name="TComparable" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <typeparam name="TComparable">的特定类型 <see cref="T:System.IComparable`1" /> 。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparable" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="comparable" />，则为已排序的 <paramref name="span" /> 中 <paramref name="comparable" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="comparable" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.ReadOnlySpan`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``2(System.Span{``0},``0,``1)">
+      <summary>使用指定的 <typeparamref name="TComparer" /> 泛型类型，在整个已排序的 <see cref="T:System.Span`1" /> 中搜索指定值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.Span`1" />。</param>
+      <param name="value">要定位的对象。 对于引用类型，该值可以为 <see langword="null" />。</param>
+      <param name="comparer">比较时要使用的 <typeparamref name="TComparer" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <typeparam name="TComparer">的特定类型 <see cref="T:System.Collections.Generic.IComparer`1" /> 。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparer" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="value" />，则为已排序的 <paramref name="span" /> 中 <paramref name="value" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="value" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.Span`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.BinarySearch``2(System.Span{``0},``1)">
+      <summary>使用指定的 <typeparamref name="TComparable" /> 泛型类型，在整个已排序的 <see cref="T:System.Span`1" /> 中搜索值。</summary>
+      <param name="span">要搜索的已排序 <see cref="T:System.Span`1" />。</param>
+      <param name="comparable">比较时要使用的 <typeparamref name="TComparable" />。</param>
+      <typeparam name="T">跨度的元素类型。</typeparam>
+      <typeparam name="TComparable">的特定类型 <see cref="T:System.IComparable`1" /> 。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparable" /> 为 <see langword="null" />。</exception>
+      <returns>如果找到 <paramref name="comparable" />，则为已排序的 <paramref name="span" /> 中 <paramref name="comparable" /> 的从零开始的索引；否则为一个负数，该负数是大于 <paramref name="comparable" /> 的下一个元素的索引的按位求补。如果没有更大的元素，则为 <see cref="P:System.Span`1.Length" /> 的按位求补。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.CompareTo(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>使用指定的字符串比较将一个字符跨度与另一个字符跨度进行比较，并返回表示其在排序顺序中的相对位置的整数。</summary>
+      <param name="span">源跨度。</param>
+      <param name="other">要与源跨度进行比较的值。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="other" /> 的枚举值。</param>
+      <returns>一个带符号整数，表示 <paramref name="span" /> 和<paramref name="other" /> 的相对顺序：   - 如果小于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之前。   - 如果为 0，则 <paramref name="span" /> 等于 <paramref name="other" />。   - 如果大于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之后。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Contains(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>指示指定值是否出现在只读字符跨度内。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要在源跨度中查找的值。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="value" /> 中的字符的枚举值。</param>
+      <returns>如果在跨度内出现 <paramref name="value" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Contains``1(System.ReadOnlySpan{``0},``0)">
+      <summary>指示是否在只读跨度内找到指定的值。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围的类型。</typeparam>
+      <returns>如果找到，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Contains``1(System.Span{``0},``0)">
+      <summary>指示是否在跨度内找到指定的值。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果找到，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.CopyTo``1(``0[],System.Memory{``0})">
+      <summary>将数组的内容复制到内存区域。</summary>
+      <param name="source">要从中复制项的数组。</param>
+      <param name="destination">要将项复制到其中的内存。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">目标比源数组短。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.CopyTo``1(``0[],System.Span{``0})">
+      <summary>将数组的内容复制到跨度中。</summary>
+      <param name="source">要从中复制项的数组。</param>
+      <param name="destination">要将项复制到的范围。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">目标跨度比源数组短。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.EndsWith(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>使用指定的 <paramref name="comparisonType" /> 选项进行比较时，确定 <paramref name="span" /> 的结尾是否与指定的 <paramref name="value" /> 匹配。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要与源跨度的结尾进行比较的序列。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="value" /> 的枚举值。</param>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的结尾匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.EndsWith``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>确定指定的序列是否出现在只读跨度的结尾。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要与源跨度的结尾进行比较的序列。</param>
+      <typeparam name="T">范围的类型。</typeparam>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的结尾匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.EndsWith``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>确定指定的序列是否出现在跨度的结尾。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要与源跨度的结尾进行比较的序列。</param>
+      <typeparam name="T">范围的类型。</typeparam>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的结尾匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.EnumerateRunes(System.ReadOnlySpan{System.Char})">
+      <summary>从提供的只读跨度返回 <see cref="T:System.Text.Rune" /> 的枚举。</summary>
+      <param name="span">源跨度。</param>
+      <returns>Rune 枚举器。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.EnumerateRunes(System.Span{System.Char})">
+      <summary>从提供的跨度返回 <see cref="T:System.Text.Rune" /> 的枚举。</summary>
+      <param name="span">源跨度。</param>
+      <returns>Rune 枚举器。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Equals(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>使用指定的 <paramref name="comparisonType" /> 选项进行比较时，确定此 <paramref name="span" /> 和指定的 <paramref name="other" /> 跨度是否具有相同的字符。</summary>
+      <param name="span">源跨度。</param>
+      <param name="other">要与源跨度进行比较的值。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="other" /> 的枚举值。</param>
+      <returns>如果相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOf(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>报告当前 <paramref name="span" /> 中第一次出现的指定 <paramref name="value" /> 的从零开始的索引。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要在源跨度中查找的值。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="value" /> 的枚举值。</param>
+      <returns>跨度中的值出现的索引。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOf``1(System.ReadOnlySpan{``0},``0)">
+      <summary>搜索指定值并返回其第一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中的值出现的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOf``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索指定的序列并返回其第一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的序列。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中的值出现的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOf``1(System.Span{``0},``0)">
+      <summary>搜索指定值并返回其第一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中的值出现的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOf``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索指定的序列并返回其第一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的序列。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中的值出现的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0)">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},``0,``0,``0)">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <param name="value2">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="values">要搜索的值集。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.Span{``0},``0,``0)">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.Span{``0},``0,``0,``0)">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <param name="value2">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索任何指定值的第一个索引，其方式类似于使用逻辑 OR 运算符多次调用 IndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="values">要搜索的值集。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中任何值出现的第一个索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.IsWhiteSpace(System.ReadOnlySpan{System.Char})">
+      <summary>指示指定的跨度是否仅包含空格字符。</summary>
+      <param name="span">源跨度。</param>
+      <returns>如果跨度仅包含空格字符，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOf(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>报告当前 <paramref name="span" /> 中最后一次出现的指定 <paramref name="value" /> 的从零开始的索引。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要在源跨度中查找的值。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="value" /> 的枚举值。</param>
+      <returns>跨度中最后一次出现的值的索引。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOf``1(System.ReadOnlySpan{``0},``0)">
+      <summary>搜索指定值并返回其最后一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOf``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索指定的序列并返回其最后一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的序列。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOf``1(System.Span{``0},``0)">
+      <summary>搜索指定值并返回其最后一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOf``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索指定的序列并返回其最后一次出现的索引。 使用 IEquatable{T}.Equals(T) 比较各值。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要搜索的序列。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},``0,``0)">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},``0,``0,``0)">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <param name="value2">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="values">要搜索的值集。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},``0,``0)">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},``0,``0,``0)">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value0">要搜索的其中某个值。</param>
+      <param name="value1">要搜索的其中某个值。</param>
+      <param name="value2">要搜索的其中某个值。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.LastIndexOfAny``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>搜索任何指定值的最后一个索引，其方式类似于使用逻辑 OR 运算符多次调用 LastIndexOf。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="values">要搜索的值集。</param>
+      <typeparam name="T">范围和值的类型。</typeparam>
+      <returns>跨度中最后一次出现的任何值的索引。 如果未找到，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Overlaps``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>确定两个只读序列是否在内存中重叠。</summary>
+      <param name="span">第一个序列。</param>
+      <param name="other">第二个序列。</param>
+      <typeparam name="T">只读序列中的元素的类型。</typeparam>
+      <returns>如果两个序列重叠，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Overlaps``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0},System.Int32@)">
+      <summary>确定两个只读序列是否在内存中重叠且输出元素偏移。</summary>
+      <param name="span">第一个序列。</param>
+      <param name="other">第二个序列。</param>
+      <param name="elementOffset">方法返回时，包含 <paramref name="span" /> 和 <paramref name="other" /> 之间的偏移。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果两个序列重叠，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Overlaps``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>确定跨度和只读跨度是否在内存中重叠。</summary>
+      <param name="span">要比较的跨度。</param>
+      <param name="other">要比较的只读跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果两个序列重叠，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Overlaps``1(System.Span{``0},System.ReadOnlySpan{``0},System.Int32@)">
+      <summary>确定跨度和只读跨度是否在内存中重叠且输出元素偏移。</summary>
+      <param name="span">要比较的第一个序列。</param>
+      <param name="other">要比较的第二个序列。</param>
+      <param name="elementOffset">方法返回时，包含 <paramref name="span" /> 和 <paramref name="other" /> 之间的偏移。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果两个序列重叠，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Reverse``1(System.Span{``0})">
+      <summary>反转整个跨度中元素的序列。</summary>
+      <param name="span">要反转的跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+    </member>
+    <member name="M:System.MemoryExtensions.SequenceCompareTo``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>通过使用 IComparable{T}.CompareTo(T) 比较它们的元素，确定两个只读序列的相对顺序。</summary>
+      <param name="span">要比较的第一个序列。</param>
+      <param name="other">要比较的第二个序列。</param>
+      <typeparam name="T">序列中的元素的类型。</typeparam>
+      <returns>一个带符号整数，表示 <paramref name="span" /> 和<paramref name="other" /> 的相对顺序：   - 如果小于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之前。   - 如果为 0，则 <paramref name="span" /> 等于 <paramref name="other" />。   - 如果大于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之后。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.SequenceCompareTo``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>通过使用 IComparable{T}.CompareTo(T) 比较它们的元素，确定跨度和只读跨度的相对顺序。</summary>
+      <param name="span">要比较的跨度。</param>
+      <param name="other">要比较的只读跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>一个带符号整数，表示 <paramref name="span" /> 和<paramref name="other" /> 的相对顺序：   - 如果小于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之前。   - 如果为 0，则 <paramref name="span" /> 等于 <paramref name="other" />。   - 如果大于 0，则 <paramref name="span" /> 在 <paramref name="other" /> 之后。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.SequenceEqual``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>通过使用 IEquatable{T}.Equals(T) 比较元素，确定两个只读序列是否相等。</summary>
+      <param name="span">要比较的第一个序列。</param>
+      <param name="other">要比较的第二个序列。</param>
+      <typeparam name="T">序列中的元素的类型。</typeparam>
+      <returns>如果两个序列相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.SequenceEqual``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>通过使用 IEquatable{T}.Equals(T) 比较元素，确定跨度和只读跨度是否相等。</summary>
+      <param name="span">要比较的跨度。</param>
+      <param name="other">要比较的只读跨度。</param>
+      <typeparam name="T">序列中的元素的类型。</typeparam>
+      <returns>如果两个序列相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0})">
+      <summary>使用 <see cref="T:System.Span`1" /> 中每个元素的 <see cref="T:System.IComparable`1" /> 实现，对整个 <see cref="T:System.Span`1" /> 中的元素进行排序</summary>
+      <param name="span">要排序的内存范围。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="span" /> 中的一个或多个元素未实现 <see cref="T:System.IComparable`1" /> 接口。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``1(System.Span{``0},System.Comparison{``0})">
+      <summary>使用指定的 <see cref="T:System.Comparison`1" />，对整个 <see cref="T:System.Span`1" /> 中的元素进行排序。</summary>
+      <param name="span">要排序的内存范围。</param>
+      <param name="comparison">比较元素时要使用的方法。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparison" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},``1)">
+      <summary>使用 <typeparamref name="TComparer" /> 对整个 <see cref="T:System.Span`1" /> 中的元素进行排序。</summary>
+      <param name="span">要排序的内存范围。</param>
+      <param name="comparer">比较元素时要使用的方法，或如果为 <see langword="null" />，则使用每个元素的 <see cref="T:System.IComparable`1" /> 接口实现。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <typeparam name="TComparer">用于比较元素的比较器的类型。</typeparam>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="comparer" /> 为 <see langword="null" />，且 <paramref name="span" /> 中的一个或多个元素未实现 <see cref="T:System.IComparable`1" /> 接口。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="comparer" /> 的实现导致排序时出现错误。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1})">
+      <summary>基于第一个 <see cref="T:System.Span`1" /> 中的键，使用每个键的 <see cref="T:System.IComparable`1" /> 实现，对一对范围（一个包含键，另一个包含对应的项）进行排序。</summary>
+      <param name="keys">包含要排序的键的范围。</param>
+      <param name="items">包含与 <paramref name="keys" /> 中的键对应的项的范围。</param>
+      <typeparam name="TKey">键范围中的元素的类型。</typeparam>
+      <typeparam name="TValue">项的元素的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keys" /> 的长度不等于 <paramref name="items" /> 的长度。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="keys" /> 中的一个或多个元素未实现 <see cref="T:System.IComparable`1" /> 接口。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``2(System.Span{``0},System.Span{``1},System.Comparison{``0})">
+      <summary>基于第一个 <see cref="T:System.Span`1" /> 中的键，使用指定的比较，对一对范围（一个包含键，另一个包含对应的项）进行排序。</summary>
+      <param name="keys">包含要排序的键的范围。</param>
+      <param name="items">包含与 <paramref name="keys" /> 中的键对应的项的范围。</param>
+      <param name="comparison">比较元素时要使用的 <see cref="T:System.Comparison`1" />。</param>
+      <typeparam name="TKey">键范围中的元素的类型。</typeparam>
+      <typeparam name="TValue">项的元素的类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="comparison" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keys" /> 的长度不等于 <paramref name="items" /> 的长度。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.Sort``3(System.Span{``0},System.Span{``1},``2)">
+      <summary>基于第一个 <see cref="T:System.Span`1" /> 中的键，使用指定的比较器，对一对范围（一个包含键，另一个包含对应的项）进行排序。</summary>
+      <param name="keys">包含要排序的键的范围。</param>
+      <param name="items">包含与 <paramref name="keys" /> 中的键对应的项的范围。</param>
+      <param name="comparer">比较元素时使用的 <see cref="T:System.Collections.Generic.IComparer`1" /> 实现，如果为 <see langword="null" />，则使用每个元素的 <see cref="T:System.IComparable`1" /> 接口实现。</param>
+      <typeparam name="TKey">键范围中的元素的类型。</typeparam>
+      <typeparam name="TValue">项的元素的类型。</typeparam>
+      <typeparam name="TComparer">用于比较元素的比较器的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keys" /> 的长度不等于 <paramref name="items" /> 的长度。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="comparer" /> 为 <see langword="null" />，且 <paramref name="keys" /> 中的一个或多个元素未实现 <see cref="T:System.IComparable`1" /> 接口。</exception>
+    </member>
+    <member name="M:System.MemoryExtensions.StartsWith(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.StringComparison)">
+      <summary>使用指定的 <see cref="T:System.StringComparison" /> 值进行比较时，确定只读字符跨度是否以指定值开头。</summary>
+      <param name="span">源跨度。</param>
+      <param name="value">要与源跨度的开头进行比较的序列。</param>
+      <param name="comparisonType">用于确定如何比较 <paramref name="span" /> 和 <paramref name="value" /> 的枚举值。</param>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的开头匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.StartsWith``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>确定指定的序列是否出现在只读跨度的开头。</summary>
+      <param name="span">要搜索的只读字符跨度。</param>
+      <param name="value">要在 <paramref name="span" /> 的开头搜索的序列。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的开头匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.StartsWith``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>确定指定的序列是否出现在跨度的开头。</summary>
+      <param name="span">要搜索的跨度。</param>
+      <param name="value">要在 <paramref name="span" /> 的开头搜索的序列。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>如果 <paramref name="value" /> 与 <paramref name="span" /> 的开头匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.ToLower(System.ReadOnlySpan{System.Char},System.Span{System.Char},System.Globalization.CultureInfo)">
+      <summary>请将源跨度中的字符复制到目标中，并使用指定区域性的大小写规则将每个字符都转换为小写。</summary>
+      <param name="source">源跨度。</param>
+      <param name="destination">包含转换后的字符的目标跨度。</param>
+      <param name="culture">一个对象，用于提供区域性特定的大小写规则。</param>
+      <exception cref="T:System.InvalidOperationException">源和目标缓冲区重叠。</exception>
+      <returns>写入目标跨度的字符数。 如果目标太小，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.ToLowerInvariant(System.ReadOnlySpan{System.Char},System.Span{System.Char})">
+      <summary>请将源跨度中的字符复制到目标中，并使用固定区域性的大小写规则将每个字符都转换为小写。</summary>
+      <param name="source">源跨度。</param>
+      <param name="destination">包含转换后的字符的目标跨度。</param>
+      <exception cref="T:System.InvalidOperationException">源和目标缓冲区重叠。</exception>
+      <returns>写入目标跨度的字符数。 如果目标太小，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.ToUpper(System.ReadOnlySpan{System.Char},System.Span{System.Char},System.Globalization.CultureInfo)">
+      <summary>请将源跨度中的字符复制到目标中，并使用指定区域性的大小写规则将每个字符都转换为大写。</summary>
+      <param name="source">源跨度。</param>
+      <param name="destination">包含转换后的字符的目标跨度。</param>
+      <param name="culture">一个对象，用于提供区域性特定的大小写规则。</param>
+      <exception cref="T:System.InvalidOperationException">源和目标缓冲区重叠。</exception>
+      <returns>写入目标跨度的字符数。 如果目标太小，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.ToUpperInvariant(System.ReadOnlySpan{System.Char},System.Span{System.Char})">
+      <summary>请将源跨度中的字符复制到目标中，并使用固定区域性的大小写规则将每个字符都转换为大写。</summary>
+      <param name="source">源跨度。</param>
+      <param name="destination">包含转换后的字符的目标跨度。</param>
+      <exception cref="T:System.InvalidOperationException">源和目标缓冲区重叠。</exception>
+      <returns>写入目标跨度的字符数。 如果目标太小，则返回 -1。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.Memory{System.Char})">
+      <summary>删除字符内存区域中的所有前导和尾随空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的字符内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.ReadOnlyMemory{System.Char})">
+      <summary>删除只读字符内存区域中的所有前导和尾随空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的字符内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.ReadOnlySpan{System.Char})">
+      <summary>删除只读字符跨度中的所有前导和尾随空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>删除只读字符跨度中的指定字符的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChar">要查找和删除的指定字符。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>从只读字符跨度中删除在只读跨度中指定的一组字符的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChars">包含要删除的字符集的跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim(System.Span{System.Char})">
+      <summary>删除字符跨度中的所有前导和尾随空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.Memory{``0},``0)">
+      <summary>删除内存区域中的指定元素的所有前导和尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.Memory{``0},System.ReadOnlySpan{``0})">
+      <summary>从内存区域中删除在只读跨度中指定的一组元素的所有前导和尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.ReadOnlyMemory{``0},``0)">
+      <summary>删除只读内存区域中的指定元素的所有前导和尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.ReadOnlyMemory{``0},System.ReadOnlySpan{``0})">
+      <summary>从只读内存区域中删除在只读跨度中指定的一组元素的所有前导和尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.ReadOnlySpan{``0},``0)">
+      <summary>删除只读跨度中的指定元素的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>从只读跨度中删除在只读跨度中指定的一组元素的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.Span{``0},``0)">
+      <summary>删除跨度中的指定元素的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.Trim``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>从跨度中删除在只读跨度中指定的一组元素的所有前导和尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.Memory{System.Char})">
+      <summary>删除字符内存区域中的所有前导空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的字符内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.ReadOnlyMemory{System.Char})">
+      <summary>删除只读字符内存区域中的所有前导空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.ReadOnlySpan{System.Char})">
+      <summary>删除只读字符跨度中的所有前导空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>删除只读跨度中的指定字符的所有尾随出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChar">要查找和删除的指定字符。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>从只读字符跨度中删除在只读跨度中指定的一组字符的所有尾随出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChars">包含要删除的字符集的跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd(System.Span{System.Char})">
+      <summary>删除字符跨度中的所有前导空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.Memory{``0},``0)">
+      <summary>删除字符内存区域中的指定元素的所有尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.Memory{``0},System.ReadOnlySpan{``0})">
+      <summary>从内存区域中删除在只读跨度中指定的一组元素的所有尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.ReadOnlyMemory{``0},``0)">
+      <summary>删除只读内存区域中的指定元素的所有尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.ReadOnlyMemory{``0},System.ReadOnlySpan{``0})">
+      <summary>从只读内存区域中删除在只读跨度中指定的一组元素的所有尾随出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.ReadOnlySpan{``0},``0)">
+      <summary>删除只读跨度中的指定元素的所有尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>从只读跨度中删除在只读跨度中指定的一组元素的所有尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.Span{``0},``0)">
+      <summary>删除跨度中的指定元素的所有尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimEnd``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>从跨度中删除在只读跨度中指定的一组元素的所有尾随出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.Memory{System.Char})">
+      <summary>删除内存区域中的所有前导空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的字符内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.ReadOnlyMemory{System.Char})">
+      <summary>删除只读内存区域中的所有前导空格字符。</summary>
+      <param name="memory">从中删除字符的源内存。</param>
+      <returns>剪裁后的只读字符内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.ReadOnlySpan{System.Char})">
+      <summary>删除只读跨度中的所有前导空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.ReadOnlySpan{System.Char},System.Char)">
+      <summary>删除跨度中的指定字符的所有前导出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChar">要查找和删除的指定字符。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>从跨度中删除在只读跨度中指定的一组字符的所有前导出现次数。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <param name="trimChars">包含要删除的字符集的跨度。</param>
+      <returns>剪裁后的只读字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart(System.Span{System.Char})">
+      <summary>删除跨度中的所有前导空格字符。</summary>
+      <param name="span">从中删除字符的源跨度。</param>
+      <returns>剪裁后的字符范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.Memory{``0},``0)">
+      <summary>删除内存区域中的指定元素的所有前导出现次数。</summary>
+      <param name="memory">从中删除元素的源内存区域。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.Memory{``0},System.ReadOnlySpan{``0})">
+      <summary>从内存区域中删除在只读跨度中指定的一组元素的所有前导出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.ReadOnlyMemory{``0},``0)">
+      <summary>删除内存区域中的指定元素的所有前导出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.ReadOnlyMemory{``0},System.ReadOnlySpan{``0})">
+      <summary>从内存区域中删除在只读跨度中指定的一组元素的所有前导出现次数。</summary>
+      <param name="memory">从中删除元素的源内存。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读内存区域中的元素的类型。</typeparam>
+      <returns>剪裁后的只读内存区域。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.ReadOnlySpan{``0},``0)">
+      <summary>删除跨度中的指定元素的所有前导出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+      <summary>从跨度中删除在只读跨度中指定的一组元素的所有前导出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">只读范围中元素的类型。</typeparam>
+      <returns>剪裁后的只读范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.Span{``0},``0)">
+      <summary>删除跨度中的指定元素的所有前导出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElement">要查找和删除的指定元素。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="M:System.MemoryExtensions.TrimStart``1(System.Span{``0},System.ReadOnlySpan{``0})">
+      <summary>从跨度中删除在只读跨度中指定的一组元素的所有前导出现次数。</summary>
+      <param name="span">从中删除元素的源跨度。</param>
+      <param name="trimElements">包含要删除的元素集的跨度。</param>
+      <typeparam name="T">范围中元素的类型。</typeparam>
+      <returns>剪裁后的范围。</returns>
+    </member>
+    <member name="T:System.Runtime.InteropServices.MemoryMarshal">
+      <summary>提供与 <see cref="T:System.Memory`1" />、<see cref="T:System.ReadOnlyMemory`1" />、<see cref="T:System.Span`1" /> 和 <see cref="T:System.ReadOnlySpan`1" /> 进行交互操作的方法。</summary>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.AsBytes``1(System.ReadOnlySpan{``0})">
+      <summary>将一种基元类型 <paramref name="T" /> 的 <see cref="T:System.ReadOnlySpan`1" /> 强制转换为 <see langword="ReadOnlySpan&lt;Byte&gt;" />。</summary>
+      <param name="span">要转换的源切片。</param>
+      <typeparam name="T">只读范围内的项的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <exception cref="T:System.OverflowException">新 <see cref="T:System.ReadOnlySpan`1" /> 的 <see cref="P:System.ReadOnlySpan`1.Length" /> 属性将超过 <see cref="F:System.Int32.MaxValue" /></exception>
+      <returns>类型 <see cref="T:System.Byte" /> 的只读范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.AsBytes``1(System.Span{``0})">
+      <summary>将一种基元类型 <paramref name="T" /> 的 <see cref="T:System.Span`1" /> 强制转换为 <see langword="Span&lt;Byte&gt;" />。</summary>
+      <param name="span">要转换的源切片。</param>
+      <typeparam name="T">范围中的项的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <exception cref="T:System.OverflowException">新 <see cref="T:System.Span`1" /> 的 <see cref="P:System.Span`1.Length" /> 属性将超过 <see cref="F:System.Int32.MaxValue" /></exception>
+      <returns>类型 <see cref="T:System.Byte" /> 的范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.AsMemory``1(System.ReadOnlyMemory{``0})">
+      <summary>通过 <see cref="T:System.Memory`1" /> 创建 <see cref="T:System.ReadOnlyMemory`1" /> 实例。</summary>
+      <param name="memory">只读内存缓冲区。</param>
+      <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
+      <returns>表示与 <see cref="T:System.ReadOnlyMemory`1" /> 相同的内存的内存块。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.AsRef``1(System.ReadOnlySpan{System.Byte})">
+      <summary>将字节的只读跨度重新解释为对 <paramref name="T" /> 类型结构的只读引用。</summary>
+      <param name="span">要重新解释的只读跨度。</param>
+      <typeparam name="T">返回的引用的类型。</typeparam>
+      <returns>对 <paramref name="T" /> 类型结构的只读引用。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.AsRef``1(System.Span{System.Byte})">
+      <summary>将字节跨度重新解释为对 <paramref name="T" /> 类型结构的引用。</summary>
+      <param name="span">要重新解释的跨度。</param>
+      <typeparam name="T">返回的引用的类型。</typeparam>
+      <returns>对 <paramref name="T" /> 类型结构的引用。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.Cast``2(System.ReadOnlySpan{``0})">
+      <summary>将一种基元类型的只读范围强制转换为另一种基元类型的只读范围。</summary>
+      <param name="span">要转换的源切片。</param>
+      <typeparam name="TFrom">源范围的类型。</typeparam>
+      <typeparam name="TTo">目标范围的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="TFrom" /> 或 <paramref name="TTo" /> 包含引用或指针。</exception>
+      <returns>转换后的只读范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.Cast``2(System.Span{``0})">
+      <summary>将一种基元类型的范围强制转换为另一种基元类型的范围。</summary>
+      <param name="span">要转换的源切片。</param>
+      <typeparam name="TFrom">源范围的类型。</typeparam>
+      <typeparam name="TTo">目标范围的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="TFrom" /> 或 <paramref name="TTo" /> 包含引用或指针。</exception>
+      <returns>转换后的范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.CreateFromPinnedArray``1(``0[],System.Int32,System.Int32)">
+      <summary>从 <paramref name="start" /> 索引开始并包含 <paramref name="length" /> 项，在预固定目标数组的一部分之上创建新的内存缓冲区。</summary>
+      <param name="array">预固定的源数组。</param>
+      <param name="start">开始内存块的 <paramref name="array" /> 的索引。</param>
+      <param name="length">要包括在内存块中的项数。</param>
+      <typeparam name="T">数组的类型。</typeparam>
+      <exception cref="T:System.ArrayTypeMismatchException">
+        <paramref name="array" /> 是协变，<paramref name="array" /> 的类型并不是 <paramref name="T[]" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="start" /> 或结束索引不在 0 到 <see cref="P:System.Array.Length" /> 的范围内。</exception>
+      <returns>
+        <paramref name="array" /> 的指定元素之上的内存块。 如果 <paramref name="array" /> 是 <see langword="null" />，或者如果 <paramref name="start" /> 和 <paramref name="length" /> 为 0，则此方法将返回 <see cref="P:System.Memory`1.Length" /> 为零的 <see cref="T:System.Memory`1" /> 实例。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.CreateReadOnlySpan``1(``0@,System.Int32)">
+      <summary>在常规托管对象的一个部分上创建新的只读范围。</summary>
+      <param name="reference">对数据的引用。</param>
+      <param name="length">
+        <paramref name="reference" /> 包含的 <paramref name="T" /> 元素数。</param>
+      <typeparam name="T">数据项的类型。</typeparam>
+      <returns>只读范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.CreateSpan``1(``0@,System.Int32)">
+      <summary>在常规托管对象的一个部分上创建新的范围。</summary>
+      <param name="reference">对数据的引用。</param>
+      <param name="length">
+        <paramref name="reference" /> 包含的 <paramref name="T" /> 元素数。</param>
+      <typeparam name="T">数据项的类型。</typeparam>
+      <returns>范围。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.GetArrayDataReference``1(``0[])">
+      <summary>返回对 <paramref name="array" /> 中第 0 个元素的引用。 如果数组为空，则返回对要存储第 0 个元素的位置的引用。 此类引用可用于固定，但绝不能取消引用。</summary>
+      <param name="array">要分析的数组。</param>
+      <typeparam name="T">数组元素的类型。</typeparam>
+      <exception cref="T:System.NullReferenceException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <returns>对 <paramref name="array" /> 中第 0 个元素的引用</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.GetReference``1(System.ReadOnlySpan{``0})">
+      <summary>返回对索引为 0 处只读范围元素的引用。</summary>
+      <param name="span">从中检索引用的只读范围。</param>
+      <typeparam name="T">范围中的项的类型。</typeparam>
+      <returns>对索引为 0 处元素的引用。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.GetReference``1(System.Span{``0})">
+      <summary>返回对索引为 0 处范围元素的引用。</summary>
+      <param name="span">从中检索引用的范围。</param>
+      <typeparam name="T">范围中的项的类型。</typeparam>
+      <returns>对索引为 0 处元素的引用。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.Read``1(System.ReadOnlySpan{System.Byte})">
+      <summary>读取类型的结构 <param name="T" /> 字节的只读范围之外。</summary>
+      <param name="source">只读范围。</param>
+      <typeparam name="T">要从只读范围中检索的项的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="source" /> 小于 <paramref name="T" />。</exception>
+      <returns>从只读范围中检索的结构。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.ToEnumerable``1(System.ReadOnlyMemory{``0})">
+      <summary>创建给定的只读内存缓冲区的 <see cref="T:System.Collections.Generic.IEnumerable`1" /> 视图。</summary>
+      <param name="memory">只读内存缓冲区。</param>
+      <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
+      <returns>
+        <paramref name="memory" /> 的可枚举视图。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryGetArray``1(System.ReadOnlyMemory{``0},System.ArraySegment{``0}@)">
+      <summary>尝试从基础内存缓冲区获取数组段。 返回值指示操作是否成功。</summary>
+      <param name="memory">只读内存缓冲区。</param>
+      <param name="segment">此方法返回时，将包含从基础只读内存缓冲区中检索的数组段。 如果此方法失败，则将返回默认数组段。</param>
+      <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
+      <returns>如果方法调用成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager``2(System.ReadOnlyMemory{``0},``1@)">
+      <summary>尝试从基础只读内存缓冲区中检索 <see cref="T:System.Buffers.MemoryManager`1" />。</summary>
+      <param name="memory">为其获取内存管理器的只读内存缓冲区。</param>
+      <param name="manager">此方法返回时，为 <paramref name="memory" /> 管理器。</param>
+      <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
+      <typeparam name="TManager">要检索的的类型 <see cref="T:System.Buffers.MemoryManager`1" /> 。</typeparam>
+      <returns>如果此方法检索到内存管理器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryGetMemoryManager``2(System.ReadOnlyMemory{``0},``1@,System.Int32@,System.Int32@)">
+      <summary>尝试从基础只读内存缓冲区中检索 <see cref="T:System.Buffers.MemoryManager`1" />、起始索引和长度。</summary>
+      <param name="memory">为其获取内存管理器的只读内存缓冲区。</param>
+      <param name="manager">此方法返回时，为 <paramref name="memory" /> 管理器。</param>
+      <param name="start">此方法返回时，距离 <paramref name="memory" /> 表示的 <paramref name="manager" /> 的开头的偏移量。</param>
+      <param name="length">此方法返回时，<paramref name="memory" /> 表示的 <paramref name="manager" /> 的长度。</param>
+      <typeparam name="T">只读内存缓冲区中的项的类型。</typeparam>
+      <typeparam name="TManager">要检索的的类型 <see cref="T:System.Buffers.MemoryManager`1" /> 。</typeparam>
+      <returns>如果此方法成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryGetString(System.ReadOnlyMemory{System.Char},System.String@,System.Int32@,System.Int32@)">
+      <summary>尝试从 <see langword="System.ReadOnlyMemory&lt;Char&gt;" /> 中获取基础字符串。</summary>
+      <param name="memory">包含字符块的只读内存。</param>
+      <param name="text">此方法返回时，字符串将包含在内存缓冲区中。</param>
+      <param name="start">
+        <paramref name="text" /> 中的起始位置。</param>
+      <param name="length">
+        <paramref name="text" /> 中的字符数。</param>
+      <returns>如果此方法成功检索到基础字符串，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryRead``1(System.ReadOnlySpan{System.Byte},``0@)">
+      <summary>尝试从字节的只读范围中读取 <paramref name="T" /> 类型的结构。</summary>
+      <param name="source">字节的只读范围。</param>
+      <param name="value">此方法返回时，为 <paramref name="T" /> 的实例。</param>
+      <typeparam name="T">要检索的结构的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <returns>如果此方法成功检索到结构的实例，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.TryWrite``1(System.Span{System.Byte},``0@)">
+      <summary>尝试将类型为 <paramref name="T" /> 的结构写入到字节的跨度中。</summary>
+      <param name="destination">要包含结构的字节范围。</param>
+      <param name="value">要写入到范围的结构。</param>
+      <typeparam name="T">结构的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <returns>如果写入操作成功，则为 <see langword="true" />；否则为 <see langword="false" />。 如果范围太小无法包含 <paramref name="T" />，则此方法返回 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.MemoryMarshal.Write``1(System.Span{System.Byte},``0@)">
+      <summary>将 <paramref name="T" /> 类型的结构写入字节范围内。</summary>
+      <param name="destination">要包含结构的字节范围。</param>
+      <param name="value">要写入到范围的结构。</param>
+      <typeparam name="T">结构的类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="T" /> 包含引用或指针。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="destination" /> 太小，无法包含 <paramref name="value" />。</exception>
+    </member>
+    <member name="T:System.Runtime.InteropServices.SequenceMarshal">
+      <summary>提供与 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 进行互操作的方法集合。</summary>
+    </member>
+    <member name="M:System.Runtime.InteropServices.SequenceMarshal.TryGetArray``1(System.Buffers.ReadOnlySequence{``0},System.ArraySegment{``0}@)">
+      <summary>获取基础只读序列中的数组段。</summary>
+      <param name="sequence">要从中检索数组段的只读序列。</param>
+      <param name="segment">返回的数组段。</param>
+      <typeparam name="T">只读序列的类型。</typeparam>
+      <returns>如果可以检索数组段，则为 <see langword="true" />；否则为 <see langword="false" /> 且返回默认数组段。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.SequenceMarshal.TryGetReadOnlyMemory``1(System.Buffers.ReadOnlySequence{``0},System.ReadOnlyMemory{``0}@)">
+      <summary>尝试检索指定的只读序列中的只读内存。</summary>
+      <param name="sequence">要从中检索内存的只读序列。</param>
+      <param name="memory">返回的类型为 T 的只读内存。</param>
+      <typeparam name="T">只读序列的类型。</typeparam>
+      <returns>如果可以检索只读内存，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.SequenceMarshal.TryGetReadOnlySequenceSegment``1(System.Buffers.ReadOnlySequence{``0},System.Buffers.ReadOnlySequenceSegment{``0}@,System.Int32@,System.Buffers.ReadOnlySequenceSegment{``0}@,System.Int32@)">
+      <summary>尝试检索指定的只读序列中的只读序列段。</summary>
+      <param name="sequence">从中检索只读序列段的只读序列。</param>
+      <param name="startSegment">只读序列段的开头。</param>
+      <param name="startIndex">初始位置。</param>
+      <param name="endSegment">只读序列段的结尾。</param>
+      <param name="endIndex">最终位置。</param>
+      <typeparam name="T">只读序列的类型。</typeparam>
+      <returns>如果可以检索只读序列段，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.SequenceMarshal.TryRead``1(System.Buffers.SequenceReader{System.Byte}@,``0@)">
+      <summary>尝试读取缓冲区外的指定类型。 将此方法与任意结构一起使用不太安全 - 请参阅注释以获取详细信息。</summary>
+      <param name="reader">对序列读取器的引用。</param>
+      <param name="value">如果读取成功，则为返回值。 如果（由于空间不足）失败，<paramref name="value" /> 将为 <see langword="default" />。</param>
+      <typeparam name="T">值的类型。</typeparam>
+      <returns>如果读取尝试成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.SequencePosition">
+      <summary>表示非连续内存集中的一个位置。 此类型的属性只能由创建它的类型来解释。</summary>
+    </member>
+    <member name="M:System.SequencePosition.#ctor(System.Object,System.Int32)">
+      <summary>初始化 <see cref="T:System.SequencePosition" /> 结构的新实例。</summary>
+      <param name="object">一个非连续的内存集。</param>
+      <param name="integer">
+        <paramref name="object" /> 中的位置。</param>
+    </member>
+    <member name="M:System.SequencePosition.Equals(System.Object)">
+      <summary>返回一个值，该值指示当前实例是否与另一个对象相等。</summary>
+      <param name="obj">要与当前实例进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 为 <see cref="T:System.SequencePosition" /> 类型，并且等于当前的实例，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.SequencePosition.Equals(System.SequencePosition)">
+      <summary>指示当前实例是否与另一个 <see cref="T:System.SequencePosition" /> 相等。</summary>
+      <param name="other">要与当前实例进行比较的序列位置。</param>
+      <returns>如果这两个实例相等，则为 <see langword="true" /> ；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.SequencePosition.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>此实例的哈希代码。</returns>
+    </member>
+    <member name="M:System.SequencePosition.GetInteger">
+      <summary>返回此 <see cref="T:System.SequencePosition" /> 的整数部分。</summary>
+      <returns>此序列位置的整数部分。</returns>
+    </member>
+    <member name="M:System.SequencePosition.GetObject">
+      <summary>返回此 <see cref="T:System.SequencePosition" /> 的对象部分。</summary>
+      <returns>此序列位置的对象部分。</returns>
+    </member>
+    <member name="T:System.Text.EncodingExtensions">
+      <summary>为 <see cref="T:System.Text.Encoding" />、<see cref="T:System.Text.Encoder" /> 和 <see cref="T:System.Text.Decoder" /> 等编码类型提供扩展方法。</summary>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.Convert(System.Text.Decoder,System.Buffers.ReadOnlySequence{System.Byte}@,System.Buffers.IBufferWriter{System.Char},System.Boolean,System.Int64@,System.Boolean@)">
+      <summary>将 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 转换为 UTF-16 编码字符，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="decoder">解码器实例，可将字节转换为 <see langword="char" /> 值。</param>
+      <param name="bytes">要解码的字节序列。</param>
+      <param name="writer">已解码字符将写入的缓冲区。</param>
+      <param name="flush">如果没有更多的数据要进行转换，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="charsUsed">此方法返回时，包含写入到 <paramref name="writer" /> 的字符计数。</param>
+      <param name="completed">此方法返回时，如果 <paramref name="decoder" /> 不包含部分内部状态，则包含 <see langword="true" />；否则包含 <see langword="false" />。
+如果 <paramref name="flush" /> 为 <see langword="true" />，则在该方法返回时，将始终设置为 <see langword="true" />。</param>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法解码的数据，<paramref name="decoder" /> 配置为在显示此类数据时引发。</exception>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.Convert(System.Text.Decoder,System.ReadOnlySpan{System.Byte},System.Buffers.IBufferWriter{System.Char},System.Boolean,System.Int64@,System.Boolean@)">
+      <summary>使用 <paramref name="decoder" /> 将 <see cref="T:System.ReadOnlySpan`1" /> 转换为字符，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="decoder">解码器实例，可将字节转换为 <see langword="char" /> 值。</param>
+      <param name="bytes">要解码的字节序列。</param>
+      <param name="writer">已解码字符将写入的缓冲区。</param>
+      <param name="flush">如果没有更多的数据要进行转换，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="charsUsed">此方法返回时，包含写入到 <paramref name="writer" /> 的 <see langword="char" /> 计数。</param>
+      <param name="completed">此方法返回时，如果 <paramref name="decoder" /> 不包含部分内部状态，则包含 <see langword="true" />；否则包含 <see langword="false" />。
+如果 <paramref name="flush" /> 为 <see langword="true" />，则在该方法返回时，将始终设置为 <see langword="true" />。</param>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法编码的数据，<paramref name="decoder" /> 配置为在显示此类数据时引发。</exception>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.Convert(System.Text.Encoder,System.Buffers.ReadOnlySequence{System.Char}@,System.Buffers.IBufferWriter{System.Byte},System.Boolean,System.Int64@,System.Boolean@)">
+      <summary>将 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 转换为已编码的字节，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoder">编码器实例，可将 <see langword="char" /> 值转换为字节。</param>
+      <param name="chars">要编码的字符序列。</param>
+      <param name="writer">已编码字节将写入的缓冲区。</param>
+      <param name="flush">如果没有更多的数据要进行转换，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="bytesUsed">此方法返回时，包含写入到 <paramref name="writer" /> 的 <see langword="byte" /> 计数。</param>
+      <param name="completed">此方法返回时，如果在转换 <paramref name="bytesUsed" /> 之前全部输入，则包含 <see langword="true" />；否则包含 <see langword="false" />。 如果 <paramref name="flush" /> 为 <see langword="true" />，则在该方法返回时，将始终设置为 <see langword="true" />。</param>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoder" /> 配置为在显示此类数据时引发。</exception>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.Convert(System.Text.Encoder,System.ReadOnlySpan{System.Char},System.Buffers.IBufferWriter{System.Byte},System.Boolean,System.Int64@,System.Boolean@)">
+      <summary>使用 <paramref name="encoder" /> 将 <see cref="T:System.ReadOnlySpan`1" /> 转换为字节，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoder">编码器实例，可将 <see langword="char" /> 值转换为字节。</param>
+      <param name="chars">要编码的字符序列。</param>
+      <param name="writer">已编码字节将写入的缓冲区。</param>
+      <param name="flush">如果没有更多的数据要进行转换，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="bytesUsed">此方法返回时，包含写入到 <paramref name="writer" /> 的 <see langword="byte" /> 计数。</param>
+      <param name="completed">此方法返回时，如果 <paramref name="encoder" /> 不包含部分内部状态，则包含 <see langword="true" />；否则包含 <see langword="false" />。
+如果 <paramref name="flush" /> 为 <see langword="true" />，则在该方法返回时，将始终设置为 <see langword="true" />。</param>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoder" /> 配置为在显示此类数据时引发。</exception>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetBytes(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Char}@)">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 编码到 <see cref="T:System.Byte" /> 数组中。</summary>
+      <param name="encoding">表示应如何对 <paramref name="chars" /> 中的数据进行编码的编码。</param>
+      <param name="chars">要编码为字节的序列。</param>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>一个表示 <paramref name="chars" /> 编码内容的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetBytes(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Char}@,System.Buffers.IBufferWriter{System.Byte})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 解码为 <see langword="byte" />，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoding">表示应如何对 <paramref name="chars" /> 中的数据进行编码的编码。</param>
+      <param name="chars">应对其内容进行编码的 <see cref="T:System.Buffers.ReadOnlySequence`1" />。</param>
+      <param name="writer">已编码字节将写入的缓冲区。</param>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入到 <paramref name="writer" /> 的字节数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetBytes(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Char}@,System.Span{System.Byte})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 编码为 <see langword="byte" />，并将结果输出到 <paramref name="bytes" />。</summary>
+      <param name="encoding">表示应如何对 <paramref name="chars" /> 中的数据进行编码的编码。</param>
+      <param name="chars">要编码为字节的序列。</param>
+      <param name="bytes">已编码字节将写入的目标缓冲区。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="bytes" /> 不够大，无法包含编码形式的 <paramref name="chars" />。</exception>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入到 <paramref name="bytes" /> 的字节数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetBytes(System.Text.Encoding,System.ReadOnlySpan{System.Char},System.Buffers.IBufferWriter{System.Byte})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.ReadOnlySpan`1" /> 编码为 <see langword="byte" />，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoding">表示应如何对 <paramref name="chars" /> 中的数据进行编码的编码。</param>
+      <param name="chars">要编码为字节的序列。</param>
+      <param name="writer">已编码字节将写入的缓冲区。</param>
+      <exception cref="T:System.Text.EncoderFallbackException">
+        <paramref name="chars" /> 包含无法编码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入到 <paramref name="writer" /> 的字节数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetChars(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Byte}@,System.Buffers.IBufferWriter{System.Char})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 解码为 <see langword="char" />，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoding">表示应如何对 <paramref name="bytes" /> 中的数据进行解码的编码。</param>
+      <param name="bytes">应对其字节进行解码的序列。</param>
+      <param name="writer">已解码字符将写入的缓冲区。</param>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法解码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入 <paramref name="writer" /> 的字符数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetChars(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Byte}@,System.Span{System.Char})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 解码为 <see langword="char" />，并将结果输出到 <paramref name="chars" />。</summary>
+      <param name="encoding">表示如何对 <paramref name="bytes" /> 中的数据进行编码的编码。</param>
+      <param name="bytes">要解码为字符的序列。</param>
+      <param name="chars">已解码字符将写入到的目标缓冲区。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="chars" /> 不够大，无法包含编码形式的 <paramref name="bytes" />。</exception>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法解码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入 <paramref name="chars" /> 的字符数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetChars(System.Text.Encoding,System.ReadOnlySpan{System.Byte},System.Buffers.IBufferWriter{System.Char})">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.ReadOnlySpan`1" /> 解码为 <see langword="char" />，并将结果写入 <paramref name="writer" />。</summary>
+      <param name="encoding">表示应如何对 <paramref name="bytes" /> 中的数据进行解码的编码。</param>
+      <param name="bytes">要解码的字节范围。</param>
+      <param name="writer">已解码字符将写入的缓冲区。</param>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法解码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>写入 <paramref name="writer" /> 的字符数。</returns>
+    </member>
+    <member name="M:System.Text.EncodingExtensions.GetString(System.Text.Encoding,System.Buffers.ReadOnlySequence{System.Byte}@)">
+      <summary>使用指定的 <see cref="T:System.Text.Encoding" /> 将指定的 <see cref="T:System.Buffers.ReadOnlySequence`1" /> 解码到 <see cref="T:System.String" />。</summary>
+      <param name="encoding">表示如何对 <paramref name="bytes" /> 中的数据进行编码的编码。</param>
+      <param name="bytes">要解码为字符的序列。</param>
+      <exception cref="T:System.Text.DecoderFallbackException">
+        <paramref name="bytes" /> 包含无法解码的数据，<paramref name="encoding" /> 配置为在显示此类数据时引发。</exception>
+      <returns>一个 <see cref="T:System.String" />，它表示 <paramref name="bytes" /> 的解码内容。</returns>
+    </member>
+    <member name="T:System.Text.SpanRuneEnumerator">
+      <summary>为由包含 UTF-16 文本的范围表示的 <see cref="T:System.Text.Rune" /> 值提供枚举器。</summary>
+    </member>
+    <member name="M:System.Text.SpanRuneEnumerator.GetEnumerator">
+      <summary>返回当前枚举器实例。</summary>
+      <returns>当前枚举器实例。</returns>
+    </member>
+    <member name="M:System.Text.SpanRuneEnumerator.MoveNext">
+      <summary>将枚举器推进到范围的下一个 <see cref="T:System.Text.Rune" />。</summary>
+      <returns>如果枚举器成功推进到下一项，则为 <see langword="true" />；如果已到达范围的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Text.SpanRuneEnumerator.Current">
+      <summary>获取枚举数当前位置的 <see cref="T:System.Text.Rune" />。</summary>
+      <returns>
+        <see cref="T:System.Text.Rune" />位于枚举数当前位置的。</returns>
+    </member>
+  </members>
+</doc>

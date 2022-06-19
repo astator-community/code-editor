@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Resources.Writer</name>
+  </assembly>
+  <members>
+    <member name="T:System.Resources.IResourceWriter">
+      <summary>提供将资源写到输出文件或输出流的基本功能。</summary>
+    </member>
+    <member name="M:System.Resources.IResourceWriter.AddResource(System.String,System.Byte[])">
+      <summary>将 8 位无符号整数数组作为命名资源添加到要写入的资源列表中。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">8 位无符号整数数组形式的资源值。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Resources.IResourceWriter.AddResource(System.String,System.Object)">
+      <summary>将 <see cref="T:System.Object" /> 类型的已命名资源添加到要写入的资源列表中。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">资源的值。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Resources.IResourceWriter.AddResource(System.String,System.String)">
+      <summary>将 <see cref="T:System.String" /> 类型的已命名资源添加到要写入的资源列表中。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">资源的值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Resources.IResourceWriter.Close">
+      <summary>关闭基础资源文件或流，并确保所有数据已写入该文件。</summary>
+    </member>
+    <member name="M:System.Resources.IResourceWriter.Generate">
+      <summary>将所有由 <see cref="M:System.Resources.IResourceWriter.AddResource(System.String,System.String)" /> 方法添加的资源写入输出文件或输出流中。</summary>
+    </member>
+    <member name="T:System.Resources.ResourceWriter">
+      <summary>以系统默认的格式将资源写入输出文件或输出流。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.#ctor(System.IO.Stream)">
+      <summary>初始化 <see cref="T:System.Resources.ResourceWriter" /> 类的新实例，它将资源写入到提供的流中。</summary>
+      <param name="stream">输出流。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="stream" /> 参数不可写。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Resources.ResourceWriter" /> 类的新实例，它将资源写入到指定文件中。</summary>
+      <param name="fileName">输出文件名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResource(System.String,System.Byte[])">
+      <summary>将指定为字节数组的已命名资源添加到要写入的资源列表中。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">8 位无符号整数数组形式的资源值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> （或仅大小写不同的名称）已添加到此 <see cref="T:System.Resources.ResourceWriter" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">该 <see cref="T:System.Resources.ResourceWriter" /> 已关闭，并且哈希表不可用。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResource(System.String,System.IO.Stream)">
+      <summary>将指定的命名资源以流的形式添加到要写入的资源列表中。</summary>
+      <param name="name">要添加的资源的名称。</param>
+      <param name="value">要添加的资源的值。 该资源必须支持 <see cref="P:System.IO.Stream.Length" /> 属性。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> （或仅大小写不同的名称）已添加到此 <see cref="T:System.Resources.ResourceWriter" />。
+
+- 或 -
+
+流不支持 <see cref="P:System.IO.Stream.Length" /> 属性。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 或 <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Resources.ResourceWriter" /> 已关闭。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResource(System.String,System.IO.Stream,System.Boolean)">
+      <summary>将指定的命名资源以流的形式添加到要写入的资源列表中，并指定是否应在调用 <see cref="M:System.Resources.ResourceWriter.Generate" /> 方法后关闭该流。</summary>
+      <param name="name">要添加的资源的名称。</param>
+      <param name="value">要添加的资源的值。 该资源必须支持 <see cref="P:System.IO.Stream.Length" /> 属性。</param>
+      <param name="closeAfterWrite">如果在调用 <see cref="M:System.Resources.ResourceWriter.Generate" /> 方法后关闭该流，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> （或仅大小写不同的名称）已添加到此 <see cref="T:System.Resources.ResourceWriter" />。
+
+- 或 -
+
+流不支持 <see cref="P:System.IO.Stream.Length" /> 属性。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 或 <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Resources.ResourceWriter" /> 已关闭。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResource(System.String,System.Object)">
+      <summary>将指定为对象的已命名资源添加到要写入的资源列表中。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">资源的值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> （或仅大小写不同的名称）已添加到此 <see cref="T:System.Resources.ResourceWriter" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">该 <see cref="T:System.Resources.ResourceWriter" /> 已关闭，并且哈希表不可用。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResource(System.String,System.String)">
+      <summary>向要写入的资源的列表中添加字符串资源。</summary>
+      <param name="name">资源的名称。</param>
+      <param name="value">资源的值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" />（或仅大小写不同的名称）已被添加到该 ResourceWriter 中。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">该 <see cref="T:System.Resources.ResourceWriter" /> 已关闭，并且哈希表不可用。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.AddResourceData(System.String,System.String,System.Byte[])">
+      <summary>将数据单元作为资源添加到要写入的资源的列表。</summary>
+      <param name="name">标识包含所添加数据的资源的名称。</param>
+      <param name="typeName">添加的数据的类型名称。</param>
+      <param name="serializedData">一个字节数组，该数组包含添加的数据的二进制表示形式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" />、<paramref name="typeName" /> 或 <paramref name="serializedData" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" />（或仅大小写不同的名称）已添加到此 <see cref="T:System.Resources.ResourceWriter" /> 对象。</exception>
+      <exception cref="T:System.InvalidOperationException">未初始化当前的 <see cref="T:System.Resources.ResourceWriter" /> 对象。 原因可能是 <see cref="T:System.Resources.ResourceWriter" /> 对象已关闭。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.Close">
+      <summary>将资源保存到输出流，然后关闭输出流。</summary>
+      <exception cref="T:System.IO.IOException">发生了 I/O 错误。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">对象序列化期间出现错误。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.Dispose">
+      <summary>允许用户关闭资源文件或流，从而显式地释放资源。</summary>
+      <exception cref="T:System.IO.IOException">发生了 I/O 错误。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">对象序列化期间出现错误。</exception>
+    </member>
+    <member name="M:System.Resources.ResourceWriter.Generate">
+      <summary>将所有资源以系统默认格式保存到输出流。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">对象序列化期间出现错误。</exception>
+      <exception cref="T:System.InvalidOperationException">该 <see cref="T:System.Resources.ResourceWriter" /> 已关闭，并且哈希表不可用。</exception>
+    </member>
+    <member name="P:System.Resources.ResourceWriter.TypeNameConverter">
+      <summary>获取或设置一个委托，通过该委托，可以使用限定的程序集名称以 .NET Framework 4 之前的 .NET Framework 目标版本编写资源程序集。</summary>
+      <returns>由委托封装的类型。</returns>
+    </member>
+  </members>
+</doc>

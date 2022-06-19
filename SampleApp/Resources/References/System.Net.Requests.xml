@@ -1,0 +1,2016 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.Requests</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.AuthenticationManager">
+      <summary>管理客户端身份验证过程中调用的身份验证模块。</summary>
+    </member>
+    <member name="M:System.Net.AuthenticationManager.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)">
+      <summary>调用每个已注册的身份验证模块以查找第一个可响应身份验证请求的模块。</summary>
+      <param name="challenge">Internet 资源返回的质询。</param>
+      <param name="request">启动身份验证质询的 <see cref="T:System.Net.WebRequest" />。</param>
+      <param name="credentials">与此请求关联的 <see cref="T:System.Net.ICredentials" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="challenge" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="request" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="credentials" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Net.Authorization" /> 类的实例，包含授权尝试的结果。 如果没有身份验证模块响应质询，则此方法返回 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Net.AuthenticationManager.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)">
+      <summary>预身份验证请求。</summary>
+      <param name="request">对 Internet 资源的 <see cref="T:System.Net.WebRequest" />。</param>
+      <param name="credentials">与该请求相关联的 <see cref="T:System.Net.ICredentials" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="request" /> 为 <see langword="null" />。</exception>
+      <returns>如果可以对请求进行预身份验证，则为 <see cref="T:System.Net.Authorization" /> 类的实例，否则为 <see langword="null" />。 如果 <paramref name="credentials" /> 为 <see langword="null" />，则此方法返回 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)">
+      <summary>向身份验证管理器注册身份验证模块。</summary>
+      <param name="authenticationModule">要注册到该身份验证管理器的 <see cref="T:System.Net.IAuthenticationModule" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="authenticationModule" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.AuthenticationManager.Unregister(System.Net.IAuthenticationModule)">
+      <summary>将指定的身份验证模块从已注册的模块列表中移除。</summary>
+      <param name="authenticationModule">要从已注册模块列表中移除的 <see cref="T:System.Net.IAuthenticationModule" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="authenticationModule" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">指定的 <see cref="T:System.Net.IAuthenticationModule" /> 没有注册。</exception>
+    </member>
+    <member name="M:System.Net.AuthenticationManager.Unregister(System.String)">
+      <summary>将具有指定身份验证方案的身份验证模块从已注册模块列表中移除。</summary>
+      <param name="authenticationScheme">要移除的模块的身份验证方案。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="authenticationScheme" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此身份验证方案的模块没有注册。</exception>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.CredentialPolicy">
+      <summary>获取或设置凭据策略，该凭据策略将用于使用 <see cref="T:System.Net.HttpWebRequest" /> 类发出的资源请求。</summary>
+      <returns>一个实现 <see cref="T:System.Net.ICredentialPolicy" /> 接口的对象，该接口确定凭据是否随请求一起发送。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.CustomTargetNameDictionary">
+      <summary>获取包含服务主体名称 (SPN) 的字典，这些 SPN 用于在 Kerberos 身份验证期间为使用 <see cref="T:System.Net.WebRequest" /> 及其派生类发出的请求标识主机。</summary>
+      <returns>一个可写的 <see cref="T:System.Collections.Specialized.StringDictionary" />，它包含构成主机信息的键的 SPN 值。</returns>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.RegisteredModules">
+      <summary>获取注册到身份验证管理器中的身份验证模块的列表。</summary>
+      <returns>
+        <see cref="T:System.Collections.IEnumerator" />，它启用要被阅读的已注册的身份验证模块。</returns>
+    </member>
+    <member name="T:System.Net.Authorization">
+      <summary>包含 Internet 服务器的身份验证消息。</summary>
+    </member>
+    <member name="M:System.Net.Authorization.#ctor(System.String)">
+      <summary>用指定的授权消息创建 <see cref="T:System.Net.Authorization" /> 类的新实例。</summary>
+      <param name="token">服务器预期的已加密授权消息。</param>
+    </member>
+    <member name="M:System.Net.Authorization.#ctor(System.String,System.Boolean)">
+      <summary>用指定的授权消息和完成状态创建 <see cref="T:System.Net.Authorization" /> 类的新实例。</summary>
+      <param name="token">服务器预期的已加密授权消息。</param>
+      <param name="finished">授权尝试的完成状态。 如果授权尝试已完成，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Net.Authorization.#ctor(System.String,System.Boolean,System.String)">
+      <summary>用指定的授权消息、完成状态和连接组标识符创建 <see cref="T:System.Net.Authorization" /> 类的新实例。</summary>
+      <param name="token">服务器预期的已加密授权消息。</param>
+      <param name="finished">授权尝试的完成状态。 如果授权尝试已完成，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="connectionGroupId">可用来创建私有客户端/服务器连接的唯一标识符，这种连接只能绑定到此身份验证方案。</param>
+    </member>
+    <member name="P:System.Net.Authorization.Complete">
+      <summary>获取授权的完成状态。</summary>
+      <returns>如果身份验证过程已完成，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.Authorization.ConnectionGroupId">
+      <summary>获取用户特定连接的唯一标识符。</summary>
+      <returns>将连接与身份验证实体关联起来的唯一字符串。</returns>
+    </member>
+    <member name="P:System.Net.Authorization.Message">
+      <summary>获取为响应身份验证质询而返回给服务器的消息。</summary>
+      <returns>为响应身份验证质询而返回给服务器的消息。</returns>
+    </member>
+    <member name="P:System.Net.Authorization.MutuallyAuthenticated">
+      <summary>获取或设置一个 <see cref="T:System.Boolean" /> 值，该值指示是否发生了相互身份验证。</summary>
+      <returns>如果客户端和服务器均经过验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.Authorization.ProtectionRealm">
+      <summary>获取或设置可以用 <see cref="P:System.Net.Authorization.Message" /> 属性验证的统一资源标识符 (URI) 的前缀。</summary>
+      <returns>包含 URI 前缀的字符串数组。</returns>
+    </member>
+    <member name="T:System.Net.Cache.HttpCacheAgeControl">
+      <summary>指定时间值的含义，这些时间值控制使用 <see cref="T:System.Net.HttpWebRequest" /> 对象获取的资源的缓存行为。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.MaxAge">
+      <summary>在内容超出用该值指定的生存期之前，可以从缓存中取出内容。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMaxStale">
+      <summary>
+        <see cref="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge" /> 和 <see cref="P:System.Net.Cache.HttpRequestCachePolicy.MaxStale" />。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.MaxAgeAndMinFresh">
+      <summary>
+        <see cref="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge" /> 和 <see cref="P:System.Net.Cache.HttpRequestCachePolicy.MinFresh" />。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.MaxStale">
+      <summary>在内容过期后到用该值指定的时间结束之前，可以将内容从缓存中取出。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.MinFresh">
+      <summary>如果在过期前剩余的时间大于或等于用该值指定的时间，则可以将内容从缓存中取出。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpCacheAgeControl.None">
+      <summary>仅限内部使用。 如果您尝试使用此成员，则 Framework 将引发 <see cref="T:System.ArgumentException" />。</summary>
+    </member>
+    <member name="T:System.Net.Cache.HttpRequestCacheLevel">
+      <summary>为使用超文本传输协议 (HTTP) 获取的资源指定缓存行为。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.BypassCache">
+      <summary>使用服务器满足请求。 在客户端和服务器之间没有项从缓存中取出、添加到缓存中或从缓存中移除。 在客户端和服务器之间没有项从缓存中取出、添加到缓存中或从缓存中移除。 这是 .NET Framework 附带的计算机配置文件中指定的默认缓存行为。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.CacheIfAvailable">
+      <summary>如果资源可用，则从缓存满足资源请求；否则，将资源请求发送到服务器。 如果请求的项在客户端和服务器之间的任何缓存中可用，则可由中间缓存满足请求。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.CacheOnly">
+      <summary>使用本地缓存资源满足请求；不发送对不在缓存中的项的请求。 当指定此缓存策略级别时，如果项不在客户端缓存中，则引发 <see cref="T:System.Net.WebException" /> 异常。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.CacheOrNextCacheOnly">
+      <summary>从本地计算机的缓存或局域网上的远程缓存满足资源请求。 如果无法满足请求，则引发 <see cref="T:System.Net.WebException" /> 异常。 在 HTTP 缓存协议中，这是通过 <see langword="only-if-cached" /> 缓存控制指令实现的。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.Default">
+      <summary>通过使用资源的缓存副本或通过将资源请求发送到服务器来满足资源请求。 采取的操作取决于当前的缓存策略和缓存内容的生存期。 这是大多数应用程序应使用的缓存级别。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.NoCacheNoStore">
+      <summary>从不通过使用缓存中的资源来满足请求，也不缓存资源。 如果资源在本地缓存中，则会移除该资源。 此策略级别指示中间缓存应移除资源。 在 HTTP 缓存协议中，这是通过 no-cache 缓存控制指令实现的。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.Refresh">
+      <summary>通过使用服务器或本地缓存以外的缓存来满足请求。 在请求可由中间缓存满足之前，该缓存必须通过服务器重新验证其缓存条目。 在 HTTP 缓存协议中，这是通过 max-age = 0 缓存控制指令和 no-cache <see langword="Pragma" /> 标头实现的。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.Reload">
+      <summary>使用服务器满足请求。 响应可能保存在缓存中。 在 HTTP 缓存协议中，这是通过 no-cache 缓存控制指令和 no-cache <see langword="Pragma" /> 标头实现的。</summary>
+    </member>
+    <member name="F:System.Net.Cache.HttpRequestCacheLevel.Revalidate">
+      <summary>将缓存中的资源副本与服务器上的副本进行比较。 如果服务器上的副本较新，则用它来满足请求并替换缓存中的副本。 如果缓存中的副本与服务器副本相同，则使用缓存副本。 在 HTTP 缓存协议中，这是通过条件请求来实现的。</summary>
+    </member>
+    <member name="T:System.Net.Cache.HttpRequestCachePolicy">
+      <summary>为通过使用 <see cref="T:System.Net.HttpWebRequest" /> 对象获取的资源定义应用程序的缓存要求。</summary>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.DateTime)">
+      <summary>使用指定的缓存同步日期初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+      <param name="cacheSyncDate">一个 <see cref="T:System.DateTime" /> 对象，它指定必须重新验证缓存中存储的资源的时间。</param>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan)">
+      <summary>使用指定的生存期控件和时间值初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+      <param name="cacheAgeControl">以下 <see cref="T:System.Net.Cache.HttpCacheAgeControl" /> 枚举值之一：<see cref="F:System.Net.Cache.HttpCacheAgeControl.MaxAge" />、<see cref="F:System.Net.Cache.HttpCacheAgeControl.MaxStale" /> 或 <see cref="F:System.Net.Cache.HttpCacheAgeControl.MinFresh" />。</param>
+      <param name="ageOrFreshOrStale">指定时间量的 <see cref="T:System.TimeSpan" /> 值。</param>
+      <exception cref="T:System.ArgumentException">为 <paramref name="cacheAgeControl" /> 参数指定的值不能与此构造函数一起使用。</exception>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan)">
+      <summary>使用指定的最大生存期、生存期控制值和时间值初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+      <param name="cacheAgeControl">一个 <see cref="T:System.Net.Cache.HttpCacheAgeControl" /> 值。</param>
+      <param name="maxAge">指定资源最大生存期的 <see cref="T:System.TimeSpan" /> 值。</param>
+      <param name="freshOrStale">指定时间量的 <see cref="T:System.TimeSpan" /> 值。</param>
+      <exception cref="T:System.ArgumentException">为 <paramref name="cacheAgeControl" /> 参数指定的值无效。</exception>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpCacheAgeControl,System.TimeSpan,System.TimeSpan,System.DateTime)">
+      <summary>使用指定的最大生存期、生存期控制值、时间值和缓存同步日期初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+      <param name="cacheAgeControl">一个 <see cref="T:System.Net.Cache.HttpCacheAgeControl" /> 值。</param>
+      <param name="maxAge">指定资源最大生存期的 <see cref="T:System.TimeSpan" /> 值。</param>
+      <param name="freshOrStale">指定时间量的 <see cref="T:System.TimeSpan" /> 值。</param>
+      <param name="cacheSyncDate">一个 <see cref="T:System.DateTime" /> 对象，它指定必须重新验证缓存中存储的资源的时间。</param>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.#ctor(System.Net.Cache.HttpRequestCacheLevel)">
+      <summary>使用指定的缓存策略初始化 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> 类的新实例。</summary>
+      <param name="level">一个 <see cref="T:System.Net.Cache.HttpRequestCacheLevel" /> 值。</param>
+    </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.ToString">
+      <summary>返回此实例的字符串表示形式。</summary>
+      <returns>包含此实例的属性值的 <see cref="T:System.String" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.Cache.HttpRequestCachePolicy.CacheSyncDate">
+      <summary>获取此实例的缓存同步日期。</summary>
+      <returns>一个 <see cref="T:System.DateTime" /> 值，被设置为在创建此实例时指定的日期。 如果未指定日期，此属性的值则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Cache.HttpRequestCachePolicy.Level">
+      <summary>获取创建此实例时指定的 <see cref="T:System.Net.Cache.HttpRequestCacheLevel" /> 值。</summary>
+      <returns>一个 <see cref="T:System.Net.Cache.HttpRequestCacheLevel" /> 值，该值指定使用 <see cref="T:System.Net.HttpWebRequest" /> 对象获取的资源的缓存行为。</returns>
+    </member>
+    <member name="P:System.Net.Cache.HttpRequestCachePolicy.MaxAge">
+      <summary>获取从缓存返回的资源所允许的最大生存期。</summary>
+      <returns>一个 <see cref="T:System.TimeSpan" /> 值，被设置为创建此实例时指定的最大生存期值。 如果未指定日期，此属性的值则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Cache.HttpRequestCachePolicy.MaxStale">
+      <summary>获取从缓存返回的资源所允许的最大过期值。</summary>
+      <returns>一个 <see cref="T:System.TimeSpan" /> 值，被设置为创建此实例时指定的最大过期值。 如果未指定日期，此属性的值则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Cache.HttpRequestCachePolicy.MinFresh">
+      <summary>获取从缓存返回的资源所允许的最小新鲜值。</summary>
+      <returns>一个 <see cref="T:System.TimeSpan" /> 值，它指定创建此实例时指定的最小新鲜值。 如果未指定日期，此属性的值则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="T:System.Net.FileWebRequest">
+      <summary>提供 <see cref="T:System.Net.WebRequest" /> 类的文件系统实现。</summary>
+    </member>
+    <member name="M:System.Net.FileWebRequest.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.FileWebRequest" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象，它包含序列化新的 <see cref="T:System.Net.FileWebRequest" /> 对象所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象，它包含与新的 <see cref="T:System.Net.FileWebRequest" /> 对象关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.FileWebRequest.Abort">
+      <summary>取消对 Internet 资源的请求。</summary>
+    </member>
+    <member name="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
+      <summary>开始对用于写入数据的 <see cref="T:System.IO.Stream" /> 对象执行异步请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">一个对象，它包含此请求的状态信息。</param>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.FileWebRequest.Method" /> 属性为 <c>GET</c>，并且应用程序向流进行写操作。</exception>
+      <exception cref="T:System.InvalidOperationException">流正由上一个 <see cref="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 调用使用。</exception>
+      <exception cref="T:System.ApplicationException">无可用的写入流。</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="T:System.Net.FileWebRequest" /> 已中止。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
+      <summary>开始对文件系统资源的异步请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">一个对象，它包含此请求的状态信息。</param>
+      <exception cref="T:System.InvalidOperationException">该流已由对 <see cref="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的上一个调用使用。</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="T:System.Net.FileWebRequest" /> 已中止。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>结束对 <see cref="T:System.IO.Stream" /> 实例的异步请求，应用程序使用该实例写入数据。</summary>
+      <param name="asyncResult">引用对流的挂起请求的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>应用程序用于写入数据的 <see cref="T:System.IO.Stream" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>结束对文件系统资源的异步请求。</summary>
+      <param name="asyncResult">引用对响应的挂起请求的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>包含来自文件系统资源的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用将目标对象序列化所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetRequestStream">
+      <summary>返回向文件系统资源写入数据的 <see cref="T:System.IO.Stream" /> 对象。</summary>
+      <exception cref="T:System.Net.WebException">请求超时。</exception>
+      <returns>向文件系统资源写入数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetRequestStreamAsync">
+      <summary>返回一个流，该流用于将数据写入文件系统资源（以异步操作形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">流正由上一个 <see cref="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 调用使用。
+
+- 或 -
+
+流已经收到请求之前的响应。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.FileWebRequest.Method" /> 属性为 GET 或 HEAD。</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="T:System.Net.FileWebRequest" /> 已中止。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetResponse">
+      <summary>返回对文件系统请求的响应。</summary>
+      <exception cref="T:System.Net.WebException">请求超时。</exception>
+      <returns>包含来自文件系统资源的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetResponseAsync">
+      <summary>返回对文件系统请求的响应（以异步操作形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">该流已由对 <see cref="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的上一个调用使用。</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="T:System.Net.FileWebRequest" /> 已中止。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 所需的数据来填充 <see cref="T:System.Net.FileWebRequest" /> 对象。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，它保留用于 <see cref="T:System.Net.FileWebRequest" /> 的序列化数据。</param>
+      <param name="streamingContext">一个 <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.FileWebRequest" /> 关联的序列化流的目标。</param>
+    </member>
+    <member name="P:System.Net.FileWebRequest.ConnectionGroupName">
+      <summary>获取或设置请求的连接组的名称。 保留此属性供将来使用。</summary>
+      <returns>请求的连接组的名称。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.ContentLength">
+      <summary>获取或设置发送的数据的内容长度。</summary>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.Net.FileWebRequest.ContentLength" /> 小于 0。</exception>
+      <returns>发送的请求数据的字节数。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.ContentType">
+      <summary>获取或设置发送的数据的内容类型。 保留此属性供将来使用。</summary>
+      <returns>发送的数据的内容类型。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.Credentials">
+      <summary>获取或设置与此请求关联的凭据。 保留此属性供将来使用。</summary>
+      <returns>包含与此请求关联的身份验证凭据的 <see cref="T:System.Net.ICredentials" />。 默认值为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.Headers">
+      <summary>获取与此请求关联的名称/值对的集合。 保留此属性供将来使用。</summary>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" />，包含与此请求关联的标头名称/值对。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.Method">
+      <summary>获取或设置用于请求的协议方法。 保留此属性供将来使用。</summary>
+      <exception cref="T:System.ArgumentException">此方法无效。  
+  
+- 或 -
+  
+ 不支持该方法。  
+  
+- 或 -
+  
+ 指定了多个方法。</exception>
+      <returns>要在此请求中使用的协议方法。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.PreAuthenticate">
+      <summary>获取或设置一个值，该值指示是否对请求进行预身份验证。 保留此属性供将来使用。</summary>
+      <returns>如果预先验证，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.Proxy">
+      <summary>获取或设置用于此请求的网络代理。 保留此属性供将来使用。</summary>
+      <returns>指示用于此请求的网络代理的 <see cref="T:System.Net.IWebProxy" />。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.RequestUri">
+      <summary>获取请求的统一资源标识符 (URI)。</summary>
+      <returns>包含请求的 URI 的 <see cref="T:System.Uri" />。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.Timeout">
+      <summary>获取或设置请求超时前的时间长度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">指定的值小于或等于零，并且不为 <see cref="F:System.Threading.Timeout.Infinite" />。</exception>
+      <returns>请求超时前的时间长度（以毫秒为单位），或是值 <see cref="F:System.Threading.Timeout.Infinite" /> 以指示请求不超时。</returns>
+    </member>
+    <member name="P:System.Net.FileWebRequest.UseDefaultCredentials">
+      <summary>总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">文件统一资源标识符 (URI) 不支持默认凭据。</exception>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="T:System.Net.FileWebResponse">
+      <summary>提供 <see cref="T:System.Net.WebResponse" /> 类的文件系统实现。</summary>
+    </member>
+    <member name="M:System.Net.FileWebResponse.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.FileWebResponse" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例，它包含序列化新的 <see cref="T:System.Net.FileWebResponse" /> 实例所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的实例，包含与新 <see cref="T:System.Net.FileWebResponse" /> 实例关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.FileWebResponse.Close">
+      <summary>关闭响应流。</summary>
+    </member>
+    <member name="M:System.Net.FileWebResponse.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用将目标对象序列化所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.FileWebResponse.GetResponseStream">
+      <summary>返回来自文件系统资源的数据流。</summary>
+      <returns>用于从文件系统资源中读取数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.FileWebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 所需的数据填充 <see cref="T:System.Net.FileWebResponse" /> 实例。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，将存放 <see cref="T:System.Net.FileWebResponse" /> 的序列化数据。</param>
+      <param name="streamingContext">一个 <see cref="T:System.Runtime.Serialization.StreamingContext" />，包含与新的 <see cref="T:System.Net.FileWebResponse" /> 关联的序列化流的目标。</param>
+    </member>
+    <member name="P:System.Net.FileWebResponse.ContentLength">
+      <summary>获取文件系统资源中的内容长度。</summary>
+      <returns>文件系统资源返回的字节数。</returns>
+    </member>
+    <member name="P:System.Net.FileWebResponse.ContentType">
+      <summary>获取文件系统资源的内容类型。</summary>
+      <returns>值为“二进制/八进制流”。</returns>
+    </member>
+    <member name="P:System.Net.FileWebResponse.Headers">
+      <summary>获取与响应关联的标头名称/值对集合。</summary>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" />，包含与响应关联的标头名称/值对。</returns>
+    </member>
+    <member name="P:System.Net.FileWebResponse.ResponseUri">
+      <summary>获取提供响应的文件系统资源的 URI。</summary>
+      <returns>包含提供响应的文件系统资源的 URI 的 <see cref="T:System.Uri" />。</returns>
+    </member>
+    <member name="P:System.Net.FileWebResponse.SupportsHeaders">
+      <summary>获取一个值，该值指示 <see cref="P:System.Net.FileWebResponse.Headers" /> 属性是否由 <see cref="T:System.Net.FileWebResponse" /> 实例支持。</summary>
+      <returns>如果 <see cref="P:System.Net.FileWebResponse.Headers" /> 属性由 <see cref="T:System.Net.FileWebResponse" /> 实例支持，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.FtpStatusCode">
+      <summary>指定为文件传输协议 (FTP) 操作返回的状态代码。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.AccountNeeded">
+      <summary>指示需要服务器上的用户帐户。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionAbortedLocalProcessingError">
+      <summary>指示发生了阻止完成请求操作的错误。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionAbortedUnknownPageType">
+      <summary>指示不能采取请求的操作，因为指定的页类型是未知的。 RFC 959 的 3.1.2.3 节中介绍了页类型。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionNotTakenFilenameNotAllowed">
+      <summary>指定无法对指定文件执行请求的操作。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionNotTakenFileUnavailable">
+      <summary>指定无法对指定文件执行请求的操作，原因是该文件不可用。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionNotTakenFileUnavailableOrBusy">
+      <summary>指定无法对指定文件执行请求的操作，原因是该文件不可用或正在使用中。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ActionNotTakenInsufficientSpace">
+      <summary>指示不能执行请求的操作，因为服务器上没有足够的空间。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ArgumentSyntaxError">
+      <summary>指示一个或多个命令参数具有语法错误。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.BadCommandSequence">
+      <summary>指示命令序列的顺序不正确。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.CantOpenData">
+      <summary>指示无法打开数据连接。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ClosingControl">
+      <summary>指示服务器正在关闭管理连接。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ClosingData">
+      <summary>指示服务器正在关闭数据连接，并且请求的文件操作成功。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.CommandExtraneous">
+      <summary>指示服务器未执行该命令，因为无需此命令。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.CommandNotImplemented">
+      <summary>指示 FTP 服务器未执行该命令。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.CommandOK">
+      <summary>指示命令成功完成。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.CommandSyntaxError">
+      <summary>指示命令具有语法错误或不是服务器可识别的命令。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ConnectionClosed">
+      <summary>指示连接已关闭。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.DataAlreadyOpen">
+      <summary>指示数据连接已打开并且请求的传输已开始。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.DirectoryStatus">
+      <summary>指示目录状态。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.EnteringPassive">
+      <summary>指示服务器正在进入被动模式。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.FileActionAborted">
+      <summary>指示不能执行请求的操作。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.FileActionOK">
+      <summary>指示请求的文件操作成功完成。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.FileCommandPending">
+      <summary>指示请求的文件操作需要其他信息。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.FileStatus">
+      <summary>指示文件状态。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.LoggedInProceed">
+      <summary>指示用户已登录且可发送命令。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.NeedLoginAccount">
+      <summary>指示服务器需要提供登录帐户。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.NotLoggedIn">
+      <summary>指示登录信息必须发送到服务器。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.OpeningData">
+      <summary>指示服务器正在打开数据连接。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.PathnameCreated">
+      <summary>指示请求的路径名已创建。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.RestartMarker">
+      <summary>指示响应包含一个重新启动标记回复。 此状态附带的说明文本包含用户数据流标记和服务器标记。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.SendPasswordCommand">
+      <summary>指示服务器需要提供密码。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.SendUserCommand">
+      <summary>指示服务器已能进行用户登录操作。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ServerWantsSecureSession">
+      <summary>指示服务器接受客户端指定的身份验证机制，并且安全数据交换完成。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ServiceNotAvailable">
+      <summary>指示此服务不可用。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.ServiceTemporarilyNotAvailable">
+      <summary>指示此服务现在不可用；请稍后再试您的请求。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.SystemType">
+      <summary>指示使用 Internet Assigned Numbers Authority（Internet 号码分配机构）出版的 Assigned Numbers（号码分配）文档中发布的系统名的系统类型名称。</summary>
+    </member>
+    <member name="F:System.Net.FtpStatusCode.Undefined">
+      <summary>包含此值是为了完整性，服务器从不返回此值。</summary>
+    </member>
+    <member name="T:System.Net.FtpWebRequest">
+      <summary>实现文件传输协议 (FTP) 客户端。</summary>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.Abort">
+      <summary>终止异步 FTP 操作。</summary>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
+      <summary>开始以异步方式打开请求的内容流以便写入。</summary>
+      <param name="callback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="state">一个用户定义对象，其中包含操作的相关信息。 操作完成时，此对象传递给 <paramref name="callback" /> 委托。</param>
+      <exception cref="T:System.InvalidOperationException">此前对此方法或 <see cref="M:System.Net.FtpWebRequest.GetRequestStream" /> 的调用尚未完成。</exception>
+      <exception cref="T:System.Net.WebException">未能建立到 FTP 服务器的连接。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.FtpWebRequest.Method" /> 属性没有设置为 <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" />。</exception>
+      <returns>
+        <see cref="T:System.IAsyncResult" /> 实例，指示操作的状态。</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
+      <summary>开始以异步方式向 FTP 服务器发送请求并从 FTP 服务器接收响应。</summary>
+      <param name="callback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="state">一个用户定义对象，其中包含操作的相关信息。 操作完成时，此对象传递给 <paramref name="callback" /> 委托。</param>
+      <exception cref="T:System.InvalidOperationException">已经为此实例调用了 <see cref="M:System.Net.FtpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />。</exception>
+      <returns>
+        <see cref="T:System.IAsyncResult" /> 实例，指示操作的状态。</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>结束由 <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 启动的挂起的异步操作。</summary>
+      <param name="asyncResult">在操作开始时返回的 <see cref="T:System.IAsyncResult" /> 对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">未能通过调用 <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 获取 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已为 <paramref name="asyncResult" /> 标识的操作调用了此方法。</exception>
+      <returns>与此实例关联的可写 <see cref="T:System.IO.Stream" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>结束由 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 启动的挂起的异步操作。</summary>
+      <param name="asyncResult">在操作开始时返回的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">未能通过调用 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 获取 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已为 <paramref name="asyncResult" /> 标识的操作调用了此方法。</exception>
+      <exception cref="T:System.Net.WebException">使用 HTTP 代理时出错。</exception>
+      <returns>包含一个 <see cref="T:System.Net.FtpWebResponse" /> 实例的 <see cref="T:System.Net.WebResponse" /> 引用。 此对象包含 FTP 服务器对请求的响应。</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.GetRequestStream">
+      <summary>检索用于向 FTP 服务器上载数据的流。</summary>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 已被调用并且尚未完成。  
+  
+- 或 - 
+HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />、<see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />。</exception>
+      <exception cref="T:System.Net.WebException">未能建立到 FTP 服务器的连接。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.FtpWebRequest.Method" /> 属性未设置为 <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.AppendFile" />。</exception>
+      <returns>可写 <see cref="T:System.IO.Stream" /> 实例，用于存储要由当前请求发送到服务器的数据。</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.GetResponse">
+      <summary>返回 FTP 服务器响应。</summary>
+      <exception cref="T:System.InvalidOperationException">已经为此实例调用了 <see cref="M:System.Net.FtpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />。  
+  
+- 或 - 
+HTTP 代理被启用，而您尝试使用 FTP 命令而非 <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />、<see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" /> 或 <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />。</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="P:System.Net.FtpWebRequest.EnableSsl" /> 设置为 <see langword="true" />，但服务器不支持此功能。  
+  
+- 或 - 
+<see cref="P:System.Net.FtpWebRequest.Timeout" /> 已指定，且已超时。</exception>
+      <returns>包含一个 <see cref="T:System.Net.FtpWebResponse" /> 实例的 <see cref="T:System.Net.WebResponse" /> 引用。 此对象包含 FTP 服务器对请求的响应。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ClientCertificates">
+      <summary>获取用于建立到 FTP 服务器的加密连接的证书。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <returns>包含客户端证书的 <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ConnectionGroupName">
+      <summary>获取或设置连接组的名称，该连接组包含用于发送当前请求的服务点。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>包含连接组名称的 <see cref="T:System.String" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ContentLength">
+      <summary>获取或设置被 <see cref="T:System.Net.FtpWebRequest" /> 类忽略的值。</summary>
+      <returns>应忽略的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ContentOffset">
+      <summary>获取或设置请求所下载的文件的字节偏移量。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">为该属性指定的值小于 0。</exception>
+      <returns>指定文件偏移量（以字节为单位）的 <see cref="T:System.Int64" /> 实例。 默认值为零。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ContentType">
+      <summary>总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">FTP 不支持内容类型信息。</exception>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.Credentials">
+      <summary>获取或设置用于与 FTP 服务器通信的凭据。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为 Set 操作指定了 <see cref="T:System.Net.ICredentials" /> 以外的 <see cref="T:System.Net.NetworkCredential" /> 类型。</exception>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>
+        <see cref="T:System.Net.ICredentials" /> 实例；如果还未设置该属性，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.DefaultCachePolicy">
+      <summary>定义所有 FTP 请求的默认缓存策略。</summary>
+      <exception cref="T:System.ArgumentNullException">调用方尝试将此属性设置为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Net.Cache.RequestCachePolicy" />，定义 FTP 请求的缓存策略。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.EnableSsl">
+      <summary>获取或设置 <see cref="T:System.Boolean" />，它指定是否使用 SSL 连接。</summary>
+      <exception cref="T:System.InvalidOperationException">到 FTP 服务器的连接已经建立。</exception>
+      <returns>如果控制和数据传输是加密的，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.Headers">
+      <summary>获取空 <see cref="T:System.Net.WebHeaderCollection" /> 对象。</summary>
+      <returns>空的 <see cref="T:System.Net.WebHeaderCollection" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.KeepAlive">
+      <summary>获取或设置一个 <see cref="T:System.Boolean" /> 值，该值指定在请求完成之后是否关闭到 FTP 服务器的控制连接。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>如果不应销毁到服务器的连接，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.Method">
+      <summary>获取或设置要发送到 FTP 服务器的命令。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <exception cref="T:System.ArgumentException">此方法无效。  
+  
+- 或 -
+  
+ 不支持该方法。  
+  
+- 或 -
+  
+ 指定了多个方法。</exception>
+      <returns>
+        <see cref="T:System.String" /> 值，包含要发送到服务器的 FTP 命令。 默认值是 <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.PreAuthenticate">
+      <summary>总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">FTP 不支持预身份验证。</exception>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.Proxy">
+      <summary>获取或设置用于与 FTP 服务器通信的代理。</summary>
+      <exception cref="T:System.ArgumentNullException">此属性不能设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>负责与 FTP 服务器通信的 <see cref="T:System.Net.IWebProxy" /> 实例。 在 .NET Core 中，其值为 <see langword="null" /> 。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ReadWriteTimeout">
+      <summary>获取或设置写入或读取流时的超时。</summary>
+      <exception cref="T:System.InvalidOperationException">已发送请求。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">为 Set 操作指定的值小于或等于零，并且不等于 <see cref="F:System.Threading.Timeout.Infinite" />。</exception>
+      <returns>读取或写入超时之前的毫秒数。默认值为300000毫秒 (5 分钟) 。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.RenameTo">
+      <summary>获取或设置重命名文件的新名称。</summary>
+      <exception cref="T:System.ArgumentException">为 Set 操作指定的值为 <see langword="null" /> 或是空字符串。</exception>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>重命名文件的新名称。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.RequestUri">
+      <summary>获取此实例所请求的 URI。</summary>
+      <returns>
+        <see cref="T:System.Uri" /> 实例，标识使用文件传输协议访问的资源。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.ServicePoint">
+      <summary>获取用于连接 FTP 服务器的 <see cref="T:System.Net.ServicePoint" /> 对象。</summary>
+      <returns>可用于自定义连接行为的 <see cref="T:System.Net.ServicePoint" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.Timeout">
+      <summary>获取或设置等待请求的毫秒数。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">指定的值是小于零，且不是 <see cref="F:System.Threading.Timeout.Infinite" />。</exception>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>一个 <see cref="T:System.Int32" /> 值，该值包含请求超时前等待的毫秒数。默认值为 <see cref="F:System.Threading.Timeout.Infinite" /> 。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.UseBinary">
+      <summary>获取或设置一个 <see cref="T:System.Boolean" /> 值，该值指定文件传输的数据类型。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>
+        <see langword="true" />，指示服务器要传输的是二进制数据；<see langword="false" />，指示数据为文本。 默认值是 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.UseDefaultCredentials">
+      <summary>总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">FTP 不支持默认凭据。</exception>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebRequest.UsePassive">
+      <summary>获取或设置客户端应用程序的数据传输过程的行为。</summary>
+      <exception cref="T:System.InvalidOperationException">对于一个已在进行的请求为此属性指定了一个新值。</exception>
+      <returns>如果客户端应用程序的数据传输过程侦听数据端口上的连接，则为 <see langword="false" />；如果客户端应在数据端口上启动连接，则为 <see langword="true" />。 默认值是 <see langword="true" />。</returns>
+    </member>
+    <member name="T:System.Net.FtpWebResponse">
+      <summary>封装文件传输协议 (FTP) 服务器对请求的响应。</summary>
+    </member>
+    <member name="M:System.Net.FtpWebResponse.Close">
+      <summary>释放响应所持有的资源。</summary>
+    </member>
+    <member name="M:System.Net.FtpWebResponse.GetResponseStream">
+      <summary>检索包含从 FTP 服务器上发送的响应数据的流。</summary>
+      <exception cref="T:System.InvalidOperationException">响应未返回数据流。</exception>
+      <returns>可读取的 <see cref="T:System.IO.Stream" /> 实例，它包含与响应一起返回的数据；如果服务器未返回任何响应数据，则为 <see cref="F:System.IO.Stream.Null" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.BannerMessage">
+      <summary>获取在登录前建立连接时 FTP 服务器发送的消息。</summary>
+      <returns>
+        <see cref="T:System.String" />，它包含服务器发送的标语消息；如果没有发送任何消息，则为 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.ContentLength">
+      <summary>获取从 FTP 服务器上接收的数据的长度。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它包含从 FTP 服务器上接收的数据的字节数。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.ExitMessage">
+      <summary>获取 FTP 会话结束时服务器发送的消息。</summary>
+      <returns>
+        <see cref="T:System.String" />，它包含服务器发送的退出消息；如果没有发送任何消息，则为 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.Headers">
+      <summary>获取空 <see cref="T:System.Net.WebHeaderCollection" /> 对象。</summary>
+      <returns>空的 <see cref="T:System.Net.WebHeaderCollection" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.LastModified">
+      <summary>获取上次修改 FTP 服务器上的文件的日期和时间。</summary>
+      <returns>包含上次修改文件的日期和时间的 <see cref="T:System.DateTime" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.ResponseUri">
+      <summary>获取对请求发送响应的 URI。</summary>
+      <returns>
+        <see cref="T:System.Uri" /> 实例，它标识与此响应关联的资源。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.StatusCode">
+      <summary>获取从 FTP 服务器上发送的最新状态代码。</summary>
+      <returns>
+        <see cref="T:System.Net.FtpStatusCode" /> 值，它指示与此响应一起返回的最新状态代码。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.StatusDescription">
+      <summary>获取描述从 FTP 服务器发送的状态代码的文本。</summary>
+      <returns>
+        <see cref="T:System.String" /> 实例，它包含状态代码以及与此响应一起返回的消息。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.SupportsHeaders">
+      <summary>获取一个值，该值指示 <see cref="P:System.Net.FtpWebResponse.Headers" /> 属性是否由 <see cref="T:System.Net.FtpWebResponse" /> 实例支持。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。  
+  
+ 如果 <see cref="P:System.Net.FtpWebResponse.Headers" /> 属性由 <see cref="T:System.Net.FtpWebResponse" /> 实例支持，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.FtpWebResponse.WelcomeMessage">
+      <summary>获取身份验证完成时 FTP 服务器发送的消息。</summary>
+      <returns>
+        <see cref="T:System.String" />，它包含服务器发送的欢迎消息；如果未发送任何消息，则为 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="T:System.Net.GlobalProxySelection">
+      <summary>包含所有 HTTP 请求的全局默认代理实例。</summary>
+    </member>
+    <member name="M:System.Net.GlobalProxySelection.#ctor">
+      <summary>初始化 <see cref="T:System.Net.GlobalProxySelection" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.GlobalProxySelection.GetEmptyWebProxy">
+      <summary>返回空代理实例。</summary>
+      <returns>不包含信息的 <see cref="T:System.Net.IWebProxy" />。</returns>
+    </member>
+    <member name="P:System.Net.GlobalProxySelection.Select">
+      <summary>获取或设置全局 HTTP 代理。</summary>
+      <exception cref="T:System.ArgumentNullException">为 Set 操作指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方无权执行所请求的操作。</exception>
+      <returns>每一个 <see cref="T:System.Net.IWebProxy" /> 调用使用的 <see cref="M:System.Net.HttpWebRequest.GetResponse" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpContinueDelegate">
+      <summary>表示当客户端接收到连续响应时通知调用方的方法。</summary>
+      <param name="StatusCode">服务器的 HTTP 状态的数字值。</param>
+      <param name="httpHeaders">随 100 连续响应一起从服务器返回的标头。</param>
+    </member>
+    <member name="T:System.Net.HttpWebRequest">
+      <summary>提供 <see cref="T:System.Net.WebRequest" /> 类的 HTTP 特定的实现。</summary>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.HttpWebRequest" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。 此构造函数已过时。</summary>
+      <param name="serializationInfo">包含序列化新 <see cref="T:System.Net.HttpWebRequest" /> 对象所需信息的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象。</param>
+      <param name="streamingContext">包含与新 <see cref="T:System.Net.HttpWebRequest" /> 对象关联的序列化流的源和目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.Abort">
+      <summary>取消对 Internet 资源的请求。</summary>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.Int32)">
+      <summary>向请求添加从请求数据的开始处或结束处的特定范围的字节范围标头。</summary>
+      <param name="range">范围的开始点或结束点。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.Int32,System.Int32)">
+      <summary>向请求添加指定范围的字节范围标头。</summary>
+      <param name="from">开始发送数据的位置。</param>
+      <param name="to">停止发送数据的位置。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="from" /> 大于 <paramref name="to" />  
+  
+- 或 - 
+ <paramref name="from" /> 或 <paramref name="to" /> 小于 0。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.Int64)">
+      <summary>向请求添加从请求数据的开始处或结束处的特定范围的字节范围标头。</summary>
+      <param name="range">范围的开始点或结束点。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.Int64,System.Int64)">
+      <summary>向请求添加指定范围的字节范围标头。</summary>
+      <param name="from">开始发送数据的位置。</param>
+      <param name="to">停止发送数据的位置。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="from" /> 大于 <paramref name="to" />  
+  
+- 或 - 
+ <paramref name="from" /> 或 <paramref name="to" /> 小于 0。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.String,System.Int32)">
+      <summary>向请求添加从请求数据的开始处或结束处计算的特定范围的 Range 标头。</summary>
+      <param name="rangeSpecifier">范围说明。</param>
+      <param name="range">范围的开始点或结束点。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rangeSpecifier" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.String,System.Int32,System.Int32)">
+      <summary>向请求添加指定范围的范围标头。</summary>
+      <param name="rangeSpecifier">范围说明。</param>
+      <param name="from">开始发送数据的位置。</param>
+      <param name="to">停止发送数据的位置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rangeSpecifier" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="from" /> 大于 <paramref name="to" />  
+  
+- 或 - 
+ <paramref name="from" /> 或 <paramref name="to" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.String,System.Int64)">
+      <summary>向请求添加从请求数据的开始处或结束处计算的特定范围的 Range 标头。</summary>
+      <param name="rangeSpecifier">范围说明。</param>
+      <param name="range">范围的开始点或结束点。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rangeSpecifier" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.AddRange(System.String,System.Int64,System.Int64)">
+      <summary>向请求添加指定范围的范围标头。</summary>
+      <param name="rangeSpecifier">范围说明。</param>
+      <param name="from">开始发送数据的位置。</param>
+      <param name="to">停止发送数据的位置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rangeSpecifier" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="from" /> 大于 <paramref name="to" />  
+  
+- 或 - 
+ <paramref name="from" /> 或 <paramref name="to" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rangeSpecifier" /> 无效。</exception>
+      <exception cref="T:System.InvalidOperationException">无法添加范围标头。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
+      <summary>开始对用于写入数据的 <see cref="T:System.IO.Stream" /> 对象执行异步请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">此请求的状态对象。</param>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> 属性为 GET 或 HEAD。  
+  
+- 或 - 
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> 为 <see langword="true" />，<see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 为 -1，<see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.Method" /> 为 POST 或 PUT。</exception>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 的前一次调用正在使用流  
+  
+- 或 - 
+ 将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为一个值，且 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />。  
+  
+- 或 - 
+线程池中线程即将耗尽。</exception>
+      <exception cref="T:System.NotSupportedException">请求缓存验证程序指示对此请求的响应可从缓存中提供；但是，写入数据的请求不得使用缓存。 如果你正在使用错误实现的自定义缓存验证程序，则会发生此异常。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">在 .NET Compact Framework 应用程序中，未正确获得和关闭一个内容长度为零的请求流。 有关处理内容长度为零的请求的详细信息，请参阅 .NET Compact Framework 中的网络编程。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
+      <summary>开始对 Internet 资源的异步请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托</param>
+      <param name="state">此请求的状态对象。</param>
+      <exception cref="T:System.InvalidOperationException">对 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的上一个调用已使用该流  
+  
+- 或 - 
+ 将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为一个值，且 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />。  
+  
+- 或 - 
+线程池中线程即将耗尽。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> 为 GET 或 HEAD，并且 <see cref="P:System.Net.HttpWebRequest.ContentLength" /> 大于零或 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="true" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> 为 <see langword="true" />，<see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> 为 <see langword="false" />，并且 <see cref="P:System.Net.HttpWebRequest.ContentLength" /> 为 -1 或者 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />，且 <see cref="P:System.Net.HttpWebRequest.Method" /> 为 POST 或 PUT。  
+  
+- 或 - 
+<see cref="T:System.Net.HttpWebRequest" /> 具有实体主体，但在不调用 <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 方法的情况下调用了 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 方法。  
+  
+- 或 - 
+<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 大于零，但应用程序不会写入所有承诺的数据。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。</exception>
+      <returns>引用响应的异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>结束对用来写入数据的 <see cref="T:System.IO.Stream" /> 对象的异步请求。</summary>
+      <param name="asyncResult">对流的挂起请求。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.IOException">请求未完成，没有可用的流。</exception>
+      <exception cref="T:System.ArgumentException">当前实例没有从对 <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 的调用返回 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.InvalidOperationException">以前使用 <paramref name="asyncResult" /> 调用过此方法。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <returns>用于写入请求数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult,System.Net.TransportContext@)">
+      <summary>结束对用于写入数据的 <see cref="T:System.IO.Stream" /> 对象的异步请求，并输出与该流关联的 <see cref="T:System.Net.TransportContext" />。</summary>
+      <param name="asyncResult">对流的挂起请求。</param>
+      <param name="context">
+        <see cref="T:System.Net.TransportContext" /> 的 <see cref="T:System.IO.Stream" />。</param>
+      <exception cref="T:System.ArgumentException">当前实例没有从对 <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> 的调用返回 <paramref name="asyncResult" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">以前使用 <paramref name="asyncResult" /> 调用过此方法。</exception>
+      <exception cref="T:System.IO.IOException">请求未完成，没有可用的流。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <returns>用于写入请求数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>结束对 Internet 资源的异步请求。</summary>
+      <param name="asyncResult">对响应的挂起请求。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">以前使用 <paramref name="asyncResult" /> 调用过此方法。  
+  
+- 或 - 
+<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 属性大于 0，但数据尚未写入到请求流。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <exception cref="T:System.ArgumentException">当前实例没有从对 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的调用返回 <paramref name="asyncResult" />。</exception>
+      <returns>包含来自 Internet 资源的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化目标对象时所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetRequestStream">
+      <summary>获取用于写入请求数据的 <see cref="T:System.IO.Stream" /> 对象。</summary>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> 属性为 GET 或 HEAD。  
+  
+- 或 - 
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> 为 <see langword="true" />，<see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 为 -1，<see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.Method" /> 为 POST 或 PUT。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法被调用多次。  
+  
+- 或 - 
+ 将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为一个值，且 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />。</exception>
+      <exception cref="T:System.NotSupportedException">请求缓存验证程序指示对此请求的响应可从缓存中提供；但是，写入数据的请求不得使用缓存。 如果你正在使用错误实现的自定义缓存验证程序，则会发生此异常。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+请求的超时期限到期。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <exception cref="T:System.ObjectDisposedException">在 .NET Compact Framework 应用程序中，未正确获得和关闭一个内容长度为零的请求流。 有关处理内容长度为零的请求的详细信息，请参阅 .NET Compact Framework 中的网络编程。</exception>
+      <returns>用于写入请求数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetRequestStream(System.Net.TransportContext@)">
+      <summary>获取用于写入请求数据的 <see cref="T:System.IO.Stream" /> 对象，并输出与流关联的 <see cref="T:System.Net.TransportContext" />。</summary>
+      <param name="context">
+        <see cref="T:System.Net.TransportContext" /> 的 <see cref="T:System.IO.Stream" />。</param>
+      <exception cref="T:System.Exception">
+        <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法无法获取 <see cref="T:System.IO.Stream" />。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法被调用多次。  
+  
+- 或 - 
+ 将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为一个值，且 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />。</exception>
+      <exception cref="T:System.NotSupportedException">请求缓存验证程序指示对此请求的响应可从缓存中提供；但是，写入数据的请求不得使用缓存。 如果你正在使用错误实现的自定义缓存验证程序，则会发生此异常。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> 属性为 GET 或 HEAD。  
+  
+- 或 - 
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> 为 <see langword="true" />，<see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 为 -1，<see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.Method" /> 为 POST 或 PUT。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+请求的超时期限到期。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <returns>用于写入请求数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetResponse">
+      <summary>返回来自 Internet 资源的响应。</summary>
+      <exception cref="T:System.InvalidOperationException">该流已由对 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的上一个调用使用。  
+  
+- 或 - 
+ 将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为一个值，且 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> 为 GET 或 HEAD，且 <see cref="P:System.Net.HttpWebRequest.ContentLength" /> 大于或等于零，或 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="true" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> 为 <see langword="true" />，<see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 为 -1，<see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" />，<see cref="P:System.Net.HttpWebRequest.Method" /> 为 POST 或 PUT。  
+  
+- 或 - 
+<see cref="T:System.Net.HttpWebRequest" /> 具有实体主体，但在不调用 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的情况下调用了 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 方法。  
+  
+- 或 - 
+<see cref="P:System.Net.HttpWebRequest.ContentLength" /> 大于零，但应用程序不会写入所有承诺的数据。</exception>
+      <exception cref="T:System.NotSupportedException">请求缓存验证程序表示对此请求的响应可从缓存中提供；但是该请求包含要发送到服务器的数据。 发送数据的请求不可使用缓存。 如果你正在使用错误实现的自定义缓存验证程序，则会发生此异常。</exception>
+      <exception cref="T:System.Net.WebException">之前已调用 <see cref="M:System.Net.HttpWebRequest.Abort" />。  
+  
+- 或 - 
+请求的超时期限到期。  
+  
+- 或 - 
+处理该请求时出错。</exception>
+      <returns>包含来自 Internet 资源的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用将目标对象序列化所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Accept">
+      <summary>获取或设置 <see langword="Accept" /> HTTP 标头的值。</summary>
+      <returns>
+        <see langword="Accept" /> HTTP 标头的值。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Address">
+      <summary>获取实际响应请求的 Internet 资源的统一资源标识符 (URI)。</summary>
+      <returns>标识实际对请求作出响应的 Internet 资源的 <see cref="T:System.Uri" />。 默认值是供 <see cref="M:System.Net.WebRequest.Create(System.String)" /> 方法用来初始化请求的 URI。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.AllowAutoRedirect">
+      <summary>获取或设置一个值，该值指示请求是否应跟随重定向响应。</summary>
+      <returns>如果请求应自动遵循来自 Internet 资源的重定向响应，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.AllowReadStreamBuffering">
+      <summary>获取或设置一个值，该值指示是否对从 Internet 资源接收的数据进行缓冲处理。</summary>
+      <returns>如果为 <see langword="true" />，则启用对从 Internet 资源接收的数据进行缓冲处理；如果为 <see langword="false" />，则禁用缓冲处理。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering">
+      <summary>获取或设置一个值，该值指示是否对发送到 Internet 资源的数据进行缓冲处理。</summary>
+      <returns>如果为 <see langword="true" />，则允许对发送到 Internet 资源的数据进行缓冲处理；如果为 <see langword="false" />，则禁用缓冲处理。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.AutomaticDecompression">
+      <summary>获取或设置所使用的解压缩类型。</summary>
+      <exception cref="T:System.InvalidOperationException">对象的当前状态不允许设置此属性。</exception>
+      <returns>一个 <see cref="T:System.Net.DecompressionMethods" /> 对象，该对象指示所使用的解压缩类型。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ClientCertificates">
+      <summary>获取或设置与此请求关联的安全证书集合。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" />，包含与此请求关联的安全证书。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Connection">
+      <summary>获取或设置 <see langword="Connection" /> HTTP 标头的值。</summary>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.Net.HttpWebRequest.Connection" /> 的值设置为保持连接或关闭。</exception>
+      <returns>
+        <see langword="Connection" /> HTTP 标头的值。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ConnectionGroupName">
+      <summary>获取或设置请求的连接组的名称。</summary>
+      <returns>该请求的连接组的名称。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ContentLength">
+      <summary>获取或设置 <see langword="Content-length" /> HTTP 标头。</summary>
+      <exception cref="T:System.InvalidOperationException">已通过调用 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />、<see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />、<see cref="M:System.Net.HttpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 方法启动请求。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">新的 <see cref="P:System.Net.HttpWebRequest.ContentLength" /> 值小于 0。</exception>
+      <returns>要发送到 Internet 资源的数据的字节数。 默认值为 -1，该值指示尚未设置该属性，并且没有要发送的请求数据。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ContentType">
+      <summary>获取或设置 <see langword="Content-type" /> HTTP 标头的值。</summary>
+      <returns>
+        <see langword="Content-type" /> HTTP 标头的值。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ContinueDelegate">
+      <summary>获取或设置当从 Internet 资源接收到 HTTP 100-continue 响应时调用的委托方法。</summary>
+      <returns>实现回调方法的委托，该方法在从 Internet 资源返回 HTTP Continue 响应时执行。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ContinueTimeout">
+      <summary>获取或设置在接收到来自服务器的 100-Continue 之前要等待的超时（以毫秒为单位）。</summary>
+      <returns>在接收到 100-Continue 之前要等待的超时（以毫秒为单位）。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.CookieContainer">
+      <summary>获取或设置与此请求关联的 Cookie。</summary>
+      <returns>包含与此请求关联的 Cookie 的 <see cref="T:System.Net.CookieContainer" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Credentials">
+      <summary>获取或设置请求的身份验证信息。</summary>
+      <returns>包含与该请求关联的身份验证凭据的 <see cref="T:System.Net.ICredentials" />。 默认值为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Date">
+      <summary>获取或设置要在 HTTP 请求中使用的 <see langword="Date" /> HTTP 标头值。</summary>
+      <returns>HTTP 请求中的 Date 标头值。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.DefaultCachePolicy">
+      <summary>获取或设置此请求的默认缓存策略。</summary>
+      <returns>一个 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" />，它指定当没有其他策略适用时对此请求有效的缓存策略。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.DefaultMaximumErrorResponseLength">
+      <summary>获取或设置 HTTP 错误响应的默认最大长度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">值小于 0 并且不等于 -1。</exception>
+      <returns>HTTP 错误响应的默认最大长度。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.DefaultMaximumResponseHeadersLength">
+      <summary>获取或设置 <see cref="P:System.Net.HttpWebRequest.MaximumResponseHeadersLength" /> 属性的默认值。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">该值不等于 -1 且小于 0。</exception>
+      <returns>接收的响应标头的默认最大长度，以 KB（1024 字节）为单位。 默认配置文件将此值设置为 64 KB。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Expect">
+      <summary>获取或设置 <see langword="Expect" /> HTTP 标头的值。</summary>
+      <exception cref="T:System.ArgumentException">将 <see langword="Expect" /> 设置为一个包含“100-continue”的字符串作为子字符串。</exception>
+      <returns>
+        <see langword="Expect" /> HTTP 标头的内容。 默认值是 <see langword="null" />。  
+  
+ <block subset="none" type="note"><para>  
+ 此属性的值存储在 <see cref="T:System.Net.WebHeaderCollection" /> 中。 如果设置了 WebHeaderCollection，则该属性值将丢失。</para></block></returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.HaveResponse">
+      <summary>获取一个值，该值指示是否收到了来自 Internet 资源的响应。</summary>
+      <returns>如果接收到了响应，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Headers">
+      <summary>指定构成 HTTP 标头的名称/值对的集合。</summary>
+      <exception cref="T:System.InvalidOperationException">已通过调用 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />、<see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />、<see cref="M:System.Net.HttpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 方法启动请求。</exception>
+      <returns>包含构成 HTTP 请求标头的名称/值对的 <see cref="T:System.Net.WebHeaderCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Host">
+      <summary>获取或设置要在 HTTP 请求中独立于请求 URI 使用的 Host 标头值。</summary>
+      <exception cref="T:System.ArgumentNullException">无法将 Host 标头设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">无法将 Host 标头设置为无效值。</exception>
+      <exception cref="T:System.InvalidOperationException">无法在已开始发送 <see cref="T:System.Net.HttpWebRequest" /> 之后设置 Host 标头。</exception>
+      <returns>HTTP 请求中的 Host 标头值。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.IfModifiedSince">
+      <summary>获取或设置 <c>If-Modified-Since</c> HTTP 标头的值。</summary>
+      <returns>包含 HTTP <see langword="If-Modified-Since" /> 标头内容的 <see cref="T:System.DateTime" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.KeepAlive">
+      <summary>获取或设置一个值，该值指示是否与 Internet 资源建立持续型连接。</summary>
+      <returns>如果对 Internet 资源的请求所包含的 HTTP <see langword="Connection" /> 标头带有 Keep-alive 这一值，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.MaximumAutomaticRedirections">
+      <summary>获取或设置请求将跟随的重定向的最大数目。</summary>
+      <exception cref="T:System.ArgumentException">值设置为 0 或更小。</exception>
+      <returns>请求将跟随的重定向响应的最大数目。 默认值为 50。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.MaximumResponseHeadersLength">
+      <summary>获取或设置响应标头允许的最大长度。</summary>
+      <exception cref="T:System.InvalidOperationException">已提交请求后设置属性。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">值小于 0 并且不等于 -1。</exception>
+      <returns>响应标头的长度，以 KB（1024 字节）为单位。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.MediaType">
+      <summary>获取或设置请求的媒体类型。</summary>
+      <returns>请求的媒体类型。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Method">
+      <summary>获取或设置请求的方法。</summary>
+      <exception cref="T:System.ArgumentException">未提供任何方法。  
+  
+ - 或 -  
+  
+ 方法字符串包含无效字符。</exception>
+      <returns>用于联系 Internet 资源的请求方法。 默认值为 GET。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Pipelined">
+      <summary>获取或设置一个值，该值指示是否通过管线将请求传输到 Internet 资源。</summary>
+      <returns>如果通过管线传输请求，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.PreAuthenticate">
+      <summary>获取或设置一个值，该值指示是否随请求发送一个 Authorization 标头。</summary>
+      <returns>如果在发生身份验证之后随请求一起发送 HTTP Authorization 标头，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ProtocolVersion">
+      <summary>获取或设置用于请求的 HTTP 版本。</summary>
+      <exception cref="T:System.ArgumentException">HTTP 版本设置为 1.0 或 1.1 以外的值。</exception>
+      <returns>用于请求的 HTTP 版本。 默认值为 <see cref="F:System.Net.HttpVersion.Version11" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Proxy">
+      <summary>获取或设置请求的代理信息。</summary>
+      <exception cref="T:System.ArgumentNullException">将 <see cref="P:System.Net.HttpWebRequest.Proxy" /> 设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">已通过调用 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />、<see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />、<see cref="M:System.Net.HttpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 启动请求。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方无权执行所请求的操作。</exception>
+      <returns>用于代理请求的 <see cref="T:System.Net.IWebProxy" /> 对象。 默认值通过调用 <see cref="P:System.Net.GlobalProxySelection.Select" /> 属性设置。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ReadWriteTimeout">
+      <summary>获取或设置写入或读取流时的超时（以毫秒为单位）。</summary>
+      <exception cref="T:System.InvalidOperationException">已发送请求。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">为集运算指定的值小于或等于零，且不等于 <see cref="F:System.Threading.Timeout.Infinite" /></exception>
+      <returns>写入或读取超时之前的毫秒数。默认值为300000毫秒 (5 分钟) 。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Referer">
+      <summary>获取或设置 <see langword="Referer" /> HTTP 标头的值。</summary>
+      <returns>
+        <see langword="Referer" /> HTTP 标头的值。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.RequestUri">
+      <summary>获取请求的原始统一资源标识符 (URI)。</summary>
+      <returns>
+        <see cref="T:System.Uri" />，它包含传递给 <see cref="M:System.Net.WebRequest.Create(System.String)" /> 方法的 Internet 资源的 URI。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.SendChunked">
+      <summary>获取或设置一个值，该值指示是否将数据分段发送到 Internet 资源。</summary>
+      <exception cref="T:System.InvalidOperationException">已通过调用 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />、<see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />、<see cref="M:System.Net.HttpWebRequest.GetResponse" /> 或 <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 方法启动请求。</exception>
+      <returns>如果为 <see langword="true" />，则将数据分段发送到 Internet 资源；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ServerCertificateValidationCallback">
+      <summary>获取或设置用于验证服务器证书的回调函数。</summary>
+      <returns>用于验证服务器证书的回调函数。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.ServicePoint">
+      <summary>获取用于请求的服务点。</summary>
+      <returns>表示与 Internet 资源的网络连接的 <see cref="T:System.Net.ServicePoint" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.SupportsCookieContainer">
+      <summary>获取指示请求是否为 <see cref="T:System.Net.CookieContainer" /> 提供支持的值。</summary>
+      <returns>如果请求为 <see cref="T:System.Net.CookieContainer" /> 提供支持，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Timeout">
+      <summary>获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和 <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">指定的值是小于零，且不是 <see cref="F:System.Threading.Timeout.Infinite" />。</exception>
+      <returns>请求超时前等待的毫秒数。默认值为100000毫秒 (100 秒) 。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.TransferEncoding">
+      <summary>获取或设置 <see langword="Transfer-encoding" /> HTTP 标头的值。</summary>
+      <exception cref="T:System.InvalidOperationException">当 <see cref="P:System.Net.HttpWebRequest.SendChunked" /> 为 <see langword="false" /> 时设置 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" />。</exception>
+      <exception cref="T:System.ArgumentException">将 <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> 设置为值“Chunked”。</exception>
+      <returns>
+        <see langword="Transfer-encoding" /> HTTP 标头的值。 默认值是 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.UnsafeAuthenticatedConnectionSharing">
+      <summary>获取或设置一个值，该值指示是否允许经过高速 NTLM 身份验证的连接共享。</summary>
+      <returns>
+        <see langword="true" /> 表示使经过身份验证的连接保持打开状态；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.UseDefaultCredentials">
+      <summary>获取或设置一个 <see cref="T:System.Boolean" /> 值，该值控制是否随请求一起发送默认凭据。</summary>
+      <exception cref="T:System.InvalidOperationException">你试图在发送请求后设置该属性。</exception>
+      <returns>如果使用默认凭据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.UserAgent">
+      <summary>获取或设置 <see langword="User-agent" /> HTTP 标头的值。</summary>
+      <returns>
+        <see langword="User-agent" /> HTTP 标头的值。 默认值是 <see langword="null" />。  
+  
+ <block subset="none" type="note"><para>  
+ 此属性的值存储在 <see cref="T:System.Net.WebHeaderCollection" /> 中。 如果设置了 WebHeaderCollection，则该属性值将丢失。</para></block></returns>
+    </member>
+    <member name="T:System.Net.HttpWebResponse">
+      <summary>提供 <see cref="T:System.Net.WebResponse" /> 类的 HTTP 特定的实现。</summary>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.#ctor">
+      <summary>初始化 <see cref="T:System.Net.HttpWebResponse" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>根据指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 和 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 实例初始化 <see cref="T:System.Net.HttpWebResponse" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.HttpWebRequest" /> 所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.HttpWebRequest" /> 关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.Close">
+      <summary>关闭响应流。</summary>
+      <exception cref="T:System.ObjectDisposedException">**仅限 .NET Core：** 已释放此 <see cref="T:System.Net.HttpWebResponse" /> 对象。</exception>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.HttpWebResponse" /> 使用的非托管资源，并可根据需要释放托管资源。</summary>
+      <param name="disposing">如果释放托管资源和非托管资源，则为 <see langword="true" />；如果仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用将目标对象序列化所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.GetResponseHeader(System.String)">
+      <summary>获取与响应一起返回的标头的内容。</summary>
+      <param name="headerName">要返回的标头值。</param>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>指定的标头的内容。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.GetResponseStream">
+      <summary>获取流，该流用于读取来自服务器的响应的体。</summary>
+      <exception cref="T:System.Net.ProtocolViolationException">没有响应流。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个 <see cref="T:System.IO.Stream" />，包含响应的体。</returns>
+    </member>
+    <member name="M:System.Net.HttpWebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>将此实例序列化到指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象中。</summary>
+      <param name="serializationInfo">此 <see cref="T:System.Net.HttpWebResponse" /> 要序列化到的对象。</param>
+      <param name="streamingContext">序列化的目标。</param>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.CharacterSet">
+      <summary>获取响应的字符集。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个字符串，包含响应的字符集。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentEncoding">
+      <summary>获取用于对响应体进行编码的方法。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个字符串，描述用于对响应体进行编码的方法。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentLength">
+      <summary>获取请求返回的内容的长度。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>由请求所返回的字节数。 内容长度不包括标头信息。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentType">
+      <summary>获取响应的内容类型。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>包含响应的内容类型的字符串。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Cookies">
+      <summary>获取或设置与此响应关联的 Cookie。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>
+        <see cref="T:System.Net.CookieCollection" />，包含与此响应关联的 Cookie。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Headers">
+      <summary>获取来自服务器的与此响应关联的标头。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个 <see cref="T:System.Net.WebHeaderCollection" />，包含与响应一起返回的标头信息。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.IsMutuallyAuthenticated">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示客户端和服务器是否都已经过身份验证。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>如果发生了相互身份验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.LastModified">
+      <summary>获取最后一次修改响应内容的日期和时间。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>
+        <see cref="T:System.DateTime" />，包含修改响应内容的日期和时间。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Method">
+      <summary>获取用于返回响应的方法。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个字符串，包含用于返回响应的 HTTP 方法。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ProtocolVersion">
+      <summary>获取响应中使用的 HTTP 协议的版本。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个 <see cref="T:System.Version" />，包含响应的 HTTP 协议版本。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ResponseUri">
+      <summary>获取响应请求的 Internet 资源的 URI。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>响应请求的 Internet 资源的 URI。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Server">
+      <summary>获取发送响应的服务器的名称。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个字符串，包含发送响应的服务器的名称。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.StatusCode">
+      <summary>获取响应的状态。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>
+        <see cref="T:System.Net.HttpStatusCode" /> 值之一。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.StatusDescription">
+      <summary>获取与响应一起返回的状态说明。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放当前实例。</exception>
+      <returns>一个字符串，描述响应的状态。</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.SupportsHeaders">
+      <summary>获取指示标头是否受支持的值。</summary>
+      <returns>如果标题受支持，则为 <see langword="true" />；否则为 <see langword="false" />。 始终返回 <see langword="true" />。</returns>
+    </member>
+    <member name="T:System.Net.IAuthenticationModule">
+      <summary>为 Web 客户端身份验证模块提供基本身份验证接口。</summary>
+    </member>
+    <member name="M:System.Net.IAuthenticationModule.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)">
+      <summary>返回 <see cref="T:System.Net.Authorization" /> 类的实例来响应来自服务器的身份验证要求。</summary>
+      <param name="challenge">服务器发送的身份验证质询。</param>
+      <param name="request">与质询关联的 <see cref="T:System.Net.WebRequest" /> 实例。</param>
+      <param name="credentials">与质询关联的凭据。</param>
+      <returns>一个 <see cref="T:System.Net.Authorization" /> 实例，包含有关请求的授权消息；如果无法处理质询，则包含 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)">
+      <summary>为对服务器的的身份验证请求返回 <see cref="T:System.Net.Authorization" /> 类的一个实例。</summary>
+      <param name="request">与身份验证请求关联的 <see cref="T:System.Net.WebRequest" /> 实例。</param>
+      <param name="credentials">与身份验证请求关联的凭据。</param>
+      <returns>包含有关请求的授权消息的 <see cref="T:System.Net.Authorization" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.IAuthenticationModule.AuthenticationType">
+      <summary>获取此身份验证模块提供的身份验证类型。</summary>
+      <returns>指示此身份验证模块提供的身份验证类型的字符串。</returns>
+    </member>
+    <member name="P:System.Net.IAuthenticationModule.CanPreAuthenticate">
+      <summary>获取一个值，该值指示身份验证模块是否支持预身份验证。</summary>
+      <returns>如果授权模块支持预身份验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.ICredentialPolicy">
+      <summary>定义凭据策略，该凭据策略将用于使用 <see cref="T:System.Net.WebRequest" /> 及其派生类发出的资源请求。</summary>
+    </member>
+    <member name="M:System.Net.ICredentialPolicy.ShouldSendCredential(System.Uri,System.Net.WebRequest,System.Net.NetworkCredential,System.Net.IAuthenticationModule)">
+      <summary>返回一个 <see cref="T:System.Boolean" />，该值指示客户端的凭据是否随使用 <see cref="T:System.Net.WebRequest" /> 类的实例发出的资源请求一起发送。</summary>
+      <param name="challengeUri">将接收该请求的 <see cref="T:System.Uri" />。</param>
+      <param name="request">表示被请求的资源的 <see cref="T:System.Net.WebRequest" />。</param>
+      <param name="credential">将随请求一起发送的 <see cref="T:System.Net.NetworkCredential" />（如果此方法返回 <see langword="true" />）。</param>
+      <param name="authenticationModule">将执行身份验证的 <see cref="T:System.Net.IAuthenticationModule" />（如果要求身份验证）。</param>
+      <returns>如果凭据随请求一起发送，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.IWebRequestCreate">
+      <summary>提供用于创建 <see cref="T:System.Net.WebRequest" /> 实例的基接口。</summary>
+    </member>
+    <member name="M:System.Net.IWebRequestCreate.Create(System.Uri)">
+      <summary>创建一个 <see cref="T:System.Net.WebRequest" /> 实例。</summary>
+      <param name="uri">Web 资源的统一资源标识符 (URI)。</param>
+      <exception cref="T:System.NotSupportedException">此 <see cref="T:System.Net.IWebRequestCreate" /> 实例不支持 <paramref name="uri" /> 中指定的请求方案。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="uri" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.UriFormatException">
+        <block subset="none" type="note">
+          <para>  
+ 在适用于 Windows 应用商店应用的 .NET 或可移植类库中，改为捕获基类异常 <see cref="T:System.FormatException" />。</para>
+        </block>
+        <paramref name="uri" /> 中指定的 URI 不是有效的 URI。</exception>
+      <returns>一个 <see cref="T:System.Net.WebRequest" /> 实例。</returns>
+    </member>
+    <member name="T:System.Net.ProtocolViolationException">
+      <summary>使用网络协议期间出错时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.ProtocolViolationException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.ProtocolViolationException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.ProtocolViolationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>根据指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 和 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 实例初始化 <see cref="T:System.Net.ProtocolViolationException" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含反序列化 <see cref="T:System.Net.ProtocolViolationException" /> 所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.ProtocolViolationException" /> 关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.ProtocolViolationException.#ctor(System.String)">
+      <summary>使用指定的消息初始化 <see cref="T:System.Net.ProtocolViolationException" /> 类的新实例。</summary>
+      <param name="message">错误消息字符串。</param>
+    </member>
+    <member name="M:System.Net.ProtocolViolationException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化目标对象时所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.ProtocolViolationException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>将此实例序列化到指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象中。</summary>
+      <param name="serializationInfo">此 <see cref="T:System.Net.ProtocolViolationException" /> 要序列化到的对象。</param>
+      <param name="streamingContext">序列化的目标。</param>
+    </member>
+    <member name="T:System.Net.WebException">
+      <summary>通过可插入协议访问网络期间发生错误时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.WebException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.WebException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>根据指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 和 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 实例初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.WebException" /> 所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.WebException" /> 关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.WebException.#ctor(System.String)">
+      <summary>使用指定的错误消息初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+      <param name="message">错误消息的文本。</param>
+    </member>
+    <member name="M:System.Net.WebException.#ctor(System.String,System.Exception)">
+      <summary>用指定的错误信息和嵌套异常初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+      <param name="message">错误消息的文本。</param>
+      <param name="innerException">嵌套异常。</param>
+    </member>
+    <member name="M:System.Net.WebException.#ctor(System.String,System.Exception,System.Net.WebExceptionStatus,System.Net.WebResponse)">
+      <summary>用指定的错误信息、嵌套异常、状态和响应初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+      <param name="message">错误消息的文本。</param>
+      <param name="innerException">嵌套异常。</param>
+      <param name="status">
+        <see cref="T:System.Net.WebExceptionStatus" /> 值之一。</param>
+      <param name="response">包含来自远程主机的响应的 <see cref="T:System.Net.WebResponse" /> 实例。</param>
+    </member>
+    <member name="M:System.Net.WebException.#ctor(System.String,System.Net.WebExceptionStatus)">
+      <summary>用指定的错误信息和状态初始化 <see cref="T:System.Net.WebException" /> 类的新实例。</summary>
+      <param name="message">错误消息的文本。</param>
+      <param name="status">
+        <see cref="T:System.Net.WebExceptionStatus" /> 值之一。</param>
+    </member>
+    <member name="M:System.Net.WebException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 所需的数据填充 <see cref="T:System.Net.WebException" /> 实例。</summary>
+      <param name="serializationInfo">要使用的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">要使用的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.WebException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>将此实例序列化到指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象中。</summary>
+      <param name="serializationInfo">此 <see cref="T:System.Net.WebException" /> 要序列化到的对象。</param>
+      <param name="streamingContext">序列化的目标。</param>
+    </member>
+    <member name="P:System.Net.WebException.Response">
+      <summary>获取远程主机返回的响应。</summary>
+      <returns>如果可从 Internet 资源获得响应，则为包含来自 Internet 资源的错误响应的 <see cref="T:System.Net.WebResponse" /> 实例；否则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.WebException.Status">
+      <summary>获取响应的状态。</summary>
+      <returns>
+        <see cref="T:System.Net.WebExceptionStatus" /> 值之一。</returns>
+    </member>
+    <member name="T:System.Net.WebExceptionStatus">
+      <summary>为 <see cref="T:System.Net.WebException" /> 类定义状态代码。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.CacheEntryNotFound">
+      <summary>未找到指定的缓存项。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ConnectFailure">
+      <summary>无法在传输级别联系到远程服务点。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ConnectionClosed">
+      <summary>连接过早关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.KeepAliveFailure">
+      <summary>指定 Keep-alive 标头的请求连接意外关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.MessageLengthLimitExceeded">
+      <summary>从服务器发送请求或接收响应时，接收到的消息超出指定限制。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.NameResolutionFailure">
+      <summary>名称解析服务未能解析主机名。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.Pending">
+      <summary>内部异步请求处于挂起状态。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.PipelineFailure">
+      <summary>该请求是管线请求，并且连接未接收到响应即关闭。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ProtocolError">
+      <summary>从服务器接收的响应是完整的，但指示了一个协议级别的错误。 例如，HTTP 协议错误（如 401 访问被拒绝）可能使用此状态。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ProxyNameResolutionFailure">
+      <summary>名称解析程序服务无法解析代理主机名。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ReceiveFailure">
+      <summary>无法从远程服务器接收完整的响应。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.RequestCanceled">
+      <summary>取消了请求，调用了 <see cref="M:System.Net.WebRequest.Abort" /> 方法，或者发生了不可分类的错误。 这是 <see cref="P:System.Net.WebException.Status" /> 的默认值。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.RequestProhibitedByCachePolicy">
+      <summary>缓存策略不允许该请求。 一般而言，当请求不可缓存和有效策略禁止向服务器发送请求时会发生这种情况。 如果请求方法暗示请求正文存在，请求方法需要与服务器直接交互，或者请求包含条件标头，则用户可能会收到此状态。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.RequestProhibitedByProxy">
+      <summary>代理不允许此请求。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.SecureChannelFailure">
+      <summary>使用 SSL 建立连接时发生错误。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.SendFailure">
+      <summary>无法向远程服务器发送完整的请求。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.ServerProtocolViolation">
+      <summary>服务器响应不是有效的 HTTP 响应。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.Success">
+      <summary>未遇到任何错误。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.Timeout">
+      <summary>在请求的超时期限内未收到任何响应。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.TrustFailure">
+      <summary>无法验证服务器证书。</summary>
+    </member>
+    <member name="F:System.Net.WebExceptionStatus.UnknownError">
+      <summary>出现未知类型的异常。</summary>
+    </member>
+    <member name="T:System.Net.WebRequest">
+      <summary>对统一资源标识符 (URI) 发出请求。 这是一个 <see langword="abstract" /> 类。</summary>
+    </member>
+    <member name="M:System.Net.WebRequest.#ctor">
+      <summary>初始化 <see cref="T:System.Net.WebRequest" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.WebRequest.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.WebRequest" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.WebRequest" /> 实例所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，指示与新的 <see cref="T:System.Net.WebRequest" /> 实例关联的序列化流的源。</param>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该构造函数时，尝试访问该构造函数。</exception>
+    </member>
+    <member name="M:System.Net.WebRequest.Abort">
+      <summary>中止请求。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+    </member>
+    <member name="M:System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
+      <summary>当在子类中重写时，提供 <see cref="M:System.Net.WebRequest.GetRequestStream" /> 方法的异步版本。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">包含此异步请求的状态信息的对象。</param>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
+      <summary>当在子类中被重写时，开始对 Internet 资源的异步请求。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">包含此异步请求的状态信息的对象。</param>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.Create(System.String)">
+      <summary>为指定的 URI 方案初始化新的 <see cref="T:System.Net.WebRequest" /> 实例。</summary>
+      <param name="requestUriString">标识 Internet 资源的 URI。</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="requestUriString" /> 中指定的请求方案尚未注册。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="requestUriString" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有连接到请求的 URI 或请求重定向到的 URI 的 <see cref="T:System.Net.WebPermissionAttribute" /> 权限。</exception>
+      <exception cref="T:System.UriFormatException">
+        <block subset="none" type="note">
+          <para>  
+ 在适用于 Windows 应用商店应用的 .NET 或可移植类库中，改为捕获基类异常 <see cref="T:System.FormatException" />。</para>
+        </block>
+        <paramref name="requestUriString" /> 中指定的 URI 不是有效的 URI。</exception>
+      <returns>特定 URI 方案的 <see cref="T:System.Net.WebRequest" /> 子代。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.Create(System.Uri)">
+      <summary>为指定的 URI 方案初始化新的 <see cref="T:System.Net.WebRequest" /> 实例。</summary>
+      <param name="requestUri">包含请求的资源的 URI 的 <see cref="T:System.Uri" />。</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="requestUri" /> 中指定的请求方案未注册。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="requestUri" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有连接到请求的 URI 或请求重定向到的 URI 的 <see cref="T:System.Net.WebPermissionAttribute" /> 权限。</exception>
+      <returns>指定的 URI 方案的 <see cref="T:System.Net.WebRequest" /> 子代。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.CreateDefault(System.Uri)">
+      <summary>为指定的 URI 方案初始化新的 <see cref="T:System.Net.WebRequest" /> 实例。</summary>
+      <param name="requestUri">包含请求的资源的 URI 的 <see cref="T:System.Uri" />。</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="requestUri" /> 中指定的请求方案未注册。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="requestUri" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有连接到请求的 URI 或请求重定向到的 URI 的 <see cref="T:System.Net.WebPermissionAttribute" /> 权限。</exception>
+      <returns>指定的 URI 方案的 <see cref="T:System.Net.WebRequest" /> 子代。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.CreateHttp(System.String)">
+      <summary>为指定的 URI 字符串初始化新的 <see cref="T:System.Net.HttpWebRequest" /> 实例。</summary>
+      <param name="requestUriString">标识 Internet 资源的 URI 字符串。</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="requestUriString" /> 中指定的请求方案为 http 或 https 方案。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="requestUriString" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有连接到请求的 URI 或请求重定向到的 URI 的 <see cref="T:System.Net.WebPermissionAttribute" /> 权限。</exception>
+      <exception cref="T:System.UriFormatException">
+        <paramref name="requestUriString" /> 中指定的 URI 不是有效的 URI。</exception>
+      <returns>特定 URI 字符串的 <see cref="T:System.Net.HttpWebRequest" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.CreateHttp(System.Uri)">
+      <summary>为指定的 URI 初始化新的 <see cref="T:System.Net.HttpWebRequest" /> 实例。</summary>
+      <param name="requestUri">标识 Internet 资源的 URI。</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="requestUri" /> 中指定的请求方案为 http 或 https 方案。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="requestUri" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有连接到请求的 URI 或请求重定向到的 URI 的 <see cref="T:System.Net.WebPermissionAttribute" /> 权限。</exception>
+      <exception cref="T:System.UriFormatException">
+        <paramref name="requestUri" /> 中指定的 URI 不是有效的 URI。</exception>
+      <returns>特定 URI 字符串的 <see cref="T:System.Net.HttpWebRequest" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>当在子类中重写时，返回用于将数据写入 Internet 资源的 <see cref="T:System.IO.Stream" />。</summary>
+      <param name="asyncResult">引用对流的挂起请求的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>将数据写入的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>当在子类中重写时，返回 <see cref="T:System.Net.WebResponse" />。</summary>
+      <param name="asyncResult">引用对响应的挂起请求的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>包含对 Internet 请求的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用将目标对象序列化所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.WebRequest.GetRequestStream">
+      <summary>当在子类中重写时，返回用于将数据写入 Internet 资源的 <see cref="T:System.IO.Stream" />。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>用于将数据写入 Internet 资源的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.GetRequestStreamAsync">
+      <summary>当在子类中被重写时，将用于写入数据的 <see cref="T:System.IO.Stream" /> 作为异步操作返回到 Internet 资源。</summary>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.GetResponse">
+      <summary>当在子类中被重写时，返回对 Internet 请求的响应。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>包含对 Internet 请求的响应的 <see cref="T:System.Net.WebResponse" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.GetResponseAsync">
+      <summary>当在子代类中被重写时，将作为异步操作返回对 Internet 请求的响应。</summary>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.GetSystemWebProxy">
+      <summary>返回当前模拟用户的 Internet Explorer 设置中配置的代理。</summary>
+      <returns>对 <see cref="T:System.Net.IWebProxy" /> 实例的每一次调用所使用的 <see cref="T:System.Net.WebRequest" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.RegisterPrefix(System.String,System.Net.IWebRequestCreate)">
+      <summary>为指定的 URI 注册 <see cref="T:System.Net.WebRequest" /> 子代。</summary>
+      <param name="prefix">
+        <see cref="T:System.Net.WebRequest" /> 子代为其提供服务的完整 URI 或 URI 前缀。</param>
+      <param name="creator">创建方法，<see cref="T:System.Net.WebRequest" /> 调用它以创建 <see cref="T:System.Net.WebRequest" /> 子代。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="prefix" /> 为 <see langword="null" />  
+  
+- 或 - 
+ <paramref name="creator" /> 为 <see langword="null" />。</exception>
+      <returns>如果注册成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.WebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>当在子代类中重写时，使用序列化 <see cref="T:System.Net.WebRequest" /> 所需要的数据来填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含 <see cref="T:System.Net.WebRequest" /> 的序列化数据。</param>
+      <param name="streamingContext">一个 <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.WebRequest" /> 关联的序列化流的目标。</param>
+      <exception cref="T:System.NotImplementedException">当未在子代类中重写该接口时，尝试序列化该对象。</exception>
+    </member>
+    <member name="P:System.Net.WebRequest.AuthenticationLevel">
+      <summary>获取或设置用于此请求的身份验证和模拟的级别。</summary>
+      <returns>
+        <see cref="T:System.Net.Security.AuthenticationLevel" /> 值的按位组合。 默认值是 <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" />。  
+  
+在相互身份验证中，客户端和服务器双方都出示凭据以确定其身份。 <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> 和 <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" /> 值与 Kerberos 身份验证有关。 可以直接支持 Kerberos 身份验证，也可以仅在使用 Negotiate 安全协议选择实际的安全协议时使用该身份验证。 有关身份验证协议的详细信息，请参阅 Internet 身份验证。  
+  
+若要确定相互身份验证是否发生，请检查 <see cref="P:System.Net.WebResponse.IsMutuallyAuthenticated" /> 属性。  
+  
+如果你指定了 <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> 身份验证标志值，而未发生相互身份验证，则应用程序将收到一个带有 <see cref="T:System.Net.ProtocolViolationException" /> 内部异常的 <see cref="T:System.IO.IOException" />，指示相互身份验证失败。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.CachePolicy">
+      <summary>获取或设置此请求的缓存策略。</summary>
+      <returns>定义缓存策略的 <see cref="T:System.Net.Cache.RequestCachePolicy" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ConnectionGroupName">
+      <summary>当在子类中重写时，获取或设置请求的连接组的名称。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>请求的连接组的名称。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ContentLength">
+      <summary>当在子类中被重写时，获取或设置所发送的请求数据的内容长度。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>发送的请求数据的字节数。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ContentType">
+      <summary>当在子类中被重写时，获取或设置所发送的请求数据的内容类型。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>请求数据的内容类型。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Credentials">
+      <summary>当在子类中被重写时，获取或设置用于对 Internet 资源请求进行身份验证的网络凭据。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>包含与该请求关联的身份验证凭据的 <see cref="T:System.Net.ICredentials" />。 默认值为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.DefaultCachePolicy">
+      <summary>获取或设置此请求的默认缓存策略。</summary>
+      <returns>一个 <see cref="T:System.Net.Cache.HttpRequestCachePolicy" />，它指定当没有其他策略适用时对此请求有效的缓存策略。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.DefaultWebProxy">
+      <summary>获取或设置全局 HTTP 代理。</summary>
+      <returns>对 <see cref="T:System.Net.IWebProxy" /> 实例的每一次调用所使用的 <see cref="T:System.Net.WebRequest" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Headers">
+      <summary>当在子类中被重写时，获取或设置与请求关联的标头名称/值对的集合。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>包含与此请求关联的标头名称/值对的 <see cref="T:System.Net.WebHeaderCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ImpersonationLevel">
+      <summary>获取或设置当前请求的模拟级别。</summary>
+      <returns>一个 <see cref="T:System.Security.Principal.TokenImpersonationLevel" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Method">
+      <summary>当在子类中被重写时，获取或设置要在此请求中使用的协议方法。</summary>
+      <exception cref="T:System.NotImplementedException">在子类中未重写该属性的情况下，试图获取或设置该属性。</exception>
+      <returns>要在此请求中使用的协议方法。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.PreAuthenticate">
+      <summary>当在子类中被重写时，指示是否对请求进行预身份验证。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>若要进行预身份验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Proxy">
+      <summary>当在子类中被重写时，获取或设置用于访问此 Internet 资源的网络代理。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>用于访问 Internet 资源的 <see cref="T:System.Net.IWebProxy" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.RequestUri">
+      <summary>当在子类中被重写时，获取与请求关联的 Internet 资源的 URI。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>表示与请求关联的资源的 <see cref="T:System.Uri" />。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Timeout">
+      <summary>获取或设置请求超时之前的时间长度（以毫秒为单位）。</summary>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>请求超时前的时间长度（以毫秒为单位）或指示请求不超时的值 <see cref="F:System.Threading.Timeout.Infinite" /> 。默认值是由子代类定义的。</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.UseDefaultCredentials">
+      <summary>当在子代类中重写时，获取或设置一个 <see cref="T:System.Boolean" /> 值，该值控制 <see cref="P:System.Net.CredentialCache.DefaultCredentials" /> 是否随请求一起发送。</summary>
+      <exception cref="T:System.InvalidOperationException">你试图在发送请求后设置该属性。</exception>
+      <exception cref="T:System.NotImplementedException">当未在子类中重写该属性时，尝试访问该属性。</exception>
+      <returns>如果使用默认凭据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.WebRequestMethods">
+      <summary>
+        <see cref="T:System.Net.WebRequestMethods.Ftp" />、<see cref="T:System.Net.WebRequestMethods.File" /> 和 <see cref="T:System.Net.WebRequestMethods.Http" /> 类的容器类。 此类不能被继承。</summary>
+    </member>
+    <member name="T:System.Net.WebRequestMethods.File">
+      <summary>表示可用于 FILE 请求的文件协议方法的类型。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.File.DownloadFile">
+      <summary>表示用来从指定的位置检索文件的 FILE GET 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.File.UploadFile">
+      <summary>表示用来将文件复制到指定位置的 FILE PUT 协议方法。</summary>
+    </member>
+    <member name="T:System.Net.WebRequestMethods.Ftp">
+      <summary>表示可与 FTP 请求一起使用的 FTP 协议方法的类型。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.AppendFile">
+      <summary>表示要用于将文件追加到 FTP 服务器上的现有文件的 FTP APPE 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.DeleteFile">
+      <summary>表示要用于删除 FTP 服务器上的文件的 FTP DELE 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.DownloadFile">
+      <summary>表示要用于从 FTP 服务器下载文件的 FTP RETR 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.GetDateTimestamp">
+      <summary>表示要用于从 FTP 服务器上的文件检索日期时间戳的 FTP MDTM 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.GetFileSize">
+      <summary>表示要用于检索 FTP 服务器上的文件大小的 FTP SIZE 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.ListDirectory">
+      <summary>表示获取 FTP 服务器上的文件的简短列表的 FTP NLIST 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails">
+      <summary>表示获取 FTP 服务器上的文件的详细列表的 FTP LIST 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.MakeDirectory">
+      <summary>表示在 FTP 服务器上创建目录的 FTP MKD 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.PrintWorkingDirectory">
+      <summary>表示打印当前工作目录的名称的 FTP PWD 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.RemoveDirectory">
+      <summary>表示移除目录的 FTP RMD 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.Rename">
+      <summary>表示重命名目录的 FTP RENAME 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.UploadFile">
+      <summary>表示将文件上载到 FTP 服务器的 FTP STOR 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Ftp.UploadFileWithUniqueName">
+      <summary>表示将具有唯一名称的文件上载到 FTP 服务器的 FTP STOU 协议方法。</summary>
+    </member>
+    <member name="T:System.Net.WebRequestMethods.Http">
+      <summary>表示可与 HTTP 请求一起使用的 HTTP 协议方法的类型。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.Connect">
+      <summary>表示与代理一起使用的 HTTP CONNECT 协议方法，该代理可以动态切换到隧道，如 SSL 隧道的情况。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.Get">
+      <summary>表示一个 HTTP GET 协议方法。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.Head">
+      <summary>表示一个 HTTP HEAD 协议方法。 除了服务器在响应中只返回消息头不返回消息体以外，HEAD 方法和 GET 是一样的。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.MkCol">
+      <summary>表示一个 HTTP MKCOL 请求，该请求在请求 URI（统一资源标识符）指定的位置新建集合，如页的集合。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.Post">
+      <summary>表示一个 HTTP POST 协议方法，该方法用于将新实体作为补充发送到某个 URI。</summary>
+    </member>
+    <member name="F:System.Net.WebRequestMethods.Http.Put">
+      <summary>表示一个 HTTP PUT 协议方法，该方法用于替换 URI 标识的实体。</summary>
+    </member>
+    <member name="T:System.Net.WebResponse">
+      <summary>提供来自统一资源标识符 (URI) 的响应。 这是一个 <see langword="abstract" /> 类。</summary>
+    </member>
+    <member name="M:System.Net.WebResponse.#ctor">
+      <summary>初始化 <see cref="T:System.Net.WebResponse" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.WebResponse.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.WebResponse" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的实例，包含序列化新 <see cref="T:System.Net.WebRequest" /> 实例所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的实例，指示与新的 <see cref="T:System.Net.WebRequest" /> 实例关联的序列化流的源。</param>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该构造函数时，尝试访问该构造函数。</exception>
+    </member>
+    <member name="M:System.Net.WebResponse.Close">
+      <summary>当由子类重写时，将关闭响应流。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+    </member>
+    <member name="M:System.Net.WebResponse.Dispose">
+      <summary>释放 <see cref="T:System.Net.WebResponse" /> 对象使用的非托管资源。</summary>
+    </member>
+    <member name="M:System.Net.WebResponse.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.WebResponse" /> 对象使用的非托管资源，并可根据需要释放托管资源。</summary>
+      <param name="disposing">如果释放托管资源和非托管资源，则为 <see langword="true" />；如果仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Net.WebResponse.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化目标对象所需的数据填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.WebResponse.GetResponseStream">
+      <summary>当在子类中重写时，从 Internet 资源返回数据流。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该方法时，试图访问该方法。</exception>
+      <returns>用于从 Internet 资源中读取数据的 <see cref="T:System.IO.Stream" /> 类的实例。</returns>
+    </member>
+    <member name="M:System.Net.WebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化 <see cref="T:System.Net.WebResponse" /> 所需的数据来填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，将存放 <see cref="T:System.Net.WebResponse" /> 的序列化数据。</param>
+      <param name="streamingContext">一个 <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.WebResponse" /> 关联的序列化流的目标。</param>
+    </member>
+    <member name="P:System.Net.WebResponse.ContentLength">
+      <summary>当在子类中重写时，获取或设置接收的数据的内容长度。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>从 Internet 资源返回的字节数。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.ContentType">
+      <summary>当在派生类中重写时，获取或设置接收的数据的内容类型。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>包含响应的内容类型的字符串。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.Headers">
+      <summary>当在派生类中重写时，获取与此请求关联的标头名称/值对的集合。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" /> 类的实例，包含与此响应关联的标头值。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.IsFromCache">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示此响应是否为从缓存中获取的。</summary>
+      <returns>如果此响应来自缓存，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.IsMutuallyAuthenticated">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示是否发生了相互身份验证。</summary>
+      <returns>如果客户端和服务器均经过验证，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.ResponseUri">
+      <summary>当在派生类中重写时，获取实际响应此请求的 Internet 资源的 URI。</summary>
+      <exception cref="T:System.NotSupportedException">当未在子类中重写该属性时，试图获取或设置该属性。</exception>
+      <returns>
+        <see cref="T:System.Uri" /> 类的实例，包含实际响应此请求的 Internet 资源的 URI。</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.SupportsHeaders">
+      <summary>获取指示是否支持标题的值。</summary>
+      <returns>返回 <see cref="T:System.Boolean" />。  
+  
+ 如果标题受支持，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+  </members>
+</doc>

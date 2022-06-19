@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Text.Encoding.CodePages</name>
+  </assembly>
+  <members>
+    <member name="T:System.Text.CodePagesEncodingProvider">
+      <summary>为只在桌面 .NET Framework 中可用的代码页提供对编码提供程序的访问权限。</summary>
+    </member>
+    <member name="M:System.Text.CodePagesEncodingProvider.GetEncoding(System.Int32)">
+      <summary>返回与指定代码页标识符关联的编码。</summary>
+      <param name="codepage">编码提供程序可能支持的首选编码的代码页标识符。</param>
+      <returns>与指定代码页标识符关联的编码；如果提供程序不支持请求的代码页编码，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Text.CodePagesEncodingProvider.GetEncoding(System.String)">
+      <summary>返回与指定代码页名称关联的编码。</summary>
+      <param name="name">编码提供程序可能支持的首选编码的代码页名称。</param>
+      <returns>与指定代码页关联的编码；如果提供程序不支持请求的编码，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Text.CodePagesEncodingProvider.GetEncodings">
+      <summary>返回一个数组，其中包含 <see cref="T:System.Text.CodePagesEncodingProvider" /> 支持的所有编码。</summary>
+      <returns>一个数组，其中包含所有受支持的编码。</returns>
+    </member>
+    <member name="P:System.Text.CodePagesEncodingProvider.Instance">
+      <summary>获取桌面 .NET Framework 支持但当前 .NET Framework 平台不支持的代码页的编码提供程序。</summary>
+      <returns>允许访问当前 .NET Framework 平台上不支持的编码的编码提供程序。</returns>
+    </member>
+  </members>
+</doc>

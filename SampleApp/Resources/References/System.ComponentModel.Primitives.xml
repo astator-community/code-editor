@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.ComponentModel.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.ComponentModel.BrowsableAttribute">
+      <summary>指定某一属性或事件是否应在“属性”窗口中显示。</summary>
+    </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.Default">
+      <summary>指定 <see cref="T:System.ComponentModel.BrowsableAttribute" /> 的默认值，即 <see cref="F:System.ComponentModel.BrowsableAttribute.Yes" />。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.No">
+      <summary>指定一个属性或事件在设计时不能修改。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.Yes">
+      <summary>指定一个属性或事件在设计时可以修改。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.BrowsableAttribute" /> 类的新实例。</summary>
+      <param name="browsable">如果属性或事件可以在设计时修改，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.BrowsableAttribute.Equals(System.Object)">
+      <summary>指示此实例与指定对象是否相等。</summary>
+      <param name="obj">要比较的另一个对象。</param>
+      <returns>如果 <see langword="true" /> 与此实例相等，则为 <paramref name="obj" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.BrowsableAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.BrowsableAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.BrowsableAttribute.Browsable">
+      <summary>获取一个值，该值指示此对象是否可浏览。</summary>
+      <returns>如果对象可以浏览，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.CategoryAttribute">
+      <summary>指定当属性或事件显示在一个设置为“按分类顺序”模式的 <see cref="T:System.Windows.Forms.PropertyGrid" /> 控件中时，用于对属性或事件分组的类别的名称。</summary>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.#ctor">
+      <summary>使用类别名称"Default"初始化 <see cref="T:System.ComponentModel.CategoryAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.#ctor(System.String)">
+      <summary>使用指定的类别名称初始化 <see cref="T:System.ComponentModel.CategoryAttribute" /> 类的新实例。</summary>
+      <param name="category">类别的名称。</param>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.GetHashCode">
+      <summary>返回此属性 (Attribute) 的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.GetLocalizedString(System.String)">
+      <summary>查阅指定类别的本地化名称。</summary>
+      <param name="value">要查阅的类别的标识符。</param>
+      <returns>类别的本地化名称；如果本地化名称不存在，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Action">
+      <summary>获取表示"Action"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>操作类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Appearance">
+      <summary>获取表示"Appearance"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>外观类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Asynchronous">
+      <summary>获取表示"Asynchronous"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>异步类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Behavior">
+      <summary>获取表示"Behavior"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>行为类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Category">
+      <summary>获取此属性 (Attribute) 应用于的属性 (Property) 或事件的类别名称。</summary>
+      <returns>此属性 (Attribute) 应用于的属性 (Property) 或事件的类别名称。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Data">
+      <summary>获取表示"Data"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>数据类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Default">
+      <summary>获取表示"Default"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>默认类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Design">
+      <summary>获取表示"Design"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>设计类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.DragDrop">
+      <summary>获取表示"DragDrop"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>拖放类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Focus">
+      <summary>获取表示"Focus"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>焦点类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Format">
+      <summary>获取表示"Format"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>格式类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Key">
+      <summary>获取表示"Key"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>键类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Layout">
+      <summary>获取表示"Layout"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>布局类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.Mouse">
+      <summary>获取表示"Mouse"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>鼠标类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.CategoryAttribute.WindowStyle">
+      <summary>获取表示"WindowStyle"类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</summary>
+      <returns>窗口样式类别的 <see cref="T:System.ComponentModel.CategoryAttribute" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.Component">
+      <summary>提供 <see cref="T:System.ComponentModel.IComponent" /> 接口的基实现并启用应用程序之间的对象共享。</summary>
+    </member>
+    <member name="E:System.ComponentModel.Component.Disposed">
+      <summary>在通过调用 <see cref="M:System.ComponentModel.Component.Dispose" /> 方法释放组件时发生。</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.#ctor">
+      <summary>初始化 <see cref="T:System.ComponentModel.Component" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.Dispose">
+      <summary>释放由 <see cref="T:System.ComponentModel.Component" /> 使用的所有资源。</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.ComponentModel.Component" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.Component.Finalize">
+      <summary>在通过垃圾回收将 <see cref="T:System.ComponentModel.Component" /> 回收之前，释放非托管资源并执行其他清理操作。</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.GetService(System.Type)">
+      <summary>返回一个对象，该对象表示由 <see cref="T:System.ComponentModel.Component" /> 或它的 <see cref="T:System.ComponentModel.Container" /> 提供的服务。</summary>
+      <param name="service">由 <see cref="T:System.ComponentModel.Component" /> 提供的服务。</param>
+      <returns>表示由 <see cref="T:System.Object" /> 提供的服务的 <see cref="T:System.ComponentModel.Component" />，如果 <see cref="T:System.ComponentModel.Component" /> 不提供指定的服务，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.Component.ToString">
+      <summary>返回包含 <see cref="T:System.ComponentModel.Component" /> 的名称的 <see cref="T:System.String" />（如果有）。 不应重写此方法。</summary>
+      <returns>包含 <see cref="T:System.ComponentModel.Component" /> 的名称的 <see cref="T:System.String" />（如果有）；如果 <see cref="T:System.ComponentModel.Component" /> 未命名，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Component.CanRaiseEvents">
+      <summary>获取一个指示组件是否可以引发事件的值。</summary>
+      <returns>如果组件可以引发事件，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Component.Container">
+      <summary>获取包含 <see cref="T:System.ComponentModel.IContainer" /> 的 <see cref="T:System.ComponentModel.Component" />。</summary>
+      <returns>包含 <see cref="T:System.ComponentModel.IContainer" /> 的 <see cref="T:System.ComponentModel.Component" />（如果有），如果 <see cref="T:System.ComponentModel.Component" /> 未封装在 <see cref="T:System.ComponentModel.IContainer" /> 中，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Component.DesignMode">
+      <summary>获取一个值，用以指示 <see cref="T:System.ComponentModel.Component" /> 当前是否处于设计模式。</summary>
+      <returns>如果 <see cref="T:System.ComponentModel.Component" /> 处于设计模式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Component.Events">
+      <summary>获取附加到此 <see cref="T:System.ComponentModel.Component" /> 的事件处理程序的列表。</summary>
+      <returns>一个 <see cref="T:System.ComponentModel.EventHandlerList" />，它提供此组件的委托。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Component.Site">
+      <summary>获取或设置 <see cref="T:System.ComponentModel.Component" /> 的 <see cref="T:System.ComponentModel.ISite" />。</summary>
+      <returns>与 <see cref="T:System.ComponentModel.ISite" /> 关联的 <see cref="T:System.ComponentModel.Component" />；如果 <see cref="T:System.ComponentModel.Component" /> 未封装在 <see cref="T:System.ComponentModel.IContainer" /> 中，<see cref="T:System.ComponentModel.Component" /> 没有与其关联的 <see cref="T:System.ComponentModel.ISite" /> 或者 <see cref="T:System.ComponentModel.Component" /> 已从其 <see cref="T:System.ComponentModel.IContainer" /> 中移除，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.ComponentCollection">
+      <summary>为 <see cref="T:System.ComponentModel.IComponent" /> 对象的集合提供只读容器。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ComponentCollection.#ctor(System.ComponentModel.IComponent[])">
+      <summary>使用指定的组件数组初始化 <see cref="T:System.ComponentModel.ComponentCollection" /> 类的新实例。</summary>
+      <param name="components">用来初始化集合的 <see cref="T:System.ComponentModel.IComponent" /> 对象数组。</param>
+    </member>
+    <member name="M:System.ComponentModel.ComponentCollection.CopyTo(System.ComponentModel.IComponent[],System.Int32)">
+      <summary>将整个集合复制到数组中，从指定的数组索引处开始写入。</summary>
+      <param name="array">要将集合中的对象复制到其中的 <see cref="T:System.ComponentModel.IComponent" /> 数组。</param>
+      <param name="index">复制开始位置的 <paramref name="array" /> 索引。</param>
+    </member>
+    <member name="P:System.ComponentModel.ComponentCollection.Item(System.Int32)">
+      <summary>获取集合中位于指定集合索引处的 <see cref="T:System.ComponentModel.Component" />。</summary>
+      <param name="index">要获取的 <see cref="T:System.ComponentModel.Component" /> 的集合索引。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">如果指定的索引不在集合的索引范围内。</exception>
+      <returns>指定索引处的 <see cref="T:System.ComponentModel.IComponent" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ComponentCollection.Item(System.String)">
+      <summary>获取集合中与指定的名称相匹配的任何组件。</summary>
+      <param name="name">要获取的 <see cref="T:System.ComponentModel.IComponent" /> 的名称。</param>
+      <returns>名称与 <paramref name="name" /> 参数所指定的名称相匹配的组件，如果无法在集合中找到指定的组件，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DescriptionAttribute">
+      <summary>指定属性或事件的说明。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DescriptionAttribute.Default">
+      <summary>指定 <see cref="T:System.ComponentModel.DescriptionAttribute" /> 的默认值，即空字符串 ("")。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DescriptionAttribute.#ctor">
+      <summary>不带参数初始化 <see cref="T:System.ComponentModel.DescriptionAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DescriptionAttribute.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.ComponentModel.DescriptionAttribute" /> 类的新实例并带有说明。</summary>
+      <param name="description">说明文本。</param>
+    </member>
+    <member name="M:System.ComponentModel.DescriptionAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.DescriptionAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DescriptionAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DescriptionAttribute.IsDefaultAttribute">
+      <summary>返回一个值，该值指示这是否为默认 <see cref="T:System.ComponentModel.DescriptionAttribute" /> 实例。</summary>
+      <returns>如果这是默认 <see cref="T:System.ComponentModel.DescriptionAttribute" /> 实例，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DescriptionAttribute.Description">
+      <summary>获取存储在此属性 (Attribute) 中的说明。</summary>
+      <returns>存储在此属性 (Attribute) 中的说明。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DescriptionAttribute.DescriptionValue">
+      <summary>获取或设置作为说明存储的字符串。</summary>
+      <returns>作为说明存储的字符串。 默认值为空字符串 ("")。</returns>
+    </member>
+    <member name="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute">
+      <summary>指示某个序列化管理器的序列化程序，它将用于序列化此特性所应用到的类型的值。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.String,System.String)">
+      <summary>初始化 <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> 类的新实例。</summary>
+      <param name="serializerTypeName">序列化程序的数据类型的完全限定名。</param>
+      <param name="baseSerializerTypeName">序列化程序的基数据类型的完全限定名。 只要序列化程序具有不同的基类型，就可以为一个类提供多个序列化程序。</param>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.String,System.Type)">
+      <summary>初始化 <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> 类的新实例。</summary>
+      <param name="serializerTypeName">序列化程序的数据类型的完全限定名。</param>
+      <param name="baseSerializerType">序列化程序的基数据类型。 只要序列化程序具有不同的基类型，就可以为一个类提供多个序列化程序。</param>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.Type,System.Type)">
+      <summary>初始化 <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> 类的新实例。</summary>
+      <param name="serializerType">序列化程序的数据类型。</param>
+      <param name="baseSerializerType">序列化程序的基数据类型。 只要序列化程序具有不同的基类型，就可以为一个类提供多个序列化程序。</param>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.SerializerBaseTypeName">
+      <summary>获取序列化程序基类型的完全限定类型名。</summary>
+      <returns>序列化程序基类型的完全限定类型名。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.SerializerTypeName">
+      <summary>获取序列化程序的完全限定类型名。</summary>
+      <returns>序列化程序的完全限定类型名。</returns>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.TypeId">
+      <summary>指示此特性类型的唯一 ID。</summary>
+      <returns>此特性类型的唯一 ID。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DesignerAttribute">
+      <summary>指定用于为组件实现设计时服务的类。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String)">
+      <summary>使用提供设计时服务的类型的名称初始化 <see cref="T:System.ComponentModel.DesignerAttribute" /> 类的新实例。</summary>
+      <param name="designerTypeName">将类型（该类型为此特性所绑定到的组件提供设计时服务）的完全限定名称和此类型所驻留的程序集的名称串联后得到的结果。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String,System.String)">
+      <summary>使用设计器类型和设计器的基类初始化 <see cref="T:System.ComponentModel.DesignerAttribute" /> 类的新实例。</summary>
+      <param name="designerTypeName">将类型（该类型为此特性所绑定到的组件提供设计时服务）的完全限定名称和此类型所驻留的程序集的名称串联后得到的结果。</param>
+      <param name="designerBaseTypeName">要与设计器类关联的基类的完全限定名。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String,System.Type)">
+      <summary>使用设计器类的名称和设计器的基类初始化 <see cref="T:System.ComponentModel.DesignerAttribute" /> 类的新实例。</summary>
+      <param name="designerTypeName">将类型（该类型为此特性所绑定到的组件提供设计时服务）的完全限定名称和此类型所驻留的程序集的名称串联后得到的结果。</param>
+      <param name="designerBaseType">
+        <see cref="T:System.Type" />，表示要与 <paramref name="designerTypeName" /> 关联的基类。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.Type)">
+      <summary>使用提供设计时服务的类型初始化 <see cref="T:System.ComponentModel.DesignerAttribute" /> 类的新实例。</summary>
+      <param name="designerType">
+        <see cref="T:System.Type" />，表示为该特性所绑定到的组件提供设计时服务的类。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.Type,System.Type)">
+      <summary>使用设计器类型和设计器基类的类型初始化 <see cref="T:System.ComponentModel.DesignerAttribute" /> 类的新实例。</summary>
+      <param name="designerType">
+        <see cref="T:System.Type" />，表示为该特性所绑定到的组件提供设计时服务的类。</param>
+      <param name="designerBaseType">
+        <see cref="T:System.Type" />，表示要与 <paramref name="designerType" /> 关联的基类。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.DesignerAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.DesignerBaseTypeName">
+      <summary>获取此设计器的基类型名。</summary>
+      <returns>此设计器的基类型名。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.DesignerTypeName">
+      <summary>获取与此设计器特性关联的设计器类型名。</summary>
+      <returns>与此设计器特性关联的设计器类型名。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.TypeId">
+      <summary>获取此特性类型的唯一 ID。</summary>
+      <returns>此特性类型的唯一 ID。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DesignerCategoryAttribute">
+      <summary>指定类设计器属于某一类别。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Component">
+      <summary>指定标记为此类别的组件使用组件设计器。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Default">
+      <summary>指定标记为此类别的组件不能使用可视化设计器。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Form">
+      <summary>指定标记为此类别的组件使用窗体设计器。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Generic">
+      <summary>指定标记为此类别的组件使用一般设计器。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerCategoryAttribute.#ctor">
+      <summary>用空字符串 ("") 初始化 <see cref="T:System.ComponentModel.DesignerCategoryAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerCategoryAttribute.#ctor(System.String)">
+      <summary>用给定的类别名称初始化 <see cref="T:System.ComponentModel.DesignerCategoryAttribute" /> 类的新实例。</summary>
+      <param name="category">类别的名称。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerCategoryAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.DesignOnlyAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerCategoryAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerCategoryAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerCategoryAttribute.Category">
+      <summary>获取类别名称。</summary>
+      <returns>类别的名称。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerCategoryAttribute.TypeId">
+      <summary>获取此特性的唯一标识符。</summary>
+      <returns>一个表示该属性的唯一标识符的 <see cref="T:System.Object" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DesignerSerializationVisibility">
+      <summary>指定属性对设计时序列化程序所具有的可见性。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibility.Content">
+      <summary>代码生成器产生对象内容的代码，而不是对象本身的代码。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibility.Hidden">
+      <summary>代码生成器不生成对象的代码。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibility.Visible">
+      <summary>代码生成器生成对象的代码。</summary>
+    </member>
+    <member name="T:System.ComponentModel.DesignerSerializationVisibilityAttribute">
+      <summary>指定在设计时序列化组件上的属性时所使用的持久性类型。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content">
+      <summary>指定序列化程序应该序列化属性的内容，而不是属性本身。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Default">
+      <summary>指定默认值为 <see cref="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible" />，也就是说，可视化设计器使用默认规则来生成属性值。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden">
+      <summary>指定序列化程序不应该序列化属性的值。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible">
+      <summary>指定应该允许序列化程序序列化属性的值。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.#ctor(System.ComponentModel.DesignerSerializationVisibility)">
+      <summary>使用指定的 <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> 值初始化 <see cref="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" /> 类的新实例。</summary>
+      <param name="visibility">
+        <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> 值之一。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.Equals(System.Object)">
+      <summary>指示此实例与指定对象是否相等。</summary>
+      <param name="obj">要比较的另一个对象。</param>
+      <returns>如果 <see langword="true" /> 与此实例相等，则为 <paramref name="obj" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.GetHashCode">
+      <summary>返回此对象的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.IsDefaultAttribute">
+      <summary>获取一个值，该值指示该特性的当前值是否为该特性的默认值。</summary>
+      <returns>如果该特性设置为默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visibility">
+      <summary>获取一个值，该值指示序列化程序在确定是否以及如何保持某个属性的值时应使用的基本序列化模式。</summary>
+      <returns>
+        <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> 值之一。 默认值为 <see cref="F:System.ComponentModel.DesignerSerializationVisibility.Visible" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DesignOnlyAttribute">
+      <summary>指定某个属性是否只能在设计时设置。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.Default">
+      <summary>指定 <see cref="T:System.ComponentModel.DesignOnlyAttribute" /> 的默认值，即 <see cref="F:System.ComponentModel.DesignOnlyAttribute.No" />。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.No">
+      <summary>指定某个属性可在设计时或运行时设置。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.Yes">
+      <summary>指定某个属性只能在设计时设置。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignOnlyAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.DesignOnlyAttribute" /> 类的新实例。</summary>
+      <param name="isDesignOnly">如果属性只能在设计时设置，则为 <see langword="true" />；如果属性可在设计时和运行时设置，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignOnlyAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.DesignOnlyAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignOnlyAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignOnlyAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignOnlyAttribute.IsDesignOnly">
+      <summary>获取一个值，该值指示属性是否只能在设计时设置。</summary>
+      <returns>如果属性只能在设计时设置，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.DisplayNameAttribute">
+      <summary>指定属性、事件或不采用任何参数的公共 void 方法的显示名称。</summary>
+    </member>
+    <member name="F:System.ComponentModel.DisplayNameAttribute.Default">
+      <summary>指定 <see cref="T:System.ComponentModel.DisplayNameAttribute" /> 的默认值。 此字段为只读。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DisplayNameAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.ComponentModel.DisplayNameAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DisplayNameAttribute.#ctor(System.String)">
+      <summary>使用显示名称初始化 <see cref="T:System.ComponentModel.DisplayNameAttribute" /> 类的新实例。</summary>
+      <param name="displayName">显示名称。</param>
+    </member>
+    <member name="M:System.ComponentModel.DisplayNameAttribute.Equals(System.Object)">
+      <summary>确定两个 <see cref="T:System.ComponentModel.DisplayNameAttribute" /> 实例是否相等。</summary>
+      <param name="obj">要进行值的相等性测试的 <see cref="T:System.ComponentModel.DisplayNameAttribute" />。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DisplayNameAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>当前 <see cref="T:System.ComponentModel.DisplayNameAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.DisplayNameAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayName">
+      <summary>获取属性、事件或不采用此特性中存储的任何参数的公共 void 方法的显示名称。</summary>
+      <returns>显示名称。</returns>
+    </member>
+    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayNameValue">
+      <summary>获取或设置显示名称。</summary>
+      <returns>显示名称。</returns>
+    </member>
+    <member name="T:System.ComponentModel.EditorAttribute">
+      <summary>指定用于更改属性的编辑器。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor">
+      <summary>用默认的编辑器（即不使用任何编辑器）初始化 <see cref="T:System.ComponentModel.EditorAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.String,System.String)">
+      <summary>用编辑器的类型名称和基类型名称初始化 <see cref="T:System.ComponentModel.EditorAttribute" /> 类的新实例。</summary>
+      <param name="typeName">编辑器的完全限定的类型名。</param>
+      <param name="baseTypeName">用作编辑器查找键的基类或接口的完全限定类型名。 此类必须是 <see cref="T:System.Drawing.Design.UITypeEditor" /> 或是从它派生的。</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.String,System.Type)">
+      <summary>用类型名和基类型来初始化 <see cref="T:System.ComponentModel.EditorAttribute" /> 类的新实例。</summary>
+      <param name="typeName">编辑器的完全限定的类型名。</param>
+      <param name="baseType">用作编辑器查找键的基类或接口的 <see cref="T:System.Type" />。 此类必须是 <see cref="T:System.Drawing.Design.UITypeEditor" /> 或是从它派生的。</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.Type,System.Type)">
+      <summary>用类型和基类型初始化 <see cref="T:System.ComponentModel.EditorAttribute" /> 类的新实例。</summary>
+      <param name="type">一个表示编辑器类型的 <see cref="T:System.Type" />。</param>
+      <param name="baseType">用作编辑器查找键的基类或接口的 <see cref="T:System.Type" />。 此类必须是 <see cref="T:System.Drawing.Design.UITypeEditor" /> 或是从它派生的。</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.EditorAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.EditorBaseTypeName">
+      <summary>获取作为此编辑器查找键的基类或接口的名称。</summary>
+      <returns>作为此编辑器查找键的基类或接口的名称。</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.EditorTypeName">
+      <summary>获取 <see cref="P:System.Type.AssemblyQualifiedName" /> 格式的编辑器类的名称。</summary>
+      <returns>
+        <see cref="P:System.Type.AssemblyQualifiedName" /> 格式的编辑器类的名称。</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.TypeId">
+      <summary>获取此特性类型的唯一 ID。</summary>
+      <returns>此特性类型的唯一 ID。</returns>
+    </member>
+    <member name="T:System.ComponentModel.EventHandlerList">
+      <summary>提供一个简单的委托列表。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.ComponentModel.EventHandlerList.#ctor">
+      <summary>初始化 <see cref="T:System.ComponentModel.EventHandlerList" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.EventHandlerList.AddHandler(System.Object,System.Delegate)">
+      <summary>将委托添加到列表。</summary>
+      <param name="key">拥有该事件的对象。</param>
+      <param name="value">要添加到列表的委托。</param>
+    </member>
+    <member name="M:System.ComponentModel.EventHandlerList.AddHandlers(System.ComponentModel.EventHandlerList)">
+      <summary>向当前列表添加委托的列表。</summary>
+      <param name="listToAddFrom">要添加的列表。</param>
+    </member>
+    <member name="M:System.ComponentModel.EventHandlerList.Dispose">
+      <summary>处置委托列表。</summary>
+    </member>
+    <member name="M:System.ComponentModel.EventHandlerList.RemoveHandler(System.Object,System.Delegate)">
+      <summary>从列表中将委托移除。</summary>
+      <param name="key">拥有该事件的对象。</param>
+      <param name="value">要从列表中移除的委托。</param>
+    </member>
+    <member name="P:System.ComponentModel.EventHandlerList.Item(System.Object)">
+      <summary>获取或设置指定对象的委托。</summary>
+      <param name="key">要在列表中查找的对象。</param>
+      <returns>指定键的委托；如果委托不存在，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.IComponent">
+      <summary>提供全部组件所需的功能。</summary>
+    </member>
+    <member name="E:System.ComponentModel.IComponent.Disposed">
+      <summary>表示处理组件的 <see cref="E:System.ComponentModel.IComponent.Disposed" /> 事件的方法。</summary>
+    </member>
+    <member name="P:System.ComponentModel.IComponent.Site">
+      <summary>获取或设置与 <see cref="T:System.ComponentModel.ISite" /> 关联的 <see cref="T:System.ComponentModel.IComponent" />。</summary>
+      <returns>与组件关联的 <see cref="T:System.ComponentModel.ISite" /> 对象；或者在组件不具有站点的情况下为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.IContainer">
+      <summary>提供容器的功能。 容器是在逻辑上包含零个或多个组件的对象。</summary>
+    </member>
+    <member name="M:System.ComponentModel.IContainer.Add(System.ComponentModel.IComponent)">
+      <summary>将指定的 <see cref="T:System.ComponentModel.IComponent" /> 添加至列表结尾的 <see cref="T:System.ComponentModel.IContainer" />。</summary>
+      <param name="component">要添加的 <see cref="T:System.ComponentModel.IComponent" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.IContainer.Add(System.ComponentModel.IComponent,System.String)">
+      <summary>将指定的 <see cref="T:System.ComponentModel.IComponent" /> 添加至列表结尾的 <see cref="T:System.ComponentModel.IContainer" />，并给该组件分配一个名称。</summary>
+      <param name="component">要添加的 <see cref="T:System.ComponentModel.IComponent" />。</param>
+      <param name="name">要给该组件分配的唯一的、区分大小写的名称。  
+  
+- 或 - 
+ <see langword="null" />，它使组件保持未命名状态。</param>
+    </member>
+    <member name="M:System.ComponentModel.IContainer.Remove(System.ComponentModel.IComponent)">
+      <summary>从 <see cref="T:System.ComponentModel.IContainer" /> 中移除组件。</summary>
+      <param name="component">要移除的 <see cref="T:System.ComponentModel.IComponent" />。</param>
+    </member>
+    <member name="P:System.ComponentModel.IContainer.Components">
+      <summary>获取 <see cref="T:System.ComponentModel.IContainer" /> 中的所有组件。</summary>
+      <returns>
+        <see cref="T:System.ComponentModel.IComponent" /> 对象的集合，它表示 <see cref="T:System.ComponentModel.IContainer" /> 中的所有组件。</returns>
+    </member>
+    <member name="T:System.ComponentModel.ImmutableObjectAttribute">
+      <summary>指定对象没有可以被编辑的子属性。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Default">
+      <summary>表示 <see cref="T:System.ComponentModel.ImmutableObjectAttribute" /> 的默认值。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.No">
+      <summary>指定对象至少有一个可编辑的子属性。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Yes">
+      <summary>指定对象没有可编辑的子属性。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ImmutableObjectAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.ImmutableObjectAttribute" /> 类的新实例。</summary>
+      <param name="immutable">如果该对象不可变，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.ImmutableObjectAttribute.Equals(System.Object)">
+      <summary>返回一个值，该值指示此实例是否与指定的对象相等。</summary>
+      <param name="obj">要与此实例或 null 引用 （Visual Basic 中的 <see langword="Nothing" />）进行比较的 <see cref="T:System.Object" />。</param>
+      <returns>如果 <see langword="true" /> 等于此实例的类型和值，则为 <paramref name="obj" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ImmutableObjectAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>当前 <see cref="T:System.ComponentModel.ImmutableObjectAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ImmutableObjectAttribute.IsDefaultAttribute">
+      <summary>指示此实例的值是否为默认值。</summary>
+      <returns>如果此实例是该类的默认属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ImmutableObjectAttribute.Immutable">
+      <summary>获取该对象是否是不变的。</summary>
+      <returns>如果该对象不可变，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.InitializationEventAttribute">
+      <summary>指定在初始化时引发的事件。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.ComponentModel.InitializationEventAttribute.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.ComponentModel.InitializationEventAttribute" /> 类的新实例。</summary>
+      <param name="eventName">初始化事件的名称。</param>
+    </member>
+    <member name="P:System.ComponentModel.InitializationEventAttribute.EventName">
+      <summary>获取初始化事件的名称。</summary>
+      <returns>初始化事件的名称。</returns>
+    </member>
+    <member name="T:System.ComponentModel.InvalidAsynchronousStateException">
+      <summary>当应执行某个操作的线程不再存在或者没有消息循环时，将引发此异常。</summary>
+    </member>
+    <member name="M:System.ComponentModel.InvalidAsynchronousStateException.#ctor">
+      <summary>初始化 <see cref="T:System.ComponentModel.InvalidAsynchronousStateException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.InvalidAsynchronousStateException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用给定的 <see cref="T:System.ComponentModel.InvalidAsynchronousStateException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="info">要用于反序列化的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">用于反序列化的目标。</param>
+    </member>
+    <member name="M:System.ComponentModel.InvalidAsynchronousStateException.#ctor(System.String)">
+      <summary>使用指定的详细说明初始化 <see cref="T:System.ComponentModel.InvalidAsynchronousStateException" /> 类的新实例。</summary>
+      <param name="message">该错误的详细说明。</param>
+    </member>
+    <member name="M:System.ComponentModel.InvalidAsynchronousStateException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的详细说明和指定的异常初始化 <see cref="T:System.ComponentModel.InvalidAsynchronousStateException" /> 类的新实例。</summary>
+      <param name="message">该错误的详细说明。</param>
+      <param name="innerException">对导致此异常的内部异常的引用。</param>
+    </member>
+    <member name="T:System.ComponentModel.InvalidEnumArgumentException">
+      <summary>使用无效参数（为枚举数）时引发的异常。</summary>
+    </member>
+    <member name="M:System.ComponentModel.InvalidEnumArgumentException.#ctor">
+      <summary>在不带消息的情况下初始化 <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.InvalidEnumArgumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用指定的序列化数据和上下文初始化 <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> 类的新实例。</summary>
+      <param name="info">要用于反序列化的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">用于反序列化的目标。</param>
+    </member>
+    <member name="M:System.ComponentModel.InvalidEnumArgumentException.#ctor(System.String)">
+      <summary>使用指定的消息初始化 <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> 类的新实例。</summary>
+      <param name="message">与此异常一起显示的消息。</param>
+    </member>
+    <member name="M:System.ComponentModel.InvalidEnumArgumentException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的详细说明和指定的异常初始化 <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> 类的新实例。</summary>
+      <param name="message">该错误的详细说明。</param>
+      <param name="innerException">对导致此异常的内部异常的引用。</param>
+    </member>
+    <member name="M:System.ComponentModel.InvalidEnumArgumentException.#ctor(System.String,System.Int32,System.Type)">
+      <summary>初始化 <see cref="T:System.ComponentModel.InvalidEnumArgumentException" /> 类的新实例，带有从参数、无效值和枚举类生成的消息。</summary>
+      <param name="argumentName">导致异常的参数的名称。</param>
+      <param name="invalidValue">失败的参数的值。</param>
+      <param name="enumClass">
+        <see cref="T:System.Type" />，表示具有有效值的枚举类。</param>
+    </member>
+    <member name="T:System.ComponentModel.ISite">
+      <summary>提供站点所需的功能。</summary>
+    </member>
+    <member name="P:System.ComponentModel.ISite.Component">
+      <summary>当由类实现时，获取与 <see cref="T:System.ComponentModel.ISite" /> 关联的组件。</summary>
+      <returns>与 <see cref="T:System.ComponentModel.IComponent" /> 关联的 <see cref="T:System.ComponentModel.ISite" /> 实例。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ISite.Container">
+      <summary>当由类实现时，获取与 <see cref="T:System.ComponentModel.IContainer" /> 关联的 <see cref="T:System.ComponentModel.ISite" />。</summary>
+      <returns>与 <see cref="T:System.ComponentModel.IContainer" /> 关联的 <see cref="T:System.ComponentModel.ISite" /> 实例。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ISite.DesignMode">
+      <summary>确定组件在由类实现时是否处于设计模式。</summary>
+      <returns>如果组件处于设计模式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ISite.Name">
+      <summary>当由类实现时，获取或设置与 <see cref="T:System.ComponentModel.ISite" /> 关联的组件的名称。</summary>
+      <returns>与 <see cref="T:System.ComponentModel.ISite" /> 关联的组件的名称，或者在未给该组件分配名称的情况下为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.ISupportInitialize">
+      <summary>指定该对象支持对批初始化的简单的事务处理通知。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ISupportInitialize.BeginInit">
+      <summary>用信号通知对象初始化即将开始。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ISupportInitialize.EndInit">
+      <summary>用信号通知对象初始化已完成。</summary>
+    </member>
+    <member name="T:System.ComponentModel.ISynchronizeInvoke">
+      <summary>提供同步或异步执行委托的方法。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ISynchronizeInvoke.BeginInvoke(System.Delegate,System.Object[])">
+      <summary>在创建了此对象的线程上异步执行委托。</summary>
+      <param name="method">对方法的 <see cref="T:System.Delegate" />，采用 <paramref name="args" /> 中包含的相同数字和类型的参数。</param>
+      <param name="args">作为给定方法的参数传递的 <see cref="T:System.Object" /> 类型数组。 如果不需要参数，则可以为 <see langword="null" />。</param>
+      <returns>
+        <see cref="T:System.IAsyncResult" /> 接口，表示通过调用此方法启动的异步操作。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ISynchronizeInvoke.EndInvoke(System.IAsyncResult)">
+      <summary>等待通过调用 <see cref="M:System.ComponentModel.ISynchronizeInvoke.BeginInvoke(System.Delegate,System.Object[])" /> 启动的进程完成，然后返回该进程生成的值。</summary>
+      <param name="result">
+        <see cref="T:System.IAsyncResult" /> 接口，表示通过调用 <see cref="M:System.ComponentModel.ISynchronizeInvoke.BeginInvoke(System.Delegate,System.Object[])" /> 启动的异步操作。</param>
+      <returns>表示异步操作生成的返回值的 <see cref="T:System.Object" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ISynchronizeInvoke.Invoke(System.Delegate,System.Object[])">
+      <summary>在创建了此对象的线程上同步执行委托并封送对创建线程的调用。</summary>
+      <param name="method">包含要调用的方法的 <see cref="T:System.Delegate" />，在控件的线程上下文中。</param>
+      <param name="args">表示要传递到给定方法的参数的 <see cref="T:System.Object" /> 类型数组。 如果不需要参数，则可以为 <see langword="null" />。</param>
+      <returns>表示正被调用的委托返回值的 <see cref="T:System.Object" />；如果该委托没有返回值，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ISynchronizeInvoke.InvokeRequired">
+      <summary>获取一个值，通过该值指示当调用实现此接口的对象时，调用方是否必须调用 <see cref="M:System.ComponentModel.ISynchronizeInvoke.Invoke(System.Delegate,System.Object[])" />。</summary>
+      <returns>如果调用方必须调用 <see cref="M:System.ComponentModel.ISynchronizeInvoke.Invoke(System.Delegate,System.Object[])" />，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.LocalizableAttribute">
+      <summary>指定是否应本地化某一属性。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.Default">
+      <summary>指定默认值，即 <see cref="F:System.ComponentModel.LocalizableAttribute.No" />。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.No">
+      <summary>指定属性不应本地化。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.Yes">
+      <summary>指定属性应本地化。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.LocalizableAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.LocalizableAttribute" /> 类的新实例。</summary>
+      <param name="isLocalizable">如果属性应本地化，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.LocalizableAttribute.Equals(System.Object)">
+      <summary>返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.LocalizableAttribute" />。</summary>
+      <param name="obj">要进行值的相等性测试的对象。</param>
+      <returns>如果给定对象的值等于当前对象的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.LocalizableAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>当前 <see cref="T:System.ComponentModel.LocalizableAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.LocalizableAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.LocalizableAttribute.IsLocalizable">
+      <summary>获取一个值，该值指示属性是否应本地化。</summary>
+      <returns>如果属性应本地化，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.MergablePropertyAttribute">
+      <summary>指定该属性能与“属性”窗口中属于其他对象的属性组合。</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.Default">
+      <summary>指定默认值 <see cref="F:System.ComponentModel.MergablePropertyAttribute.Yes" />，它可以与“属性”窗口中属于其他对象的属性组合。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.No">
+      <summary>指定属性不能与“属性”窗口中属于其他对象的属性组合。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.Yes">
+      <summary>指定属性能与“属性”窗口中属于其他对象的属性组合。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.MergablePropertyAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.MergablePropertyAttribute" /> 类的新实例。</summary>
+      <param name="allowMerge">如果该属性可以与“属性”窗口中属于其他对象的属性进行组合，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.MergablePropertyAttribute.Equals(System.Object)">
+      <summary>指示此实例与指定对象是否相等。</summary>
+      <param name="obj">要比较的另一个对象。</param>
+      <returns>如果 <see langword="true" /> 与此实例相等，则为 <paramref name="obj" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.MergablePropertyAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>当前 <see cref="T:System.ComponentModel.MergablePropertyAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.MergablePropertyAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.MergablePropertyAttribute.AllowMerge">
+      <summary>获取一个值，该值指示该属性能否与“属性”窗口属于其他对象的属性组合。</summary>
+      <returns>如果该属性可以与“属性”窗口中属于其他对象的属性进行组合，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.NotifyParentPropertyAttribute">
+      <summary>指示当此特性应用到的属性的值被修改时，通知父属性。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Default">
+      <summary>指示默认的特性状态，即属性不向父属性通知其值的更改。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.No">
+      <summary>指示不通知父属性有关属性值的更改。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Yes">
+      <summary>指示通知父属性有关属性值的更改。 此字段为只读。</summary>
+    </member>
+    <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.NotifyParentPropertyAttribute" /> 类的新实例，使用指定的值确定是否通知父属性有关属性值的更改。</summary>
+      <param name="notifyParent">如果应该向父属性通知更改，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.Equals(System.Object)">
+      <summary>获取一个值，该值指示指定对象是否与当前对象相同。</summary>
+      <param name="obj">要测试相等的对象。</param>
+      <returns>如果指定对象与当前对象相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.GetHashCode">
+      <summary>获取此对象的哈希代码。</summary>
+      <returns>该特性所属对象的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.IsDefaultAttribute">
+      <summary>获取一个值，该值指示该特性的当前值是否为该特性的默认值。</summary>
+      <returns>如果特性的当前值为该特性的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.NotifyParentPropertyAttribute.NotifyParent">
+      <summary>获取或设置一个值，该值指示是否应该通知父属性有关属性值的更改。</summary>
+      <returns>如果应该向父属性通知更改，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.ParenthesizePropertyNameAttribute">
+      <summary>指示关联属性的名称在“属性”窗口中显示时是否带有括号。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ParenthesizePropertyNameAttribute.Default">
+      <summary>用默认值（该值指示关联的属性显示时不应带有括号）初始化 <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> 类的新实例。 此字段为只读。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> 类的新实例，该实例指示关联属性显示时不应带括号。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.#ctor(System.Boolean)">
+      <summary>通过使用指定值来指示该特性显示时是否带有括号，初始化 <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> 类的新实例。</summary>
+      <param name="needParenthesis">如果名称应括在括号中，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.Equals(System.Object)">
+      <summary>将指定的对象与此对象进行比较并测试是否相等。</summary>
+      <param name="obj" />
+      <returns>如果相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.GetHashCode">
+      <summary>获取此对象的哈希代码。</summary>
+      <returns>该特性所属对象的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.IsDefaultAttribute">
+      <summary>获取一个值，该值指示该特性的当前值是否为该特性的默认值。</summary>
+      <returns>如果特性的当前值为该特性的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ParenthesizePropertyNameAttribute.NeedParenthesis">
+      <summary>获取一个值，该值指示在“属性”窗口中显示属性的名称时是否带有括号。</summary>
+      <returns>如果属性显示时带有括号，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.ReadOnlyAttribute">
+      <summary>指定该特性所绑定到的属性是只读属性还是读/写属性。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.Default">
+      <summary>指定 <see cref="T:System.ComponentModel.ReadOnlyAttribute" /> 的默认值，为 <see cref="F:System.ComponentModel.ReadOnlyAttribute.No" />（即此特性绑定到的属性是可读/写的）。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.No">
+      <summary>指定该特性绑定到的属性为读/写属性，可以修改。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.Yes">
+      <summary>指定此特性绑定到的属性为只读，并且不能在服务器资源管理器中修改。 此 <see langword="static" /> 字段是只读的。</summary>
+    </member>
+    <member name="M:System.ComponentModel.ReadOnlyAttribute.#ctor(System.Boolean)">
+      <summary>初始化 <see cref="T:System.ComponentModel.ReadOnlyAttribute" /> 类的新实例。</summary>
+      <param name="isReadOnly">如果该特性所绑定到的属性为只读属性，则为 <see langword="true" />；如果该属性为读/写属性，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.ComponentModel.ReadOnlyAttribute.Equals(System.Object)">
+      <summary>指示此实例与指定对象是否相等。</summary>
+      <param name="value">要比较的另一个对象。</param>
+      <returns>如果 <see langword="true" /> 与此实例相等，则为 <paramref name="value" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ReadOnlyAttribute.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>当前 <see cref="T:System.ComponentModel.ReadOnlyAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.ReadOnlyAttribute.IsDefaultAttribute">
+      <summary>确定此特性是否为默认特性。</summary>
+      <returns>如果此特性是此特性类的默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.ReadOnlyAttribute.IsReadOnly">
+      <summary>获取一个值，该值指示该特性绑定到的属性是否为只读属性。</summary>
+      <returns>如果该特性所绑定到的属性为只读属性，则为 <see langword="true" />；如果该属性为读/写属性，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.RefreshProperties">
+      <summary>定义指示“属性”窗口刷新类型的标识符。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshProperties.All">
+      <summary>应该重新查询该属性并刷新视图。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshProperties.None">
+      <summary>不需要进行刷新。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshProperties.Repaint">
+      <summary>应该刷新该视图。</summary>
+    </member>
+    <member name="T:System.ComponentModel.RefreshPropertiesAttribute">
+      <summary>指示关联的属性值更改时应刷新属性网格。 此类不能被继承。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshPropertiesAttribute.All">
+      <summary>指示在属性值更改时重新查询并刷新所有属性。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshPropertiesAttribute.Default">
+      <summary>指示在该属性值更改时不刷新其他任何属性。 此字段为只读。</summary>
+    </member>
+    <member name="F:System.ComponentModel.RefreshPropertiesAttribute.Repaint">
+      <summary>指示在属性值更改时重新绘制所有属性。 此字段为只读。</summary>
+    </member>
+    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.#ctor(System.ComponentModel.RefreshProperties)">
+      <summary>初始化 <see cref="T:System.ComponentModel.RefreshPropertiesAttribute" /> 类的新实例。</summary>
+      <param name="refresh">一个 <see cref="T:System.ComponentModel.RefreshProperties" /> 值，它指示刷新的性质。</param>
+    </member>
+    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.Equals(System.Object)">
+      <summary>重写对象的 <see cref="Overload:System.Object.Equals" /> 方法。</summary>
+      <param name="obj" />
+      <returns>如果指定的对象相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.GetHashCode">
+      <summary>返回此对象的哈希代码。</summary>
+      <returns>该特性所属的对象的哈希代码。</returns>
+    </member>
+    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.IsDefaultAttribute">
+      <summary>获取一个值，该值指示该特性的当前值是否为该特性的默认值。</summary>
+      <returns>如果该特性的当前值是默认值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ComponentModel.RefreshPropertiesAttribute.RefreshProperties">
+      <summary>获取成员的刷新属性。</summary>
+      <returns>一个 <see cref="T:System.ComponentModel.RefreshProperties" />，指示成员的当前刷新属性。</returns>
+    </member>
+  </members>
+</doc>

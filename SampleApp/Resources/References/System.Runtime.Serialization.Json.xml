@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Runtime.Serialization.Json</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.Serialization.DateTimeFormat">
+      <summary>指定日期时间格式选择。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.DateTimeFormat.#ctor(System.String)">
+      <summary>使用字符串格式初始化 <see cref="T:System.Runtime.Serialization.DateTimeFormat" /> 类的新实例。</summary>
+      <param name="formatString">格式字符串。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.DateTimeFormat.#ctor(System.String,System.IFormatProvider)">
+      <summary>使用格式字符串和格式提供方初始化 <see cref="T:System.Runtime.Serialization.DateTimeFormat" /> 类的新实例。</summary>
+      <param name="formatString">格式字符串。</param>
+      <param name="formatProvider">格式提供程序。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.DateTimeFormat.DateTimeStyles">
+      <summary>获取或设置格式设置选项，这些选项可自定义许多日期和时间分析方法的字符串分析方法。</summary>
+      <returns>自定义许多日期和时间分析方法的字符串的格式设置选项。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DateTimeFormat.FormatProvider">
+      <summary>获取控制格式设置的对象。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.DateTimeFormat.FormatString">
+      <summary>当一个日期或时间被表示成字符串时，获取控制格式生成的格式字符串。</summary>
+      <returns>当一个日期或时间被表示成字符串时控制格式生成的格式字符串。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.EmitTypeInformation">
+      <summary>指定发出类型信息的频率。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.EmitTypeInformation.Always">
+      <summary>始终发出类型信息。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.EmitTypeInformation.AsNeeded">
+      <summary>根据需要发出类型信息。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.EmitTypeInformation.Never">
+      <summary>从不发出类型信息。</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <summary>将对象序列化为 JavaScript 对象表示法 (JSON)，并将 JSON 数据反序列化为对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 类的新实例，以便序列化或反序列化指定类型的对象。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 类的新实例，以便序列化或反序列化指定类型的对象以及可在对象图中呈现的已知类型的集合。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="knownTypes">
+        <see cref="T:System.Collections.Generic.IEnumerable`1" /> 的一个 <see cref="T:System.Type" />，其中包含可在对象图中呈现的类型。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Runtime.Serialization.Json.DataContractJsonSerializerSettings)">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 类的新实例，以便序列化或反序列化指定类型和序列化设置的对象。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="settings">JSON 序列化程序序列化程序设置。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.String)">
+      <summary>使用参数指定的 XML 根元素初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 类的新实例，以便序列化或反序列化指定类型的对象。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="rootName">XML 元素的名称，该元素包含要序列化或反序列化的内容。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.String,System.Collections.Generic.IEnumerable{System.Type})">
+      <summary>使用参数指定的 XML 根元素初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 类的新实例，以便序列化或反序列化指定类型的对象以及可在对象图中呈现的已知类型的集合。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="rootName">XML 元素的名称，该元素包含要序列化或反序列化的内容。 默认值为“root”。</param>
+      <param name="knownTypes">
+        <see cref="T:System.Collections.Generic.IEnumerable`1" /> 的一个 <see cref="T:System.Type" />，其中包含可在对象图中呈现的类型。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Xml.XmlDictionaryString)">
+      <summary>使用类型为 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 的参数指定的 XML 根元素初始化 <see cref="T:System.Xml.XmlDictionaryString" /> 类的新实例，以便序列化或反序列化指定类型的对象。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="rootName">一个包含内容的根元素名称的 <see cref="T:System.Xml.XmlDictionaryString" />。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Xml.XmlDictionaryString,System.Collections.Generic.IEnumerable{System.Type})">
+      <summary>使用类型为 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 的参数指定的 XML 根元素初始化 <see cref="T:System.Xml.XmlDictionaryString" /> 类的新实例，以便序列化或反序列化指定类型的对象以及可在对象图中呈现的已知类型的集合。</summary>
+      <param name="type">序列化或反序列化的实例的类型。</param>
+      <param name="rootName">一个包含内容的根元素名称的 <see cref="T:System.Xml.XmlDictionaryString" />。</param>
+      <param name="knownTypes">
+        <see cref="T:System.Collections.Generic.IEnumerable`1" /> 的一个 <see cref="T:System.Type" />，其中包含可在对象图中呈现的类型。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.IsStartObject(System.Xml.XmlDictionaryReader)">
+      <summary>获取一个值，指定 <see cref="T:System.Xml.XmlDictionaryReader" /> 是否定位在 XML 元素上，而该元素表示序列化程序可从中进行反序列化的对象。</summary>
+      <param name="reader">用于读取从 JSON 映射的 XML 流的 <see cref="T:System.Xml.XmlDictionaryReader" />。</param>
+      <returns>如果正确定位了读取器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.IsStartObject(System.Xml.XmlReader)">
+      <summary>确定是否将 <see cref="T:System.Xml.XmlReader" /> 定位在可反序列化的对象上。</summary>
+      <param name="reader">用于读取 XML 流的 <see cref="T:System.Xml.XmlReader" />。</param>
+      <returns>如果正确定位了读取器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)">
+      <summary>以 JSON（JavaScript 对象表示法）格式读取文档流，并返回反序列化的对象。</summary>
+      <param name="stream">要读取的 <see cref="T:System.IO.Stream" />。</param>
+      <returns>已反序列化的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.Xml.XmlDictionaryReader)">
+      <summary>使用 <see cref="T:System.Xml.XmlDictionaryReader" /> 读取从 JSON（JavaScript 对象表示法）映射的 XML 文档，并返回反序列化的对象。</summary>
+      <param name="reader">一个 <see cref="T:System.Xml.XmlDictionaryReader" />，用于读取从 JSON 映射的 XML 文档。</param>
+      <returns>已反序列化的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.Xml.XmlDictionaryReader,System.Boolean)">
+      <summary>使用 <see cref="T:System.Xml.XmlDictionaryReader" /> 读取从 JSON 映射的 XML 文档并返回反序列化的对象；它还可用于指定序列化程序在尝试反序列化之前是否应验证其定位在相应的元素上。</summary>
+      <param name="reader">一个 <see cref="T:System.Xml.XmlDictionaryReader" />，用于读取从 JSON 映射的 XML 文档。</param>
+      <param name="verifyObjectName">若要检查包含的 XML 元素名称和命名空间是否对应于预期的名称和命名空间，则为 <see langword="true" />；否则为 <see langword="false" /> 以跳过验证。 默认值为 <see langword="true" />。</param>
+      <returns>已反序列化的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.Xml.XmlReader)">
+      <summary>使用 <see cref="T:System.Xml.XmlReader" /> 读取从 JSON（JavaScript 对象表示法）映射的 XML 文档，并返回反序列化的对象。</summary>
+      <param name="reader">一个 <see cref="T:System.Xml.XmlReader" />，用于读取从 JSON 映射的 XML 文档。</param>
+      <returns>已反序列化的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.Xml.XmlReader,System.Boolean)">
+      <summary>使用 <see cref="T:System.Xml.XmlReader" /> 读取从 JSON 映射的 XML 文档并返回反序列化的对象；它还可用于指定序列化程序在尝试反序列化之前是否应验证其定位在相应的元素上。</summary>
+      <param name="reader">一个 <see cref="T:System.Xml.XmlReader" />，用于读取从 JSON 映射的 XML 文档。</param>
+      <param name="verifyObjectName">若要检查包含的 XML 元素名称和命名空间是否对应于预期的名称和命名空间，则为 <see langword="true" />；否则为 <see langword="false" /> 以跳过验证。 默认值为 <see langword="true" />。</param>
+      <returns>已反序列化的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteEndObject(System.Xml.XmlDictionaryWriter)">
+      <summary>使用 <see cref="T:System.Xml.XmlDictionaryWriter" /> 将结束 XML 元素写入可映射到 JavaScript 对象表示法 (JSON) 的 XML 文档。</summary>
+      <param name="writer">用于写入要映射到 JSON 的 XML 文档的 <see cref="T:System.Xml.XmlDictionaryWriter" />。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteEndObject(System.Xml.XmlWriter)">
+      <summary>使用 <see cref="T:System.Xml.XmlWriter" /> 将结束 XML 元素写入可映射到 JavaScript 对象表示法 (JSON) 的 XML 文档。</summary>
+      <param name="writer">用于写入映射到 JSON 的 XML 文档的 <see cref="T:System.Xml.XmlWriter" />。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)">
+      <summary>将指定对象序列化为 JavaScript 对象表示法 (JSON) 数据，并将生成的 JSON 写入流中。</summary>
+      <param name="stream">用于写入 <see cref="T:System.IO.Stream" />。</param>
+      <param name="graph">包含要写入流的数据的对象。</param>
+      <exception cref="T:System.Runtime.Serialization.InvalidDataContractException">正在序列化的类型不符合数据协定规则。 例如，<see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 特性未应用于该类型。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">正在写入的实例出现问题。</exception>
+      <exception cref="T:System.ServiceModel.QuotaExceededException">已超出要序列化的对象的最大数量。 请检查 <see cref="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph" /> 属性。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.Xml.XmlDictionaryWriter,System.Object)">
+      <summary>将对象序列化为可映射到 JavaScript 对象表示法 (JSON) 的 XML。 使用 <see cref="T:System.Xml.XmlDictionaryWriter" /> 写入所有对象数据（包括开始 XML 元素、内容和结束元素）。</summary>
+      <param name="writer">用于写入要映射到 JSON 的 XML 文档或流的 <see cref="T:System.Xml.XmlDictionaryWriter" />。</param>
+      <param name="graph">包含要写入的数据的对象。</param>
+      <exception cref="T:System.Runtime.Serialization.InvalidDataContractException">正在序列化的类型不符合数据协定规则。 例如，<see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 特性未应用于该类型。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">正在写入的实例出现问题。</exception>
+      <exception cref="T:System.ServiceModel.QuotaExceededException">已超出要序列化的对象的最大数量。 请检查 <see cref="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph" /> 属性。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.Xml.XmlWriter,System.Object)">
+      <summary>将对象序列化为可映射到 JavaScript 对象表示法 (JSON) 的 XML。 使用 <see cref="T:System.Xml.XmlWriter" /> 写入所有对象数据（包括开始 XML 元素、内容和结束元素）。</summary>
+      <param name="writer">用于写入要映射到 JSON 的 XML 文档的 <see cref="T:System.Xml.XmlWriter" />。</param>
+      <param name="graph">包含要写入的数据的对象。</param>
+      <exception cref="T:System.Runtime.Serialization.InvalidDataContractException">正在序列化的类型不符合数据协定规则。 例如，<see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 特性未应用于该类型。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">正在写入的实例出现问题。</exception>
+      <exception cref="T:System.ServiceModel.QuotaExceededException">已超出要序列化的对象的最大数量。 请检查 <see cref="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph" /> 属性。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObjectContent(System.Xml.XmlDictionaryWriter,System.Object)">
+      <summary>使用 <see cref="T:System.Xml.XmlDictionaryWriter" /> 写入可映射到 JavaScript 对象表示法 (JSON) 的 XML 内容。</summary>
+      <param name="writer">要向其中进行写入的 <see cref="T:System.Xml.XmlDictionaryWriter" />。</param>
+      <param name="graph">要写入的对象。</param>
+      <exception cref="T:System.Runtime.Serialization.InvalidDataContractException">正在序列化的类型不符合数据协定规则。 例如，<see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 特性未应用于该类型。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">正在写入的实例出现问题。</exception>
+      <exception cref="T:System.ServiceModel.QuotaExceededException">已超出要序列化的对象的最大数量。 请检查 <see cref="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph" /> 属性。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObjectContent(System.Xml.XmlWriter,System.Object)">
+      <summary>使用 <see cref="T:System.Xml.XmlWriter" /> 写入可映射到 JavaScript 对象表示法 (JSON) 的 XML 内容。</summary>
+      <param name="writer">用于写入的 <see cref="T:System.Xml.XmlWriter" />。</param>
+      <param name="graph">要写入的对象。</param>
+      <exception cref="T:System.Runtime.Serialization.InvalidDataContractException">正在序列化的类型不符合数据协定规则。 例如，<see cref="T:System.Runtime.Serialization.DataContractAttribute" /> 特性未应用于该类型。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">正在写入的实例出现问题。</exception>
+      <exception cref="T:System.ServiceModel.QuotaExceededException">已超出要序列化的对象的最大数量。 请检查 <see cref="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph" /> 属性。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteStartObject(System.Xml.XmlDictionaryWriter,System.Object)">
+      <summary>使用 <see cref="T:System.Xml.XmlDictionaryWriter" /> 写入开始 XML 元素，以便将对象序列化为可映射到 JavaScript 对象表示法 (JSON) 的 XML。</summary>
+      <param name="writer">用于写入 XML 开始元素的 <see cref="T:System.Xml.XmlDictionaryWriter" />。</param>
+      <param name="graph">要写入的对象。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteStartObject(System.Xml.XmlWriter,System.Object)">
+      <summary>使用 <see cref="T:System.Xml.XmlWriter" /> 写入开始 XML 元素，以便将对象序列化为可映射到 JavaScript 对象表示法 (JSON) 的 XML。</summary>
+      <param name="writer">用于写入 XML 开始元素的 <see cref="T:System.Xml.XmlWriter" />。</param>
+      <param name="graph">要写入的对象。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat">
+      <summary>获取在对象关系图中日期和时间种类项的格式。</summary>
+      <returns>在对象关系图中日期和时间种类项的格式。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation">
+      <summary>获取或设置用于发出类型信息的数据协定 JSON 序列化程序设置。</summary>
+      <returns>数据协定 JSON 序列化程序设置可发出类型信息。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.IgnoreExtensionDataObject">
+      <summary>获取一个值，指定在反序列化时是否忽略未知数据以及在序列化时是否忽略 <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" /> 接口。</summary>
+      <returns>若要忽略未知数据和 <see langword="true" />，则为 <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes">
+      <summary>获取一个类型集合，这些类型可能出现在使用此 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 实例序列化的对象图中。</summary>
+      <returns>一个 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />，它包含作为已知类型传入 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 构造函数的预期类型。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.MaxItemsInObjectGraph">
+      <summary>获取序列化程序通过一次读取或写入调用在对象图中序列化或反序列化的最大项数。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">项数超出了最大值。</exception>
+      <returns>要序列化或反序列化的最大项数。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes">
+      <summary>获取或设置指定是否序列化只读类型的值。</summary>
+      <returns>仅序列化读取类型，则为 <see langword="true" />；否则 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat">
+      <summary>获取指定是否使用简单字典格式的值。</summary>
+      <returns>使用简单的字典格式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
+      <summary>指定 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> 设置。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor">
+      <summary>初始化 <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.DateTimeFormat">
+      <summary>获取或设置定义显示日期和时间的的相应于区域性格式的 DateTimeFormat。</summary>
+      <returns>DateTimeFormat 定义适合区域性的、显示日期和时间的格式。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.EmitTypeInformation">
+      <summary>获取或设置用于发出类型信息的数据协定 JSON 序列化程序设置。</summary>
+      <returns>数据协定 JSON 序列化程序设置可发出类型信息。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.IgnoreExtensionDataObject">
+      <summary>获取或设置一个值，该值指定在对类进行序列化或反序列化时是否要忽略由该类扩展提供的数据。</summary>
+      <returns>如果在对该类进行序列化或反序列化时忽略由该类的扩展提供的数据，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.KnownTypes">
+      <summary>获取或设置可能存在于通过使用此实例 DataContractSerializerSettings 所序列化的对象关系图中的类型集合。</summary>
+      <returns>一个类型集合，这些类型可能出现在使用此 DataContractSerializerSettings 实例序列化的对象图中。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.MaxItemsInObjectGraph">
+      <summary>获取或设置一个要序列化或反序列化的对象图中的最大项数。</summary>
+      <returns>要序列化或反序列化的对象图中的最大项数。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.RootName">
+      <summary>获取或设置选定对象的根名称。</summary>
+      <returns>选中对象的根名称。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.SerializeReadOnlyTypes">
+      <summary>获取或设置指定是否序列化只读类型的值。</summary>
+      <returns>仅序列化读取类型，则为 <see langword="true" />；否则 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.UseSimpleDictionaryFormat">
+      <summary>获取或设置指定是否使用简单字典格式的值。</summary>
+      <returns>使用简单的字典格式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Json.IXmlJsonReaderInitializer">
+      <summary>指定在重用 JavaScript 对象表示法 (JSON) 读取器从特定流或缓冲区中读取数据时对该读取器进行初始化的接口。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.IXmlJsonReaderInitializer.SetInput(System.Byte[],System.Int32,System.Int32,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
+      <summary>将支持 JavaScript 对象表示法 (JSON) 的读取器重新初始化为包含 JSON 编码数据的指定缓冲区。</summary>
+      <param name="buffer">要从中读取数据的输入 <see cref="T:System.Byte" /> 缓冲区数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中开始读取数据的位置。</param>
+      <param name="count">可以从 <paramref name="buffer" /> 中读取的字节数。</param>
+      <param name="encoding">读取器使用的 <see cref="T:System.Text.Encoding" />。</param>
+      <param name="quotas">要应用的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <param name="onClose">在读取器关闭时调用的 <see cref="T:System.Xml.OnXmlDictionaryReaderClose" /> 委托。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.IXmlJsonReaderInitializer.SetInput(System.IO.Stream,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
+      <summary>将支持 JavaScript 对象表示法 (JSON) 的读取器重新初始化为包含 JSON 编码数据的指定流。</summary>
+      <param name="stream">要从中读取数据的输入 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">读取器使用的 <see cref="T:System.Text.Encoding" />。</param>
+      <param name="quotas">要应用的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <param name="onClose">读取器关闭时调用的委托。</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.Json.IXmlJsonWriterInitializer">
+      <summary>指定在重用 JavaScript 对象表示法 (JSON) 编写器向特定输出流写入数据时对该编写器进行初始化的接口。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.IXmlJsonWriterInitializer.SetOutput(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+      <summary>使用指定的字符编码将 JavaScript 对象表示法 (JSON) 编写器初始化（或重新初始化）为指定的输出流。</summary>
+      <param name="stream">编写器将写入到的输出 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定输出流字符编码的 <see cref="T:System.Text.Encoding" />。</param>
+      <param name="ownsStream">如果为 <see langword="true" />，则在完成时写入器关闭输出流；否则为 <see langword="false" />。</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.Json.JsonReaderWriterFactory">
+      <summary>生成 <see cref="T:System.Xml.XmlDictionaryReader" /> 实例和 <see cref="T:System.Xml.XmlDictionaryWriter" /> 实例，前者可以从流或缓冲区中读取 JavaScript 对象表示法 (JSON) 编码数据，并将其映射到 XML Infoset；后者可以将 XML Infoset 映射到 JSON，并将 JSON 编码数据写入流中。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以将 JavaScript 对象表示法 (JSON) 编码缓冲区（具有指定大小、偏移量和字符编码）映射到 XML Infoset。</summary>
+      <param name="buffer">要从中读取数据的输入 <see cref="T:System.Byte" /> 缓冲区数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中开始读取数据的位置。</param>
+      <param name="count">可以从 <paramref name="buffer" /> 中读取的字节数。</param>
+      <param name="encoding">指定读取器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 如果指定 <see langword="null" /> 作为值，读取器将尝试自动检测编码。</param>
+      <param name="quotas">用于防止在读取不受信任数据时受到拒绝服务攻击的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <param name="onClose">在读取器关闭时调用的 <see cref="T:System.Xml.OnXmlDictionaryReaderClose" /> 委托。 默认值是 <see langword="null" />。</param>
+      <returns>一个可读取 JavaScript 对象表示法 (JSON) 的 <see cref="T:System.Xml.XmlDictionaryReader" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以将 JavaScript 对象表示法 (JSON) 编码缓冲区（具有指定大小和偏移量）映射到 XML Infoset。</summary>
+      <param name="buffer">要从中读取数据的输入 <see cref="T:System.Byte" /> 缓冲区数组。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中开始读取数据的位置。</param>
+      <param name="count">可以从 <paramref name="buffer" /> 中读取的字节数。</param>
+      <param name="quotas">用于防止在读取不受信任数据时受到拒绝服务攻击的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <returns>一个可读取 JavaScript 对象表示法 (JSON) 的 <see cref="T:System.Xml.XmlDictionaryReader" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以将 JavaScript 对象表示法 (JSON) 编码缓冲区映射到 XML Infoset。</summary>
+      <param name="buffer">要从中读取数据的输入 <see cref="T:System.Byte" /> 缓冲区数组。</param>
+      <param name="quotas">用于防止在读取不受信任数据时受到拒绝服务攻击的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以处理 JavaScript 对象表示法 (JSON) 数据。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以将 JavaScript 对象表示法 (JSON) 编码流（具有指定大小和偏移量）映射到 XML Infoset。</summary>
+      <param name="stream">要从中读取数据的输入 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定读取器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 如果指定 <see langword="null" /> 作为值，读取器将尝试自动检测编码。</param>
+      <param name="quotas">用于防止在读取不受信任数据时受到拒绝服务攻击的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <param name="onClose">在读取器关闭时调用的 <see cref="T:System.Xml.OnXmlDictionaryReaderClose" /> 委托。</param>
+      <returns>一个可读取 JavaScript 对象表示法 (JSON) 的 <see cref="T:System.Xml.XmlDictionaryReader" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryReader" />，它可以将 JavaScript 对象表示法 (JSON) 编码流映射到 XML Infoset。</summary>
+      <param name="stream">要从中读取数据的输入 <see cref="T:System.IO.Stream" />。</param>
+      <param name="quotas">用于防止在读取不受信任数据时受到拒绝服务攻击的 <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />。</param>
+      <returns>一个可读取 JavaScript 对象表示法 (JSON) 的 <see cref="T:System.Xml.XmlDictionaryReader" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它将 JSON 编码数据写入流中。</summary>
+      <param name="stream">JSON 编写器的输出 <see cref="T:System.IO.Stream" />。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它基于 XML Infoset 将 JSON 编码数据写入流中。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它使用指定的字符编码将 JSON 编码数据写入流中。</summary>
+      <param name="stream">JSON 编写器的输出 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定写入器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 默认编码为 UTF-8。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它基于 XML Infoset 将 JSON 编码数据写入流中。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它使用指定的字符编码将 JSON 编码数据写入流中。</summary>
+      <param name="stream">JSON 编写器的输出 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定写入器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 默认编码为 UTF-8。</param>
+      <param name="ownsStream">如果为 <see langword="true" />，则在完成时写入器关闭输出流；否则为 <see langword="false" />。 默认值是 <see langword="true" />。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它基于 XML Infoset 将 JSON 编码数据写入流中。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Boolean)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它使用指定的字符将 JSON 编码数据写入流中。</summary>
+      <param name="stream">JSON 编写器的输出 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定写入器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 默认编码为 UTF-8。</param>
+      <param name="ownsStream">如果为 <see langword="true" />，则在完成时写入器关闭输出流；否则为 <see langword="false" />。 默认值是 <see langword="true" />。</param>
+      <param name="indent">如果 <see langword="true" />，输出会使用多行的布局，恰当地缩进每个级别；否则， <see langword="false" />。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它基于 XML Infoset 将 JSON 编码数据写入流中。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Json.JsonReaderWriterFactory.CreateJsonWriter(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Boolean,System.String)">
+      <summary>创建一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它使用指定的字符将 JSON 编码数据写入流中。</summary>
+      <param name="stream">JSON 编写器的输出 <see cref="T:System.IO.Stream" />。</param>
+      <param name="encoding">指定写入器使用的字符编码的 <see cref="T:System.Text.Encoding" />。 默认编码为 UTF-8。</param>
+      <param name="ownsStream">如果为 <see langword="true" />，则在完成时写入器关闭输出流；否则为 <see langword="false" />。 默认值是 <see langword="true" />。</param>
+      <param name="indent">如果 <see langword="true" />，输出会使用多行的布局，恰当地缩进每个级别；否则， <see langword="false" />。</param>
+      <param name="indentChars">用于缩进每个级别的字符串。</param>
+      <returns>一个 <see cref="T:System.Xml.XmlDictionaryWriter" />，它基于 XML Infoset 将 JSON 编码数据写入流中。</returns>
+    </member>
+  </members>
+</doc>

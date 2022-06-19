@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Reflection.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.Emit.FlowControl">
+      <summary>描述指令如何改变控制流。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Branch">
+      <summary>分支指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Break">
+      <summary>中断指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Call">
+      <summary>调用指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Cond_Branch">
+      <summary>条件分支指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Meta">
+      <summary>提供有关后面的指令的信息。 例如，<see langword="Reflection.Emit.Opcodes" /> 的 <see langword="Unaligned" /> 指令具有 <see langword="FlowControl.Meta" /> 并且指定后面的指针指令可能是不对齐的。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Next">
+      <summary>正常的控制流。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Phi">
+      <summary>此枚举器值是保留值，不应使用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Return">
+      <summary>返回指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.FlowControl.Throw">
+      <summary>异常引发指令。</summary>
+    </member>
+    <member name="T:System.Reflection.Emit.OpCode">
+      <summary>介绍中间语言 (IL) 指令。</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.Equals(System.Object)">
+      <summary>测试给定对象是否等于此 <see langword="Opcode" />。</summary>
+      <param name="obj">要与此对象比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 为 <see langword="Opcode" /> 的实例并且等于此对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.Equals(System.Reflection.Emit.OpCode)">
+      <summary>指示当前实例是否等于指定的 <see cref="T:System.Reflection.Emit.OpCode" />。</summary>
+      <param name="obj">要与当前实例进行比较的 <see cref="T:System.Reflection.Emit.OpCode" />。</param>
+      <returns>如果 <paramref name="obj" /> 的值等于当前实例的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.GetHashCode">
+      <summary>返回为此 <see langword="Opcode" /> 生成的哈希代码。</summary>
+      <returns>此实例的哈希代码。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.op_Equality(System.Reflection.Emit.OpCode,System.Reflection.Emit.OpCode)">
+      <summary>指示两个 <see cref="T:System.Reflection.Emit.OpCode" /> 结构是否相等。</summary>
+      <param name="a">要与 <paramref name="b" /> 进行比较的 <see cref="T:System.Reflection.Emit.OpCode" />。</param>
+      <param name="b">要与 <paramref name="a" /> 进行比较的 <see cref="T:System.Reflection.Emit.OpCode" />。</param>
+      <returns>如果 <see langword="true" /> 等于 <paramref name="a" />，则为 <paramref name="b" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.op_Inequality(System.Reflection.Emit.OpCode,System.Reflection.Emit.OpCode)">
+      <summary>指示两个 <see cref="T:System.Reflection.Emit.OpCode" /> 结构是否不相等。</summary>
+      <param name="a">要与 <paramref name="b" /> 进行比较的 <see cref="T:System.Reflection.Emit.OpCode" />。</param>
+      <param name="b">要与 <paramref name="a" /> 进行比较的 <see cref="T:System.Reflection.Emit.OpCode" />。</param>
+      <returns>如果 <see langword="true" /> 不等于 <paramref name="a" />，则为 <paramref name="b" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.ToString">
+      <summary>以 <see cref="T:System.String" /> 的形式返回此 <see langword="Opcode" />。</summary>
+      <returns>包含此 <see langword="Opcode" /> 的名称的字符串。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.FlowControl">
+      <summary>中间语言 (IL) 指令的流控制特性。</summary>
+      <returns>只读。 流控制的类型。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Name">
+      <summary>中间语言 (IL) 指令的名称。</summary>
+      <returns>只读。 IL 指令的名称。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.OpCodeType">
+      <summary>中间语言 (IL) 指令的类型。</summary>
+      <returns>只读。 中间语言 (IL) 指令的类型。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.OperandType">
+      <summary>中间语言 (IL) 指令的操作数类型。</summary>
+      <returns>只读。 IL 指令的操作数类型。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Size">
+      <summary>中间语言 (IL) 指令的大小。</summary>
+      <returns>只读。 IL 指令的大小。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.StackBehaviourPop">
+      <summary>中间语言 (IL) 指令弹出堆栈的方式。</summary>
+      <returns>只读。 IL 指令弹出堆栈的方式。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.StackBehaviourPush">
+      <summary>中间语言 (IL) 指令将操作数推到堆栈上的方式。</summary>
+      <returns>只读。 IL 指令将操作数推到堆栈上的方式。</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Value">
+      <summary>获取中间语言 (IL) 指令的数值。</summary>
+      <returns>只读。 IL 指令的数值。</returns>
+    </member>
+    <member name="T:System.Reflection.Emit.OpCodes">
+      <summary>通过 <see cref="T:System.Reflection.Emit.ILGenerator" /> 类成员（例如 <see cref="M:System.Reflection.Emit.ILGenerator.Emit(System.Reflection.Emit.OpCode)" />）为发出提供 Microsoft 中间语言 (MSIL) 指令的字段表示形式。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add">
+      <summary>将两个值相加并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add_Ovf">
+      <summary>将两个整数相加，执行溢出检查，并且将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Add_Ovf_Un">
+      <summary>将两个无符号整数值相加，执行溢出检查，并且将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.And">
+      <summary>计算两个值的按位“与”并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Arglist">
+      <summary>返回指向当前方法的参数列表的非托管指针。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Beq">
+      <summary>如果两个值相等，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Beq_S">
+      <summary>如果两个值相等，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge">
+      <summary>如果第一个值大于或等于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_S">
+      <summary>如果第一个值大于或等于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_Un">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值大于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bge_Un_S">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值大于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt">
+      <summary>如果第一个值大于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_S">
+      <summary>如果第一个值大于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_Un">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值大于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bgt_Un_S">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值大于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble">
+      <summary>如果第一个值小于或等于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_S">
+      <summary>如果第一个值小于或等于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_Un">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值小于或等于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ble_Un_S">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值小于或等于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt">
+      <summary>如果第一个值小于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_S">
+      <summary>如果第一个值小于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_Un">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值小于第二个值，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Blt_Un_S">
+      <summary>当比较无符号整数值或未经排序的浮点值时，如果第一个值小于第二个值，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bne_Un">
+      <summary>当两个无符号整数值或未经排序的浮点值不相等时，将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Bne_Un_S">
+      <summary>当两个无符号整数值或未经排序的浮点值不相等时，将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Box">
+      <summary>将值类转换为对象引用（<see langword="O" /> 类型）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Br">
+      <summary>无条件地将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Br_S">
+      <summary>无条件地将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Break">
+      <summary>向公共语言结构 (CLI) 发出信号以通知调试器已撞上了一个断点。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Brfalse">
+      <summary>如果 <paramref name="value" /> 为 <see langword="false" />、空引用（Visual Basic 中的 <see langword="Nothing" />）或零，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Brfalse_S">
+      <summary>如果 <paramref name="value" /> 为 <see langword="false" />、空引用或零，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Brtrue">
+      <summary>如果 <paramref name="value" /> 为 <see langword="true" />、非空或非零，则将控制转移到目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Brtrue_S">
+      <summary>如果 <paramref name="value" /> 为 <see langword="true" />、非空或非零，则将控制转移到目标指令（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Call">
+      <summary>调用由传递的方法说明符指示的方法。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Calli">
+      <summary>通过调用约定描述的参数调用在计算堆栈上指示的方法（作为指向入口点的指针）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Callvirt">
+      <summary>对对象调用后期绑定方法，并且将返回值推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Castclass">
+      <summary>尝试将引用传递的对象转换为指定的类。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ceq">
+      <summary>比较两个值。 如果这两个值相等，则将整数值 1 <see langword="(int32" />) 推送到计算堆栈上；否则，将 0 (<see langword="int32" />) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Cgt">
+      <summary>比较两个值。 如果第一个值大于第二个值，则将整数值 1 <see langword="(int32" />) 推送到计算堆栈上；反之，将 0 (<see langword="int32" />) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Cgt_Un">
+      <summary>比较两个无符号的或未经排序的值。 如果第一个值大于第二个值，则将整数值 1 <see langword="(int32" />) 推送到计算堆栈上；反之，将 0 (<see langword="int32" />) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ckfinite">
+      <summary>如果值不是有限数，则引发 <see cref="T:System.ArithmeticException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Clt">
+      <summary>比较两个值。 如果第一个值小于第二个值，则将整数值 1 <see langword="(int32" />) 推送到计算堆栈上；反之，将 0 (<see langword="int32" />) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Clt_Un">
+      <summary>比较无符号的或不可排序的值 <paramref name="value1" /> 和 <paramref name="value2" />。 如果 <paramref name="value1" /> 小于 <paramref name="value2" />，则将整数值 1 <see langword="(int32" /> ) 推送到计算堆栈上；反之，将 0 ( <see langword="int32" /> ) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Constrained">
+      <summary>约束要对其进行虚方法调用的类型。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_I">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="native int" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_I1">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="int8" />，然后将其扩展（填充）为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_I2">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="int16" />，然后将其扩展（填充）为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_I4">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_I8">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="int64" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I">
+      <summary>将位于计算堆栈顶部的有符号值转换为有符号的 <see langword="native int" />，并在溢出时引发 <see cref="T:System.OverflowException" /> 。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为有符号 <see langword="native int" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I1">
+      <summary>将位于计算堆栈顶部的有符号值转换为有符号的 <see langword="int8" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I1_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为有符号 <see langword="int8" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I2">
+      <summary>将位于计算堆栈顶部的有符号值转换为有符号 <see langword="int16" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I2_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为有符号 <see langword="int16" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I4">
+      <summary>将位于计算堆栈顶部的有符号值转换为有符号的 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" /> 。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I4_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为有符号 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I8">
+      <summary>将位于计算堆栈顶部的有符号值转换为有符号的 <see langword="int64" />，并在溢出时引发 <see cref="T:System.OverflowException" /> 。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_I8_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为有符号 <see langword="int64" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U">
+      <summary>将位于计算堆栈顶部的有符号值转换为 <see langword="unsigned native int" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为 <see langword="unsigned native int" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U1">
+      <summary>将位于计算堆栈顶部的有符号值转换为 <see langword="unsigned int8" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U1_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为 <see langword="unsigned int8" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U2">
+      <summary>将位于计算堆栈顶部的有符号值转换为 <see langword="unsigned int16" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U2_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为 <see langword="unsigned int16" /> 并将其扩展为 <see langword="int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U4">
+      <summary>将位于计算堆栈顶部的有符号值转换为 <see langword="unsigned int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U4_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为 <see langword="unsigned int32" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U8">
+      <summary>将位于计算堆栈顶部的有符号值转换为 <see langword="unsigned int64" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_Ovf_U8_Un">
+      <summary>将位于计算堆栈顶部的无符号值转换为 <see langword="unsigned int64" />，并在溢出时引发 <see cref="T:System.OverflowException" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_R_Un">
+      <summary>将位于计算堆栈顶部的无符号整数值转换为 <see langword="float32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_R4">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="float32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_R8">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="float64" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_U">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="unsigned native int" />，然后将其扩展为 <see langword="native int" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_U1">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="unsigned int8" />，然后将其扩展为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_U2">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="unsigned int16" />，然后将其扩展为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_U4">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="unsigned int32" />，然后将其扩展为 <see langword="int32" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Conv_U8">
+      <summary>将位于计算堆栈顶部的值转换为 <see langword="unsigned int64" />，然后将其扩展为 <see langword="int64" />。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Cpblk">
+      <summary>将指定数目的字节从源地址复制到目标地址。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Cpobj">
+      <summary>将位于对象（<see langword="&amp;" />、<see langword="*" /> 或 <see langword="native int" /> 类型）地址的值类型复制到目标对象（<see langword="&amp;" />、<see langword="*" /> 或 <see langword="native int" /> 类型）的地址。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Div">
+      <summary>将两个值相除并将结果作为浮点（<see langword="F" /> 类型）或商（<see langword="int32" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Div_Un">
+      <summary>两个无符号整数值相除并将结果 ( <see langword="int32" /> ) 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Dup">
+      <summary>复制计算堆栈上当前最顶端的值，然后将副本推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Endfilter">
+      <summary>将控制从异常的 <see langword="filter" /> 子句转移回公共语言结构 (CLI) 异常处理程序。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Endfinally">
+      <summary>将控制从异常块的 <see langword="fault" /> 或 <see langword="finally" /> 子句转移回公共语言结构 (CLI) 异常处理程序。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Initblk">
+      <summary>将位于特定地址的内存的指定块初始化为给定大小和初始值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Initobj">
+      <summary>将位于指定地址的值类型的每个字段初始化为空引用或适当的基元类型的 0。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Isinst">
+      <summary>测试对象引用（<see langword="O" /> 类型）是否为特定类的实例。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Jmp">
+      <summary>退出当前方法并跳至指定方法。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg">
+      <summary>将自变量（由指定索引值引用）加载到堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg_0">
+      <summary>将索引为 0 的自变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg_1">
+      <summary>将索引 1 处的参数加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg_2">
+      <summary>将索引为 2 的参数加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg_3">
+      <summary>将索引为 3 的自变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarg_S">
+      <summary>将自变量（由指定的短格式索引引用）加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarga">
+      <summary>将参数地址加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldarga_S">
+      <summary>以短格式将自变量地址加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4">
+      <summary>将所提供的 <see langword="int32" /> 类型的值作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_0">
+      <summary>将整数值 0 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_1">
+      <summary>将整数值 1 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_2">
+      <summary>将整数值 2 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_3">
+      <summary>将整数值 3 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_4">
+      <summary>将整数值 4 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_5">
+      <summary>将整数值 5 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_6">
+      <summary>将整数值 6 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_7">
+      <summary>将整数值 7 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_8">
+      <summary>将整数值 8 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_M1">
+      <summary>将整数值 -1 作为 <see langword="int32" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I4_S">
+      <summary>将提供的 <see langword="int8" /> 值作为 <see langword="int32" /> 推送到计算堆栈上（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_I8">
+      <summary>将所提供的 <see langword="int64" /> 类型的值作为 <see langword="int64" /> 推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_R4">
+      <summary>将所提供的 <see langword="float32" /> 类型的值作为 <see langword="F" /> (float) 类型推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldc_R8">
+      <summary>将所提供的 <see langword="float64" /> 类型的值作为 <see langword="F" /> (float) 类型推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem">
+      <summary>按照指令中指定的类型，将指定数组索引中的元素加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_I">
+      <summary>将位于指定数组索引处的 <see langword="native int" /> 类型的元素作为 <see langword="native int" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_I1">
+      <summary>将位于指定数组索引处的 <see langword="int8" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_I2">
+      <summary>将位于指定数组索引处的 <see langword="int16" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_I4">
+      <summary>将位于指定数组索引处的 <see langword="int32" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_I8">
+      <summary>将位于指定数组索引处的 <see langword="int64" /> 类型的元素作为 <see langword="int64" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_R4">
+      <summary>将位于指定数组索引处的 <see langword="float32" /> 类型的元素作为 <see langword="F" /> 类型（浮点型）加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_R8">
+      <summary>将位于指定数组索引处的 <see langword="float64" /> 类型的元素作为 <see langword="F" /> 类型（浮点型）加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_Ref">
+      <summary>将位于指定数组索引处的包含对象引用的元素作为 <see langword="O" /> 类型（对象引用）加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_U1">
+      <summary>将位于指定数组索引处的 <see langword="unsigned int8" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_U2">
+      <summary>将位于指定数组索引处的 <see langword="unsigned int16" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelem_U4">
+      <summary>将位于指定数组索引处的 <see langword="unsigned int32" /> 类型的元素作为 <see langword="int32" /> 加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldelema">
+      <summary>将位于指定数组索引的数组元素的地址作为 <see langword="&amp;" /> 类型（托管指针）加载到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldfld">
+      <summary>查找对象中其引用当前位于计算堆栈的字段的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldflda">
+      <summary>查找对象中其引用当前位于计算堆栈的字段的地址。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldftn">
+      <summary>将指向实现特定方法的本机代码的非托管指针（<see langword="native int" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_I">
+      <summary>将 <see langword="native int" /> 类型的值作为 <see langword="native int" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_I1">
+      <summary>将 <see langword="int8" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_I2">
+      <summary>将 <see langword="int16" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_I4">
+      <summary>将 <see langword="int32" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_I8">
+      <summary>将 <see langword="int64" /> 类型的值作为 <see langword="int64" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_R4">
+      <summary>将 <see langword="float32" /> 类型的值作为 <see langword="F" /> (float) 类型间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_R8">
+      <summary>将 <see langword="float64" /> 类型的值作为 <see langword="F" /> (float) 类型间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_Ref">
+      <summary>将对象引用作为 <see langword="O" />（对象引用）类型间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_U1">
+      <summary>将 <see langword="unsigned int8" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_U2">
+      <summary>将 <see langword="unsigned int16" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldind_U4">
+      <summary>将 <see langword="unsigned int32" /> 类型的值作为 <see langword="int32" /> 间接加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldlen">
+      <summary>将从零开始的、一维数组的元素的数目推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc">
+      <summary>将指定索引处的局部变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc_0">
+      <summary>将索引 0 处的局部变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc_1">
+      <summary>将索引 1 处的局部变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc_2">
+      <summary>将索引 2 处的局部变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc_3">
+      <summary>将索引 3 处的局部变量加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloc_S">
+      <summary>将特定索引处的局部变量加载到计算堆栈上（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloca">
+      <summary>将位于特定索引处的局部变量的地址加载到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldloca_S">
+      <summary>将位于特定索引处的局部变量的地址加载到计算堆栈上（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldnull">
+      <summary>将空引用（<see langword="O" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldobj">
+      <summary>将地址指向的值类型对象复制到计算堆栈的顶部。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldsfld">
+      <summary>将静态字段的值推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldsflda">
+      <summary>将静态字段的地址推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldstr">
+      <summary>推送对元数据中存储的字符串的新对象引用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldtoken">
+      <summary>将元数据标记转换为其运行时表示形式，并将其推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ldvirtftn">
+      <summary>将指向实现与指定对象关联的特定虚方法的本机代码的非托管指针（<see langword="native int" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Leave">
+      <summary>退出受保护的代码区域，无条件将控制转移到特定目标指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Leave_S">
+      <summary>退出受保护的代码区域，无条件将控制转移到目标指令（缩写形式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Localloc">
+      <summary>从本地动态内存池分配特定数目的字节并将第一个分配的字节的地址（瞬态指针，<see langword="*" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Mkrefany">
+      <summary>将对特定类型实例的类型化引用推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Mul">
+      <summary>将两个值相乘并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Mul_Ovf">
+      <summary>将两个整数值相乘，执行溢出检查，并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Mul_Ovf_Un">
+      <summary>将两个无符号整数值相乘，执行溢出检查，并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Neg">
+      <summary>对一个值执行求反并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Newarr">
+      <summary>将对新的从零开始的一维数组（其元素属于特定类型）的对象引用推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Newobj">
+      <summary>创建一个值类型的新对象或新实例，并将对象引用（<see langword="O" /> 类型）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Nop">
+      <summary>如果修补操作码，则填充空间。 尽管可能消耗处理周期，但未执行任何有意义的操作。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Not">
+      <summary>计算堆栈顶部整数值的按位求补并将结果作为相同的类型推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Or">
+      <summary>计算位于堆栈顶部的两个整数值的按位求补并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Pop">
+      <summary>移除当前位于计算堆栈顶部的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix1">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix2">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix3">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix4">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix5">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix6">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefix7">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Prefixref">
+      <summary>此指令为保留指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Readonly">
+      <summary>指定后面的数组地址操作在运行时不执行类型检查，并且返回可变性受限的托管指针。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Refanytype">
+      <summary>检索嵌入在类型化引用内的类型标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Refanyval">
+      <summary>检索嵌入在类型化引用内的地址（<see langword="&amp;" /> 类型）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Rem">
+      <summary>将两个值相除并将余数推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Rem_Un">
+      <summary>将两个无符号值相除并将余数推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Ret">
+      <summary>从当前方法返回，并将返回值（如果存在）从被调用方的计算堆栈推送到调用方的计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Rethrow">
+      <summary>再次引发当前异常。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Shl">
+      <summary>将整数值左移（用零填充）指定的位数，并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Shr">
+      <summary>将整数值右移（保留符号）指定的位数，并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Shr_Un">
+      <summary>将无符号整数值右移（用零填充）指定的位数，并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Sizeof">
+      <summary>将提供的值类型的大小（以字节为单位）推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Starg">
+      <summary>将位于计算堆栈顶部的值存储到位于指定索引的自变量槽中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Starg_S">
+      <summary>将位于计算堆栈顶部的值存储在自变量槽中的指定索引处（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem">
+      <summary>用计算堆栈中的值替换给定索引处的数组元素，其类型在指令中指定。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_I">
+      <summary>用计算堆栈上的 <see langword="native int" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_I1">
+      <summary>用计算堆栈上的 <see langword="int8" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_I2">
+      <summary>用计算堆栈上的 <see langword="int16" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_I4">
+      <summary>用计算堆栈上的 <see langword="int32" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_I8">
+      <summary>用计算堆栈上的 <see langword="int64" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_R4">
+      <summary>用计算堆栈上的 <see langword="float32" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_R8">
+      <summary>用计算堆栈上的 <see langword="float64" /> 值替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stelem_Ref">
+      <summary>用计算堆栈上的对象 ref 值（<see langword="O" /> 类型）替换给定索引处的数组元素。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stfld">
+      <summary>用新值替换在对象引用或指针的字段中存储的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_I">
+      <summary>在所提供的地址存储 <see langword="native int" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_I1">
+      <summary>在所提供的地址存储 <see langword="int8" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_I2">
+      <summary>在所提供的地址存储 <see langword="int16" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_I4">
+      <summary>在所提供的地址存储 <see langword="int32" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_I8">
+      <summary>在所提供的地址存储 <see langword="int64" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_R4">
+      <summary>在所提供的地址存储 <see langword="float32" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_R8">
+      <summary>在所提供的地址存储 <see langword="float64" /> 类型的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stind_Ref">
+      <summary>存储所提供地址处的对象引用值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储到指定索引处的局部变量列表中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc_0">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储到索引 0 处的局部变量列表中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc_1">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储到索引 1 处的局部变量列表中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc_2">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储到索引 2 处的局部变量列表中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc_3">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储到索引 3 处的局部变量列表中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stloc_S">
+      <summary>从计算堆栈的顶部弹出当前值并将其存储在局部变量列表中的 <paramref name="index" /> 处（短格式）。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stobj">
+      <summary>将指定类型的值从计算堆栈复制到所提供的内存地址中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Stsfld">
+      <summary>用来自计算堆栈的值替换静态字段的值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Sub">
+      <summary>从其他值中减去一个值并将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Sub_Ovf">
+      <summary>从另一值中减去一个整数值，执行溢出检查，并且将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Sub_Ovf_Un">
+      <summary>从另一值中减去一个无符号整数值，执行溢出检查，并且将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Switch">
+      <summary>实现跳转表。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Tailcall">
+      <summary>执行后缀的方法调用指令，以便在执行实际调用指令前移除当前方法的堆栈帧。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Throw">
+      <summary>引发当前位于计算堆栈上的异常对象。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Unaligned">
+      <summary>指示当前位于计算堆栈上的地址可能没有与紧接的 <see langword="ldind" />、<see langword="stind" />、<see langword="ldfld" />、<see langword="stfld" />、<see langword="ldobj" />、<see langword="stobj" />、<see langword="initblk" /> 或 <see langword="cpblk" /> 指令的自然大小对齐。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Unbox">
+      <summary>将值类型的已装箱的表示形式转换为其未装箱的形式。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Unbox_Any">
+      <summary>将指令中指定类型的已装箱的表示形式转换成未装箱形式。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Volatile">
+      <summary>指定当前位于计算堆栈顶部的地址可以是易失的，并且读取该位置的结果不能被缓存，或者对该地址的多个存储区不能被取消。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodes.Xor">
+      <summary>计算位于计算堆栈顶部的两个值的按位异或，并且将结果推送到计算堆栈上。</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCodes.TakesSingleByteArgument(System.Reflection.Emit.OpCode)">
+      <summary>如果提供的操作码采用单字节自变量则返回真或假。</summary>
+      <param name="inst">操作码对象的实例。</param>
+      <returns>
+        <see langword="true" /> 或 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Reflection.Emit.OpCodeType">
+      <summary>描述 Microsoft 中间语言 (MSIL) 指令的类型。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Annotation">
+      <summary>此枚举器值是保留值，不应使用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Macro">
+      <summary>这些是用作其他 MSIL 指令的同义词的 Microsoft 中间语言 (MSIL) 指令。 例如，<see langword="ldarg.0" /> 表示参数为 0 的 <see langword="ldarg" /> 指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Nternal">
+      <summary>描述保留的 Microsoft 中间语言 (MSIL) 指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Objmodel">
+      <summary>描述应用于对象的 Microsoft 中间语言 (MSIL) 指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Prefix">
+      <summary>描述修改以下指令的行为的前缀指令。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OpCodeType.Primitive">
+      <summary>描述内置指令。</summary>
+    </member>
+    <member name="T:System.Reflection.Emit.OperandType">
+      <summary>描述 Microsoft 中间语言 (MSIL) 指令的操作数类型。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineBrTarget">
+      <summary>该操作数为 32 位整数分支目标。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineField">
+      <summary>该操作数为 32 位元数据标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineI">
+      <summary>该操作数为 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineI8">
+      <summary>该操作数为 64 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineMethod">
+      <summary>该操作数为 32 位元数据标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineNone">
+      <summary>没有操作数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlinePhi">
+      <summary>该操作数是保留值，不应使用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineR">
+      <summary>该操作数为 64 位 IEEE 浮点数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineSig">
+      <summary>该操作数为 32 位元数据签名标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineString">
+      <summary>该操作数为 32 位元数据字符串标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineSwitch">
+      <summary>该操作数为 switch 指令的 32 位整数参数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineTok">
+      <summary>该操作数为 <see langword="FieldRef" />、<see langword="MethodRef" /> 或 <see langword="TypeRef" /> 标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineType">
+      <summary>该操作数为 32 位元数据标记。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.InlineVar">
+      <summary>该操作数为包含局部变量或参数的序号的 16 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.ShortInlineBrTarget">
+      <summary>该操作数为 8 位整数分支目标。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.ShortInlineI">
+      <summary>该操作数为 8 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.ShortInlineR">
+      <summary>该操作数为 32 位 IEEE 浮点数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.OperandType.ShortInlineVar">
+      <summary>该操作数为包含局部变量或参数的序号的 8 位整数。</summary>
+    </member>
+    <member name="T:System.Reflection.Emit.PackingSize">
+      <summary>指定用于在封送类型时确定字段的内存对齐方式的两个因素之一。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size1">
+      <summary>封装大小为 1 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size128">
+      <summary>封装大小为 128 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size16">
+      <summary>封装大小为 16 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size2">
+      <summary>封装大小为 2 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size32">
+      <summary>封装大小为 32 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size4">
+      <summary>封装大小为 4 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size64">
+      <summary>封装大小为 64 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Size8">
+      <summary>封装大小为 8 个字节。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.PackingSize.Unspecified">
+      <summary>未指定封装大小。</summary>
+    </member>
+    <member name="T:System.Reflection.Emit.StackBehaviour">
+      <summary>描述如何将值推送到堆栈上或从堆栈中弹出的方式。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pop0">
+      <summary>不从堆栈中弹出任何值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pop1">
+      <summary>从堆栈中弹出一个值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pop1_pop1">
+      <summary>对于第一个操作数，从堆栈中弹出 1 个值；对于第二个操作数，从堆栈中弹出 1 个值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi">
+      <summary>从堆栈中弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_pop1">
+      <summary>对于第一个操作数，从堆栈中弹出一个 32 位整数；对于第二个操作数，从堆栈中弹出一个值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_popi">
+      <summary>对于第一个操作数，从堆栈中弹出一个 32 位整数；对于第二个操作数，从堆栈中弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_popi_popi">
+      <summary>对于第一个操作数，从堆栈中弹出一个 32 位整数；对于第二个操作数，从堆栈中弹出一个 32 位整数；对于第三个操作数，从堆栈中弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_popi8">
+      <summary>对于第一个操作数，从堆栈中弹出一个 32 位整数；对于第二个操作数，从堆栈中弹出一个 64 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_popr4">
+      <summary>对于第一个操作数，从堆栈弹出一个 32 位整数，对于第二个操作数，从堆栈弹出一个 32 位浮点数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popi_popr8">
+      <summary>对于第一个操作数，从堆栈弹出一个 32 位整数，对于第二个操作数，从堆栈弹出一个 64 位浮点数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref">
+      <summary>从堆栈中弹出一个引用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_pop1">
+      <summary>对于第一个操作数，从堆栈中弹出一个引用；对于第二个操作数，从堆栈中弹出一个值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi">
+      <summary>对于第一个操作数，从堆栈中弹出一个引用；对于第二个操作数，从堆栈中弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_pop1">
+      <summary>对于第一个操作数，从堆栈弹出一个引用，对于第二个操作数，从堆栈弹出一个值，对于第三个操作数，从堆栈弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_popi">
+      <summary>对于第一个操作数，从堆栈中弹出一个引用；对于第二个操作数，从堆栈中弹出一个值；对于第三个操作数，从堆栈中弹出一个值。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_popi8">
+      <summary>对于第一个操作数，从堆栈弹出一个引用，对于第二个操作数，从堆栈弹出一个值，对于第三个操作数，从堆栈弹出一个 64 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_popr4">
+      <summary>对于第一个操作数，从堆栈弹出一个引用，对于第二个操作数，从堆栈弹出一个值，对于第三个操作数，从堆栈弹出一个 32 位整数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_popr8">
+      <summary>对于第一个操作数，从堆栈中弹出一个引用；对于第二个操作数，从堆栈中弹出一个值；对于第三个操作数，从堆栈中弹出一个 64 位浮点数。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Popref_popi_popref">
+      <summary>对于第一个操作数，从堆栈中弹出一个引用；对于第二个操作数，从堆栈中弹出一个值；对于第三个操作数，从堆栈中弹出一个引用。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Push0">
+      <summary>不将任何值推到堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Push1">
+      <summary>将一个值推到堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Push1_push1">
+      <summary>对于第一个操作数，将 1 个值推到堆栈上；对于第二个操作数，将 1 个值推到堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pushi">
+      <summary>将一个 32 位整数推入堆栈中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pushi8">
+      <summary>将一个 64 位整数推入堆栈中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pushr4">
+      <summary>将一个 32 位浮点数推入堆栈中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pushr8">
+      <summary>将一个 64 位浮点数推入堆栈中。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Pushref">
+      <summary>将一个引用推到堆栈上。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Varpop">
+      <summary>从堆栈中弹出一个变量。</summary>
+    </member>
+    <member name="F:System.Reflection.Emit.StackBehaviour.Varpush">
+      <summary>将一个变量推到堆栈上。</summary>
+    </member>
+  </members>
+</doc>

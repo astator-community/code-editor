@@ -1,0 +1,1631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.WebClient</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.DownloadDataCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.DownloadDataCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.DownloadDataCompletedEventArgs.Result">
+      <summary>获取由 <see cref="Overload:System.Net.WebClient.DownloadDataAsync" /> 方法下载的数据。</summary>
+      <returns>包含已下载数据的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="T:System.Net.DownloadDataCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.DownloadDataCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.DownloadDataCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.DownloadProgressChangedEventArgs">
+      <summary>为 <see cref="T:System.Net.WebClient" /> 的 <see cref="E:System.Net.WebClient.DownloadProgressChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.DownloadProgressChangedEventArgs.BytesReceived">
+      <summary>获取收到的字节数。</summary>
+      <returns>一个指示收到的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.DownloadProgressChangedEventArgs.TotalBytesToReceive">
+      <summary>获取 <see cref="T:System.Net.WebClient" /> 数据下载操作中的字节总数。</summary>
+      <returns>一个指示将要接收的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.DownloadProgressChangedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.DownloadProgressChanged" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.DownloadProgressChangedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.DownloadStringCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.DownloadStringCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.DownloadStringCompletedEventArgs.Result">
+      <summary>获取由 <see cref="Overload:System.Net.WebClient.DownloadStringAsync" /> 方法下载的数据。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含已下载的数据。</returns>
+    </member>
+    <member name="T:System.Net.DownloadStringCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.DownloadStringCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.DownloadStringCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.OpenReadCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.OpenReadCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.OpenReadCompletedEventArgs.Result">
+      <summary>获取可读流，该可读流包含由 <see cref="Overload:System.Net.WebClient.DownloadDataAsync" /> 方法下载的数据。</summary>
+      <returns>
+        <see cref="T:System.IO.Stream" />，包含已下载的数据。</returns>
+    </member>
+    <member name="T:System.Net.OpenReadCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.OpenReadCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.OpenReadCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.OpenWriteCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.OpenWriteCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.OpenWriteCompletedEventArgs.Result">
+      <summary>获取用于向服务器发送数据的可写流。</summary>
+      <returns>可在其中写入要上载的数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="T:System.Net.OpenWriteCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.OpenWriteCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.OpenWriteCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.UploadDataCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.UploadDataCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.UploadDataCompletedEventArgs.Result">
+      <summary>获取通过调用 <see cref="Overload:System.Net.WebClient.UploadDataAsync" /> 方法启动的数据上载操作的服务器回复。</summary>
+      <returns>包含服务器回复的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="T:System.Net.UploadDataCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.UploadDataCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.UploadDataCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.UploadFileCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.UploadFileCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.UploadFileCompletedEventArgs.Result">
+      <summary>获取通过调用 <see cref="Overload:System.Net.WebClient.UploadFileAsync" /> 方法启动的数据上载操作的服务器回复。</summary>
+      <returns>一个包含服务器回复的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="T:System.Net.UploadFileCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.UploadFileCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadFileCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.UploadProgressChangedEventArgs">
+      <summary>为 <see cref="T:System.Net.WebClient" /> 的 <see cref="E:System.Net.WebClient.UploadProgressChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.UploadProgressChangedEventArgs.BytesReceived">
+      <summary>获取收到的字节数。</summary>
+      <returns>一个指示收到的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.UploadProgressChangedEventArgs.BytesSent">
+      <summary>获取已发送的字节数。</summary>
+      <returns>一个指示发送的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.UploadProgressChangedEventArgs.TotalBytesToReceive">
+      <summary>获取 <see cref="T:System.Net.WebClient" /> 数据上载操作中的总字节数。</summary>
+      <returns>一个指示将要接收的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.UploadProgressChangedEventArgs.TotalBytesToSend">
+      <summary>获取要发送的总字节数。</summary>
+      <returns>一个指示将要发送的字节数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.UploadProgressChangedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.UploadProgressChanged" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.UploadProgressChangedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.UploadStringCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.UploadStringCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.UploadStringCompletedEventArgs.Result">
+      <summary>获取通过调用 <see cref="Overload:System.Net.WebClient.UploadStringAsync" /> 方法启动的字符串上载操作的服务器回复。</summary>
+      <returns>一个包含服务器回复的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="T:System.Net.UploadStringCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.UploadStringCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">一个包含事件数据的 <see cref="T:System.Net.UploadStringCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.UploadValuesCompletedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.UploadValuesCompleted" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.UploadValuesCompletedEventArgs.Result">
+      <summary>获取通过调用 <see cref="Overload:System.Net.WebClient.UploadValuesAsync" /> 方法启动的数据上载操作的服务器回复。</summary>
+      <returns>包含服务器回复的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="T:System.Net.UploadValuesCompletedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.UploadValuesCompleted" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadValuesCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.WebClient">
+      <summary>提供用于将数据发送到由 URI 标识的资源及从这样的资源接收数据的常用方法。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.DownloadDataCompleted">
+      <summary>在异步数据下载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.DownloadFileCompleted">
+      <summary>在异步文件下载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.DownloadProgressChanged">
+      <summary>在异步下载操作成功传输部分或全部数据后发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.DownloadStringCompleted">
+      <summary>在异步资源下载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.OpenReadCompleted">
+      <summary>在以下异步操作完成时发生，该操作打开包含某个资源的流。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.OpenWriteCompleted">
+      <summary>在打开流以将数据写入资源的异步操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.UploadDataCompleted">
+      <summary>在异步数据上载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.UploadFileCompleted">
+      <summary>在异步文件上载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.UploadProgressChanged">
+      <summary>在异步上载操作成功转换部分或全部数据后发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.UploadStringCompleted">
+      <summary>在异步字符串上载操作完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.UploadValuesCompleted">
+      <summary>在名称/值集合的异步上载完成时发生。</summary>
+    </member>
+    <member name="E:System.Net.WebClient.WriteStreamClosed">
+      <summary>在使用写入流将数据写入资源的异步操作结束时发生。</summary>
+    </member>
+    <member name="M:System.Net.WebClient.#ctor">
+      <summary>初始化 <see cref="T:System.Net.WebClient" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.WebClient.CancelAsync">
+      <summary>取消一个挂起的异步操作。</summary>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadData(System.String)">
+      <summary>从指定 URI 下载资源作为 <see cref="T:System.Byte" /> 数组。</summary>
+      <param name="address">从中下载数据的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载数据时发生错误。</exception>
+      <exception cref="T:System.NotSupportedException">该方法已在多个线程上同时调用。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，其中包含下载的资源。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadData(System.Uri)">
+      <summary>从指定 URI 下载资源作为 <see cref="T:System.Byte" /> 数组。</summary>
+      <param name="address">由 <see cref="T:System.Uri" /> 对象表示的 URI，可从中下载数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，其中包含下载的资源。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadDataAsync(System.Uri)">
+      <summary>从指定 URI 中将资源作为 <see cref="T:System.Byte" /> 数组下载以作为异步操作。</summary>
+      <param name="address">包含要下载的 URI 的 <see cref="T:System.Uri" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadDataAsync(System.Uri,System.Object)">
+      <summary>从指定 URI 中将资源作为 <see cref="T:System.Byte" /> 数组下载以作为异步操作。</summary>
+      <param name="address">包含要下载的 URI 的 <see cref="T:System.Uri" />。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadDataTaskAsync(System.String)">
+      <summary>使用任务对象从指定 URI 中将资源作为 <see cref="T:System.Byte" /> 数组下载以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含下载的资源的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadDataTaskAsync(System.Uri)">
+      <summary>使用任务对象从指定 URI 中将资源作为 <see cref="T:System.Byte" /> 数组下载以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含下载的资源的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFile(System.String,System.String)">
+      <summary>将具有指定 URI 的资源下载到本地文件。</summary>
+      <param name="address">从中下载数据的 URI。</param>
+      <param name="fileName">要接收数据的本地文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="filename" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+文件不存在。  
+  
+- 或 - 下载数据时发生错误。</exception>
+      <exception cref="T:System.NotSupportedException">该方法已在多个线程上同时调用。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFile(System.Uri,System.String)">
+      <summary>将具有指定 URI 的资源下载到本地文件。</summary>
+      <param name="address">以 <see cref="T:System.String" /> 形式指定的 URI，将从中下载数据。</param>
+      <param name="fileName">要接收数据的本地文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="filename" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+文件不存在。  
+  
+- 或 - 
+下载数据时发生错误。</exception>
+      <exception cref="T:System.NotSupportedException">该方法已在多个线程上同时调用。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFileAsync(System.Uri,System.String)">
+      <summary>将具有指定 URI 的资源下载到本地文件。 此方法不会阻止调用线程。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <param name="fileName">要放在本地计算机上的文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="fileName" /> 指定的本地文件正由另一个线程使用。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFileAsync(System.Uri,System.String,System.Object)">
+      <summary>将具有指定 URI 的资源下载到本地文件。 此方法不会阻止调用线程。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <param name="fileName">要放在本地计算机上的文件的名称。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="fileName" /> 指定的本地文件正由另一个线程使用。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFileTaskAsync(System.String,System.String)">
+      <summary>使用任务对象将指定资源下载到本地文件以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <param name="fileName">要放在本地计算机上的文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="fileName" /> 指定的本地文件正由另一个线程使用。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadFileTaskAsync(System.Uri,System.String)">
+      <summary>使用任务对象将指定资源下载到本地文件以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <param name="fileName">要放在本地计算机上的文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="fileName" /> 指定的本地文件正由另一个线程使用。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadString(System.String)">
+      <summary>以 <see cref="T:System.String" /> 形式下载请求的资源。 以包含 URI 的 <see cref="T:System.String" /> 的形式指定要下载的资源。</summary>
+      <param name="address">包含要下载的 URI 的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.NotSupportedException">该方法已在多个线程上同时调用。</exception>
+      <returns>一个 <see cref="T:System.String" />，其中包含请求的资源。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadString(System.Uri)">
+      <summary>以 <see cref="T:System.String" /> 形式下载请求的资源。 以 <see cref="T:System.Uri" /> 形式指定要下载的资源。</summary>
+      <param name="address">一个 <see cref="T:System.Uri" /> 对象，其中包含要下载的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <exception cref="T:System.NotSupportedException">该方法已在多个线程上同时调用。</exception>
+      <returns>一个 <see cref="T:System.String" />，其中包含请求的资源。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadStringAsync(System.Uri)">
+      <summary>下载以 <see cref="T:System.Uri" /> 形式指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">包含要下载的 URI 的 <see cref="T:System.Uri" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadStringAsync(System.Uri,System.Object)">
+      <summary>将指定的字符串下载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">包含要下载的 URI 的 <see cref="T:System.Uri" />。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadStringTaskAsync(System.String)">
+      <summary>使用任务对象从指定 URI 中将资源作为 <see cref="T:System.String" /> 下载以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含下载的资源的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.DownloadStringTaskAsync(System.Uri)">
+      <summary>使用任务对象从指定 URI 中将资源作为 <see cref="T:System.String" /> 下载以作为异步操作。</summary>
+      <param name="address">要下载的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含下载的资源的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.GetWebRequest(System.Uri)">
+      <summary>为指定资源返回一个 <see cref="T:System.Net.WebRequest" /> 对象。</summary>
+      <param name="address">一个 <see cref="T:System.Uri" />，用于标识要请求的资源。</param>
+      <returns>一个新的 <see cref="T:System.Net.WebRequest" /> 对象，用于指定的资源。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.GetWebResponse(System.Net.WebRequest)">
+      <summary>返回指定 <see cref="T:System.Net.WebResponse" /> 的 <see cref="T:System.Net.WebRequest" />。</summary>
+      <param name="request">用于获取响应的 <see cref="T:System.Net.WebRequest" />。</param>
+      <returns>
+        <see cref="T:System.Net.WebResponse" /> 包含对指定 <see cref="T:System.Net.WebRequest" /> 的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.GetWebResponse(System.Net.WebRequest,System.IAsyncResult)">
+      <summary>使用指定的 <see cref="T:System.Net.WebResponse" /> 获取对指定 <see cref="T:System.Net.WebRequest" /> 的 <see cref="T:System.IAsyncResult" />。</summary>
+      <param name="request">用于获取响应的 <see cref="T:System.Net.WebRequest" />。</param>
+      <param name="result">一个 <see cref="T:System.IAsyncResult" /> 对象，来自以前对 <see cref="M:System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> 的调用。</param>
+      <returns>
+        <see cref="T:System.Net.WebResponse" /> 包含对指定 <see cref="T:System.Net.WebRequest" /> 的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OnDownloadDataCompleted(System.Net.DownloadDataCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.DownloadDataCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.DownloadDataCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnDownloadFileCompleted(System.ComponentModel.AsyncCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.DownloadFileCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.ComponentModel.AsyncCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnDownloadProgressChanged(System.Net.DownloadProgressChangedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.DownloadProgressChanged" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.DownloadProgressChangedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnDownloadStringCompleted(System.Net.DownloadStringCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.DownloadStringCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.DownloadStringCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnOpenReadCompleted(System.Net.OpenReadCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.OpenReadCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.OpenReadCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnOpenWriteCompleted(System.Net.OpenWriteCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.OpenWriteCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.OpenWriteCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnUploadDataCompleted(System.Net.UploadDataCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.UploadDataCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadDataCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnUploadFileCompleted(System.Net.UploadFileCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.UploadFileCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadFileCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnUploadProgressChanged(System.Net.UploadProgressChangedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.UploadProgressChanged" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadProgressChangedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnUploadStringCompleted(System.Net.UploadStringCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.UploadStringCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadStringCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnUploadValuesCompleted(System.Net.UploadValuesCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.UploadValuesCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.UploadValuesCompletedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OnWriteStreamClosed(System.Net.WriteStreamClosedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.WebClient.WriteStreamClosed" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.Net.WriteStreamClosedEventArgs" /> 对象。</param>
+    </member>
+    <member name="M:System.Net.WebClient.OpenRead(System.String)">
+      <summary>为从具有 <see cref="T:System.String" /> 指定的 URI 的资源下载的数据打开一个可读的流。</summary>
+      <param name="address">以 <see cref="T:System.String" /> 形式指定的 URI，将从中下载数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载数据时发生错误。</exception>
+      <returns>一个 <see cref="T:System.IO.Stream" />，用于从资源读取数据。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenRead(System.Uri)">
+      <summary>为从具有 <see cref="T:System.Uri" /> 指定的 URI 的资源下载的数据打开一个可读的流</summary>
+      <param name="address">以 <see cref="T:System.Uri" /> 形式指定的 URI，将从中下载数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+下载数据时发生错误。</exception>
+      <returns>一个 <see cref="T:System.IO.Stream" />，用于从资源读取数据。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenReadAsync(System.Uri)">
+      <summary>打开包含指定资源的可读流。 此方法不会阻止调用线程。</summary>
+      <param name="address">要检索的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 address 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.OpenReadAsync(System.Uri,System.Object)">
+      <summary>打开包含指定资源的可读流。 此方法不会阻止调用线程。</summary>
+      <param name="address">要检索的资源的 URI。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 address 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.OpenReadTaskAsync(System.String)">
+      <summary>使用任务对象打开包含指定资源的可读流以作为异步操作。</summary>
+      <param name="address">要检索的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 address 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于读取资源中的数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenReadTaskAsync(System.Uri)">
+      <summary>使用任务对象打开包含指定资源的可读流以作为异步操作。</summary>
+      <param name="address">要检索的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 address 所构成的 URI 无效。  
+  
+- 或 - 
+下载资源时出现错误。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于读取资源中的数据的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWrite(System.String)">
+      <summary>打开一个流以将数据写入指定的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>用于将数据写入资源的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWrite(System.String,System.String)">
+      <summary>打开一个流以使用指定的方法向指定的资源写入数据。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>用于将数据写入资源的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWrite(System.Uri)">
+      <summary>打开一个流以将数据写入指定的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>用于将数据写入资源的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWrite(System.Uri,System.String)">
+      <summary>打开一个流以使用指定的方法将数据写入指定的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>用于将数据写入资源的 <see cref="T:System.IO.Stream" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteAsync(System.Uri)">
+      <summary>打开一个流以将数据写入指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteAsync(System.Uri,System.String)">
+      <summary>打开一个流以将数据写入指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteAsync(System.Uri,System.String,System.Object)">
+      <summary>打开一个流以使用指定的方法向指定的资源写入数据。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="userToken">一个用户定义对象，此对象将被传递给完成异步操作时所调用的方法</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteTaskAsync(System.String)">
+      <summary>使用任务对象打开用于将数据写入指定资源的流以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于将数据写入资源的 <see cref="T:System.IO.Stream" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteTaskAsync(System.String,System.String)">
+      <summary>使用任务对象打开用于将数据写入指定资源的流以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于将数据写入资源的 <see cref="T:System.IO.Stream" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteTaskAsync(System.Uri)">
+      <summary>使用任务对象打开用于将数据写入指定资源的流以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于将数据写入资源的 <see cref="T:System.IO.Stream" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.OpenWriteTaskAsync(System.Uri,System.String)">
+      <summary>使用任务对象打开用于将数据写入指定资源的流以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回用于将数据写入资源的 <see cref="T:System.IO.Stream" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadData(System.String,System.Byte[])">
+      <summary>将数据缓冲区上载到由 URI 标识的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+发送数据时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadData(System.String,System.String,System.Byte[])">
+      <summary>使用指定的方法将数据缓冲区上载到指定资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+上载数据时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadData(System.Uri,System.Byte[])">
+      <summary>将数据缓冲区上载到由 URI 标识的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+发送数据时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadData(System.Uri,System.String,System.Byte[])">
+      <summary>使用指定的方法将数据缓冲区上载到指定资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+上载数据时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataAsync(System.Uri,System.Byte[])">
+      <summary>使用 POST 方法将数据缓冲区上载到由 URI 标识的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataAsync(System.Uri,System.String,System.Byte[])">
+      <summary>使用指定的方法将数据缓冲区上载到由 URI 标识的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataAsync(System.Uri,System.String,System.Byte[],System.Object)">
+      <summary>使用指定的方法和标识标记将数据缓冲区上载到由 URI 标识的资源。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataTaskAsync(System.String,System.Byte[])">
+      <summary>使用任务对象将包含 <see cref="T:System.Byte" /> 数组的数据缓冲区上载到指定 URI 以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载数据缓冲区时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataTaskAsync(System.String,System.String,System.Byte[])">
+      <summary>使用任务对象将包含 <see cref="T:System.Byte" /> 数组的数据缓冲区上载到指定 URI 以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载数据缓冲区时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataTaskAsync(System.Uri,System.Byte[])">
+      <summary>使用任务对象将包含 <see cref="T:System.Byte" /> 数组的数据缓冲区上载到指定 URI 以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载数据缓冲区时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadDataTaskAsync(System.Uri,System.String,System.Byte[])">
+      <summary>使用任务对象将包含 <see cref="T:System.Byte" /> 数组的数据缓冲区上载到指定 URI 以作为异步操作。</summary>
+      <param name="address">接收数据的资源的 URI。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的数据缓冲。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载数据缓冲区时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFile(System.String,System.String)">
+      <summary>将指定的本地文件上载到具有指定 URI 的资源。</summary>
+      <param name="address">接收文件的资源的 URI。 例如，ftp://localhost/samplefile.txt。</param>
+      <param name="fileName">要发送到资源的文件。 例如，“samplefile.txt”。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者不存在。  
+  
+- 或 - 
+上载文件时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFile(System.String,System.String,System.String)">
+      <summary>使用指定的方法将指定的本地文件上载到指定的资源。</summary>
+      <param name="address">接收文件的资源的 URI。</param>
+      <param name="method">用于将文件发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者不存在。  
+  
+- 或 - 
+上载文件时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFile(System.Uri,System.String)">
+      <summary>将指定的本地文件上载到具有指定 URI 的资源。</summary>
+      <param name="address">接收文件的资源的 URI。 例如，ftp://localhost/samplefile.txt。</param>
+      <param name="fileName">要发送到资源的文件。 例如，“samplefile.txt”。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者不存在。  
+  
+- 或 - 
+上载文件时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFile(System.Uri,System.String,System.String)">
+      <summary>使用指定的方法将指定的本地文件上载到指定的资源。</summary>
+      <param name="address">接收文件的资源的 URI。</param>
+      <param name="method">用于将文件发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者不存在。  
+  
+- 或 - 
+上载文件时出错。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileAsync(System.Uri,System.String)">
+      <summary>使用 POST 方法将指定的本地文件上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="fileName">要发送到资源的文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileAsync(System.Uri,System.String,System.String)">
+      <summary>使用 POST 方法将指定的本地文件上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileAsync(System.Uri,System.String,System.String,System.Object)">
+      <summary>使用 POST 方法将指定的本地文件上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的文件。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileTaskAsync(System.String,System.String)">
+      <summary>使用任务对象将指定本地文件上载到资源以作为异步操作。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="fileName">要发送到资源的本地文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载文件时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileTaskAsync(System.String,System.String,System.String)">
+      <summary>使用任务对象将指定本地文件上载到资源以作为异步操作。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的本地文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载文件时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileTaskAsync(System.Uri,System.String)">
+      <summary>使用任务对象将指定本地文件上载到资源以作为异步操作。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="fileName">要发送到资源的本地文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载文件时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadFileTaskAsync(System.Uri,System.String,System.String)">
+      <summary>使用任务对象将指定本地文件上载到资源以作为异步操作。</summary>
+      <param name="address">接收文件的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将数据发送到资源的方法。 如果为 <see langword="null" />，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="fileName">要发送到资源的本地文件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="fileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="fileName" /> 为 <see langword="null" />、为 <see cref="F:System.String.Empty" />、包含无效字符或者指定的文件路径不存在。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头以 <see langword="multipart" /> 开头。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回 <see cref="T:System.Byte" /> 数组，该数组包含在上载文件时从资源接收的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadString(System.String,System.String)">
+      <summary>使用 POST 方法将指定的字符串上载到指定的资源。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.String" />，包含服务器发送的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadString(System.String,System.String,System.String)">
+      <summary>使用指定的方法将指定的字符串上载到指定的资源。</summary>
+      <param name="address">要接收字符串的资源的 URI。 此 URI 必须标识可以接受使用 <paramref name="method" /> 方法发送的请求的资源。</param>
+      <param name="method">用于将字符串发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。</exception>
+      <returns>一个 <see cref="T:System.String" />，包含服务器发送的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadString(System.Uri,System.String)">
+      <summary>使用 POST 方法将指定的字符串上载到指定的资源。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>一个 <see cref="T:System.String" />，包含服务器发送的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadString(System.Uri,System.String,System.String)">
+      <summary>使用指定的方法将指定的字符串上载到指定的资源。</summary>
+      <param name="address">要接收字符串的资源的 URI。 此 URI 必须标识可以接受使用 <paramref name="method" /> 方法发送的请求的资源。</param>
+      <param name="method">用于将字符串发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。</exception>
+      <returns>一个 <see cref="T:System.String" />，包含服务器发送的响应。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringAsync(System.Uri,System.String)">
+      <summary>将指定的字符串上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringAsync(System.Uri,System.String,System.String)">
+      <summary>将指定的字符串上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringAsync(System.Uri,System.String,System.String,System.Object)">
+      <summary>将指定的字符串上载到指定的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringTaskAsync(System.String,System.String)">
+      <summary>使用任务对象将指定字符串上载到指定资源以作为异步操作。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringTaskAsync(System.String,System.String,System.String)">
+      <summary>使用任务对象将指定字符串上载到指定资源以作为异步操作。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringTaskAsync(System.Uri,System.String)">
+      <summary>使用任务对象将指定字符串上载到指定资源以作为异步操作。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadStringTaskAsync(System.Uri,System.String,System.String)">
+      <summary>使用任务对象将指定字符串上载到指定资源以作为异步操作。</summary>
+      <param name="address">要接收字符串的资源的 URI。 对于 HTTP 资源，此 URI 必须标识可以接受用 POST 方法发送的请求的资源，如脚本或 ASP 页。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要上载的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValues(System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>将指定的名称/值集合上载到指定的 URI 所标识的资源。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头不是 <see langword="null" /> 或“application/x-www-form-urlencoded”。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValues(System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用指定的方法将指定的名称/值集合上载到指定的 URI 所标识的资源。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头值既不是 <see langword="null" /> 也不是 <see langword="application/x-www-form-urlencoded" />。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValues(System.Uri,System.Collections.Specialized.NameValueCollection)">
+      <summary>将指定的名称/值集合上载到指定的 URI 所标识的资源。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头不是 <see langword="null" /> 或“application/x-www-form-urlencoded”。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValues(System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用指定的方法将指定的名称/值集合上载到指定的 URI 所标识的资源。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="method">用于将文件发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="data" /> 为 <see langword="null" />。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头值既不是 <see langword="null" /> 也不是 <see langword="application/x-www-form-urlencoded" />。</exception>
+      <returns>一个 <see cref="T:System.Byte" /> 数组，它包含来自资源的响应的正文。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesAsync(System.Uri,System.Collections.Specialized.NameValueCollection)">
+      <summary>将指定的名称/值集合中的数据上载到由指定的 URI 标识的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收集合的资源的 URI。 此 URI 必须标识可以接受使用默认方法发送的请求的资源。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesAsync(System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用指定的方法将指定的名称/值集合中的数据上载到由指定的 URI 标识的资源。 此方法不会阻止调用线程。</summary>
+      <param name="address">接收集合的资源的 URI。 此 URI 必须标识可以接受使用 <paramref name="method" /> 方法发送的请求的资源。</param>
+      <param name="method">用于将字符串发送到资源的方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesAsync(System.Uri,System.String,System.Collections.Specialized.NameValueCollection,System.Object)">
+      <summary>使用指定的方法将指定的名称/值集合中的数据上载到由指定的 URI 标识的资源。 此方法不会阻止调用线程，并允许调用方将对象传递给操作完成时所调用的方法。</summary>
+      <param name="address">接收集合的资源的 URI。 此 URI 必须标识可以接受使用 <paramref name="method" /> 方法发送的请求的资源。</param>
+      <param name="method">用于将字符串发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。</exception>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesTaskAsync(System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用任务对象将指定的名称/值集合上载到由指定 URI 标识的资源以作为异步操作。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头不是 <see langword="null" /> 或“application/x-www-form-urlencoded”。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesTaskAsync(System.String,System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用任务对象将指定的名称/值集合上载到由指定 URI 标识的资源以作为异步操作。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="method">用于将集合发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头不是 <see langword="null" /> 或“application/x-www-form-urlencoded”。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesTaskAsync(System.Uri,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用任务对象将指定的名称/值集合上载到由指定 URI 标识的资源以作为异步操作。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头值既不是 <see langword="null" /> 也不是 <see langword="application/x-www-form-urlencoded" />。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.WebClient.UploadValuesTaskAsync(System.Uri,System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>使用任务对象将指定的名称/值集合上载到由指定 URI 标识的资源以作为异步操作。</summary>
+      <param name="address">接收集合的资源的 URI。</param>
+      <param name="method">用于将集合发送到资源的 HTTP 方法。 如果为 null，则对于 http 默认值为 POST，对于 ftp 默认值为 STOR。</param>
+      <param name="data">要发送到资源的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 参数为 <see langword="null" />。  
+  
+- 或 - 
+<paramref name="data" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.WebException">通过组合 <see cref="P:System.Net.WebClient.BaseAddress" /> 和 <paramref name="address" /> 所构成的 URI 无效。  
+  
+- 或 - 
+ <paramref name="method" /> 不能用来发送内容。  
+  
+- 或 - 
+承载资源的服务器没有响应。  
+  
+- 或 - 
+打开流时发生错误。  
+  
+- 或 - 
+<see langword="Content-type" /> 标头不是 <see langword="null" /> 或“application/x-www-form-urlencoded”。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性将返回包含服务器发送的响应的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.AllowReadStreamBuffering">
+      <summary>获取或设置一个值，该值指示是否对从某一 <see cref="T:System.Net.WebClient" /> 实例的 Internet 资源读取的数据进行缓冲处理。</summary>
+      <returns>如果为 <see langword="true" />，则启用对从 Internet 资源接收的数据进行缓冲处理；如果为 <see langword="false" />，则禁用缓冲处理。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.AllowWriteStreamBuffering">
+      <summary>获取或设置一个值，该值指示是否对写入到 <see cref="T:System.Net.WebClient" /> 实例的 Internet 资源的数据进行缓冲处理。</summary>
+      <returns>
+        <see langword="true" /> 允许对写入到 Internet 资源的数据进行缓冲处理；<see langword="false" /> 禁用缓冲处理。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.BaseAddress">
+      <summary>获取或设置 <see cref="T:System.Net.WebClient" /> 发出请求的基 URI。</summary>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.Net.WebClient.BaseAddress" /> 被设置为无效的 URI。 内部异常可能包含有助于找到错误的信息。</exception>
+      <returns>
+        <see cref="T:System.String" />，包含 <see cref="T:System.Net.WebClient" /> 请求的基 URI；如果尚未指定基地址，则为 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.CachePolicy">
+      <summary>对于此 WebClient 实例使用 <see cref="T:System.Net.WebRequest" /> 对象获得的任何资源，获取或设置应用程序的缓存策略。</summary>
+      <returns>一个 <see cref="T:System.Net.Cache.RequestCachePolicy" /> 对象，表示应用程序的缓存要求。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.Credentials">
+      <summary>获取或设置发送到主机并用于对请求进行身份验证的网络凭据。</summary>
+      <returns>一个 <see cref="T:System.Net.ICredentials" />，包含该请求的身份验证凭据。 默认值为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.Encoding">
+      <summary>获取或设置用于上传和下载字符串的 <see cref="T:System.Text.Encoding" />。</summary>
+      <returns>用于对字符串进行编码的 <see cref="T:System.Text.Encoding" />。 此属性的默认值为 <see cref="P:System.Text.Encoding.Default" /> 返回的编码。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.Headers">
+      <summary>获取或设置与请求关联的标头名称/值对集合。</summary>
+      <returns>一个 <see cref="T:System.Net.WebHeaderCollection" />，包含与此请求关联的标头名称/值对。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.IsBusy">
+      <summary>了解是否存在进行中的 Web 请求。</summary>
+      <returns>如果存在进行中的 Web 请求，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.Proxy">
+      <summary>获取或设置此 <see cref="T:System.Net.WebClient" /> 对象使用的代理。</summary>
+      <exception cref="T:System.ArgumentNullException">将 <see cref="P:System.Net.WebClient.Proxy" /> 设置为 <see langword="null" />。</exception>
+      <returns>用于发送请求的 <see cref="T:System.Net.IWebProxy" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.QueryString">
+      <summary>获取或设置与请求关联的查询名称/值对集合。</summary>
+      <returns>一个 <see cref="T:System.Collections.Specialized.NameValueCollection" />，包含与请求关联的查询名称/值对。 如果没有与请求关联的名称/值对，则值为空的 <see cref="T:System.Collections.Specialized.NameValueCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.ResponseHeaders">
+      <summary>获取与响应关联的标头名称/值对集合。</summary>
+      <returns>
+        <see cref="T:System.Net.WebHeaderCollection" />，包含与响应关联的标头名称/值对；如果尚未收到任何响应，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.WebClient.UseDefaultCredentials">
+      <summary>获取或设置 <see cref="T:System.Boolean" /> 值，该值控制 <see cref="P:System.Net.CredentialCache.DefaultCredentials" /> 是否随请求一起发送。</summary>
+      <returns>如果使用默认凭据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.WriteStreamClosedEventArgs">
+      <summary>为 <see cref="E:System.Net.WebClient.WriteStreamClosed" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.Net.WriteStreamClosedEventArgs.#ctor">
+      <summary>初始化 <see cref="T:System.Net.WriteStreamClosedEventArgs" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.WriteStreamClosedEventArgs.Error">
+      <summary>获取关闭写入流时的错误值。</summary>
+      <returns>返回 <see cref="T:System.Exception" />。</returns>
+    </member>
+    <member name="T:System.Net.WriteStreamClosedEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Net.WebClient.WriteStreamClosed" /> 的 <see cref="T:System.Net.WebClient" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">事件数据。</param>
+    </member>
+  </members>
+</doc>

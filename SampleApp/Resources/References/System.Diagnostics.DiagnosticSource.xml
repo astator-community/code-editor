@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Diagnostics.DiagnosticSource</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.Activity">
+      <summary>表示具有要用于日志记录的上下文的操作。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Activity.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Diagnostics.Activity" /> 类的新实例。</summary>
+      <param name="operationName">操作的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Activity.AddBaggage(System.String,System.String)">
+      <summary>更新 <see cref="T:System.Diagnostics.Activity" />，使用指定的键和值获取新的行李项。</summary>
+      <param name="key">行李键。</param>
+      <param name="value">行李值。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.AddEvent(System.Diagnostics.ActivityEvent)">
+      <summary>将指定的活动事件添加到事件列表。</summary>
+      <param name="e">要添加的活动事件。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.AddTag(System.String,System.Object)">
+      <summary>更新活动，使标记具有额外的 <paramref name="key" /> 和 <paramref name="value" />。</summary>
+      <param name="key">标记键名称。</param>
+      <param name="value">映射到输入键的标记值。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.AddTag(System.String,System.String)">
+      <summary>更新 <see cref="T:System.Diagnostics.Activity" />，使用所提供的 <paramref name="key" /> 和 <paramref name="value" /> 获取新标记。</summary>
+      <param name="key">标记键。</param>
+      <param name="value">标记值。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.Dispose">
+      <summary>如果活动已启动，则停止该活动，并通知任何事件侦听器。 否则，不会有任何操作。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Activity.Dispose(System.Boolean)">
+      <summary>当被派生类型替代时，此方法会释放所有已分配的资源。</summary>
+      <param name="disposing">如果要从终结器调用方法，则为 <see langword="false" />；如果要从用户代码调用，则为 <see langword="true" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Activity.GetBaggageItem(System.String)">
+      <summary>返回通过 <see cref="M:System.Diagnostics.Activity.AddBaggage(System.String,System.String)" /> 添加到活动的键值对的值。</summary>
+      <param name="key">行李键。</param>
+      <returns>如果存在，则为键值对项的值；如果不存在，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.GetCustomProperty(System.String)">
+      <summary>返回映射到指定属性名称的对象。</summary>
+      <param name="propertyName">获取与对象关联的名称。</param>
+      <returns>映射到属性名称的对象（如果找到的话）；否则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetCustomProperty(System.String,System.Object)">
+      <summary>将任何自定义对象附加到此活动。 如果指定的 <paramref name="propertyName" /> 之前与另一个对象关联，则会将属性更新为与新的 <paramref name="propertyValue" /> 关联。 建议使用唯一属性名称，以避免与使用相同值的任何用户冲突。</summary>
+      <param name="propertyName">要与值关联的名称。</param>
+      <param name="propertyValue">要附加并映射到属性名称的对象。</param>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)">
+      <summary>更新 <see cref="T:System.Diagnostics.Activity" />，将其 <see cref="P:System.Diagnostics.Activity.Duration" /> 设置为 <see cref="P:System.Diagnostics.Activity.StartTimeUtc" /> 与指定的停止时间之间的差值。</summary>
+      <param name="endTimeUtc">UTC 停止时间。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetIdFormat(System.Diagnostics.ActivityIdFormat)">
+      <summary>在开始前，设置此 <see cref="T:System.Diagnostics.Activity" /> 的 ID 格式。</summary>
+      <param name="format">枚举值之一，它指定 <see cref="P:System.Diagnostics.Activity.Id" /> 属性的格式。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetParentId(System.Diagnostics.ActivityTraceId,System.Diagnostics.ActivitySpanId,System.Diagnostics.ActivityTraceFlags)">
+      <summary>使用 TraceId 和 SpanId 的 W3C 约定设置父 ID。</summary>
+      <param name="traceId">父活动的 TraceId。</param>
+      <param name="spanId">父活动的 SpanId。</param>
+      <param name="activityTraceFlags">其中一个枚举值，该值指定由 W3C 标准定义的与活动关联的标志。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetParentId(System.String)">
+      <summary>更新此 <see cref="T:System.Diagnostics.Activity" />，以指示 ID 为 <paramref name="parentId" /> 的 <see cref="T:System.Diagnostics.Activity" /> 导致了此 <see cref="T:System.Diagnostics.Activity" />。</summary>
+      <param name="parentId">父级操作的 ID。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetStartTime(System.DateTime)">
+      <summary>设置此 <see cref="T:System.Diagnostics.Activity" /> 的开始时间。</summary>
+      <param name="startTimeUtc">UTC 中的 <see cref="T:System.Diagnostics.Activity" /> 开始时间。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.SetTag(System.String,System.Object)">
+      <summary>使用输入键和值添加或更新活动标记。</summary>
+      <param name="key">标记键名称。</param>
+      <param name="value">映射到输入键的标记值。</param>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.Start">
+      <summary>启动活动。</summary>
+      <returns>便于链接的 <see langword="this" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Activity.Stop">
+      <summary>停止活动。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Activity.ActivityTraceFlags">
+      <summary>获取与活动关联的标志（由 W3C ID 规范定义）。</summary>
+      <returns>与活动关联的标志。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Baggage">
+      <summary>获取键/值对的集合，它表示传递给此 <see cref="T:System.Diagnostics.Activity" /> 的子元素的信息。</summary>
+      <returns>字符串字符串键值对的枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Context">
+      <summary>获取活动的上下文。 仅当活动启动时，上下文才会生效。</summary>
+      <returns>活动的上下文（如果活动已启动）;否则，将返回默认上下文。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Current">
+      <summary>获取或设置当前线程的当前操作 (<see cref="T:System.Diagnostics.Activity" />)。  这会跨异步调用传递。</summary>
+      <returns>当前线程的当前操作。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.DefaultIdFormat">
+      <summary>获取或设置 <see cref="T:System.Diagnostics.Activity" /> 的默认 ID 格式。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Activity.DisplayName">
+      <summary>获取或设置活动的显示名称。</summary>
+      <returns>表示活动显示名称的字符串。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Duration">
+      <summary>获取操作的持续时间。</summary>
+      <returns>
+        <see cref="P:System.Diagnostics.Activity.StartTimeUtc" />如果)  (结束，则为和结束时间之间的增量 <see cref="T:System.Diagnostics.Activity" /><see cref="M:System.Diagnostics.Activity.Stop" /><see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" /> ，或者，如果未 <see cref="F:System.TimeSpan.Zero" /><see cref="T:System.Diagnostics.Activity" /> 结束且未 <see cref="M:System.Diagnostics.Activity.SetEndTime(System.DateTime)" /> 调用，则为。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Events">
+      <summary>获取附加到此活动的所有活动事件的列表。</summary>
+      <returns>附加到此活动的活动事件的枚举。 如果活动没有事件，则返回空枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.ForceDefaultIdFormat">
+      <summary>获取或设置一个值，该值用于确定 <see cref="P:System.Diagnostics.Activity.DefaultIdFormat" /> 是否始终用于定义默认 ID 格式。</summary>
+      <returns>
+        <see langword="true" /> 如果始终使用 <see cref="P:System.Diagnostics.Activity.DefaultIdFormat" /> ，则为; 否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Id">
+      <summary>获取特定请求专属的标识符。</summary>
+      <returns>活动 ID。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.IdFormat">
+      <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的格式。</summary>
+      <returns>的格式 <see cref="P:System.Diagnostics.Activity.Id" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.IsAllDataRequested">
+      <summary>指示此活动是否应用所有传播信息以及所有其他属性（如链接、标记和事件）进项填充。</summary>
+      <returns>
+        <see langword="true" /> 如果应填充活动，则为; 否则为。 <see langword="false" /> 否则为。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Kind">
+      <summary>获取跟踪中的活动、其父活动和子活动之间的关系。</summary>
+      <returns>枚举值之一，指示在跟踪中的活动、其父项及其子级之间的关系。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Links">
+      <summary>获取附加到此活动的所有活动链接的列表。</summary>
+      <returns>附加到此活动的活动链接的枚举。 如果活动没有链接，则返回空枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.OperationName">
+      <summary>获取操作名称。</summary>
+      <returns>操作的名称。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Parent">
+      <summary>获取创建此活动的父级 <see cref="T:System.Diagnostics.Activity" />。</summary>
+      <returns>此的父级 <see cref="T:System.Diagnostics.Activity" /> （如果它来自同一进程），或者， <see langword="null" /> 如果此实例没有父 (则为根活动，) 或者父对象来自进程外。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.ParentId">
+      <summary>获取此活动父级的 ID。</summary>
+      <returns>父 ID （如果存在），如果不存在，则为 <see langword="null" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.ParentSpanId">
+      <summary>获取父级的 <see cref="P:System.Diagnostics.Activity.SpanId" />。</summary>
+      <returns>父项的 <see cref="P:System.Diagnostics.Activity.SpanId" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Recorded">
+      <summary>获取一个值，指示是否已设置 W3CIdFlags.Recorded 标志。</summary>
+      <returns>
+        <see langword="true" /> 如果设置了 W3CIdFlags 标志，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.RootId">
+      <summary>获取此 <see cref="T:System.Diagnostics.Activity" /> 的根 ID。</summary>
+      <returns>根 ID; <see langword="null" /> 如果当前实例有或，则为 <see cref="P:System.Diagnostics.Activity.ParentId" /><see cref="P:System.Diagnostics.Activity.Id" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Source">
+      <summary>获取与此活动关联的活动源。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Activity.SpanId">
+      <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 SPAN 部分。</summary>
+      <returns>如果具有 W3C 格式，则为跨距部分的 ID <see cref="P:System.Diagnostics.Activity.Id" /><see cref="T:System.Diagnostics.Activity" /> ; 否则为零 <see langword="SpanId" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.StartTimeUtc">
+      <summary>获取操作开始的时间。</summary>
+      <returns>操作开始的 UTC 时间。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.TagObjects">
+      <summary>返回表示要与活动一起记录的信息的标记列表。 此信息不会传递给该活动的子级。</summary>
+      <returns>标记和对象的键/值对枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.Tags">
+      <summary>获取键/值对的集合，这些键/值对表示将与 <see cref="T:System.Diagnostics.Activity" /> 一起记录到日志系统的信息。</summary>
+      <returns>字符串字符串键值对的枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.TraceId">
+      <summary>获取 <see cref="P:System.Diagnostics.Activity.Id" /> 的 TraceId 部分。</summary>
+      <returns>如果 ID 具有 W3C 格式，则为的 TraceId 部分的 ID <see cref="P:System.Diagnostics.Activity.Id" /> ; 否则为零 TraceId。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Activity.TraceStateString">
+      <summary>获取 W3C <see langword="tracestate" /> 标头。</summary>
+      <returns>W3C <see langword="tracestate" /> 标头。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityContext">
+      <summary>符合 W3C TraceContext 规范的表示形式。 它包含两个标识符：一个 TraceId 和一个 SpanId，以及一组常见的 TraceFlag 和特定于系统的 TraceState 值。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.#ctor(System.Diagnostics.ActivityTraceId,System.Diagnostics.ActivitySpanId,System.Diagnostics.ActivityTraceFlags,System.String,System.Boolean)">
+      <summary>使用指定的参数构造新的活动上下文实例。</summary>
+      <param name="traceId">一个跟踪标识符。</param>
+      <param name="spanId">范围标识符。</param>
+      <param name="traceFlags">包含有关跟踪的详细信息。</param>
+      <param name="traceState">携带系统特定的配置数据。</param>
+      <param name="isRemote">指示上下文是否从远程父项传播。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.Equals(System.Diagnostics.ActivityContext)">
+      <summary>指示当前对象是否等于同一类型的另一个对象。</summary>
+      <param name="value">要与此实例进行比较的对象。</param>
+      <returns>如果当前对象等于 <paramref name="other" /> 参数，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.Equals(System.Object)">
+      <summary>确定此实例是否与指定的 <see langword="ActivityContext" /> 对象具有相同的值。</summary>
+      <param name="obj">要与此实例进行比较的对象。</param>
+      <returns>如果当前对象等于 <paramref name="obj" /> 参数，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.GetHashCode">
+      <summary>提供当前 <see langword="ActivityContext" /> 的哈希函数，适合用于哈希算法和数据结构（如哈希表）。</summary>
+      <returns>当前 <see langword="ActivityContext" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.op_Equality(System.Diagnostics.ActivityContext,System.Diagnostics.ActivityContext)">
+      <summary>确定两个指定的 <see langword="ActivityContext" /> 值是否相等。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.op_Inequality(System.Diagnostics.ActivityContext,System.Diagnostics.ActivityContext)">
+      <summary>确定两个指定的 <see langword="ActivityContext" /> 值是否不相等。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.Parse(System.String,System.String)">
+      <summary>将 W3C 跟踪上下文标头分析为 <see cref="T:System.Diagnostics.ActivityContext" /> 对象。</summary>
+      <param name="traceParent">W3C 跟踪父标头。</param>
+      <param name="traceState">跟踪状态。</param>
+      <exception cref="T:System.ArgumentException">跟踪父项无效。</exception>
+      <returns>分析操作创建的 <see cref="T:System.Diagnostics.ActivityContext" /> 对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityContext.TryParse(System.String,System.String,System.Diagnostics.ActivityContext@)">
+      <summary>尝试将 W3C 跟踪上下文标头分析为 <see cref="T:System.Diagnostics.ActivityContext" /> 对象。</summary>
+      <param name="traceParent">W3C 跟踪父标头。</param>
+      <param name="traceState">W3C 跟踪状态。</param>
+      <param name="context">此方法返回 <see langword="true" /> 时，分析操作创建的 <see cref="T:System.Diagnostics.ActivityContext" /> 对象。</param>
+      <returns>如果分析成功，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityContext.IsRemote">
+      <summary>指示活动上下文是否从远程父项传播。</summary>
+      <returns>
+        <see langword="true" /> 如果已从远程父级传播，则为; <see langword="false" /> 否则为。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityContext.SpanId">
+      <summary>调用方已知的请求 ID。</summary>
+      <returns>上下文中的跨度 Id。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityContext.TraceFlags">
+      <summary>由 W3C 标准定义的标志以及活动 ID。</summary>
+      <returns>上下文跟踪标志。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityContext.TraceId">
+      <summary>跟踪标识符。</summary>
+      <returns>上下文中的跟踪标识符。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityContext.TraceState">
+      <summary>保存 W3C“tracestate”标头。</summary>
+      <returns>表示 W3C "tracestate" 标头的字符串。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityCreationOptions`1">
+      <summary>封装发送到活动侦听器的所有信息，以做出关于创建活动实例及其状态的决策。
+
+可能的泛型类型参数为 <see cref="T:System.Diagnostics.ActivityContext" /> 或 <see cref="T:System.String" />。</summary>
+      <typeparam name="T">属性的类型 <see langword="Parent" /> 。 应为 <see cref="T:System.String" /> 或 <see langword="ActivityContext" />。</typeparam>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Kind">
+      <summary>获取将创建的活动使用的活动类型。</summary>
+      <returns>表示活动类型的枚举值之一。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Links">
+      <summary>获取将创建的活动使用的活动链接的枚举。</summary>
+      <returns>活动链接的枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Name">
+      <summary>获取用作将创建的活动的 OperationName 的名称。</summary>
+      <returns>表示活动名称的字符串。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Parent">
+      <summary>获取将创建的活动使用的父上下文或父 ID。</summary>
+      <returns>活动的父级，表示为 <see cref="T:System.String" /> 或 <see cref="T:System.Diagnostics.ActivityContext" /> 。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.SamplingTags">
+      <summary>获取用于在采样过程中添加更多标记的集合。 如果确定由 <see cref="T:System.Diagnostics.ActivityListener" /> 回调创建某个活动，还会将添加的标记添加到创建的活动中。</summary>
+      <returns>活动标记集合。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Source">
+      <summary>获取创建活动的活动源。</summary>
+      <returns>活动源对象。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.Tags">
+      <summary>获取将创建的活动使用的标记。</summary>
+      <returns>与活动关联的标记的键值对枚举。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityCreationOptions`1.TraceId">
+      <summary>如果确定由 <see cref="T:System.Diagnostics.ActivityListener" /> 回调创建某个活动，则获取要在该活动对象中使用的跟踪 Id。</summary>
+      <returns>跟踪 Id。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityEvent">
+      <summary>表示一个事件，其中包含一个名称、一个时间戳和一个可选的标记列表。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityEvent.#ctor(System.String)">
+      <summary>使用指定的名称并将当前时间作为事件时间戳，来初始化新的活动事件实例。</summary>
+      <param name="name">事件名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityEvent.#ctor(System.String,System.DateTimeOffset,System.Diagnostics.ActivityTagsCollection)">
+      <summary>使用指定的名称、时间戳和标记来初始化新的活动事件实例。</summary>
+      <param name="name">事件名称。</param>
+      <param name="timestamp">事件时间戳。 时间戳只能用于过去发生的事件，不能用于在执行此调用之时发生的事件。</param>
+      <param name="tags">事件标记。</param>
+    </member>
+    <member name="P:System.Diagnostics.ActivityEvent.Name">
+      <summary>获取活动事件名称。</summary>
+      <returns>表示活动事件名称的字符串。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityEvent.Tags">
+      <summary>获取与事件关联的标记集合。</summary>
+      <returns>一个键值对枚举，其中包含与事件关联的标记。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityEvent.Timestamp">
+      <summary>获取活动事件时间戳。</summary>
+      <returns>表示活动事件时间戳的日期时间偏移量。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityIdFormat">
+      <summary>指定 <see cref="P:System.Diagnostics.Activity.Id" /> 属性的格式。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityIdFormat.Hierarchical">
+      <summary>分层格式。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityIdFormat.Unknown">
+      <summary>未知格式。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityIdFormat.W3C">
+      <summary>W3C 格式。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ActivityKind">
+      <summary>描述跟踪中的活动、其父活动和子活动之间的关系。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityKind.Client">
+      <summary>到外部组件的传出请求。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityKind.Consumer">
+      <summary>从外部组件收到的输出。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityKind.Internal">
+      <summary>应用程序内的内部操作，与远程父级或子级的操作相反。 这是默认值。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityKind.Producer">
+      <summary>向外部组件提供的输出。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityKind.Server">
+      <summary>从外部组件传入的请求。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ActivityLink">
+      <summary>活动可链接到与零个或多个因果相关的活动上下文实例。
+
+活动链接可指向单个跟踪内或不同跟踪内的活动上下文。
+
+活动链接可用于表示批处理操作，其中活动由多个启动活动启动，每个活动表示正在进行批处理的单个传入项。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.#ctor(System.Diagnostics.ActivityContext,System.Diagnostics.ActivityTagsCollection)">
+      <summary>构造可链接到活动的新活动链接。</summary>
+      <param name="context">跟踪活动上下文。</param>
+      <param name="tags">与活动上下文关联的标记的键值对列表。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.Equals(System.Diagnostics.ActivityLink)">
+      <summary>指示当前活动链接是否等于另一个活动链接。</summary>
+      <param name="value">要比较的活动链接。</param>
+      <returns>如果当前活动链接等于 <paramref name="other" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.Equals(System.Object)">
+      <summary>指示当前活动链接是否等于另一个对象。</summary>
+      <param name="obj">要比较的对象。</param>
+      <returns>如果当前活动链接等于 <paramref name="obj" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.GetHashCode">
+      <summary>提供当前 <see langword="ActivityLink" /> 的哈希函数，适合用于哈希算法和数据结构（如哈希表）。</summary>
+      <returns>当前 <see langword="ActivityLink" /> 的哈希代码。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.op_Equality(System.Diagnostics.ActivityLink,System.Diagnostics.ActivityLink)">
+      <summary>确定两个指定的 <see langword="ActivityLink" /> 值是否相等。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityLink.op_Inequality(System.Diagnostics.ActivityLink,System.Diagnostics.ActivityLink)">
+      <summary>确定两个指定的 <see langword="ActivityLink" /> 值是否不相等。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityLink.Context">
+      <summary>检索此活动链接内的活动上下文。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ActivityLink.Tags">
+      <summary>检索附加到活动上下文的标记的键值对枚举。</summary>
+      <returns>附加到活动上下文的标记的枚举。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityListener">
+      <summary>允许侦听开始和停止活动事件，并有机会决定为采样方案创建活动。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityListener.#ctor">
+      <summary>构造新的活动侦听器对象以开始侦听活动事件。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityListener.Dispose">
+      <summary>从侦听活动事件取消注册此活动侦听器对象。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ActivityListener.ActivityStarted">
+      <summary>获取或设置用于侦听活动开始事件的回调。</summary>
+      <returns>用于侦听活动开始事件的活动回调实例。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityListener.ActivityStopped">
+      <summary>获取或设置用于侦听活动停止事件的回调。</summary>
+      <returns>用于侦听活动停止事件的活动回调实例。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityListener.Sample">
+      <summary>获取或设置某个回调，该回调用于确定是否允许创建具有特定数据状态的 <see cref="T:System.Diagnostics.Activity" /> 对象。</summary>
+      <returns>示例活动实例。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityListener.SampleUsingParentId">
+      <summary>获取或设置某个回调，该回调用于确定是否允许创建具有特定数据状态的 <see cref="T:System.Diagnostics.Activity" /> 对象。</summary>
+      <returns>示例活动实例。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityListener.ShouldListenTo">
+      <summary>获取或设置回调，允许确定是否应侦听使用活动源对象创建的活动对象事件。</summary>
+      <returns>
+        <see langword="true" /> 侦听事件; <see langword="false" /> 否则为。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivitySamplingResult">
+      <summary>
+        <see cref="T:System.Diagnostics.ActivityListener" /> 使用的枚举值指示要为相关 <see cref="T:System.Diagnostics.Activity" /> 收集的数据量。 请求更多数据会导致更高的性能开销。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivitySamplingResult.AllData">
+      <summary>此活动应使用所有传播信息以及所有其他属性（如链接、标记和事件）进行填充。 使用此值会导致 <see cref="P:System.Diagnostics.Activity.IsAllDataRequested" /> 返回 <see langword="true" />。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivitySamplingResult.AllDataAndRecorded">
+      <summary>活动对象的填充内容应与 <see cref="F:System.Diagnostics.ActivitySamplingResult.AllData" /> 案例相同。 此外，Activity.Recorded 设置为“<see langword="true" />”。 对于使用 W3C 跟踪 id 的活动，这会在 ID 中设置一个标志位，该标志位会向下游传播，并请求在所有位置记录跟踪。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivitySamplingResult.None">
+      <summary>不需要创建活动对象。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivitySamplingResult.PropagationData">
+      <summary>需要创建活动对象。 它将具有“名称”、“源”、“Id”和“行李”。 其他属性是不必要的，此侦听器将忽略这些属性。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ActivitySource">
+      <summary>提供 API 来创建和启动 <see cref="T:System.Diagnostics.Activity" /> 对象，以及注册 <see cref="T:System.Diagnostics.ActivityListener" /> 对象来侦听 <see cref="T:System.Diagnostics.Activity" /> 事件。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.#ctor(System.String,System.String)">
+      <summary>使用指定的 <paramref name="name" /> 构造活动源对象。</summary>
+      <param name="name">活动源对象的名称。</param>
+      <param name="version">发布跟踪信息的组件版本。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.AddActivityListener(System.Diagnostics.ActivityListener)">
+      <summary>向活动开始和停止事件添加侦听器。</summary>
+      <param name="listener">用于侦听活动事件的活动侦听器对象。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.Dispose">
+      <summary>释放活动源对象，从全局列表中移除当前实例，并清空侦听器列表。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.HasListeners">
+      <summary>检查此活动源是否有任何侦听器。</summary>
+      <returns>如果已为此活动源注册侦听器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.StartActivity(System.String,System.Diagnostics.ActivityKind)">
+      <summary>如果有活动的侦听器，则使用指定的名称和活动类型创建新活动。</summary>
+      <param name="name">活动的操作名称。</param>
+      <param name="kind">活动类型。</param>
+      <returns>如果有活动的侦听器，则使用已创建的活动对象，如果没有事件侦听器，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.StartActivity(System.String,System.Diagnostics.ActivityKind,System.Diagnostics.ActivityContext,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Collections.Generic.IEnumerable{System.Diagnostics.ActivityLink},System.DateTimeOffset)">
+      <summary>如果有活动的侦听器，则使用指定的名称、活动类型、父活动上下文、标记、可选活动链接和可选开始时间来创建新活动。</summary>
+      <param name="name">活动的操作名称。</param>
+      <param name="kind">活动类型。</param>
+      <param name="parentContext">用于初始化已创建活动对象的父 <see cref="T:System.Diagnostics.ActivityContext" /> 对象。</param>
+      <param name="tags">用于初始化已创建活动对象的可选标记列表。</param>
+      <param name="links">用于初始化已创建活动对象的可选 <see cref="T:System.Diagnostics.ActivityLink" /> 列表。</param>
+      <param name="startTime">要在创建的活动对象上设置的可选开始时间戳。</param>
+      <returns>如果有活动的侦听器，则使用已创建的活动对象，如果没有事件侦听器，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySource.StartActivity(System.String,System.Diagnostics.ActivityKind,System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Collections.Generic.IEnumerable{System.Diagnostics.ActivityLink},System.DateTimeOffset)">
+      <summary>如果有活动的侦听器，则使用指定的名称、活动类型、父 ID、标记、可选活动链接和可选开始时间来创建新活动。</summary>
+      <param name="name">活动的操作名称。</param>
+      <param name="kind">活动类型。</param>
+      <param name="parentId">用于初始化已创建活动对象的父 ID。</param>
+      <param name="tags">用于初始化已创建活动对象的可选标记列表。</param>
+      <param name="links">用于初始化已创建活动对象的可选 <see cref="T:System.Diagnostics.ActivityLink" /> 列表。</param>
+      <param name="startTime">要在创建的活动对象上设置的可选开始时间戳。</param>
+      <returns>如果有活动的侦听器，则使用已创建的活动对象，如果没有事件侦听器，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivitySource.Name">
+      <summary>返回活动源名称。</summary>
+      <returns>表示活动源名称的字符串。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivitySource.Version">
+      <summary>返回活动源版本。</summary>
+      <returns>表示活动源版本的字符串。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivitySpanId">
+      <summary>表示 <see cref="P:System.Diagnostics.Activity.SpanId" />，其格式基于 W3C 标准。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.CopyTo(System.Span{System.Byte})">
+      <summary>将当前 <see cref="T:System.Diagnostics.ActivitySpanId" /> 的 8 个字节复制到指定的范围。</summary>
+      <param name="destination">要将 SpanID 的 8 个字节复制到的范围。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.CreateFromBytes(System.ReadOnlySpan{System.Byte})">
+      <summary>从一个包含 8 个字节的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 值。</summary>
+      <param name="idData">一个包含 8 个字节的只读范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="idData" /> 不包含 8 个字节。</exception>
+      <returns>新的范围 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.CreateFromString(System.ReadOnlySpan{System.Char})">
+      <summary>从一个包含 16 个十六进制字符的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 值。</summary>
+      <param name="idData">一个包含 16 个十六进制字符的范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="idData" /> 不包含 16 个十六进制字符。
+
+- 或 - 
+<paramref name="idData" /> 中的字符并非全为小写的十六进制字符或全为零。</exception>
+      <returns>新的范围 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.CreateFromUtf8String(System.ReadOnlySpan{System.Byte})">
+      <summary>从一个包含 UTF8 编码字节的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 值。</summary>
+      <param name="idData">一个包含 UTF8 编码字节的只读范围。</param>
+      <returns>新的范围 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.CreateRandom">
+      <summary>基于一个随机数字（很可能是唯一的数字）创建一个新的 <see cref="T:System.Diagnostics.ActivitySpanId" />。</summary>
+      <returns>新的范围 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.Equals(System.Diagnostics.ActivitySpanId)">
+      <summary>确定此实例是否与指定的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 实例具有相同的值。</summary>
+      <param name="spanId">要比较的实例。</param>
+      <returns>如果 <paramref name="spanId" /> 与当前实例含有相同的十六进制值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.Equals(System.Object)">
+      <summary>当前实例和指定对象（必须也是 <see cref="T:System.Diagnostics.ActivitySpanId" /> 实例）具有相同值。</summary>
+      <param name="obj">要比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 是 <see cref="T:System.Diagnostics.ActivitySpanId" /> 的实例，且与当前实例具有相同的十六进制值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.GetHashCode">
+      <summary>返回 SpanId 的哈希代码。</summary>
+      <returns>SpanId 的哈希代码。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.op_Equality(System.Diagnostics.ActivitySpanId,System.Diagnostics.ActivitySpanId)">
+      <summary>确定两个指定的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 实例是否具有相同的值。</summary>
+      <param name="spanId1">要比较的第一个实例。</param>
+      <param name="spandId2">要比较的第二个实例。</param>
+      <returns>如果 <paramref name="spanId1" /> 的 SpanId 与 <paramref name="spandId2" /> 的 SpanId 相同，则为 <see langword="true" /> ；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.op_Inequality(System.Diagnostics.ActivitySpanId,System.Diagnostics.ActivitySpanId)">
+      <summary>确定两个指定的 <see cref="T:System.Diagnostics.ActivitySpanId" /> 实例是否具有不相等的值。</summary>
+      <param name="spanId1">要比较的第一个实例。</param>
+      <param name="spandId2">要比较的第二个实例。</param>
+      <returns>如果 <paramref name="spanId1" /> 的 SpanId 与 <paramref name="spandId2" /> 的 SpanId 不同，则为 <see langword="true" /> ；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.ToHexString">
+      <summary>返回表示此范围 ID 的 16 个字符的十六进制字符串。</summary>
+      <returns>表示此范围 ID 的 16 个字符的十六进制字符串。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivitySpanId.ToString">
+      <summary>返回表示此范围 ID 的 16 个字符的十六进制字符串。</summary>
+      <returns>表示此范围 ID 的 16 个字符的十六进制字符串。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityTagsCollection">
+      <summary>ActivityTagsCollection 是用于存储跟踪标记的集合类。
+
+此集合将与 <see cref="T:System.Diagnostics.ActivityEvent" /> 和 <see cref="T:System.Diagnostics.ActivityLink" /> 等类一起使用。
+
+此集合的行为如下：- 集合项将根据其添加方式进行排序。
+- 不允许重复具有相同键的项。
+- 使用索引器在集合中存储项时：- 如果项具有在集合中以前存在的键，并且值为 <see langword="null" />，则将从集合中移除与该键匹配的集合项。
+- 如果项具有在集合中以前存在的键，并且值不为 <see langword="null" />，则新项值将替换集合中存储的旧值。
+- 否则，该项将添加到集合中。
+- Add 方法将向集合添加一个新项（如果尚未存在具有相同键的项）。 否则，它将引发异常。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.#ctor">
+      <summary>创建集合的新实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+      <summary>创建集合的一个新实例，并将输入列表项存储在集合中。</summary>
+      <param name="list">要存储在集合中的初始列表。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+      <summary>向集合添加一个项</summary>
+      <param name="item">要添加到集合中的标记的键值对。</param>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="item" /> 已经存在于列表中。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="item" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Add(System.String,System.Object)">
+      <summary>在集合中添加一个带有所提供的键和值的标记。 此集合不允许添加具有相同键的两个标记。</summary>
+      <param name="key">标记键。</param>
+      <param name="value">标记值。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Clear">
+      <summary>从集合中移除所有项。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+      <summary>确定 <see cref="T:System.Collections.Generic.ICollection`1" /> 是否包含特定值。</summary>
+      <param name="item">要在 <see cref="T:System.Collections.Generic.ICollection`1" /> 中定位的对象。</param>
+      <returns>如果在 <see langword="true" /> 中找到 <paramref name="item" />，则为 <see cref="T:System.Collections.Generic.ICollection`1" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.ContainsKey(System.String)">
+      <summary>确定集合是否包含具有指定键的元素。</summary>
+      <param name="key">要在 <see cref="T:System.Collections.Generic.IDictionary`2" /> 中定位的键。</param>
+      <returns>如果集合包含具有该键的标记，则为 <see langword="true" />。 否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">
+      <summary>从特定的数组索引开始，将集合的元素复制到数组中。</summary>
+      <param name="array">作为集合中元素的复制目标位置的数组。</param>
+      <param name="arrayIndex">数组中从零开始的索引，在此处开始复制。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于 <see langword="ActivityTagsCollection" /> 的枚举数。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+      <summary>从集合中移除特定项的第一个匹配项。</summary>
+      <param name="item">要移除的标记键值对。</param>
+      <returns>如果从集合中成功移除了项，则为 <see langword="true" />；否则为 <see langword="false" />。 如果在原始集合中找不到该项，则此方法也会返回 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Remove(System.String)">
+      <summary>从集合中移除具有指定键的标记。</summary>
+      <param name="key">标记键。</param>
+      <returns>如果该项已存在并已移除，则为 <see langword="true" />。 否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#String@System#Object}}#GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>一个可用于循环访问集合的 <see cref="T:System.Collections.IEnumerator" /> 对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.TryGetValue(System.String,System.Object@)">
+      <summary>获取与指定键关联的值。</summary>
+      <param name="key">标记键。</param>
+      <param name="value">标记值。</param>
+      <returns>如果找到该键，则该方法返回与指定键相关联的值；如果未找到该键，则返回值参数类型的默认值。 此参数未经初始化即被传递。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Count">
+      <summary>获取集合中包含的元素数。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.IsReadOnly">
+      <summary>获取一个值，该值指示集合是否为只读。 该值始终返回 <see langword="false" />。</summary>
+      <returns>始终返回 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Item(System.String)">
+      <summary>获取或设置指定的集合项。
+        
+在将值设置为此索引器属性时，会观察到以下行为：如果集合中之前存在该键且值为 <see langword="null" />，则将从集合中删除与该键匹配的集合项。
+- 如果该键以前存在于集合中，并且值不为 <see langword="null" />，则该值将替换集合中存储的旧值。
+否则，将在集合中添加新项。</summary>
+      <param name="key">要获取或设置的值的键。</param>
+      <returns>映射到密钥的对象。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Keys">
+      <summary>获取所有存储标记的键列表。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Values">
+      <summary>获取所有存储标记的值列表。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ActivityTagsCollection.Enumerator">
+      <summary>枚举 <see langword="ActivityTagsCollection" /> 的元素。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Enumerator.Dispose">
+      <summary>执行与释放或重置非托管资源关联的应用程序定义的任务。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Enumerator.MoveNext">
+      <summary>将枚举数推进到集合的下一个元素。</summary>
+      <returns>如果枚举数已成功地推进到下一个元素，则为 <see langword="true" />；如果枚举数传递到集合的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTagsCollection.Enumerator.System#Collections#IEnumerator#Reset">
+      <summary>将枚举数设置为其初始位置，该位置位于集合中第一个元素之前。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Enumerator.Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ActivityTagsCollection.Enumerator.System#Collections#IEnumerator#Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ActivityTraceFlags">
+      <summary>指定由 W3C 标准定义的与活动关联的标志。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityTraceFlags.None">
+      <summary>尚未标记活动。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ActivityTraceFlags.Recorded">
+      <summary>活动（或更可能为它的父项）已标记为可用于记录。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ActivityTraceId">
+      <summary>表示 <see cref="P:System.Diagnostics.Activity.TraceId" />，其格式基于 W3C 标准。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.CopyTo(System.Span{System.Byte})">
+      <summary>将当前 <see cref="T:System.Diagnostics.ActivityTraceId" /> 的 16 个字节复制到指定的范围。</summary>
+      <param name="destination">要将跟踪 ID 的 16 个字节复制到的范围。</param>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.CreateFromBytes(System.ReadOnlySpan{System.Byte})">
+      <summary>从一个包含 16 个字节的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 值。</summary>
+      <param name="idData">一个包含 16 个字节的只读范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="idData" /> 不包含 8 个字节。</exception>
+      <returns>新的跟踪 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.CreateFromString(System.ReadOnlySpan{System.Char})">
+      <summary>从一个包含 32 个十六进制字符的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 值。</summary>
+      <param name="idData">一个包含 32 个十六进制字符的范围。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="idData" /> 不包含 16 个十六进制字符。
+
+- 或 -
+
+<paramref name="idData" /> 中的字符并非全为小写的十六进制字符或全为零。</exception>
+      <returns>新的跟踪 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.CreateFromUtf8String(System.ReadOnlySpan{System.Byte})">
+      <summary>从一个包含 UTF8 编码字节的只读范围创建一个新的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 值。</summary>
+      <param name="idData">一个包含 UTF8 编码字节的只读范围。</param>
+      <returns>新的跟踪 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.CreateRandom">
+      <summary>基于一个随机数字（很可能是唯一的数字）创建一个新的 <see cref="T:System.Diagnostics.ActivitySpanId" />。</summary>
+      <returns>新的范围 ID。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.Equals(System.Diagnostics.ActivityTraceId)">
+      <summary>确定当前实例与指定的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 是否相等。</summary>
+      <param name="traceId">要比较的实例。</param>
+      <returns>如果 <paramref name="traceId" /> 与当前实例含有相同的十六进制值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.Equals(System.Object)">
+      <summary>确定此实例是否与指定的对象（也必须是 <see cref="T:System.Diagnostics.ActivityTraceId" /> 实例）具有相同的值。</summary>
+      <param name="obj">要比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 是 <see cref="T:System.Diagnostics.ActivityTraceId" /> 的实例，且与当前实例具有相同的十六进制值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.GetHashCode">
+      <summary>返回 TraceId 的哈希代码。</summary>
+      <returns>TraceId 的哈希代码。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.op_Equality(System.Diagnostics.ActivityTraceId,System.Diagnostics.ActivityTraceId)">
+      <summary>确定两个指定的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 实例是否具有相同的值。</summary>
+      <param name="traceId1">要比较的第一个实例。</param>
+      <param name="traceId2">要比较的第二个实例。</param>
+      <returns>如果 <paramref name="traceId1" /> 的 TraceId 与 <paramref name="traceId2" /> 的 TraceId 相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.op_Inequality(System.Diagnostics.ActivityTraceId,System.Diagnostics.ActivityTraceId)">
+      <summary>确定两个指定的 <see cref="T:System.Diagnostics.ActivityTraceId" /> 实例是否具有相同的值。</summary>
+      <param name="traceId1">要比较的第一个实例。</param>
+      <param name="traceId2">要比较的第二个实例。</param>
+      <returns>如果 <paramref name="traceId1" /> 的 TraceId 与 <paramref name="traceId2" /> 的 TraceId 不同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.ToHexString">
+      <summary>返回表示此范围 ID 的 16 个字符的十六进制字符串。</summary>
+      <returns>表示此跟踪 ID 的 32 个字符的十六进制字符串。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ActivityTraceId.ToString">
+      <summary>返回表示此跟踪 ID 的 32 个字符的十六进制字符串。</summary>
+      <returns>表示此跟踪 ID 的 32 个字符的十六进制字符串。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DiagnosticListener">
+      <summary>提供抽象 <see cref="T:System.Diagnostics.DiagnosticSource" /> 类的实现，它表示源将其信息（事件）发送到的指定位置。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.#ctor(System.String)">
+      <summary>创建一个新的 <see cref="T:System.Diagnostics.DiagnosticListener" />。</summary>
+      <param name="name">此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Dispose">
+      <summary>释放 NotificationListeners。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.IsEnabled">
+      <summary>确定是否有订阅者已注册。</summary>
+      <returns>如果有订阅者已注册，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.IsEnabled(System.String)">
+      <summary>检查是否已启用 <see cref="T:System.Diagnostics.DiagnosticListener" />。</summary>
+      <param name="name">要检查的事件的名称。</param>
+      <returns>如果已启用通知，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.IsEnabled(System.String,System.Object,System.Object)">
+      <summary>检查诊断事件的订阅者是否有兴趣接收包含此名称的事件。 订阅者使用 <see cref="Overload:System.Diagnostics.DiagnosticListener.Subscribe" /> 中提供的委托来指示其兴趣。</summary>
+      <param name="name">要检查的事件的名称。</param>
+      <param name="arg1">表示上下文的对象。</param>
+      <param name="arg2">表示上下文的对象。</param>
+      <returns>如果已启用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.OnActivityExport(System.Diagnostics.Activity,System.Object)">
+      <summary>调用所有订阅服务器的 OnActivityExport 方法。</summary>
+      <param name="activity">受外部事件影响的活动。</param>
+      <param name="payload">一个表示传出请求的对象。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.OnActivityImport(System.Diagnostics.Activity,System.Object)">
+      <summary>调用所有订阅服务器的 OnActivityImport 方法。</summary>
+      <param name="activity">受外部事件影响的活动。</param>
+      <param name="payload">表示传入请求的对象。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Subscribe(System.IObserver{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+      <summary>添加订阅者。</summary>
+      <param name="observer">订阅者。</param>
+      <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Subscribe(System.IObserver{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Func{System.String,System.Object,System.Object,System.Boolean})">
+      <summary>添加一个订阅者，根据事件名称和最多两个上下文对象筛选事件（可选）。</summary>
+      <param name="observer">订阅者。</param>
+      <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />），如果不需要事件筛选器，则为 <see langword="null" />。</param>
+      <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Subscribe(System.IObserver{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Func{System.String,System.Object,System.Object,System.Boolean},System.Action{System.Diagnostics.Activity,System.Object},System.Action{System.Diagnostics.Activity,System.Object})">
+      <summary>添加一个订阅者，根据事件名称和最多两个上下文对象筛选事件（可选），并指定提供程序在进程外部导入或导出活动时调用的方法。</summary>
+      <param name="observer">订阅者。</param>
+      <param name="isEnabled">一个委托，它根据事件名称和最多两个上下文对象筛选事件（可为 <see langword="null" />），如果不需要事件筛选器，则为 <see langword="null" />。</param>
+      <param name="onActivityImport">一个操作委托，用于接收由外部事件影响的活动以及表示传入请求的对象。</param>
+      <param name="onActivityExport">一个操作委托，用于接收由外部事件影响的活动以及表示传出请求的对象。</param>
+      <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Subscribe(System.IObserver{System.Collections.Generic.KeyValuePair{System.String,System.Object}},System.Predicate{System.String})">
+      <summary>添加一个订阅者，根据事件名称筛选事件（可选）。</summary>
+      <param name="observer">订阅者。</param>
+      <param name="isEnabled">一个委托，它根据其名称 (<see cref="T:System.String" />) 筛选事件。 如果已启用事件，则委托应返回 <see langword="true" />。</param>
+      <returns>对允许侦听器在 <see cref="T:System.Diagnostics.DiagnosticSource" /> 发送完通知前停止接收这些通知的接口的引用。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.ToString">
+      <summary>返回一个字符串，它具有此 DiagnosticListener 的名称。</summary>
+      <returns>此 DiagnosticListener 的名称。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticListener.Write(System.String,System.Object)">
+      <summary>记录一个通知。</summary>
+      <param name="name">要记录的事件的名称。</param>
+      <param name="value">一个对象，它表示事件的有效负载。</param>
+    </member>
+    <member name="P:System.Diagnostics.DiagnosticListener.AllListeners">
+      <summary>获取此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的侦听器的集合。</summary>
+    </member>
+    <member name="P:System.Diagnostics.DiagnosticListener.Name">
+      <summary>获取此 <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</summary>
+      <returns>
+        <see cref="T:System.Diagnostics.DiagnosticListener" /> 的名称。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DiagnosticSource">
+      <summary>一个抽象类，它允许针对丰富数据有效负载的生产时日志记录检测代码，以在被检测的进程中使用。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.#ctor">
+      <summary>初始化 <see cref="T:System.Diagnostics.DiagnosticSource" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.IsEnabled(System.String)">
+      <summary>验证通知事件是否已启用。</summary>
+      <param name="name">正在写入的事件的名称。</param>
+      <returns>如果通知事件已启用，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.IsEnabled(System.String,System.Object,System.Object)">
+      <summary>验证通知事件是否已启用。</summary>
+      <param name="name">正在写入的事件的名称。</param>
+      <param name="arg1">一个对象，它表示 IsEnabled 的附加上下文。 使用者应会收到 <see langword="null" />，它可能表示生成方已调用纯 IsEnabled(string) 来检查使用者是否确实要获取此类事件的通知。 基于此，生成方可使用非 <see langword="null" /> 上下文再次调用 IsEnabled(string, object, object)。</param>
+      <param name="arg2">可选。 一个对象，它表示 IsEnabled 的附加上下文。 默认值为 <see langword="null" />。 使用者应会收到 <see langword="null" />，它可能表示生成方已调用纯 IsEnabled(string) 或者已在 <paramref name="arg1" /> 中传递所有必要的上下文。</param>
+      <returns>如果通知事件已启用，为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.OnActivityExport(System.Diagnostics.Activity,System.Object)">
+      <summary>将状态从活动转移到将在进程外发生的某些事件或操作，例如传出 HTTP 请求。</summary>
+      <param name="activity">受外部事件影响的活动。</param>
+      <param name="payload">一个表示传出请求的对象。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.OnActivityImport(System.Diagnostics.Activity,System.Object)">
+      <summary>将状态从将在进程外发生的某些事件或操作（例如传入请求）转移到活动。</summary>
+      <param name="activity">受外部事件影响的活动。</param>
+      <param name="payload">表示传入请求的有效负载。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.StartActivity(System.Diagnostics.Activity,System.Object)">
+      <summary>启动 <see cref="T:System.Diagnostics.Activity" /> 并写入启动事件。</summary>
+      <param name="activity">要启动的 <see cref="T:System.Diagnostics.Activity" />。</param>
+      <param name="args">一个对象，它表示作为事件的有效负载传递的值。</param>
+      <returns>便于链接的已启动的活动。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.StopActivity(System.Diagnostics.Activity,System.Object)">
+      <summary>停止给定的 <see cref="T:System.Diagnostics.Activity" />，维护全局 <see cref="P:System.Diagnostics.Activity.Current" /> 活动，并通知使用者 <see cref="T:System.Diagnostics.Activity" /> 已停止。</summary>
+      <param name="activity">要停止的活动。</param>
+      <param name="args">一个对象，它表示作为事件的有效负载传递的值。</param>
+    </member>
+    <member name="M:System.Diagnostics.DiagnosticSource.Write(System.String,System.Object)">
+      <summary>提供记录复杂有效负载的通用方法。</summary>
+      <param name="name">正在写入的事件的名称。</param>
+      <param name="value">一个对象，它表示作为事件的有效负载传递的值。 这通常是一个包含多个子值的匿名类型。</param>
+    </member>
+    <member name="T:System.Diagnostics.SampleActivity`1">
+      <summary>一个委托，用于定义在采样过程中使用的 <see cref="T:System.Diagnostics.ActivityListener" /> 回调的签名。</summary>
+      <param name="options">供 <see cref="T:System.Diagnostics.ActivityListener" /> 回调用于决定是否创建“活动”对象的“活动创建”选项。</param>
+      <typeparam name="T">要用来创建活动对象的请求的父对象的类型。 应为字符串或 <see cref="T:System.Diagnostics.ActivityContext" /> 实例。</typeparam>
+      <returns>一个包含采样结果的对象，该对象指示要为相关 <see cref="T:System.Diagnostics.Activity" /> 收集的数据量。</returns>
+    </member>
+  </members>
+</doc>

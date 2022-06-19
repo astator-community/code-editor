@@ -1,0 +1,3182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.FileSystem</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Directory">
+      <summary>公开用于通过目录和子目录进行创建、移动和枚举的静态方法。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.IO.Directory.CreateDirectory(System.String)">
+      <summary>在指定路径中创建所有目录和子目录，除非它们已经存在。</summary>
+      <param name="path">要创建的目录。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 指定的目录是文件。  
+  
+- 或 - 
+网络名称未知。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="path" /> 的前缀仅为（或只包含）一个冒号字符 (:)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 包含不是驱动器标签（“C:\”）的一部分的冒号字符 (:)。</exception>
+      <returns>一个表示在指定路径的目录的对象。 无论指定路径的目录是否已经存在，都将返回此对象。</returns>
+    </member>
+    <member name="M:System.IO.Directory.Delete(System.String)">
+      <summary>从指定路径删除空目录。</summary>
+      <param name="path">要移除的空目录的名称。 此目录必须可写且为空。</param>
+      <exception cref="T:System.IO.IOException">存在具有相同名称和 <paramref name="path" /> 指定的位置的文件。  
+  
+- 或 - 
+该目录是应用程序的当前工作目录。  
+  
+- 或 - 
+<paramref name="path" /> 指定的目录不为空。  
+  
+- 或 - 
+该目录为只读或包含一个只读文件。  
+  
+- 或 - 
+另一个进程正在使用该目录。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">不存在或找不到 <paramref name="path" />。  
+  
+- 或 - 
+指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+    </member>
+    <member name="M:System.IO.Directory.Delete(System.String,System.Boolean)">
+      <summary>删除指定的目录，并删除该目录中的所有子目录和文件（如果表示）。</summary>
+      <param name="path">要删除的目录的名称。</param>
+      <param name="recursive">若要删除 <paramref name="path" /> 中的目录、子目录和文件，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">存在具有相同名称和 <paramref name="path" /> 指定的位置的文件。  
+  
+- 或 - 
+<paramref name="path" /> 指定的目录为只读，或者 <paramref name="recursive" /> 的值为 <see langword="false" />，且 <paramref name="path" /> 不是空目录。  
+  
+- 或 - 
+该目录是应用程序的当前工作目录。  
+  
+- 或 - 
+该目录包含一个只读文件。  
+  
+- 或 - 
+另一个进程正在使用该目录。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">不存在或找不到 <paramref name="path" />。  
+  
+- 或 - 
+指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String)">
+      <summary>返回指定路径中的目录完整名称的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含目录中由 <paramref name="path" /> 指定的目录的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String)">
+      <summary>返回指定路径中与搜索模式匹配的目录完整名称的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的目录名称匹配的搜索字符串成。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>
+        <paramref name="path" /> 指定且与指定的搜索模式相匹配的目录中的文件的全名（包括路径）的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定路径中与搜索模式匹配的目录完整名称的可枚举集合，还可搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的目录名称匹配的搜索字符串成。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含 <paramref name="path" /> 指定的目录中与指定的搜索模式和枚举选项匹配的目录的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回指定路径中与搜索模式匹配的目录完整名称的可枚举集合，还可搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的目录名称匹配的搜索字符串成。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含 <paramref name="path" /> 指定的目录中与指定的搜索模式和搜索选项匹配的目录的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String)">
+      <summary>返回指定路径中的完整文件名的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含目录中 <paramref name="path" /> 指定的文件的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String)">
+      <summary>返回指定路径中与搜索模式匹配的完整文件名的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>
+        <paramref name="path" /> 指定且与指定的搜索模式相匹配的目录中的文件的全名（包括路径）的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定路径中与搜索模式和枚举选项匹配的完整文件名的可枚举集合，还可以搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含 <paramref name="path" /> 指定的目录中与指定的搜索模式和枚举选项匹配的文件的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回指定路径中与搜索模式匹配的完整文件名的可枚举集合，还可以搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含 <paramref name="path" /> 指定的目录中与指定的搜索模式和搜索选项匹配的文件的完整名称（包括路径）。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String)">
+      <summary>返回指定路径中的文件名和目录名的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>
+        <paramref name="path" /> 指定的目录中的文件系统条目的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String)">
+      <summary>返回指定路径中与搜索模式匹配的文件名和目录名的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件系统条目的名称进行匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>由 <paramref name="path" /> 指定且与指定的搜索模式匹配的目录中的文件系统条目的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定路径中与搜索模式和枚举选项匹配的文件名和目录名的可枚举集合。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个可枚举集合，它包含 <paramref name="path" /> 指定的目录中与指定搜索模式和指定枚举选项匹配的文件系统项。</returns>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回指定路径中与搜索模式匹配的文件名称和目录名的可枚举集合，还可以搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件系统项匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>由 <paramref name="path" /> 指定的目录中与指定搜索模式和选项匹配的文件系统项的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.Directory.Exists(System.String)">
+      <summary>确定给定路径是否引用磁盘上的现有目录。</summary>
+      <param name="path">要测试的路径。</param>
+      <returns>如果 <paramref name="path" /> 指向现有目录，则为 <see langword="true" />；如果该目录不存在或者在尝试确定指定目录是否存在时出错，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetCreationTime(System.String)">
+      <summary>获取目录的创建日期和时间。</summary>
+      <param name="path">目录的路径。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <returns>一个设置为指定目录的创建日期和时间的结构。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetCreationTimeUtc(System.String)">
+      <summary>获取目录创建的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">目录的路径。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <returns>一个设置为指定目录的创建日期和时间的结构。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetCurrentDirectory">
+      <summary>获取应用程序的当前工作目录。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">此操作系统为 Windows CE，该系统不具有当前目录功能。  
+  
+ 此方法在 .NET Compact Framework 中可用，但当前不支持。</exception>
+      <returns>一个字符串，该字符串包含当前工作目录的绝对路径且不以反斜杠 (\) 结尾。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String)">
+      <summary>返回指定目录中的子目录的名称（包括其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>指定路径中子目录的完整名称（包含路径）的数组；如果未找到任何目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String)">
+      <summary>返回指定目录中与指定的搜索模式匹配的子目录的名称（包括其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 可以通过使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效的字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效的模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>指定目录中与搜索模式匹配的子目录的完整名称（包含路径）的数组；如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定目录中与指定的搜索模式和枚举选项匹配的子目录的名称（包括其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 可以通过使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效的字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效的模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>一个数组，它包含指定目录中与搜索模式和枚举选项匹配的子目录的完整名称（包含路径）；如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回与在指定目录中的指定搜索模式匹配的子目录的名称（包括其路径），还可以选择地搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应包含所有子目录还是仅包含当前目录的枚举值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>与指定条件匹配的子目录的完整名称（包含路径）的数组；如果未找到任何目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectoryRoot(System.String)">
+      <summary>返回指定路径的卷信息、根信息或两者同时返回。</summary>
+      <param name="path">文件或目录的路径。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <returns>包含指定路径的卷信息、根信息或同时包括这两者的字符串。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String)">
+      <summary>返回指定目录中文件的名称（包括其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。  
+  
+- 或 - 
+发生了网络错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径未找到或无效（例如，它在未映射的驱动器上）。</exception>
+      <returns>一个包含指定目录中的文件的完整名称（包含路径）的数组，如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String)">
+      <summary>返回指定目录中与指定的搜索模式匹配的文件的名称（包含其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。  
+  
+- 或 - 
+发生了网络错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 可以通过使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效的字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效的模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径未找到或无效（例如，它在未映射的驱动器上）。</exception>
+      <returns>指定目录中与指定的搜索模式匹配的文件的完整名称（包含路径）的数组；如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定目录中与指定的搜索模式和枚举选项匹配的文件的名称（包括其路径）。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。  
+  
+- 或 - 
+发生了网络错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 可以通过使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效的字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效的模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径未找到或无效（例如，它在未映射的驱动器上）。</exception>
+      <returns>一个数组，它包含指定目录中与指定的搜索模式和枚举选项匹配的文件的完整名称（包含路径）；如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回指定目录中与指定的搜索模式匹配的文件的名称（包含其路径），使用某个值确定是否要搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应包含所有子目录还是仅包含当前目录的枚举值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchpattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径未找到或无效（例如，它在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。  
+  
+- 或 - 
+发生了网络错误。</exception>
+      <returns>指定目录中与指定的搜索模式和选项匹配的文件的完整名称（包含路径）的数组；如果未找到任何文件，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String)">
+      <summary>返回指定路径中的所有文件和子目录的名称。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>指定目录中的文件和子目录的名称的数组；如果找不到任何文件或子目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String)">
+      <summary>返回一个数组，其中包含与指定路径中的搜索模式相匹配的文件名和目录名称。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件和目录的名称匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>与指定的搜索条件匹配的文件名和目录名的数组；如果找不到任何文件或目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>返回指定路径中与搜索模式和枚举选项匹配的文件名和目录名的数组。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的子目录的名称匹配的搜索字符串。 此参数可以包含有效文本和通配符的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。
+
+- 或 -
+
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>一个数组，它包含与指定的搜索模式和枚举选项匹配的文件名和目录名；如果找不到任何文件或目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)">
+      <summary>返回指定路径中与搜索模式匹配的所有文件名和目录名的数组，还可以搜索子目录。</summary>
+      <param name="path">要搜索的目录的相对或绝对路径。 此字符串不区分大小写。</param>
+      <param name="searchPattern">要与 <paramref name="path" /> 中的文件和目录的名称匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效，如引用未映射的驱动器。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 是一个文件名。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>与指定的搜索条件匹配的文件名和目录名的数组；如果找不到任何文件或目录，则为空数组。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetLastAccessTime(System.String)">
+      <summary>返回上次访问指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其访问日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 参数格式无效。</exception>
+      <returns>一个结构，它被设置为上次访问指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetLastAccessTimeUtc(System.String)">
+      <summary>返回上次访问指定文件或目录的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要获取其访问日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 参数格式无效。</exception>
+      <returns>一个结构，它被设置为上次访问指定文件或目录的日期和时间。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetLastWriteTime(System.String)">
+      <summary>返回上次写入指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其修改日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <returns>一个结构，它被设置为上次写入指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetLastWriteTimeUtc(System.String)">
+      <summary>返回上次写入指定文件或目录的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要获取其修改日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <returns>一个结构，它被设置为上次写入指定文件或目录的日期和时间。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetLogicalDrives">
+      <summary>检索此计算机上格式为“&lt;drive letter&gt;:\”的逻辑驱动器的名称。</summary>
+      <exception cref="T:System.IO.IOException">发生了 I/O 错误（例如，磁盘错误）。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>此计算机上的逻辑驱动器。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetParent(System.String)">
+      <summary>检索指定路径的父目录，包括绝对路径和相对路径。</summary>
+      <param name="path">要为其检索父目录的路径。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 指定的目录为只读。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。 有关详细信息，请参见<see cref="T:System.IO.PathTooLongException" />主题。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">仅限 .NET Framework：调用方没有所需的权限。</exception>
+      <returns>父目录，如果 <paramref name="path" /> 是根目录，包括 UNC 服务器或共享名的根，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.IO.Directory.Move(System.String,System.String)">
+      <summary>将文件或目录及其内容移到新位置。</summary>
+      <param name="sourceDirName">要移动的文件或目录的路径。</param>
+      <param name="destDirName">
+        <paramref name="sourceDirName" /> 的新位置的路径。 如果 <paramref name="sourceDirName" /> 是文件，那么 <paramref name="destDirName" /> 也必须是文件名。</param>
+      <exception cref="T:System.IO.IOException">尝试将目录移动到不同的卷。
+  
+- 或 - 
+ <paramref name="destDirName" /> 已存在。 请参阅“备注”部分中的“说明”。
+  
+- 或 - 
+<paramref name="sourceDirName" /> 和 <paramref name="destDirName" /> 参数引用同一个文件或目录。  
+  
+- 或 - 
+另一个进程正在使用目录或其中一个文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceDirName" /> 或 <paramref name="destDirName" /> 是一个长度为零的字符串，仅包含空格，或者包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceDirName" /> 或 <paramref name="destDirName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceDirName" /> 指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCreationTime(System.String,System.DateTime)">
+      <summary>为指定的文件或目录设置创建日期和时间。</summary>
+      <param name="path">要设置其创建日期和时间信息的文件或目录。</param>
+      <param name="creationTime">上次写入到文件或目录的日期和时间。 该值用本地时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCreationTimeUtc(System.String,System.DateTime)">
+      <summary>设置指定文件或目录的创建日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要设置其创建日期和时间信息的文件或目录。</param>
+      <param name="creationTimeUtc">目录或文件的创建日期和时间。 该值用本地时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCurrentDirectory(System.String)">
+      <summary>将应用程序的当前工作目录设置为指定的目录。</summary>
+      <param name="path">设置为当前工作目录的路径。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有访问非托管代码所需的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">未找到指定目录。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastAccessTime(System.String,System.DateTime)">
+      <summary>设置上次访问指定文件或目录的日期和时间。</summary>
+      <param name="path">要设置其访问日期和时间信息的文件或目录。</param>
+      <param name="lastAccessTime">一个对象，它包含要为 <paramref name="path" /> 的访问日期和时间设置的值。 该值用本地时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastAccessTimeUtc(System.String,System.DateTime)">
+      <summary>设置上次访问指定文件或目录的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要设置其访问日期和时间信息的文件或目录。</param>
+      <param name="lastAccessTimeUtc">一个对象，它包含要为 <paramref name="path" /> 的访问日期和时间设置的值。 该值用 UTC 时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTimeUtc" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastWriteTime(System.String,System.DateTime)">
+      <summary>设置上次写入目录的日期和时间。</summary>
+      <param name="path">目录的路径。</param>
+      <param name="lastWriteTime">上次写入目录的日期和时间。 该值用本地时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" />（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到 <paramref name="path" />（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastWriteTimeUtc(System.String,System.DateTime)">
+      <summary>设置上次写入某个目录的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">目录的路径。</param>
+      <param name="lastWriteTimeUtc">上次写入目录的日期和时间。 该值用 UTC 时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" />（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到 <paramref name="path" />（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个无效字符。 你可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查询无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTimeUtc" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="T:System.IO.DirectoryInfo">
+      <summary>公开用于创建、移动和枚举目录和子目录的实例方法。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.#ctor(System.String)">
+      <summary>初始化指定路径上的 <see cref="T:System.IO.DirectoryInfo" /> 类的新实例。</summary>
+      <param name="path">一个字符串，它指定要在其中创建 <see langword="DirectoryInfo" /> 的路径。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 包含无效字符，例如 "、&lt;、&gt; 或 |。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Create">
+      <summary>创建目录。</summary>
+      <exception cref="T:System.IO.IOException">无法创建目录。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.CreateSubdirectory(System.String)">
+      <summary>在指定路径上创建一个或多个子目录。 指定路径可以是相对于 <see cref="T:System.IO.DirectoryInfo" /> 类的此实例的路径。</summary>
+      <param name="path">指定的路径。 它不能是另一个磁盘卷或通用命名约定 (UNC) 名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 未指定有效的文件路径或包含无效 <see langword="DirectoryInfo" /> 字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">无法创建子目录。  
+  
+- 或 - 
+文件或目录已具有 <paramref name="path" /> 指定的名称。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有代码访问权限来创建目录。  
+  
+- 或 - 
+调用方没有代码访问权限来读取返回的 <see cref="T:System.IO.DirectoryInfo" /> 对象所描述的目录。  当 <paramref name="path" /> 参数描述现有目录时，会发生这种情况。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 包含不是驱动器标签（“C:\”）的一部分的冒号字符 (:)。</exception>
+      <returns>在 <paramref name="path" /> 中指定的最后一个目录。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Delete">
+      <summary>如果此 <see cref="T:System.IO.DirectoryInfo" /> 为空则将其删除。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">该目录包含一个只读文件。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">此 <see cref="T:System.IO.DirectoryInfo" /> 对象描述的目录不存在或找不到。</exception>
+      <exception cref="T:System.IO.IOException">目录不为空。  
+  
+- 或 - 
+该目录是应用程序的当前工作目录。  
+  
+- 或 - 
+对于目录有打开句柄，并且操作系统是 Windows XP 或更早版本。 开放句柄可能产生自枚举目录。 有关详细信息，请参阅如何：枚举目录和文件。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Delete(System.Boolean)">
+      <summary>删除 <see cref="T:System.IO.DirectoryInfo" /> 的此实例，指定是否删除子目录和文件。</summary>
+      <param name="recursive">如果要删除此目录，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.UnauthorizedAccessException">该目录包含一个只读文件。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">此 <see cref="T:System.IO.DirectoryInfo" /> 对象描述的目录不存在或找不到。</exception>
+      <exception cref="T:System.IO.IOException">目录为只读。  
+  
+- 或 - 
+此目录包含一个或多个文件或子目录，且 <paramref name="recursive" /> 为 <see langword="false" />。  
+  
+- 或 - 
+该目录是应用程序的当前工作目录。  
+  
+- 或 - 
+对于目录或其文件之一有打开句柄，并且操作系统是 Windows XP 或更早版本。 枚举目录和文件可能会导致此开放句柄出现。 有关详细信息，请参阅如何：枚举目录和文件。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories">
+      <summary>返回当前目录中的目录信息的可枚举集合。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>当前目录中目录的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String)">
+      <summary>返回与指定的搜索模式匹配的目录信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 匹配的目录的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String,System.IO.EnumerationOptions)">
+      <summary>返回与指定的搜索模式和枚举选项匹配的目录信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的目录的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String,System.IO.SearchOption)">
+      <summary>返回与指定的搜索模式和搜索子目录选项匹配的目录信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 匹配的目录的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles">
+      <summary>返回当前目录中的文件信息的可枚举集合。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>当前目录中的文件的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String)">
+      <summary>返回与搜索模式匹配的文件信息的可枚举集合。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 匹配的文件的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String,System.IO.EnumerationOptions)">
+      <summary>返回与指定的搜索模式和枚举选项匹配的文件信息的可枚举集合。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的文件的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String,System.IO.SearchOption)">
+      <summary>返回与指定的搜索模式和搜索子目录选项匹配的文件信息的可枚举集合。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 匹配的文件的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos">
+      <summary>返回当前目录中的文件系统信息的可枚举集合。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>当前目录中的文件系统信息的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String)">
+      <summary>返回与指定的搜索模式匹配的文件系统信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 匹配的文件系统信息对象的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String,System.IO.EnumerationOptions)">
+      <summary>返回与指定的搜索模式和枚举选项匹配的文件系统信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的文件系统信息对象的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String,System.IO.SearchOption)">
+      <summary>返回与指定的搜索模式和搜索子目录选项匹配的文件系统信息的可枚举集合。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 匹配的文件系统信息对象的可枚举集合。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories">
+      <summary>返回当前目录的子目录。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see cref="T:System.IO.DirectoryInfo" /> 对象中的路径无效，例如，在未映射的驱动器上。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>一个 <see cref="T:System.IO.DirectoryInfo" /> 对象数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String)">
+      <summary>返回当前 <see cref="T:System.IO.DirectoryInfo" /> 中、与给定搜索条件匹配的目录的数组。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see langword="DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>与 <see langword="DirectoryInfo" /> 匹配的 <paramref name="searchPattern" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String,System.IO.EnumerationOptions)">
+      <summary>返回当前 <see cref="T:System.IO.DirectoryInfo" /> 中与指定的搜索模式和枚举选项匹配的目录的数组。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see langword="DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的 <see langword="DirectoryInfo" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String,System.IO.SearchOption)">
+      <summary>返回当前 <see cref="T:System.IO.DirectoryInfo" /> 中与给定的搜索条件匹配并使用某个值确定是否在子目录中搜索的目录的数组。</summary>
+      <param name="searchPattern">要与目录名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">封装在 <see langword="DirectoryInfo" /> 对象中的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>与 <see langword="DirectoryInfo" /> 匹配的 <paramref name="searchPattern" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles">
+      <summary>返回当前目录的文件列表。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路径无效（例如，路径位于未映射的驱动器上）。</exception>
+      <returns>
+        <see cref="T:System.IO.FileInfo" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String)">
+      <summary>返回当前目录中与给定的搜索模式匹配的文件列表。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>
+        <see cref="T:System.IO.FileInfo" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String,System.IO.EnumerationOptions)">
+      <summary>返回当前目录中与指定的搜索模式和枚举选项匹配的文件列表。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的强类型化 <see cref="T:System.IO.FileInfo" /> 对象的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String,System.IO.SearchOption)">
+      <summary>返回与给定的搜索模式匹配并且使用某个值确定是否在子目录中进行搜索的当前目录的文件列表。</summary>
+      <param name="searchPattern">要与文件名匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>
+        <see cref="T:System.IO.FileInfo" /> 类型的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos">
+      <summary>返回表示某个目录中所有文件和子目录的强类型 <see cref="T:System.IO.FileSystemInfo" /> 项的数组。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <returns>强类型 <see cref="T:System.IO.FileSystemInfo" /> 项的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String)">
+      <summary>检索表示与指定的搜索条件匹配的文件和子目录的强类型 <see cref="T:System.IO.FileSystemInfo" /> 对象的数组。</summary>
+      <param name="searchPattern">要与目录和文件的名称匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与搜索条件匹配的强类型 <see langword="FileSystemInfo" /> 对象的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String,System.IO.EnumerationOptions)">
+      <summary>检索强类型 <see cref="T:System.IO.FileSystemInfo" /> 对象的数组，这些对象表示与指定的搜索模式和枚举选项匹配的文件和子目录。</summary>
+      <param name="searchPattern">要与目录和文件的名称匹配的搜索字符串。 此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="enumerationOptions">描述要使用的搜索和枚举配置的对象。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 匹配的强类型 <see langword="FileSystemInfo" /> 对象的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String,System.IO.SearchOption)">
+      <summary>检索表示与指定的搜索条件匹配的文件和子目录的 <see cref="T:System.IO.FileSystemInfo" /> 对象的数组。</summary>
+      <param name="searchPattern">要与目录和文件的名称匹配的搜索字符串。  此参数可以包含有效文本路径和通配符（* 和 ?）的组合，但不支持正则表达式。</param>
+      <param name="searchOption">用于指定搜索操作是应仅包含当前目录还是应包含所有子目录的枚举值之一。 默认值是 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一个或多个 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>与搜索条件匹配的文件系统项的数组。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.MoveTo(System.String)">
+      <summary>将 <see cref="T:System.IO.DirectoryInfo" /> 实例及其内容移动到新路径。</summary>
+      <param name="destDirName">要将此目录移动到的目标位置的名称和路径。 目标不能是另一个具有相同名称的磁盘卷或目录。 它可以是您要将此目录作为子目录添加到其中的一个现有目录。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destDirName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destDirName" /> 是一个空字符串 (''")。</exception>
+      <exception cref="T:System.IO.IOException">尝试将目录移动到不同的卷。  
+  
+- 或 - 
+ <paramref name="destDirName" /> 已存在。  
+  
+- 或 - 
+您无权访问此路径。  
+  
+- 或 - 
+被移动的目录与目标目录同名。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到此目标目录。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.ToString">
+      <summary>返回传递给 <see cref="T:System.IO.DirectoryInfo" /> 构造函数的原始路径。 使用 <see cref="P:System.IO.DirectoryInfo.FullName" /> 或 <see cref="P:System.IO.DirectoryInfo.Name" /> 属性作为完整路径或文件/目录名，而不是此方法。</summary>
+      <returns>用户所传递的原始路径。</returns>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Exists">
+      <summary>获取指示目录是否存在的值。</summary>
+      <returns>如果目录存在，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Name">
+      <summary>获取此 <see cref="T:System.IO.DirectoryInfo" /> 实例的名称。</summary>
+      <returns>目录名称。</returns>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Parent">
+      <summary>获取指定的子目录的父目录。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>父目录; <see langword="null" /> 如果路径为 null 或文件路径表示根 (如 \ 、 C:\ 或) ，则为 \\server\share 。</returns>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Root">
+      <summary>获取目录的根部分。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>一个表示目录的根目录的对象。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEntry">
+      <summary>提供 <see cref="T:System.IO.FileSystemInfo" /> 的更低级别视图来帮助处理和筛选查找结果。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToFileSystemInfo">
+      <summary>将此实例的值转换为 <see cref="T:System.IO.FileSystemInfo" />。</summary>
+      <returns>作为 <see cref="T:System.IO.FileSystemInfo" /> 的此实例的值。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToFullPath">
+      <summary>返回查找结果的完整路径。</summary>
+      <returns>表示完整路径的字符串。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToSpecifiedFullPath">
+      <summary>基于最初提供的路径返回查找结果的完整路径。</summary>
+      <returns>表示完整路径的字符串。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Attributes">
+      <summary>获取此项的属性。</summary>
+      <returns>此项的特性。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.CreationTimeUtc">
+      <summary>获取项的创建时间或最早可用时间戳（如果操作系统不支持创建时间戳）。</summary>
+      <returns>项的创建时间。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Directory">
+      <summary>获取此项所处的目录的完整路径。</summary>
+      <returns>此项的目录的完整路径。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.FileName">
+      <summary>获取此项的文件名。</summary>
+      <returns>此项的文件名。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.IsDirectory">
+      <summary>获取一个值，该值指示此项是否为目录。</summary>
+      <returns>
+        <see langword="true" /> 如果项是目录，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.IsHidden">
+      <summary>获取一个值，该值指示文件是否具有隐藏属性。</summary>
+      <returns>
+        <see langword="true" /> 如果文件具有隐藏属性，则为; 否则为。否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.LastAccessTimeUtc">
+      <summary>获取表示 UTC 格式的上次访问时间的日期/时间偏移量。</summary>
+      <returns>UTC 格式的上次访问时间。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.LastWriteTimeUtc">
+      <summary>获取表示 UTC 格式的上次写入时间的日期/时间偏移量。</summary>
+      <returns>UTC 格式的上次写入时间。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Length">
+      <summary>获取文件的长度（以字节为单位）。</summary>
+      <returns>文件长度（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.OriginalRootDirectory">
+      <summary>获取构造函数中指定的枚举的根目录。</summary>
+      <returns>原始根目录。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.RootDirectory">
+      <summary>获取用于枚举的根目录的完整路径。</summary>
+      <returns>根目录。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1">
+      <summary>允许使用自定义筛选器谓词和转换委托进行枚举。</summary>
+      <typeparam name="TResult">此可枚举的封装类型。</typeparam>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.#ctor(System.String,System.IO.Enumeration.FileSystemEnumerable{`0}.FindTransform,System.IO.EnumerationOptions)">
+      <summary>使用特定的搜索和筛选选项初始化 <see cref="T:System.IO.Enumeration.FileSystemEnumerable`1" /> 类的新实例。</summary>
+      <param name="directory">要在其中执行枚举的目录路径。</param>
+      <param name="transform">用于将原始查找数据转换为结果的委托方法。</param>
+      <param name="options">描述枚举选项的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="directory" /> 或 <paramref name="transform" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="directory" /> 路径为空。
+
+- 或 -
+
+<paramref name="directory" /> 包含空字符 "\0"。</exception>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.GetEnumerator">
+      <summary>检索此类型结果的枚举器。</summary>
+      <returns>枚举器。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+      <summary>获取可以用于循环访问的枚举器。</summary>
+      <returns>枚举器实例。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerable`1.ShouldIncludePredicate">
+      <summary>获取或设置可以用于验证是否应包含 TResults 的谓词。</summary>
+      <returns>Include 谓词。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerable`1.ShouldRecursePredicate">
+      <summary>获取或设置可以用于验证是否应递归 TResults 的谓词。</summary>
+      <returns>递归谓词。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1.FindPredicate">
+      <summary>封装用于筛选出查找结果的方法。</summary>
+      <param name="entry">对将使用谓词条件进行计算的文件系统项的引用。</param>
+      <returns>如果满足谓词条件，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1.FindTransform">
+      <summary>封装用于将原始查找数据转换为结果的方法。</summary>
+      <param name="entry">对将使用谓词条件进行计算的文件系统项的引用。</param>
+      <returns>此委托封装的类型的实例。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerator`1">
+      <summary>枚举经 <see cref="T:System.IO.Enumeration.FileSystemEnumerable`1" /> 搜索和筛选的所提供类型的文件系统元素。</summary>
+      <typeparam name="TResult">此文件系统枚举器生成的结果的类型。</typeparam>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.#ctor(System.String,System.IO.EnumerationOptions)">
+      <summary>封装查找操作。</summary>
+      <param name="directory">要在其中搜索的目录。</param>
+      <param name="options">要使用的枚举选项。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ContinueOnError(System.Int32)">
+      <summary>在派生类中重写时，返回一个值，该值指示是继续执行还是引发默认异常。</summary>
+      <param name="error">本机错误代码。</param>
+      <returns>
+        <see langword="true" /> 表示继续；<see langword="false" /> 表示对给定错误引发默认异常。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Dispose">
+      <summary>释放 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 类的当前实例使用的资源。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Dispose(System.Boolean)">
+      <summary>在派生类中重写时，释放由 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 类占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.MoveNext">
+      <summary>将枚举器推进到 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 的下一项。</summary>
+      <returns>如果枚举器成功推进到下一项，则为 <see langword="true" />；如果已通过枚举器的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.OnDirectoryFinished(System.ReadOnlySpan{System.Char})">
+      <summary>在派生类中重写时，只要到达目录末尾，便会调用此方法。</summary>
+      <param name="directory">作为只读范围的目录路径。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Reset">
+      <summary>总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ShouldIncludeEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在派生类中重写时，确定是否应在结果中包含指定文件系统项。</summary>
+      <param name="entry">文件系统项引用。</param>
+      <returns>如果应在结果中包含指定文件系统项，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ShouldRecurseIntoEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在派生类中重写时，确定是否应递归指定文件系统项。</summary>
+      <param name="entry">文件系统项引用。</param>
+      <returns>如果应递归到指定目录项中，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.TransformEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在派生类中重写时，从当前项生成结果类型。</summary>
+      <param name="entry">文件系统项引用。</param>
+      <returns>来自当前项的结果类型。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerator`1.Current">
+      <summary>获取当前访问的元素。</summary>
+      <returns>当前访问的元素。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerator`1.System#Collections#IEnumerator#Current">
+      <summary>获取当前访问的对象。</summary>
+      <returns>当前访问的对象。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemName">
+      <summary>提供用于匹配文件系统名称的方法。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>验证给定表达式是否与给定名称匹配。 支持以下通配符：“*”and“?”。 反斜杠字符 " \ " 转义。</summary>
+      <param name="expression">要匹配的表达式。</param>
+      <param name="name">要针对表达式检查的名称。</param>
+      <param name="ignoreCase">
+        <see langword="true" /> 表示忽略大小写（默认值）；如果匹配应区分大小写，则为 <see langword="false" />。</param>
+      <returns>如果给定表达式与给定名称匹配，则为 <see langword="true" /><see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.MatchesWin32Expression(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>验证给定 Win32 表达式是否与给定名称匹配。 支持以下通配符：“*”、“?”、“&lt;”、“&gt;”、“"”。 反斜杠字符 '\' 用于转义。</summary>
+      <param name="expression">要匹配的表达式，如“*.foo”。</param>
+      <param name="name">要针对表达式检查的名称。</param>
+      <param name="ignoreCase">
+        <see langword="true" /> 表示忽略大小写（默认值），如果匹配应区分大小写，则为 <see langword="false" />。</param>
+      <returns>如果给定表达式与给定名称匹配，则为 <see langword="true" /><see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.TranslateWin32Expression(System.String)">
+      <summary>转换给定 Win32 表达式。 将“*”和“?”更改为“&lt;”、“&gt;”和“"”以匹配 Win32 行为。</summary>
+      <param name="expression">要转换的表达式。</param>
+      <returns>包含已转换 Win32 表达式的字符串。</returns>
+    </member>
+    <member name="T:System.IO.EnumerationOptions">
+      <summary>提供文件和目录枚举选项。</summary>
+    </member>
+    <member name="M:System.IO.EnumerationOptions.#ctor">
+      <summary>使用推荐默认选项初始化 <see cref="T:System.IO.EnumerationOptions" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.AttributesToSkip">
+      <summary>获取或设置要跳过的属性。 默认值为 <c>FileAttributes.Hidden | FileAttributes.System</c>。</summary>
+      <returns>要跳过的特性。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.BufferSize">
+      <summary>获取或设置建议的缓冲区大小（以字节为单位）。 默认值为 0（无建议）。</summary>
+      <returns>缓冲区大小。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.IgnoreInaccessible">
+      <summary>获取或设置一个值，该值指示是否在拒绝访问时跳过文件或目录（例如 <see cref="T:System.UnauthorizedAccessException" /> 或 <see cref="T:System.Security.SecurityException" />）。 默认值为 <see langword="true" />。</summary>
+      <returns>
+        <see langword="true" /> 若要跳过 innacessible 文件或目录，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.MatchCasing">
+      <summary>获取或设置大小写匹配行为。</summary>
+      <returns>指示大小写匹配行为的枚举值之一。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.MatchType">
+      <summary>获取或设置匹配类型。</summary>
+      <returns>指示匹配类型的枚举值之一。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.RecurseSubdirectories">
+      <summary>获取或设置一个值，该值指示在枚举时是否递归到子目录中。 默认值为 <see langword="false" />。</summary>
+      <returns>
+        <see langword="true" /> 递归到子目录;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.ReturnSpecialDirectories">
+      <summary>获取或设置一个值，该值指示是否返回特殊目录项“.”和“..”。</summary>
+      <returns>
+        <see langword="true" /> 若要返回特殊目录条目，请输入 "." 和 "...";否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="T:System.IO.File">
+      <summary>提供用于创建、复制、删除、移动和打开单一文件的静态方法，并协助创建 <see cref="T:System.IO.FileStream" /> 对象。</summary>
+    </member>
+    <member name="M:System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>向一个文件中追加行，然后关闭该文件。 如果指定文件不存在，此方法会创建一个文件，向其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要向其中追加行的文件。 如果文件尚不存在，则创建该文件。</param>
+      <param name="contents">要追加到文件中的行。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 指定的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有写入到文件中的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+      <summary>使用指定的编码向一个文件中追加行，然后关闭该文件。 如果指定文件不存在，此方法会创建一个文件，向其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要向其中追加行的文件。 如果文件尚不存在，则创建该文件。</param>
+      <param name="contents">要追加到文件中的行。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" />、<paramref name="contents" /> 或 <paramref name="encoding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 指定的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>使用指定的编码以异步形式向一个文件中追加行，然后关闭该文件。 如果指定文件不存在，此方法会创建一个文件，向其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要向其中追加行的文件。 如果文件尚不存在，则创建该文件。</param>
+      <param name="contents">要追加到文件中的行。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步追加操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+      <summary>以异步形式向一个文件中追加行，然后关闭该文件。 如果指定文件不存在，此方法会创建一个文件，向其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要向其中追加行的文件。 如果文件尚不存在，则创建该文件。</param>
+      <param name="contents">要追加到文件中的行。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步追加操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllText(System.String,System.String)">
+      <summary>打开一个文件，向其中追加指定的字符串，然后关闭该文件。 如果文件不存在，此方法将创建一个文件，将指定的字符串写入文件，然后关闭该文件。</summary>
+      <param name="path">要将指定的字符串追加到的文件。</param>
+      <param name="contents">要追加到文件中的字符串。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllText(System.String,System.String,System.Text.Encoding)">
+      <summary>使用指定的编码将指定的字符串追加到文件中，如果文件还不存在则创建该文件。</summary>
+      <param name="path">要将指定的字符串追加到的文件。</param>
+      <param name="contents">要追加到文件中的字符串。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllTextAsync(System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以异步方式打开文件或创建文件（如果文件尚不存在），使用指定的编码将指定的字符串追加到该文件，然后关闭文件。</summary>
+      <param name="path">要将指定的字符串追加到的文件。</param>
+      <param name="contents">要追加到文件中的字符串。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步追加操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllTextAsync(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>以异步方式打开文件或创建文件（如果文件尚不存在），将指定的字符串追加到该文件，然后关闭文件。</summary>
+      <param name="path">要将指定的字符串追加到的文件。</param>
+      <param name="contents">要追加到文件中的字符串。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步追加操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendText(System.String)">
+      <summary>创建一个 <see cref="T:System.IO.StreamWriter" />，它将 UTF-8 编码文本追加到现有文件或新文件（如果指定文件不存在）。</summary>
+      <param name="path">要向其中追加内容的文件的路径。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，目录不存在或在未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个流写入器，它将 UTF-8 编码文本追加到指定文件或新文件。</returns>
+    </member>
+    <member name="M:System.IO.File.Copy(System.String,System.String)">
+      <summary>将现有文件复制到新文件。 不允许覆盖同名的文件。</summary>
+      <param name="sourceFileName">要复制的文件。</param>
+      <param name="destFileName">目标文件的名称。 它不能是一个目录或现有文件。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。  
+  
+- 或 - 
+ <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定目录。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 中指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 已存在。  
+  
+- 或 - 
+发生了 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.Copy(System.String,System.String,System.Boolean)">
+      <summary>将现有文件复制到新文件。 允许覆盖同名的文件。</summary>
+      <param name="sourceFileName">要复制的文件。</param>
+      <param name="destFileName">目标文件的名称。 不能是目录。</param>
+      <param name="overwrite">如果可以覆盖目标文件，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="destFileName" /> 为只读。
+        
+- 或 - 
+<paramref name="overwrite" /> 为 <see langword="true" />，<paramref name="destFileName" /> 存在并隐藏，但 <paramref name="sourceFileName" /> 未隐藏。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。  
+  
+- 或 - 
+ <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定目录。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 中指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 存在且 <paramref name="overwrite" /> 为 <see langword="false" />。  
+  
+- 或 - 
+发生了 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.Create(System.String)">
+      <summary>在指定路径中创建或覆盖文件。</summary>
+      <param name="path">要创建的文件的路径及名称。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">创建文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.IO.FileStream" />，它提供对 <paramref name="path" /> 中指定的文件的读/写访问。</returns>
+    </member>
+    <member name="M:System.IO.File.Create(System.String,System.Int32)">
+      <summary>在指定路径中创建或覆盖文件，指定缓冲区大小。</summary>
+      <param name="path">要创建的文件的路径及名称。</param>
+      <param name="bufferSize">用于读取和写入到文件的已放入缓冲区的字节数。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">创建文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个具有指定缓冲区大小的 <see cref="T:System.IO.FileStream" />，它提供对 <paramref name="path" /> 中指定的文件的读/写访问。</returns>
+    </member>
+    <member name="M:System.IO.File.Create(System.String,System.Int32,System.IO.FileOptions)">
+      <summary>创建或覆盖指定路径中的文件，指定缓冲区大小和一个描述如何创建或覆盖该文件的选项。</summary>
+      <param name="path">要创建的文件的路径及名称。</param>
+      <param name="bufferSize">用于读取和写入到文件的已放入缓冲区的字节数。</param>
+      <param name="options">
+        <see cref="T:System.IO.FileOptions" /> 值之一，它描述如何创建或覆盖该文件。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">创建文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>具有指定缓冲区大小的新文件。</returns>
+    </member>
+    <member name="M:System.IO.File.CreateText(System.String)">
+      <summary>创建或打开用于写入 UTF-8 编码文本的文件。 如果该文件已存在，将覆盖其内容。</summary>
+      <param name="path">要打开以进行写入的文件。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.IO.StreamWriter" />，它使用 UTF-8 编码写入到指定的文件。</returns>
+    </member>
+    <member name="M:System.IO.File.Decrypt(System.String)">
+      <summary>使用 <see cref="M:System.IO.File.Encrypt(System.String)" /> 方法解密由当前帐户加密的文件。</summary>
+      <param name="path">描述要解密的文件的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 参数为长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 参数描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。 例如，加密文件已打开。  
+  
+ - 或 -  
+  
+ 当前平台不支持此操作。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.NotSupportedException">文件系统不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 参数指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+<paramref name="path" /> 参数指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.Delete(System.String)">
+      <summary>删除指定的文件。</summary>
+      <param name="path">要删除的文件的名称。 不支持通配符。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">指定的文件正在使用。  
+  
+- 或 - 
+在文件中存在开放句柄，并且操作系统是 Windows XP 或更早的版本。 枚举目录和文件可能会导致此开放句柄出现。 有关详细信息，请参阅如何：枚举目录和文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+该文件是正在使用的可执行文件。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件。</exception>
+    </member>
+    <member name="M:System.IO.File.Encrypt(System.String)">
+      <summary>将某个文件加密，使得只有加密该文件的帐户才能将其解密。</summary>
+      <param name="path">描述要加密的文件的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 参数为长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 参数描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。  
+  
+ - 或 -  
+  
+ 当前平台不支持此操作。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.NotSupportedException">文件系统不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 参数指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+<paramref name="path" /> 参数指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.Exists(System.String)">
+      <summary>确定指定的文件是否存在。</summary>
+      <param name="path">要检查的文件。</param>
+      <returns>如果调用方具有要求的权限并且 <see langword="true" /> 包含现有文件的名称，则为 <paramref name="path" />；否则为 <see langword="false" />。 如果 <see langword="false" /> 为 <paramref name="path" />（一个无效路径或零长度字符串）,则此方法也将返回 <see langword="null" />。 如果调用方不具有读取指定文件所需的足够权限，则不引发异常并且该方法返回 <see langword="false" />，这与 <paramref name="path" /> 是否存在无关。</returns>
+    </member>
+    <member name="M:System.IO.File.GetAttributes(System.String)">
+      <summary>获取在此路径上的文件的 <see cref="T:System.IO.FileAttributes" />。</summary>
+      <param name="path">文件的路径。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">
+        <paramref name="path" /> 表示一个文件且它是无效的，例如，位于未映射的驱动器上或找不到该文件。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 表示一个目录且它是无效的，例如，位于未映射的驱动器上或找不到该目录。</exception>
+      <exception cref="T:System.IO.IOException">此文件正由另一个进程使用。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <returns>路径上文件的 <see cref="T:System.IO.FileAttributes" />。</returns>
+    </member>
+    <member name="M:System.IO.File.GetCreationTime(System.String)">
+      <summary>返回指定文件或目录的创建日期和时间。</summary>
+      <param name="path">要获取其创建日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为指定文件或目录的创建日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.GetCreationTimeUtc(System.String)">
+      <summary>返回指定的文件或目录的创建日期及时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要获取其创建日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为指定文件或目录的创建日期和时间。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.GetLastAccessTime(System.String)">
+      <summary>返回上次访问指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其访问日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为上次访问指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.GetLastAccessTimeUtc(System.String)">
+      <summary>返回上次访问指定的文件或目录的日期及时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要获取其访问日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为上次访问指定文件或目录的日期和时间。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.GetLastWriteTime(System.String)">
+      <summary>返回上次写入指定文件或目录的日期和时间。</summary>
+      <param name="path">要获取其写入日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为上次写入指定文件或目录的日期和时间。 该值用本地时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.GetLastWriteTimeUtc(System.String)">
+      <summary>返回上次写入指定的文件或目录的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要获取其写入日期和时间信息的文件或目录。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个 <see cref="T:System.DateTime" /> 结构，它被设置为上次写入指定文件或目录的日期和时间。 该值用 UTC 时间表示。</returns>
+    </member>
+    <member name="M:System.IO.File.Move(System.String,System.String)">
+      <summary>将指定文件移到新位置，提供要指定新文件名的选项。</summary>
+      <param name="sourceFileName">要移动的文件的名称。 可以包括相对或绝对路径。</param>
+      <param name="destFileName">文件的新路径和名称。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 已存在。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 是长度为零的字符串，仅包含空格，或包含在 <see cref="F:System.IO.Path.InvalidPathChars" /> 中定义的无效字符。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 中指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.Move(System.String,System.String,System.Boolean)">
+      <summary>将指定文件移动到新位置，提供指定新文件名和覆盖目标文件（如果它已存在）的选项。</summary>
+      <param name="sourceFileName">要移动的文件的名称。 可以包括相对或绝对路径。</param>
+      <param name="destFileName">文件的新路径和名称。</param>
+      <param name="overwrite">如果要覆盖目标文件（如果它已存在），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 已存在，且 <paramref name="overwrite" /> 是 <see langword="false" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 是长度为零的字符串，仅包含空格，或包含在 <see cref="F:System.IO.Path.InvalidPathChars" /> 中定义的无效字符。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 中指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode)">
+      <summary>通过不共享的读/写访问权限打开指定路径上的 <see cref="T:System.IO.FileStream" />。</summary>
+      <param name="path">要打开的文件。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，用于指定在文件不存在时是否创建该文件，并确定是保留还是覆盖现有文件的内容。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="mode" /> 为 <see cref="F:System.IO.FileMode.Create" />，指定文件为隐藏文件。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 指定了一个无效值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>以读/写访问与不共享权限打开的指定模式和路径上的 <see cref="T:System.IO.FileStream" />。</returns>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode,System.IO.FileAccess)">
+      <summary>通过指定的模式和不共享的访问权限打开指定路径上的 <see cref="T:System.IO.FileStream" />。</summary>
+      <param name="path">要打开的文件。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，用于指定在文件不存在时是否创建该文件，并确定是保留还是覆盖现有文件的内容。</param>
+      <param name="access">一个 <see cref="T:System.IO.FileAccess" /> 值，它指定可以对文件执行的操作。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。  
+  
+- 或 - 
+ <paramref name="access" /> 指定了 <see langword="Read" />，并且 <paramref name="mode" /> 指定了 <see langword="Create" />、<see langword="CreateNew" />、<see langword="Truncate" /> 或 <see langword="Append" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件，并且 <paramref name="access" /> 不是 <see langword="Read" />。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="mode" /> 为 <see cref="F:System.IO.FileMode.Create" />，指定文件为隐藏文件。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 或 <paramref name="access" /> 指定了一个无效值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>一个非共享的 <see cref="T:System.IO.FileStream" />，它提供对指定文件的访问，并且具有指定的模式和访问权限。</returns>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>打开指定路径上的 <see cref="T:System.IO.FileStream" />，具有带读、写或读/写访问的指定模式和指定的共享选项。</summary>
+      <param name="path">要打开的文件。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，用于指定在文件不存在时是否创建该文件，并确定是保留还是覆盖现有文件的内容。</param>
+      <param name="access">一个 <see cref="T:System.IO.FileAccess" /> 值，它指定可以对文件执行的操作。</param>
+      <param name="share">一个 <see cref="T:System.IO.FileShare" /> 值，它指定其他线程所具有的对该文件的访问类型。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。  
+  
+- 或 - 
+ <paramref name="access" /> 指定了 <see langword="Read" />，并且 <paramref name="mode" /> 指定了 <see langword="Create" />、<see langword="CreateNew" />、<see langword="Truncate" /> 或 <see langword="Append" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件，并且 <paramref name="access" /> 不是 <see langword="Read" />。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="mode" /> 为 <see cref="F:System.IO.FileMode.Create" />，指定文件为隐藏文件。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" />、<paramref name="access" /> 或 <paramref name="share" /> 指定了一个无效值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>指定路径上的 <see cref="T:System.IO.FileStream" />，具有带读、写或读/写访问的指定模式以及指定的共享选项。</returns>
+    </member>
+    <member name="M:System.IO.File.OpenRead(System.String)">
+      <summary>打开现有文件以进行读取。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <returns>指定路径上的只读 <see cref="T:System.IO.FileStream" />。</returns>
+    </member>
+    <member name="M:System.IO.File.OpenText(System.String)">
+      <summary>打开现有 UTF-8 编码文本文件以进行读取。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>指定路径上的 <see cref="T:System.IO.StreamReader" />。</returns>
+    </member>
+    <member name="M:System.IO.File.OpenWrite(System.String)">
+      <summary>打开一个现有文件或创建一个新文件以进行写入。</summary>
+      <param name="path">要打开以进行写入的文件。</param>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个只读文件或目录。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <returns>指定路径上具有 <see cref="T:System.IO.FileStream" /> 访问权限的非共享的 <see cref="F:System.IO.FileAccess.Write" /> 对象。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllBytes(System.String)">
+      <summary>打开一个二进制文件，将文件的内容读入一个字节数组，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含文件内容的字节数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllBytesAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以异步形式打开一个二进制文件，将文件的内容读入一个字节数组，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务，该任务包装包含文件内容的字节数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLines(System.String)">
+      <summary>打开一个文本文件，读取文件的所有行，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含文件所有行的字符串数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLines(System.String,System.Text.Encoding)">
+      <summary>打开一个文件，使用指定的编码读取文件的所有行，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="encoding">应用到文件内容的编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含文件所有行的字符串数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLinesAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以异步形式打开一个文本文件，使用指定的编码读取文件的所有行，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="encoding">应用到文件内容的编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务，该任务包装包含文件所有行的字符串数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLinesAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以异步形式打开一个文本文件，读取文件的所有行，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务，该任务包装包含文件所有行的字符串数组。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllText(System.String)">
+      <summary>打开一个文本文件，读取文件中的所有文本，然后关闭此文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含文件中所有文本的字符串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllText(System.String,System.Text.Encoding)">
+      <summary>打开一个文件，使用指定的编码读取文件中的所有文本，然后关闭此文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="encoding">应用到文件内容的编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 中指定的文件。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含文件中所有文本的字符串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllTextAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以异步形式打开一个文本文件，使用指定的编码读取文件的所有文本，然后关闭该文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="encoding">应用到文件内容的编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务，该任务包装包含文件中所有文本的字符串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllTextAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以异步形式打开一个文本文件，读取文件中的所有文本，然后关闭此文件。</summary>
+      <param name="path">要打开以进行读取的文件。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步读取操作的任务，该任务包装包含文件中所有文本的字符串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadLines(System.String)">
+      <summary>读取文件的行。</summary>
+      <param name="path">要读取的文件。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 指定的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <returns>该文件的所有行或查询结果所示的行。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadLines(System.String,System.Text.Encoding)">
+      <summary>读取具有指定编码的文件的行。</summary>
+      <param name="path">要读取的文件。</param>
+      <param name="encoding">应用到文件内容的编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="path" /> 指定的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <returns>该文件的所有行或查询结果所示的行。</returns>
+    </member>
+    <member name="M:System.IO.File.Replace(System.String,System.String,System.String)">
+      <summary>使用其他文件的内容替换指定文件的内容，这一过程将删除原始文件，并创建被替换文件的备份。</summary>
+      <param name="sourceFileName">替换由 <paramref name="destinationFileName" /> 指定的文件的文件名。</param>
+      <param name="destinationFileName">被替换文件的名称。</param>
+      <param name="destinationBackupFileName">备份文件的名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destinationFileName" /> 参数描述的路径格式不合法。  
+  
+- 或 - 
+<paramref name="destinationBackupFileName" /> 参数描述的路径格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destinationFileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。  
+  
+- 或 - 
+找不到 <paramref name="destinationBackupFileName" /> 参数描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。  
+  
+- 或 - 
+<paramref name="sourceFileName" /> 和 <paramref name="destinationFileName" /> 参数指定相同的文件。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">操作系统是 Windows 98 Second Edition 或更早版本，且文件系统不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 参数指定只读的文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+源参数或目标参数指定的是目录，而不是文件。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.Replace(System.String,System.String,System.String,System.Boolean)">
+      <summary>用其他文件的内容替换指定文件的内容，这一过程将删除原始文件，并创建被替换文件的备份，还可以忽略合并错误。</summary>
+      <param name="sourceFileName">替换由 <paramref name="destinationFileName" /> 指定的文件的文件名。</param>
+      <param name="destinationFileName">被替换文件的名称。</param>
+      <param name="destinationBackupFileName">备份文件的名称。</param>
+      <param name="ignoreMetadataErrors">如果忽略从被替换文件到替换文件的合并错误（如特性和访问控制列表 (ACL)），则为 <see langword="true" />，否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destinationFileName" /> 参数描述的路径格式不合法。  
+  
+- 或 - 
+<paramref name="destinationBackupFileName" /> 参数描述的路径格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destinationFileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。  
+  
+- 或 - 
+找不到 <paramref name="destinationBackupFileName" /> 参数描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。  
+  
+- 或 - 
+<paramref name="sourceFileName" /> 和 <paramref name="destinationFileName" /> 参数指定相同的文件。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">操作系统是 Windows 98 Second Edition 或更早版本，且文件系统不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 参数指定只读的文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+源参数或目标参数指定的是目录，而不是文件。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.SetAttributes(System.String,System.IO.FileAttributes)">
+      <summary>获取指定路径上的文件的指定 <see cref="T:System.IO.FileAttributes" />。</summary>
+      <param name="path">文件的路径。</param>
+      <param name="fileAttributes">枚举值的按位组合。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 为空，只包含空格，包含无效字符或文件属性无效。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.SetCreationTime(System.String,System.DateTime)">
+      <summary>设置创建该文件的日期和时间。</summary>
+      <param name="path">要设置其创建日期和时间信息的文件。</param>
+      <param name="creationTime">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的创建日期和时间设置的值。 该值用本地时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">执行操作时发生 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定一个超出该操作所允许的日期范围和/或时间范围的值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.SetCreationTimeUtc(System.String,System.DateTime)">
+      <summary>设置文件创建的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要设置其创建日期和时间信息的文件。</param>
+      <param name="creationTimeUtc">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的创建日期和时间设置的值。 该值用 UTC 时间表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.IOException">执行操作时发生 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定一个超出该操作所允许的日期范围和/或时间范围的值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastAccessTime(System.String,System.DateTime)">
+      <summary>设置上次访问指定文件的日期和时间。</summary>
+      <param name="path">要设置其访问日期和时间信息的文件。</param>
+      <param name="lastAccessTime">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的上次访问日期和时间设置的值。 该值用本地时间表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastAccessTimeUtc(System.String,System.DateTime)">
+      <summary>设置上次访问指定的文件的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要设置其访问日期和时间信息的文件。</param>
+      <param name="lastAccessTimeUtc">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的上次访问日期和时间设置的值。 该值用 UTC 时间表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTimeUtc" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastWriteTime(System.String,System.DateTime)">
+      <summary>设置上次写入指定文件的日期和时间。</summary>
+      <param name="path">要设置其日期和时间信息的文件。</param>
+      <param name="lastWriteTime">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的上次写入日期和时间设置的值。 该值用本地时间表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTime" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastWriteTimeUtc(System.String,System.DateTime)">
+      <summary>设置上次写入指定的文件的日期和时间，其格式为协调通用时 (UTC)。</summary>
+      <param name="path">要设置其日期和时间信息的文件。</param>
+      <param name="lastWriteTimeUtc">一个 <see cref="T:System.DateTime" />，它包含要为 <paramref name="path" /> 的上次写入日期和时间设置的值。 该值用 UTC 时间表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到指定路径。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTimeUtc" /> 指定一个超出该操作允许的日期或时间范围的值。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllBytes(System.String,System.Byte[])">
+      <summary>创建一个新文件，在其中写入指定的字节数组，然后关闭该文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="bytes">要写入文件的字节。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" /> 或字节数组为空。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllBytesAsync(System.String,System.Byte[],System.Threading.CancellationToken)">
+      <summary>以异步形式创建一个新文件，在其中写入指定的字节数组，然后关闭该文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="bytes">要写入文件的字节。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>创建一个新文件，向其中写入一个字符串集合，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入到文件中的行。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+      <summary>使用指定的编码创建一个新文件，向其中写入一个字符串集合，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入到文件中的行。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是长度为零的字符串，仅包含空格，或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法定义的一个或多个无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" />、<paramref name="contents" /> 或 <paramref name="encoding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超出系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 是一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.String[])">
+      <summary>创建一个新文件，在其中写入指定的字节数组，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串数组。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.String[],System.Text.Encoding)">
+      <summary>创建一个新文件，使用指定编码在其中写入指定的字符串数组，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串数组。</param>
+      <param name="encoding">一个 <see cref="T:System.Text.Encoding" /> 对象，它表示应用于字符串数组的字符编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以异步形式创建一个新文件，使用指定编码在其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入到文件中的行。</param>
+      <param name="encoding">要使用的字符编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+      <summary>以异步形式创建一个新文件，在其中写入指定的行，然后关闭该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入到文件中的行。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllText(System.String,System.String)">
+      <summary>创建一个新文件，向其中写入指定的字符串，然后关闭文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllText(System.String,System.String,System.Text.Encoding)">
+      <summary>创建一个新文件，使用指定编码向其中写入指定的字符串，然后关闭文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串。</param>
+      <param name="encoding">应用于字符串的编码。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是一个长度为零的字符串，仅包含空格，或包含一个或多个由 <see cref="F:System.IO.Path.InvalidPathChars" /> 定义的无效字符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效（例如，它位于未映射的驱动器上）。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了一个只读文件。
+        
+- 或 - 
+ <paramref name="path" /> 指定了一个隐藏文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+ <paramref name="path" /> 指定了一个目录。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 的格式无效。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllTextAsync(System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以异步形式创建一个新文件，使用指定编码在其中写入指定的字符串，然后关闭该文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串。</param>
+      <param name="encoding">应用于字符串的编码。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllTextAsync(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>以异步形式创建一个新文件，在其中写入指定的字符串，然后关闭该文件。 如果目标文件已存在，则覆盖该文件。</summary>
+      <param name="path">要写入的文件。</param>
+      <param name="contents">要写入文件的字符串。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="T:System.IO.FileInfo">
+      <summary>提供用于创建、复制、删除、移动和打开文件的属性和实例方法，并且帮助创建 <see cref="T:System.IO.FileStream" /> 对象。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.IO.FileInfo.#ctor(System.String)">
+      <summary>初始化作为文件路径的包装的 <see cref="T:System.IO.FileInfo" /> 类的新实例。</summary>
+      <param name="fileName">新文件的完全限定名或相对文件名。 路径不要以目录分隔符结尾。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">文件名为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">拒绝访问 <paramref name="fileName" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="fileName" /> 在字符串中间包含一个冒号 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.AppendText">
+      <summary>创建一个 <see cref="T:System.IO.StreamWriter" />，它向 <see cref="T:System.IO.FileInfo" /> 的此实例表示的文件追加文本。</summary>
+      <returns>一个新的 <see langword="StreamWriter" />。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.CopyTo(System.String)">
+      <summary>将现有文件复制到新文件，不允许覆盖现有文件。</summary>
+      <param name="destFileName">要复制到的新文件的名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.IO.IOException">出现错误，或目标文件已存在。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">传入一个目录路径或此文件将被移至其他驱动器。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <paramref name="destFileName" /> 中指定的此目录不存在。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在其字符串中包含冒号 (:) ，但并未指定卷。</exception>
+      <returns>带有完全限定路径的新文件。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.CopyTo(System.String,System.Boolean)">
+      <summary>将现有文件复制到新文件，允许覆盖现有文件。</summary>
+      <param name="destFileName">要复制到的新文件的名称。</param>
+      <param name="overwrite">如果允许覆盖现有文件，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.IO.IOException">出现错误，或目标文件已存在，且 <paramref name="overwrite" /> 为 <see langword="false" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <paramref name="destFileName" /> 中指定的此目录不存在。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">传入一个目录路径或此文件将被移至其他驱动器。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字符串中间包含一个冒号 (:)。</exception>
+      <returns>为新文件；如果 <paramref name="overwrite" /> 是 <see langword="true" />，则为现有文件的覆盖。 如果文件存在且 <paramref name="overwrite" /> 为 <see langword="false" />，则引发 <see cref="T:System.IO.IOException" />。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Create">
+      <summary>创建文件。</summary>
+      <returns>新文件。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.CreateText">
+      <summary>创建写入新文本文件的 <see cref="T:System.IO.StreamWriter" />。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">文件名是目录。</exception>
+      <exception cref="T:System.IO.IOException">此盘为只读。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>一个新的 <see langword="StreamWriter" />。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Decrypt">
+      <summary>使用 <see cref="M:System.IO.FileInfo.Encrypt" /> 方法解密由当前帐户加密的文件。</summary>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">文件系统不是 NTFS。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Microsoft Windows NT 或更高版本。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件为只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Delete">
+      <summary>永久删除文件。</summary>
+      <exception cref="T:System.IO.IOException">目标文件打开或在运行 Microsoft Windows NT 的计算机上进行内存映射。  
+  
+- 或 - 
+在文件中存在开放句柄，并且操作系统是 Windows XP 或更早的版本。 枚举目录和文件可能会导致此开放句柄出现。 有关详细信息，请参阅如何：枚举目录和文件。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">路径是一个目录。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Encrypt">
+      <summary>将某个文件加密，使得只有加密该文件的帐户才能将其解密。</summary>
+      <exception cref="T:System.IO.DriveNotFoundException">指定了无效的驱动器。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.NotSupportedException">文件系统不是 NTFS。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Microsoft Windows NT 或更高版本。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件为只读文件。  
+  
+- 或 - 
+当前平台不支持此操作。  
+  
+- 或 - 
+调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.MoveTo(System.String)">
+      <summary>将指定文件移到新位置，提供要指定新文件名的选项。</summary>
+      <param name="destFileName">要将文件移动到的路径，可以指定不同的文件名。</param>
+      <exception cref="T:System.IO.IOException">发生 I/O 错误，例如目标文件已存在或目标设备未就绪。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="destFileName" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字符串中间包含一个冒号 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.MoveTo(System.String,System.Boolean)">
+      <summary>将指定文件移动到新位置，提供指定新文件名和覆盖目标文件（如果它已存在）的选项。</summary>
+      <param name="destFileName">要将文件移动到的路径，可以指定不同的文件名。</param>
+      <param name="overwrite">如果要覆盖目标文件（如果它已存在），则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误，例如目标设备未就绪。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 为空，仅包含空格，或包含无效字符。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="destFileName" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字符串中间包含一个冒号 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode)">
+      <summary>在指定的模式中打开文件。</summary>
+      <param name="mode">一个 <see cref="T:System.IO.FileMode" /> 常数，它指定打开文件所采用的模式（例如 <see langword="Open" /> 或 <see langword="Append" />）。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">文件为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">此文件已打开。</exception>
+      <returns>在指定模式中打开、具有读/写访问权限且不共享的文件。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode,System.IO.FileAccess)">
+      <summary>用读、写或读/写访问权限在指定模式下打开文件。</summary>
+      <param name="mode">一个 <see cref="T:System.IO.FileMode" /> 常数，它指定打开文件所采用的模式（例如 <see langword="Open" /> 或 <see langword="Append" />）。</param>
+      <param name="access">一个 <see cref="T:System.IO.FileAccess" /> 常数，它指定是使用 <see langword="Read" />、<see langword="Write" /> 还是 <see langword="ReadWrite" /> 文件访问来打开文件。</param>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">此文件已打开。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为空，或者只包含空白。</exception>
+      <exception cref="T:System.ArgumentNullException">一个或多个参数为 NULL。</exception>
+      <returns>用指定模式和访问权限打开的且不共享的 <see cref="T:System.IO.FileStream" /> 对象。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>用读、写或读/写访问权限和指定的共享选项在指定的模式中打开文件。</summary>
+      <param name="mode">一个 <see cref="T:System.IO.FileMode" /> 常数，它指定打开文件所采用的模式（例如 <see langword="Open" /> 或 <see langword="Append" />）。</param>
+      <param name="access">一个 <see cref="T:System.IO.FileAccess" /> 常数，它指定是使用 <see langword="Read" />、<see langword="Write" /> 还是 <see langword="ReadWrite" /> 文件访问来打开文件。</param>
+      <param name="share">一个 <see cref="T:System.IO.FileShare" /> 常数，它指定其他 <see langword="FileStream" /> 对象对此文件拥有的访问类型。</param>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">此文件已打开。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为空，或者只包含空白。</exception>
+      <exception cref="T:System.ArgumentNullException">一个或多个参数为 NULL。</exception>
+      <returns>用指定的模式、访问权限和共享选项打开的 <see cref="T:System.IO.FileStream" /> 对象。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenRead">
+      <summary>创建一个只读的 <see cref="T:System.IO.FileStream" />。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">此文件已打开。</exception>
+      <returns>一个新的只读的 <see cref="T:System.IO.FileStream" /> 对象。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenText">
+      <summary>创建使用从现有文本文件中读取的 UTF8 编码的 <see cref="T:System.IO.StreamReader" />。</summary>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到该文件。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <see cref="P:System.IO.FileInfo.Name" /> 为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <returns>使用 UTF8 编码的新的 <see langword="StreamReader" />。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenWrite">
+      <summary>创建一个只写的 <see cref="T:System.IO.FileStream" />。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">创建 <see cref="T:System.IO.FileInfo" /> 对象的实例时指定的路径为只读或是目录。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">创建 <see cref="T:System.IO.FileInfo" /> 对象的实例时指定的路径无效，例如此路径位于未映射的驱动器。</exception>
+      <returns>新的或现有文件的只写非共享的 <see cref="T:System.IO.FileStream" /> 对象。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Replace(System.String,System.String)">
+      <summary>使用当前 <see cref="T:System.IO.FileInfo" /> 对象所描述的文件替换指定文件的内容，这一过程将删除原始文件，并创建被替换文件的备份。</summary>
+      <param name="destinationFileName">要替换为当前文件的文件的名称。</param>
+      <param name="destinationBackupFileName">文件的名称，该文件用于创建 <paramref name="destFileName" /> 参数所描述的文件的备份。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 参数描述的路径格式不合法。  
+  
+- 或 - 
+<paramref name="destBackupFileName" /> 参数描述的路径格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。  
+  
+- 或 - 
+找不到 <paramref name="destinationFileName" /> 参数描述的文件。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Microsoft Windows NT 或更高版本。</exception>
+      <returns>一个 <see cref="T:System.IO.FileInfo" /> 对象，该对象封装有关 <paramref name="destFileName" /> 参数所描述的文件的信息。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Replace(System.String,System.String,System.Boolean)">
+      <summary>使用当前 <see cref="T:System.IO.FileInfo" /> 对象所描述的文件替换指定文件的内容，这一过程将删除原始文件，并创建被替换文件的备份。  还指定是否忽略合并错误。</summary>
+      <param name="destinationFileName">要替换为当前文件的文件的名称。</param>
+      <param name="destinationBackupFileName">文件的名称，该文件用于创建 <paramref name="destFileName" /> 参数所描述的文件的备份。</param>
+      <param name="ignoreMetadataErrors">若要忽略从被替换文件到替换文件的合并错误（例如特性和 ACL），请设置为 <see langword="true" />；否则设置为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 参数描述的路径格式不合法。  
+  
+- 或 - 
+<paramref name="destBackupFileName" /> 参数描述的路径格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。  
+  
+- 或 - 
+找不到 <paramref name="destinationFileName" /> 参数描述的文件。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Microsoft Windows NT 或更高版本。</exception>
+      <returns>一个 <see cref="T:System.IO.FileInfo" /> 对象，该对象封装有关 <paramref name="destFileName" /> 参数所描述的文件的信息。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.ToString">
+      <summary>以字符串形式返回路径。 将 <see cref="P:System.IO.FileInfo.Name" /> 属性用于完整路径。</summary>
+      <returns>一个表示该路径的字符串。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.Directory">
+      <summary>获取父目录的实例。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效，例如位于未映射的驱动器上。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>表示此文件父目录的 <see cref="T:System.IO.DirectoryInfo" /> 对象。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.DirectoryName">
+      <summary>获取表示目录的完整路径的字符串。</summary>
+      <exception cref="T:System.ArgumentNullException">为目录名传入 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">完全限定路径名称的长度超出系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>表示目录的完整路径的字符串。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.Exists">
+      <summary>获取指示文件是否存在的值。</summary>
+      <returns>如果该文件存在，则为 <see langword="true" />；如果文件不存在或文件即是目录，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.IsReadOnly">
+      <summary>获取或设置确定当前文件是否为只读的值。</summary>
+      <exception cref="T:System.IO.FileNotFoundException">找不到当前 <see cref="T:System.IO.FileInfo" /> 对象描述的文件。</exception>
+      <exception cref="T:System.IO.IOException">打开文件时发生 I/O 错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">当前平台不支持此操作。  
+  
+ - 或 -  
+  
+ 调用方没有所要求的权限。</exception>
+      <exception cref="T:System.ArgumentException">此用户没有写入权限，但尝试将此属性设置为 <see langword="false" />。</exception>
+      <returns>如果当前文件为只读，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.Length">
+      <summary>获取当前文件的大小（以字节为单位）。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 无法更新文件或目录的状态。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">文件不存在。  
+  
+- 或 - 
+针对某个目录调用了 <see langword="Length" /> 属性。</exception>
+      <returns>当前文件的大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.Name">
+      <summary>获取文件名。</summary>
+      <returns>文件的名称。</returns>
+    </member>
+    <member name="T:System.IO.FileSystemInfo">
+      <summary>为 <see cref="T:System.IO.FileInfo" /> 和 <see cref="T:System.IO.DirectoryInfo" /> 对象提供基类。</summary>
+    </member>
+    <member name="F:System.IO.FileSystemInfo.FullPath">
+      <summary>表示目录或文件的完全限定目录。</summary>
+      <exception cref="T:System.IO.PathTooLongException">完全限定路径的长度超出系统定义的最大长度。</exception>
+    </member>
+    <member name="F:System.IO.FileSystemInfo.OriginalPath">
+      <summary>最初由用户指定的目录（不论是相对目录还是绝对目录）。</summary>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.#ctor">
+      <summary>初始化 <see cref="T:System.IO.FileSystemInfo" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.IO.FileSystemInfo" /> 类的新实例。</summary>
+      <param name="info">包含有关所引发异常的序列化对象数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含关于源或目标的上下文信息。</param>
+      <exception cref="T:System.ArgumentNullException">指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 为空。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.Delete">
+      <summary>删除文件或目录。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效：例如，它位于未映射的驱动器上。</exception>
+      <exception cref="T:System.IO.IOException">对于文件或目录有打开句柄，并且操作系统是 Windows XP 或更早版本。 枚举目录和文件可能会导致此开放句柄出现。 有关详细信息，请参阅如何：枚举目录和文件。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>设置带有文件名和附加异常信息的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象。</summary>
+      <param name="info">包含有关所引发异常的序列化对象数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含关于源或目标的上下文信息。</param>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.Refresh">
+      <summary>刷新对象的状态。</summary>
+      <exception cref="T:System.IO.IOException">设备（如磁盘驱动器）未准备好。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.ToString">
+      <summary>返回原始路径。 使用 <see cref="P:System.IO.FileSystemInfo.FullName" /> 或 <see cref="P:System.IO.FileSystemInfo.Name" /> 属性作为完整路径或文件/目录名。</summary>
+      <returns>一个包括原始路径的字符串。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Attributes">
+      <summary>获取或设置当前文件或目录的特性。</summary>
+      <exception cref="T:System.IO.FileNotFoundException">指定的文件不存在。 仅在设置属性值时引发。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定路径无效。 例如，它位于未映射的驱动器上。 仅在设置属性值时引发。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所需权限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">仅限 .NET Core：用户尝试设置属性值，但没有写入权限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路径和/或文件名超过了系统定义的最大长度。</exception>
+      <exception cref="T:System.ArgumentException">调用方试图设置无效的文件属性。  
+  
+ 或  
+  
+ 仅限 .NET Framework：用户尝试设置属性值，但没有写入权限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <returns>当前 <see cref="T:System.IO.FileAttributes" /> 的 <see cref="T:System.IO.FileSystemInfo" />。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.CreationTime">
+      <summary>获取或设置当前文件或目录的创建时间。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效：例如，它位于未映射的驱动器上。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的创建时间。</exception>
+      <returns>当前 <see cref="T:System.IO.FileSystemInfo" /> 对象的创建日期和时间。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.CreationTimeUtc">
+      <summary>获取或设置当前文件或目录的创建时间，其格式为协调世界时 (UTC)。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路径无效：例如，它位于未映射的驱动器上。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的访问时间。</exception>
+      <returns>当前 <see cref="T:System.IO.FileSystemInfo" /> 对象的创建日期及时间（UTC 格式）。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Exists">
+      <summary>获取指示文件或目录是否存在的值。</summary>
+      <returns>如果文件或目录存在，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Extension">
+      <summary>获取表示文件扩展名部分的字符串。</summary>
+      <returns>包含 <see cref="T:System.IO.FileSystemInfo" /> 扩展名的字符串。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.FullName">
+      <summary>获取目录或文件的完整目录。</summary>
+      <exception cref="T:System.IO.PathTooLongException">完全限定路径名称和文件名的长度超出系统定义的最大长度。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <returns>包含完整目录的字符串。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastAccessTime">
+      <summary>获取或设置上次访问当前文件或目录的时间。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的访问时间</exception>
+      <returns>上次访问当前文件或目录的时间。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastAccessTimeUtc">
+      <summary>获取或设置上次访问当前文件或目录的时间，其格式为协调世界时 (UTC)。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的访问时间。</exception>
+      <returns>上次访问当前文件或目录的 UTC 时间。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastWriteTime">
+      <summary>获取或设置上次写入当前文件或目录的时间。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的写入时间。</exception>
+      <returns>上次写入当前文件的时间。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastWriteTimeUtc">
+      <summary>获取或设置上次写入当前文件或目录的时间，其格式为协调世界时 (UTC)。</summary>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 不能初始化数据。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows NT 或更高版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">调用方试图设置无效的写入时间。</exception>
+      <returns>上次写入当前文件的 UTC 时间。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Name">
+      <summary>对于文件，获取该文件的名称。 对于目录，如果存在层次结构，则获取层次结构中最后一个目录的名称。 否则，<see langword="Name" /> 属性获取该目录的名称。</summary>
+      <returns>一个字符串，它是父目录的名称、层次结构中最后一个目录的名称或文件的名称（包括文件扩展名）。</returns>
+    </member>
+    <member name="T:System.IO.MatchCasing">
+      <summary>指定要匹配的字符大小写转换的类型。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.CaseInsensitive">
+      <summary>在忽略字符大小写的情况下进行匹配。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.CaseSensitive">
+      <summary>在遵循字符大小写的情况下进行匹配。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.PlatformDefault">
+      <summary>使用给定平台的默认大小写进行匹配。</summary>
+    </member>
+    <member name="T:System.IO.MatchType">
+      <summary>指定要使用的通配符匹配的类型。</summary>
+    </member>
+    <member name="F:System.IO.MatchType.Simple">
+      <summary>使用“*”和“?”通配符进行匹配。</summary>
+    </member>
+    <member name="F:System.IO.MatchType.Win32">
+      <summary>使用 Win32 DOS 样式匹配语义进行匹配。 “*”、“?”、“&lt;”、“&gt;”和“"”都被视为通配符。</summary>
+    </member>
+    <member name="T:System.IO.SearchOption">
+      <summary>指定是搜索当前目录，还是搜索当前目录及其所有子目录。</summary>
+    </member>
+    <member name="F:System.IO.SearchOption.AllDirectories">
+      <summary>在搜索操作中包括当前目录和所有它的子目录。 此选项在搜索中包括重解析点，比如安装的驱动器和符号链接。</summary>
+    </member>
+    <member name="F:System.IO.SearchOption.TopDirectoryOnly">
+      <summary>仅在搜索操作中包括当前目录。</summary>
+    </member>
+  </members>
+</doc>

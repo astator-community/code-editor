@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SampleApp.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:CodeEditor.Views;assembly=CodeEditor"
+    xmlns:vm="clr-namespace:SampleApp.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="60,*,auto">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="CascadiaCode" />
+                <Setter Property="BackgroundColor" Value="{Binding BackgroundColor}" />
+                <Setter Property="TextColor" Value="{Binding TextColor}" />
+            </Style>
+        </Grid.Resources>
+        <Grid
+            Padding="10,0"
+            BackgroundColor="{Binding BackgroundColor}"
+            ColumnDefinitions="*,auto,auto,auto"
+            ColumnSpacing="20">
+            <Label
+                Grid.Column="0"
+                BackgroundColor="{Binding BackgroundColor}"
+                FontFamily="CascadiaCode"
+                FontSize="Title"
+                Text="SampleApp"
+                TextColor="{Binding TextColor}"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+            <ImageButton
+                Grid.Column="1"
+                Command="{Binding SendUndoCommand}"
+                Source="{Binding UndoImageSource}"
+                WidthRequest="28" />
+            <ImageButton
+                Grid.Column="2"
+                Command="{Binding SendRedoCommand}"
+                Source="{Binding RedoImageSource}"
+                WidthRequest="28" />
+            <ImageButton
+                x:Name="Options"
+                Grid.Column="3"
+                Command="{Binding OpenOptionsCommand}"
+                Source="{Binding MoreImageSource}"
+                WidthRequest="28" />
+
+        </Grid>
+        <view:CodeEditorView
+            x:Name="CodeEditor"
+            Grid.Row="1"
+            Document="{Binding Document, Mode=TwoWay}"
+            FontSize="20"
+            Theme="{Binding Theme, Mode=TwoWay}" />
+        <ScrollView Grid.Row="2" Orientation="Horizontal">
+            <HorizontalStackLayout BackgroundColor="{Binding BackgroundColor}" Spacing="2">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontFamily" Value="CascadiaCode" />
+                        <Setter Property="BackgroundColor" Value="{Binding BackgroundColor}" />
+                        <Setter Property="TextColor" Value="{Binding TextColor}" />
+                        <Setter Property="Command" Value="{Binding CommitSymbolCommand}" />
+                        <Setter Property="FontSize" Value="20" />
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <Button CommandParameter="    " Text="-&gt;" />
+                <Button CommandParameter="." Text="." />
+                <Button CommandParameter="," Text="," />
+                <Button CommandParameter="&quot;&quot;" Text="&quot;" />
+                <Button CommandParameter="=" Text="=" />
+                <Button CommandParameter=";" Text=";" />
+                <Button CommandParameter="{}{}" Text="{}{" />
+                <Button CommandParameter="}" Text="}" />
+                <Button CommandParameter="()" Text="(" />
+                <Button CommandParameter=")" Text=")" />
+                <Button CommandParameter="?" Text="?" />
+                <Button CommandParameter="+" Text="+" />
+                <Button CommandParameter="-" Text="-" />
+                <Button CommandParameter="*" Text="*" />
+                <Button CommandParameter="/" Text="/" />
+            </HorizontalStackLayout>
+
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

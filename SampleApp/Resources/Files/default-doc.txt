@@ -1,0 +1,49 @@
+﻿using System;
+
+namespace Namespace;
+
+public enum Enum
+{
+    One,
+    Two,
+}
+public struct Struct
+{
+    int One = 0;
+    public Struct()
+    {
+    }
+}
+
+public interface IInterface
+{
+}
+
+internal class TestClass
+{
+    public int Property { get; set; }
+    private int Filed = 0;
+    const int Const = 0;
+    event EventHandler<string> Event;
+    public delegate int Delegate(string text);
+
+
+    public void Method(int value)
+    {
+        Console.WriteLine(Property);
+        Console.WriteLine(Filed);
+        Console.WriteLine(Const);
+        Console.WriteLine(Const);
+    }
+
+    /// <summary>
+    /// 两个数相加
+    /// </summary>
+    /// <param name="a">第1个数</param>
+    /// <param name="b">第2个数</param>
+    /// <returns>返回相加后的值</returns>
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}

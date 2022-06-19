@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Text.Encodings.Web</name>
+  </assembly>
+  <members>
+    <member name="T:System.Text.Encodings.Web.HtmlEncoder">
+      <summary>表示 HTML 字符编码。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.HtmlEncoder.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.HtmlEncoder.Create(System.Text.Encodings.Web.TextEncoderSettings)">
+      <summary>使用指定的设置创建 HtmlEncoder 类的新实例。</summary>
+      <param name="settings">控制 <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 实例编码方式（主要是对哪些字符进行编码）的设置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="settings" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.HtmlEncoder.Create(System.Text.Unicode.UnicodeRange[])">
+      <summary>创建 HtmlEncoder 类的新实例，指定允许编码器不对其进行编码的字符。</summary>
+      <param name="allowedRanges">允许编码器不对其进行编码的字符集。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="allowedRanges" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="P:System.Text.Encodings.Web.HtmlEncoder.Default">
+      <summary>获取 <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 类的内置实例。</summary>
+      <returns>类的内置实例 <see cref="T:System.Text.Encodings.Web.HtmlEncoder" /> 。</returns>
+    </member>
+    <member name="T:System.Text.Encodings.Web.JavaScriptEncoder">
+      <summary>表示 JavaScript 字符编码。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.JavaScriptEncoder.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Encodings.Web.TextEncoderSettings)">
+      <summary>使用指定设置创建 JavaScriptEncoder 类的新实例。</summary>
+      <param name="settings">控制 <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 实例编码方式（主要是对哪些字符进行编码）的设置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="settings" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.JavaScriptEncoder.Create(System.Text.Unicode.UnicodeRange[])">
+      <summary>创建 JavaScriptEncoder 类的新实例，指定允许编码器不对其进行编码的字符。</summary>
+      <param name="allowedRanges">允许编码器不对其进行编码的字符集。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="allowedRanges" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="P:System.Text.Encodings.Web.JavaScriptEncoder.Default">
+      <summary>获取 <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 类的内置实例。</summary>
+      <returns>类的内置实例 <see cref="T:System.Text.Encodings.Web.JavaScriptEncoder" /> 。</returns>
+    </member>
+    <member name="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping">
+      <summary>获取对编码内容不太严格的内置 JavaScript 编码器实例。</summary>
+      <returns>JavaScript 编码器实例。</returns>
+    </member>
+    <member name="T:System.Text.Encodings.Web.TextEncoder">
+      <summary>Web 编码器的基类。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Encodings.Web.TextEncoder" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.Encode(System.IO.TextWriter,System.Char[],System.Int32,System.Int32)">
+      <summary>对数组中的字符进行编码，并将其写入 <see cref="T:System.IO.TextWriter" /> 对象。</summary>
+      <param name="output">要写入编码文本的流。</param>
+      <param name="value">要编码的字符数组。</param>
+      <param name="startIndex">要编码的第一个字符的数组索引。</param>
+      <param name="characterCount">要编码的数组中的字符数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="output" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="M:System.Text.Encodings.Web.TextEncoder.TryEncodeUnicodeScalar(System.Int32,System.Char*,System.Int32,System.Int32@)" /> 方法失败。 编码器未正确实现 <see cref="P:System.Text.Encodings.Web.TextEncoder.MaxOutputCharactersPerInputCharacter" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> 超出范围。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="characterCount" /> 超出范围。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.Encode(System.IO.TextWriter,System.String)">
+      <summary>将指定的字符串编码为 <see cref="T:System.IO.TextWriter" /> 对象。</summary>
+      <param name="output">要写入编码文本的流。</param>
+      <param name="value">要编码的字符串。</param>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.Encode(System.IO.TextWriter,System.String,System.Int32,System.Int32)">
+      <summary>对子字符串进行编码，并将其写入 <see cref="T:System.IO.TextWriter" /> 对象。</summary>
+      <param name="output">要写入编码文本的流。</param>
+      <param name="value">要编码其子字符串的字符串。</param>
+      <param name="startIndex">子字符串开始位置的索引。</param>
+      <param name="characterCount">子字符串中的字符数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="output" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="M:System.Text.Encodings.Web.TextEncoder.TryEncodeUnicodeScalar(System.Int32,System.Char*,System.Int32,System.Int32@)" /> 方法失败。 编码器未正确实现 <see cref="P:System.Text.Encodings.Web.TextEncoder.MaxOutputCharactersPerInputCharacter" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="startIndex" /> 超出范围。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="characterCount" /> 超出范围。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.Encode(System.ReadOnlySpan{System.Char},System.Span{System.Char},System.Int32@,System.Int32@,System.Boolean)">
+      <summary>对提供的字符进行编码。</summary>
+      <param name="source">一个源缓冲区，包含要编码的字符。</param>
+      <param name="destination">目标缓冲区，将向其中写入编码形式的 <paramref name="source" />。</param>
+      <param name="charsConsumed">从 <paramref name="source" /> 缓冲区使用的字符数。</param>
+      <param name="charsWritten">写入 <paramref name="destination" /> 缓冲区的字符数。</param>
+      <param name="isFinalBlock">
+        <see langword="true" /> 用于表示还有需要进行编码的源数据；否则 <see langword="false" />。</param>
+      <returns>用于描述编码操作结果的枚举值。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.Encode(System.String)">
+      <summary>编码所提供的字符串，并返回编码后的文本作为新字符串。</summary>
+      <param name="value">要编码的字符串。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="M:System.Text.Encodings.Web.TextEncoder.TryEncodeUnicodeScalar(System.Int32,System.Char*,System.Int32,System.Int32@)" /> 方法失败。 编码器未正确实现 <see cref="P:System.Text.Encodings.Web.TextEncoder.MaxOutputCharactersPerInputCharacter" />。</exception>
+      <returns>编码的字符串。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.EncodeUtf8(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@,System.Int32@,System.Boolean)">
+      <summary>对提供的 UTF-8 文本进行编码。</summary>
+      <param name="utf8Source">一个源缓冲区，包含要编码的 UTF-8 文本。</param>
+      <param name="utf8Destination">目标缓冲区，将向其中写入编码形式的 <paramref name="utf8Source" />。</param>
+      <param name="bytesConsumed">从 <paramref name="utf8Source" /> 缓冲区使用的字节数。</param>
+      <param name="bytesWritten">写入 <paramref name="utf8Destination" /> 缓冲区的字节数。</param>
+      <param name="isFinalBlock">
+        <see langword="true" /> 用于表示还有需要进行编码的源数据；否则 <see langword="false" />。</param>
+      <returns>用于描述编码操作结果的状态代码。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.FindFirstCharacterToEncode(System.Char*,System.Int32)">
+      <summary>查找要编码的第一个字符的索引。</summary>
+      <param name="text">要搜索的文本缓冲区。</param>
+      <param name="textLength">
+        <paramref name="text" /> 中的字符数。</param>
+      <returns>第一个要编码的字符的索引。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.FindFirstCharacterToEncodeUtf8(System.ReadOnlySpan{System.Byte})">
+      <summary>查找 UTF-8 文本输入缓冲区中第一个要被当前编码器实例进行转义的元素。</summary>
+      <param name="utf8Text">要搜索的 UTF-8 文本输入缓冲区。</param>
+      <returns>
+        <paramref name="utf8Text" /> 中第一个要被当前编码器实例进行转义的元素的索引，如果 <paramref name="utf8Text" /> 中没有任何数据需要转义，则为 -1。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.TryEncodeUnicodeScalar(System.Int32,System.Char*,System.Int32,System.Int32@)">
+      <summary>编码一个 Unicode 标量值并将其写入缓冲区。</summary>
+      <param name="unicodeScalar">一个 Unicode 标量值。</param>
+      <param name="buffer">指向要写入编码文本的缓冲区的指针。</param>
+      <param name="bufferLength">目标 <paramref name="buffer" /> 的长度（以字符为单位）。</param>
+      <param name="numberOfCharactersWritten">方法返回时，指示写入 <paramref name="buffer" /> 的字符数。</param>
+      <returns>如果 <paramref name="bufferLength" /> 太小，无法适应编码的文本，则为 <see langword="false" />；否则，将返回 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoder.WillEncode(System.Int32)">
+      <summary>确定是否将对给定的 Unicode 标量值进行编码。</summary>
+      <param name="unicodeScalar">一个 Unicode 标量值。</param>
+      <returns>如果由此编码器编码 <paramref name="unicodeScalar" /> 值，则为 <see langword="true" />；否则，将返回 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Text.Encodings.Web.TextEncoder.MaxOutputCharactersPerInputCharacter">
+      <summary>获取此编码器可为每个输入码位生成的最大字符数。</summary>
+      <returns>最大字符数。</returns>
+    </member>
+    <member name="T:System.Text.Encodings.Web.TextEncoderSettings">
+      <summary>表示仅允许特定 Unicode 码位的筛选器。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.#ctor">
+      <summary>实例化空的筛选器（默认情况下不允许通过任何码位）。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.#ctor(System.Text.Encodings.Web.TextEncoderSettings)">
+      <summary>通过克隆另一 <see cref="T:System.Text.Encodings.Web.TextEncoderSettings" /> 对象的允许列表来实例化筛选器。</summary>
+      <param name="other">要克隆的另一 <see cref="T:System.Text.Encodings.Web.TextEncoderSettings" /> 对象。</param>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.#ctor(System.Text.Unicode.UnicodeRange[])">
+      <summary>实例化筛选器，其中该筛选器仅允许 <paramref name="allowedRanges" /> 指定的字符范围。</summary>
+      <param name="allowedRanges">允许的字符范围。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="allowedRanges" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.AllowCharacter(System.Char)">
+      <summary>允许由 <paramref name="character" /> 指定的字符通过筛选器。</summary>
+      <param name="character">允许的字符。</param>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.AllowCharacters(System.Char[])">
+      <summary>允许 <paramref name="characters" /> 指定的所有字符通过筛选器。</summary>
+      <param name="characters">允许的字符。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="characters" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.AllowCodePoints(System.Collections.Generic.IEnumerable{System.Int32})">
+      <summary>允许由 <paramref name="codePoints" /> 指定的所有码位。</summary>
+      <param name="codePoints">允许的码位。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="codePoints" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.AllowRange(System.Text.Unicode.UnicodeRange)">
+      <summary>允许 <paramref name="range" /> 指定的所有字符通过筛选器。</summary>
+      <param name="range">要允许的字符范围。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="range" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.AllowRanges(System.Text.Unicode.UnicodeRange[])">
+      <summary>允许 <paramref name="ranges" /> 指定的所有字符通过筛选器。</summary>
+      <param name="ranges">要允许的字符范围。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ranges" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.Clear">
+      <summary>通过禁止所有字符来重置该对象。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.ForbidCharacter(System.Char)">
+      <summary>禁止字符 <paramref name="character" /> 通过筛选器。</summary>
+      <param name="character">禁止的字符。</param>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.ForbidCharacters(System.Char[])">
+      <summary>禁止由 <paramref name="characters" /> 指定的所有字符通过筛选器。</summary>
+      <param name="characters">禁止的字符。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="characters" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.ForbidRange(System.Text.Unicode.UnicodeRange)">
+      <summary>禁止由 <paramref name="range" /> 指定的所有字符通过筛选器。</summary>
+      <param name="range">要禁止的字符范围。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="range" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.ForbidRanges(System.Text.Unicode.UnicodeRange[])">
+      <summary>禁止由 <paramref name="ranges" /> 指定的所有字符通过筛选器。</summary>
+      <param name="ranges">要禁止的字符范围。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ranges" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Encodings.Web.TextEncoderSettings.GetAllowedCodePoints">
+      <summary>获取所有允许码位的枚举器。</summary>
+      <returns>允许码位的枚举器。</returns>
+    </member>
+    <member name="T:System.Text.Encodings.Web.UrlEncoder">
+      <summary>表示 URL 字符编码。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.UrlEncoder.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Encodings.Web.UrlEncoder.Create(System.Text.Encodings.Web.TextEncoderSettings)">
+      <summary>使用指定的设置创建类的 UrlEncoder 新实例。</summary>
+      <param name="settings">控制 <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 实例编码方式（主要是对哪些字符进行编码）的设置。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="settings" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="M:System.Text.Encodings.Web.UrlEncoder.Create(System.Text.Unicode.UnicodeRange[])">
+      <summary>创建 UrlEncoder 类的新实例，指定允许编码器不对其进行编码的字符。</summary>
+      <param name="allowedRanges">允许编码器不对其进行编码的字符集。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="allowedRanges" /> 为 <see langword="null" />。</exception>
+      <returns>
+        <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 类的新实例。</returns>
+    </member>
+    <member name="P:System.Text.Encodings.Web.UrlEncoder.Default">
+      <summary>获取 <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 类的内置实例。</summary>
+      <returns>类的内置实例 <see cref="T:System.Text.Encodings.Web.UrlEncoder" /> 。</returns>
+    </member>
+    <member name="T:System.Text.Unicode.UnicodeRange">
+      <summary>表示 Unicode 码位的相邻范围。</summary>
+    </member>
+    <member name="M:System.Text.Unicode.UnicodeRange.#ctor(System.Int32,System.Int32)">
+      <summary>创建一个包含从指定 Unicode 码位开始的指定字符数的新 <see cref="T:System.Text.Unicode.UnicodeRange" />。</summary>
+      <param name="firstCodePoint">范围内的第一个码位。</param>
+      <param name="length">范围内的码位数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="firstCodePoint" /> 小于零或大于 0xFFFF。 
+
+- 或 -
+
+<paramref name="length" /> 小于零。
+
+- 或 -
+
+<paramref name="firstCodePoint" /> 加上 <paramref name="length" /> 大于 0xFFFF。</exception>
+    </member>
+    <member name="M:System.Text.Unicode.UnicodeRange.Create(System.Char,System.Char)">
+      <summary>从一段字符创建一个 <see cref="T:System.Text.Unicode.UnicodeRange" /> 实例。</summary>
+      <param name="firstCharacter">范围中的第一个字符。</param>
+      <param name="lastCharacter">范围中的最后一个字符。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastCharacter" /> 在 <paramref name="firstCharacter" /> 之前。</exception>
+      <returns>包含 <paramref name="firstCharacter" /> 和 <paramref name="lastCharacter" /> 之间所有字符的范围。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRange.FirstCodePoint">
+      <summary>获取由此 <see cref="T:System.Text.Unicode.UnicodeRange" /> 实例表示的范围中的第一个码位。</summary>
+      <returns>范围内的第一个码位。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRange.Length">
+      <summary>获取由此 <see cref="T:System.Text.Unicode.UnicodeRange" /> 实例表示的范围中的码位数。</summary>
+      <returns>范围内的码位数。</returns>
+    </member>
+    <member name="T:System.Text.Unicode.UnicodeRanges">
+      <summary>提供返回预定义 <see cref="T:System.Text.Unicode.UnicodeRange" /> 实例的静态属性，这些实例对应于 Unicode 规范中的块。</summary>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.All">
+      <summary>获取由整个基本多语言平面 (BMP) 组成的范围，从 U+0000 到 U+FFFF。</summary>
+      <returns>由整个 BMP 组成的范围。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.AlphabeticPresentationForms">
+      <summary>获取字母显现形式 Unicode 块 (U+FB00-U+FB4F)。</summary>
+      <returns>字母表示形式 Unicode 块 (U + FB00 + FB4F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Arabic">
+      <summary>获取阿拉伯语 Unicode 块 (U+0600-U+06FF)。</summary>
+      <returns>阿拉伯 Unicode 块 (U +0600 + 06FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ArabicExtendedA">
+      <summary>获取阿拉伯语扩充 A Unicode 块 (U+08A0-U+08FF)。</summary>
+      <returns>阿拉伯语扩展-A Unicode 块 (U + 08A0 + 08FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ArabicPresentationFormsA">
+      <summary>获取阿拉伯语显现形式 A Unicode 块 (U+FB50-U+FDFF)。</summary>
+      <returns>阿拉伯语表示形式-Unicode 块 (U + FB50 + FDFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ArabicPresentationFormsB">
+      <summary>获取阿拉伯语显现形式 B Unicode 块 (U+FE70-U+FEFF)。</summary>
+      <returns>阿拉伯语表示形式-B Unicode 块 (U + FE70 + FEFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ArabicSupplement">
+      <summary>获取阿拉伯语增补 Unicode 块 (U+0750-U+077F)。</summary>
+      <returns>阿拉伯语补充 Unicode 块 (U +0750 + 077F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Armenian">
+      <summary>获取亚美尼亚语 Unicode 块 (U+0530-U+058F)。</summary>
+      <returns>亚美尼亚语 Unicode 块 (U +0530 + 058F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Arrows">
+      <summary>获取箭头 Unicode 块 (U+2190-U+21FF)。</summary>
+      <returns>箭头 Unicode 块 (U + 21FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Balinese">
+      <summary>获取巴厘语 Unicode 块 (U+1B00-U+1B7F)。</summary>
+      <returns>巴厘文 Unicode 块 (U + 1B00 + 1B7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Bamum">
+      <summary>获取巴姆穆文 Unicode 块 (U+A6A0-U+A6FF)。</summary>
+      <returns>巴姆穆语 Unicode 块 (U + A6A0 + A6FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.BasicLatin">
+      <summary>获取基本拉丁语 Unicode 块 (U+0021-U+007F)。</summary>
+      <returns>基本拉丁语 Unicode 块 (U +0021 + 007F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Batak">
+      <summary>获取巴塔克文 Unicode 块 (U+1BC0-U+1BFF)。</summary>
+      <returns> (U + 1BC0 + 1BFF) 的巴塔克文 Unicode 块。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Bengali">
+      <summary>获取孟加拉语 Unicode 块 (U+0980-U+09FF)。</summary>
+      <returns>孟加拉语 Unicode 块 (U +0980 + 09FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.BlockElements">
+      <summary>获取块元素 Unicode 块 (U+2580-U+259F)。</summary>
+      <returns>块元素 Unicode 块 (U +2580 + 259F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Bopomofo">
+      <summary>获取注音 Unicode 块 (U+3100-U+312F)。</summary>
+      <returns>注音 Unicode 块 (U +3105 + 312F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.BopomofoExtended">
+      <summary>获取注音扩充 Unicode 块 (U+31A0-U+31BF)。</summary>
+      <returns>注音扩展 Unicode 块 (U + 31A0 + 31BF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.BoxDrawing">
+      <summary>获取框图 Unicode 块 (U+2500-U+257F)。</summary>
+      <returns>Box 绘图 Unicode 块 (U +2500 + 257F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.BraillePatterns">
+      <summary>获取盲文模型 Unicode 块 (U+2800-U+28FF)。</summary>
+      <returns>盲文模式 Unicode 块 (U +2800 + 28FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Buginese">
+      <summary>获取布吉斯语 Unicode 块 (U+1A00-U+1A1F)。</summary>
+      <returns>布吉斯文 Unicode 块 (U + 1A00 + 1A1F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Buhid">
+      <summary>获取布锡语 Unicode 块 (U+1740-U+175F)。</summary>
+      <returns>布锡文 Unicode 块 (U +1740 + 175F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Cham">
+      <summary>获取占语 Unicode 块 (U+AA00-U+AA5F)。</summary>
+      <returns>查姆文 Unicode 块 (U + AA00 + AA5F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Cherokee">
+      <summary>获取切罗基文 Unicode 块 (U+13A0-U+13FF)。</summary>
+      <returns>切罗基块 Unicode 块 (U + 13A0 + 13FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CherokeeSupplement">
+      <summary>获取切罗基文增补 Unicode 块 (U+AB70-U+ABBF)。</summary>
+      <returns>切罗基块增补 Unicode 块 (U + AB70 + ABBF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkCompatibility">
+      <summary>获取 CJK 兼容性 Unicode 块 (U+3300-U+33FF)。</summary>
+      <returns>CJK 兼容 Unicode 块 (U +3300 + 33FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkCompatibilityForms">
+      <summary>获取 CJK 兼容形式 Unicode 块 (U+FE30-U+FE4F)。</summary>
+      <returns>CJK 兼容性格式 Unicode 块 (U + FE30 + FE4F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkCompatibilityIdeographs">
+      <summary>获取 CJK 兼容汉字 Unicode 块 (U+F900-U+FAD9)。</summary>
+      <returns>CJK 兼容性表意文字 Unicode 块 (U + F900 + FAD9) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkRadicalsSupplement">
+      <summary>获取 CJK 偏旁部首增补 Unicode 块 (U+2E80-U+2EFF)。</summary>
+      <returns>CJK 根式补充 Unicode 块 (U + 2E80 + 2EFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkStrokes">
+      <summary>获取 CJK 笔划 Unicode 块 (U+31C0-U+31EF)。</summary>
+      <returns>CJK 笔划 Unicode 块 (U + 31C0 + 31EF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkSymbolsandPunctuation">
+      <summary>获取 CJK 符号和标点 Unicode 块 (U+3000-U+303F)。</summary>
+      <returns>CJK 符号和标点 Unicode 块 (U +3000 + 303F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkUnifiedIdeographs">
+      <summary>获取 CJK 统一汉字 Unicode 块 (U+4E00-U+9FCC)。</summary>
+      <returns>CJK 统一的表意文字 Unicode 块 (U + 4E00 + 9FCC) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CjkUnifiedIdeographsExtensionA">
+      <summary>获取 CJK 统一汉字扩充 Unicode 块 (U+3400-U+4DB5)。</summary>
+      <returns>CJK 统一表意文字扩展 Unicode 块 (U +3400-U + 4DB5 内) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CombiningDiacriticalMarks">
+      <summary>获取组合用发音符 Unicode 块 (U+0300-U+036F)。</summary>
+      <returns>组合的变音符 Unicode 块 (U +0300 + 036F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CombiningDiacriticalMarksExtended">
+      <summary>获取组合用发音符扩充 Unicode 块 (U+1AB0-U+1AFF)。</summary>
+      <returns>组合的变音符会将扩展 Unicode 块标记 (U + 1AB0 + 1AFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CombiningDiacriticalMarksforSymbols">
+      <summary>获取符号组合用发音符 Unicode 块 (U+20D0-U+20FF)。</summary>
+      <returns>用于符号 Unicode 块 (U + 20D0-20ff + 20FF) 的组合变音标记。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CombiningDiacriticalMarksSupplement">
+      <summary>获取符号组合用发音符增补 Unicode 块 (U+1DC0-U+1DFF)。</summary>
+      <returns>组合的变音符号补充了 Unicode 块 (U + 1DC0-1DFF + 1DFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CombiningHalfMarks">
+      <summary>获取半形组合用标志 Unicode 块 (U+FE20-U+FE2F)。</summary>
+      <returns>组合半角 Unicode 块 (U + FE20-FE2F + FE20-FE2F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CommonIndicNumberForms">
+      <summary>获取常见印度语数字形式 Unicode 块 (U+A830-U+A83F)。</summary>
+      <returns>常见印度语数字形式 Unicode 块 (U + A830 + A83F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ControlPictures">
+      <summary>获取控件图符 Unicode 块 (U+2400-U+243F)。</summary>
+      <returns>控件图片 Unicode 块 (U +2400 + 243F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Coptic">
+      <summary>获取科普特语 Unicode 块 (U+2C80-U+2CFF)。</summary>
+      <returns>哥普特文 Unicode 块 (U + 2C80 + 2CFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CurrencySymbols">
+      <summary>获取货币符号 Unicode 块 (U+20A0-U+20CF)。</summary>
+      <returns>货币符号 Unicode 块 (U + 20A0 + 20CF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Cyrillic">
+      <summary>获取西里尔文 Unicode 块 (U+0400-U+04FF)。</summary>
+      <returns>西里尔文 Unicode 块 (U +0400 + 04FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CyrillicExtendedA">
+      <summary>获取西里尔文扩充-A Unicode 块 (U+2DE0-U+2DFF)。</summary>
+      <returns>西里尔文扩展-A Unicode 块 (U + 2DE0 + 2DFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CyrillicExtendedB">
+      <summary>获取西里尔文扩充-B Unicode 块 (U+A640-U+A69F)。</summary>
+      <returns>西里尔文扩展-B Unicode 块 (U + A640 + A69F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CyrillicExtendedC">
+      <summary>
+        <see cref="T:System.Text.Unicode.UnicodeRange" /> 对应于“Cyrillic Extended-C”Unicode 块 (U+1C80..U+1C8F)。</summary>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.CyrillicSupplement">
+      <summary>获取西里尔文增补 Unicode 块 (U+0500-U+052F)。</summary>
+      <returns>西里尔文增补 Unicode 块 (U +0500 + 052F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Devanagari">
+      <summary>获取梵文 Unicode 块 (U+0900-U+097F)。</summary>
+      <returns>梵文 Unicode 块 (U +0900-U + 097F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.DevanagariExtended">
+      <summary>获取梵文扩充 Unicode 块 (U+A8E0-U+A8FF)。</summary>
+      <returns>梵文扩展 Unicode 块 (U + A8E0 + A8FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Dingbats">
+      <summary>获取丁贝符 Unicode 块 (U+2700-U+27BF)。</summary>
+      <returns>丁贝符 Unicode 块 (U +2700-U + 27BF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.EnclosedAlphanumerics">
+      <summary>获取带括号的字母数字 Unicode 块 (U+2460-U+24FF)。</summary>
+      <returns>括起来的字母数字 Unicode 块 (U +2460 + 24FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.EnclosedCjkLettersandMonths">
+      <summary>获取带括号的 CJK 字母和月份 Unicode 块 (U+3200-U+32FF)。</summary>
+      <returns>括起来的 CJK 字母和月份 Unicode 块 (U +3200-U + 32FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Ethiopic">
+      <summary>获取埃塞俄比亚语 Unicode 块 (U+1200-U+137C)。</summary>
+      <returns>埃塞俄比亚语 Unicode 块 (U +1200 + 137C) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.EthiopicExtended">
+      <summary>获取埃塞俄比亚语扩充 Unicode 块 (U+2D80-U+2DDF)。</summary>
+      <returns>Ethipic 扩展 Unicode 块 (U + 2D80 + 2DDF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.EthiopicExtendedA">
+      <summary>获取埃塞俄比亚语扩充-A Unicode 块 (U+AB00-U+AB2F)。</summary>
+      <returns>埃塞俄比亚语扩展-A Unicode 块 (U + AB00 + AB2F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.EthiopicSupplement">
+      <summary>获取埃塞俄比亚语增补 Unicode 块 (U+1380-U+1399)。</summary>
+      <returns>埃塞俄比亚语补充 Unicode 块 (U +1380 + 1399) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GeneralPunctuation">
+      <summary>获取常用标点符号 Unicode 块 (U+2000-U+206F)。</summary>
+      <returns>一般标点 Unicode 块 (U +2000 + 206F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GeometricShapes">
+      <summary>获取几何图形符 Unicode 块 (U+25A0-U+25FF)。</summary>
+      <returns>几何形状 Unicode 块 (U + 25A0 + 25FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Georgian">
+      <summary>获取格鲁吉亚语 Unicode 块 (U+10A0-U+10FF)。</summary>
+      <returns>格鲁吉亚语 Unicode 块 (U + 10A0 + 10FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GeorgianExtended">
+      <summary>
+        <see cref="T:System.Text.Unicode.UnicodeRange" /> 对应于“Georgian Extended”Unicode 块 (U+1C90..U+1CBF)。</summary>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GeorgianSupplement">
+      <summary>获取格鲁吉亚语增补 Unicode 块 (U+2D00-U+2D2F)。</summary>
+      <returns>格鲁吉亚语补充 Unicode 块 (U + 2D00 + 2D2F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Glagolitic">
+      <summary>获取格拉哥里语 Unicode 块 (U+2C00-U+2C5F)。</summary>
+      <returns>区分线 Unicode 块 (U + 2C00 + 2C5F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GreekandCoptic">
+      <summary>获取希腊语和科普特语 Unicode 块 (U+0370-U+03FF)。</summary>
+      <returns>希腊语和哥普特 Unicode 块 (U +0370 + 03FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.GreekExtended">
+      <summary>获取希腊语扩充 Unicode 块 (U+1F00-U+1FFF)。</summary>
+      <returns>希腊语扩展 Unicode 块 (U + 1F00 + 1FFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Gujarati">
+      <summary>获取 Gujarti Unicode 块 (U+0A81-U+0AFF)。</summary>
+      <returns>Gujarti Unicode 块 (U + 0A81 + 0AFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Gurmukhi">
+      <summary>获取果鲁穆奇语 Unicode 块 (U+0A01-U+0A7F)。</summary>
+      <returns>锡克教语 Unicode 块 (U + 0A01 + 0A7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HalfwidthandFullwidthForms">
+      <summary>获取半角及全角字符 Unicode 块 (U+FF00-U+FFEE)。</summary>
+      <returns>半角和全形形式 Unicode 块 (U + FF00 + FFEE) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HangulCompatibilityJamo">
+      <summary>获取朝鲜文兼容性字母 Unicode 块 (U+3131-U+318F)。</summary>
+      <returns>朝鲜语兼容性字母 Unicode 块 (U +3131-U + 318F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HangulJamo">
+      <summary>获取朝鲜文字母 Unicode 块 (U+1100-U+11FF)。</summary>
+      <returns>朝鲜语字母 Unicode 块 (U +1100-U + 11FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HangulJamoExtendedA">
+      <summary>获取朝鲜文字母扩充-A Unicode 块 (U+A960-U+A9F)。</summary>
+      <returns>朝鲜语字母扩展-A Unicode 块 (U + A960 + A97F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HangulJamoExtendedB">
+      <summary>获取朝鲜文字母扩充-B Unicode 块 (U+D7B0-U+D7FF)。</summary>
+      <returns>朝鲜语字母扩展-B Unicode 块 (U + D7B0-U + D7FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.HangulSyllables">
+      <summary>获取韩文音节 Unicode 块 (U+AC00-U+D7AF)。</summary>
+      <returns>朝鲜语音节 Unicode 块 (U + AC00 + D7AF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Hanunoo">
+      <summary>获取汉奴劳族文 Unicode 块 (U+1720-U+173F)。</summary>
+      <returns>汉奴 (U + 173F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Hebrew">
+      <summary>获取希伯来语 Unicode 块 (U+0590-U+05FF)。</summary>
+      <returns>希伯来语 Unicode 块 (U +0590 + 05FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Hiragana">
+      <summary>获取平假名 Unicode 块 (U+3040-U+309F)。</summary>
+      <returns>平假名 Unicode 块 (U +3040 + 309F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.IdeographicDescriptionCharacters">
+      <summary>获取象形文字 Unicode 块 (U+2FF0-U+2FFF)。</summary>
+      <returns>象形字说明字符 Unicode 块 (U + 2FF0 + 2FFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.IpaExtensions">
+      <summary>获取 IPA 扩充 Unicode 块 (U+0250-U+02AF)。</summary>
+      <returns>IPA 扩展 Unicode 块 (U +0250-U + 02AF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Javanese">
+      <summary>获取爪哇语 Unicode 块 (U+A980-U+A9DF)。</summary>
+      <returns>爪哇语 Unicode 块 (U + A980 + A9DF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Kanbun">
+      <summary>获取汉文 Unicode 块 (U+3190-U+319F)。</summary>
+      <returns>汉文 Unicode 块 (U +3190-U + 319F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.KangxiRadicals">
+      <summary>获取汉字字根增补 Unicode 块 (U+2F00-U+2FDF)。</summary>
+      <returns>康熙根式补充 Unicode 块 (U + 2F00 + 2FDF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Kannada">
+      <summary>获取埃纳德语 Unicode 块 (U+0C81-U+0CFF)。</summary>
+      <returns>埃纳德文 Unicode 块 (U + 0C81 + 0CFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Katakana">
+      <summary>获取片假名 Unicode 块 (U+30A0-U+30FF)。</summary>
+      <returns>片假名 Unicode 块 (U + 30A0 + 30FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.KatakanaPhoneticExtensions">
+      <summary>获取片假名注音扩充 Unicode 块 (U+31F0-U+31FF)。</summary>
+      <returns>片假名注音扩展 Unicode 块 (U + 31F0 + 31FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.KayahLi">
+      <summary>获取克耶黎语 Unicode 块 (U+A900-U+A92F)。</summary>
+      <returns>克耶黎语 Unicode 块 (U + A900 + A92F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Khmer">
+      <summary>获取高棉语 Unicode 块 (U+1780-U+17FF)。</summary>
+      <returns>高棉语 Unicode 块 (U +1780 + 17FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.KhmerSymbols">
+      <summary>获取高棉符号 Unicode 块 (U+19E0-U+19FF)。</summary>
+      <returns>高棉语符号 Unicode 块 (U + 19E0 + 19FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Lao">
+      <summary>获取老挝语 Unicode 块 (U+0E80-U+0EDF)。</summary>
+      <returns>老挝语 Unicode 块 (U + 0E80 + 0EDF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Latin1Supplement">
+      <summary>获取拉丁语-1 增补 Unicode 块 (U+00A1-U+00FF)。</summary>
+      <returns>拉丁语-1 补充 Unicode 块 (U + 00A1 + 00FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedA">
+      <summary>获取拉丁语扩充-A Unicode 块 (U+0100-U+017F)。</summary>
+      <returns>拉丁语扩展的 Unicode 块 (U +0100 + 017F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedAdditional">
+      <summary>获取拉丁语扩充增补 Unicode 块 (U+1E00-U+1EFF)。</summary>
+      <returns>拉丁语扩展的附加 Unicode 块 (U + 1E00 + 1EFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedB">
+      <summary>获取拉丁语扩充-B Unicode 块 (U+0180-U+024F)。</summary>
+      <returns>拉丁文扩展-B Unicode 块 (U +0180 + 024F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedC">
+      <summary>获取拉丁语扩充-C Unicode 块 (U+2C60-U+2C7F)。</summary>
+      <returns>拉丁文 Extended C Unicode 块 (U + 2C60 + 2C7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedD">
+      <summary>获取拉丁语扩充-D Unicode 块 (U+A720-U+A7FF)。</summary>
+      <returns>拉丁文扩展-D Unicode 块 (U + A720 + A7FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LatinExtendedE">
+      <summary>获取拉丁语扩充-E Unicode 块 (U+AB30-U+AB6F)。</summary>
+      <returns>拉丁语扩展 E Unicode 块 (U + AB30 + AB6F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Lepcha">
+      <summary>获取雷布查文 Unicode 块 (U+1C00-U+1C4F)。</summary>
+      <returns>雷布查 Unicode 块 (U + 1C00 + 1C4F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.LetterlikeSymbols">
+      <summary>获取类似字母的符号 Unicode 块 (U+2100-U+214F)。</summary>
+      <returns>Letterlike 符号 Unicode 块 (U +2100 + 214F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Limbu">
+      <summary>获取林布文 Unicode 块 (U+1900-U+194F)。</summary>
+      <returns>林布文 Unicode 块 (U +1900 + 194F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Lisu">
+      <summary>获取傈僳文 Unicode 块 (U+A4D0-U+A4FF)。</summary>
+      <returns>傈僳语 Unicode 块 (U + A4D0 + A4FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Malayalam">
+      <summary>获取马拉雅拉姆语 Unicode 块 (U+0D00-U+0D7F)。</summary>
+      <returns>马拉雅拉姆语 Unicode 块 (U + 0D00 + 0D7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Mandaic">
+      <summary>获取阿拉米文 Unicode 块 (U+0840-U+085F)。</summary>
+      <returns>阿拉米文 Unicode 块 (U +0840 + 085F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MathematicalOperators">
+      <summary>获取数学运算符 Unicode 块 (U+2200-U+22FF)。</summary>
+      <returns>数学运算符 Unicode 块 (U +2200 + 22FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MeeteiMayek">
+      <summary>获取曼尼普尔文 Unicode 块 (U+ABC0-U+ABFF)。</summary>
+      <returns>曼尼普尔文 Unicode 块 (U + ABC0 + ABFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MeeteiMayekExtensions">
+      <summary>获取曼尼普尔文扩充 Unicode 块 (U+AAE0-U+AAFF)。</summary>
+      <returns>曼尼普尔文扩展 Unicode 块 (U + AAE0 + AAFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MiscellaneousMathematicalSymbolsA">
+      <summary>获取零杂数学符号-A Unicode 块 (U+27C0-U+27EF)。</summary>
+      <returns>其他数学符号-Unicode 块 (U + 27C0 + 27EF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MiscellaneousMathematicalSymbolsB">
+      <summary>获取零杂数学符号-B Unicode 块 (U+2980-U+29FF)。</summary>
+      <returns>其他数学符号-B Unicode 块 (U +2980 + 29FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MiscellaneousSymbols">
+      <summary>获取零杂符号 Unicode 块 (U+2600-U+26FF)。</summary>
+      <returns>杂项符号 Unicode 块 (U +2600 + 26FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MiscellaneousSymbolsandArrows">
+      <summary>获取零杂符号和箭头 Unicode 块 (U+2B00-U+2BFF)。</summary>
+      <returns>其他符号和箭头 Unicode 块 (U + 2B00 + 2BFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MiscellaneousTechnical">
+      <summary>获取零杂技术用符号 Unicode 块 (U+2300-U+23FF)。</summary>
+      <returns>其他技术 Unicode 块 (U +2300 + 23FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.ModifierToneLetters">
+      <summary>获取修饰音调字母 Unicode 块 (U+A700-U+A71F)。</summary>
+      <returns>修饰音调字母 Unicode 块 (U + A700 + A71F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Mongolian">
+      <summary>获取蒙古语 Unicode 块 (U+1800-U+18AF)。</summary>
+      <returns>蒙古语 Unicode 块 (U +1800 + 18AF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Myanmar">
+      <summary>获取缅甸语 Unicode 块 (U+1000-U+109F)。</summary>
+      <returns>缅甸语 Unicode 块 (U +1000 + 109F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MyanmarExtendedA">
+      <summary>获取缅甸语扩充-A Unicode 块 (U+AA60-U+AA7F)。</summary>
+      <returns>缅甸语-A Unicode 块 (U + AA60 + AA7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.MyanmarExtendedB">
+      <summary>获取缅甸语扩充-B Unicode 块 (U+A9E0-U+A9FF)。</summary>
+      <returns>缅甸语扩展-B Unicode 块 (U + A9E0 + A9FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.NewTaiLue">
+      <summary>获取西双版纳新傣文 Unicode 块 (U+1980-U+19DF)。</summary>
+      <returns>西双版纳新傣文 Unicode 块 (U +1980 + 19DF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.NKo">
+      <summary>获取 NKo Unicode 块 (U+07C0-U+07FF)。</summary>
+      <returns> (U + 07C0 + 07FF) 的 NKo Unicode 块。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.None">
+      <summary>获取空 Unicode 范围。</summary>
+      <returns>不包含任何元素的 Unicode 范围。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.NumberForms">
+      <summary>获取数字形式 Unicode 块 (U+2150-U+218F)。</summary>
+      <returns>数字形式 Unicode 块 (U +2150 + 218F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Ogham">
+      <summary>获取欧甘文 Unicode 块 (U+1680-U+169F)。</summary>
+      <returns>单甘欧 Unicode 块 (U +1680 + 169F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.OlChiki">
+      <summary>获取欧甘语 Unicode 块 (U+1C50-U+1C7F)。</summary>
+      <returns>Ol 甘语 Unicode 块 (U + 1C50 + 1C7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.OpticalCharacterRecognition">
+      <summary>获取光学字符识别 Unicode 块 (U+2440-U+245F)。</summary>
+      <returns>光学字符识别 Unicode 块 (U +2440 + 245F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Oriya">
+      <summary>获取奥里亚语 Unicode 块 (U+0B00-U+0B7F)。</summary>
+      <returns>奥利雅文 Unicode 块 (U + 0B00 + 0B7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Phagspa">
+      <summary>获取八思巴文 Unicode 块 (U+A840-U+A87F)。</summary>
+      <returns>八思巴文 Unicode 块 (U + A840 + A87F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.PhoneticExtensions">
+      <summary>获取音标扩充 Unicode 块 (U+1D00-U+1D7F)。</summary>
+      <returns>拼音扩展 Unicode 块 (U + 1D00 + 1D7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.PhoneticExtensionsSupplement">
+      <summary>获取音标扩充增补 Unicode 块 (U+1D80-U+1DBF)。</summary>
+      <returns>拼音扩展补充了 Unicode 块 (U + 1D80 + 1DBF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Rejang">
+      <summary>获取勒姜语 Unicode 块 (U+A930-U+A95F)。</summary>
+      <returns>勒姜语 Unicode 块 (U + A930 + A95F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Runic">
+      <summary>获取古北欧文 Unicode 块 (U+16A0-U+16FF)。</summary>
+      <returns>北欧古字 Unicode 块 (U + 16A0 + 16FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Samaritan">
+      <summary>获取撒马利亚文 Unicode 块 (U+0800-U+083F)。</summary>
+      <returns>撒马利亚文 Unicode 块 (U +0800 + 083F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Saurashtra">
+      <summary>获取索拉什特拉文 Unicode 块 (U+A880-U+A8DF)。</summary>
+      <returns>索拉什特拉 Unicode 块 (U + A880 + A8DF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Sinhala">
+      <summary>获取僧伽罗语 Unicode 块 (U+0D80-U+0DFF)。</summary>
+      <returns>僧伽罗语 Unicode 块 (U + 0D80 + 0DFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SmallFormVariants">
+      <summary>获取小字变体 Unicode 块 (U+FE50-U+FE6F)。</summary>
+      <returns>小型窗体 Unicode 块 (U + FE50 + FE6F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SpacingModifierLetters">
+      <summary>获取进格的修饰字符 Unicode 块 (U+02B0-U+02FF)。</summary>
+      <returns>间距修饰符字母 Unicode 块 (U + 02B0 + 02FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Specials">
+      <summary>获取特殊字符 Unicode 块 (U+FFF0-U+FFFF)。</summary>
+      <returns>特惠 Unicode 块 (U + FFF0 + FFFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Sundanese">
+      <summary>获取巽他语 Unicode 块 (U+1B80-U+1BBF)。</summary>
+      <returns>巽他语 Unicode 块 (U + 1B80 + 1BBF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SundaneseSupplement">
+      <summary>获取巽他语增补 Unicode 块 (U+1CC0-U+1CCF)。</summary>
+      <returns>巽他语增补 Unicode 块 (U + 1CC0 + 1CCF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SuperscriptsandSubscripts">
+      <summary>获取上标和下标 Unicode 块 (U+2070-U+209F)。</summary>
+      <returns>上标和下标 Unicode 块 (U +2070 + 209F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SupplementalArrowsA">
+      <summary>获取增补箭头-A Unicode 块 (U+27F0-U+27FF)。</summary>
+      <returns>补充箭头-Unicode 块 (U + 27F0 + 27FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SupplementalArrowsB">
+      <summary>获取增补箭头-B Unicode 块 (U+2900-U+297F)。</summary>
+      <returns>补充箭头-B Unicode 块 (U +2900 + 297F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SupplementalMathematicalOperators">
+      <summary>获取增补数学运算符 Unicode 块 (U+2A00-U+2AFF)。</summary>
+      <returns>增补数学运算符 Unicode 块 (U + 2A00 + 2AFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SupplementalPunctuation">
+      <summary>获取增补标点 Unicode 块 (U+2E00-U+2E7F)。</summary>
+      <returns>补充标点 Unicode 块 (U + 2E00 + 2E7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SylotiNagri">
+      <summary>获取塞洛提纳格瑞文 Unicode 块 (U+A800-U+A82F)。</summary>
+      <returns> (U + A800 + A82F) 的</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Syriac">
+      <summary>获取叙利亚语 Unicode 块 (U+0700-U+074F)。</summary>
+      <returns>叙利亚语 Unicode 块 (U +0700 + 074F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.SyriacSupplement">
+      <summary>
+        <see cref="T:System.Text.Unicode.UnicodeRange" /> 对应于“Syriac Supplement”Unicode 块 (U+0860..U+086F)。</summary>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Tagalog">
+      <summary>获取塔加路语 Unicode 块 (U+1700-U+171F)。</summary>
+      <returns>塔) Unicode 块 (U +1700 + 171F。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Tagbanwa">
+      <summary>获取塔班瓦语 Unicode 块 (U+1760-U+177F)。</summary>
+      <returns>塔线 Unicode 块 (U +1760 + 177F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.TaiLe">
+      <summary>获取德宏傣文 Unicode 块 (U+1950-U+197F)。</summary>
+      <returns>德宏傣文 Unicode 块 (U +1950 + 197F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.TaiTham">
+      <summary>获取老傣文 Unicode 块 (U+1A20-U+1AAF)。</summary>
+      <returns>老傣文 Unicode 块 (U + 1A20 + 1AAF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.TaiViet">
+      <summary>获取泰乐语 Unicode 块 (U+AA80-U+AADF)。</summary>
+      <returns>泰乐语 Unicode 块 (U + AA80 + AADF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Tamil">
+      <summary>获取泰米尔语 Unicode 块 (U+0B80-U+0BFF)。</summary>
+      <returns>泰米尔语 Unicode 块 (U + 0B82 + 0BFA) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Telugu">
+      <summary>获取泰卢固语 Unicode 块 (U+0C00-U+0C7F)。</summary>
+      <returns>泰卢固语 Unicode 块 (U + 0C00 + 0C7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Thaana">
+      <summary>获取塔安那文 Unicode 块 (U+0780-U+07BF)。</summary>
+      <returns>塔线 Unicode 块 (U +0780 + 07BF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Thai">
+      <summary>获取泰语 Unicode 块 (U+0E00-U+0E7F)。</summary>
+      <returns>泰语 Unicode 块 (U + 0E00 + 0E7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Tibetan">
+      <summary>获取藏语 Unicode 块 (U+0F00-U+0FFF)。</summary>
+      <returns>藏语 Unicode 块 (U + 0F00 + 0FFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Tifinagh">
+      <summary>获取提夫纳语 Unicode 块 (U+2D30-U+2D7F)。</summary>
+      <returns>提夫纳语 Unicode 块 (U + 2D30 + 2D7F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.UnifiedCanadianAboriginalSyllabics">
+      <summary>获取加拿大统一土著语言符号 Unicode 块 (U+1400-U+167F)。</summary>
+      <returns>加拿大统一土著语言符号 Unicode 块 (U +1400 + 167F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.UnifiedCanadianAboriginalSyllabicsExtended">
+      <summary>获取加拿大统一土著语言符号扩充 Unicode 块 (U+18B0-U+18FF)。</summary>
+      <returns>统一的加拿大土著音节扩展 Unicode 块 (U + 18B0 + 18FF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.Vai">
+      <summary>获取瓦伊语 Unicode 块 (U+A500-U+A63F)。</summary>
+      <returns>瓦依语 Unicode 块 (U + A500 + A63F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.VariationSelectors">
+      <summary>获取变体选择器 Unicode 块 (U+FE00-U+FE0F)。</summary>
+      <returns>变体选择器 Unicode 块 (U + FE00 + FE0F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.VedicExtensions">
+      <summary>获取吠陀扩充 Unicode 块 (U+1CD0-U+1CFF)。</summary>
+      <returns>吠陀梵语 Extension Unicode 块 (U + 1CD0 + 1CFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.VerticalForms">
+      <summary>获取竖排表单 Unicode 块 (U+FE10-U+FE1F)。</summary>
+      <returns>垂直形式 Unicode 块 (U + FE10 + FE1F) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.YijingHexagramSymbols">
+      <summary>获取易经八卦符号 Unicode 块 (U+4DC0-U+4DFF)。</summary>
+      <returns>Yijing 符号 Unicode 块 (U + 4DC0 + 4DFF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.YiRadicals">
+      <summary>获取彝文字根 Unicode 块 (U+A490-U+A4CF)。</summary>
+      <returns>彝语字根 Unicode 块 (U + A490 + A4CF) 。</returns>
+    </member>
+    <member name="P:System.Text.Unicode.UnicodeRanges.YiSyllables">
+      <summary>获取彝文音节 Unicode 块 (U+A000-U+A48F)。</summary>
+      <returns>彝语音节 Unicode 块 (U + A000 + A48F) 。</returns>
+    </member>
+  </members>
+</doc>

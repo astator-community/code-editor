@@ -1,0 +1,1578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Formats.Asn1</name>
+  </assembly>
+  <members>
+    <member name="T:System.Formats.Asn1.Asn1Tag">
+      <summary>此类型表示 ASN.1 标记，如 ITU-T 建议 X.680 中所述。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.Boolean">
+      <summary>表示布尔值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.ConstructedBitString">
+      <summary>表示采用结构化编码的位字符串值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.ConstructedOctetString">
+      <summary>表示采用结构化编码的八进制字符串值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.Enumerated">
+      <summary>表示枚举值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.GeneralizedTime">
+      <summary>表示 GeneralizedTime 值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.Integer">
+      <summary>表示整数值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.Null">
+      <summary>表示 <see langword="null" /> 值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.ObjectIdentifier">
+      <summary>表示对象标识符值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.PrimitiveBitString">
+      <summary>表示采用原始编码的位字符串值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.PrimitiveOctetString">
+      <summary>表示采用原始编码的八进制字符串值的通用类标记。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.Sequence">
+      <summary>表示序列值的通用类标记（始终采用结构化编码）。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.SetOf">
+      <summary>表示 SetOf 值的通用类标记（始终采用结构化编码）。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.Asn1Tag.UtcTime">
+      <summary>表示 UtcTime 值的通用类标记。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.#ctor(System.Formats.Asn1.TagClass,System.Int32,System.Boolean)">
+      <summary>为指定标记类中的指定值创建 <see cref="T:System.Formats.Asn1.Asn1Tag" />。</summary>
+      <param name="tagClass">此标记的标记类。</param>
+      <param name="tagValue">此标记的数值。</param>
+      <param name="isConstructed">对于构造标记为 <see langword="true" />，对于原始标记为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="tagClass" /> 不是已知值。
+-或- <paramref name="tagValue" /> 为负数。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.#ctor(System.Formats.Asn1.UniversalTagNumber,System.Boolean)">
+      <summary>为通用类中的标记创建 <see cref="T:System.Formats.Asn1.Asn1Tag" />。</summary>
+      <param name="universalTagNumber">枚举值之一，指定此标记的语义类型。</param>
+      <param name="isConstructed">对于构造标记为 <see langword="true" />，对于原始标记为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="universalTagNumber" /> 不是已知值。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.AsConstructed">
+      <summary>生成一个具有相同的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 值的标记，但其 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" /> 为 <see langword="true" />。</summary>
+      <returns>一个具有相同的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 值的标记，但其 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" /> 为 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.AsPrimitive">
+      <summary>生成一个具有相同的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 值的标记，但其 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" /> 为 <see langword="false" />。</summary>
+      <returns>一个具有相同的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 值的标记，但其 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" /> 为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.CalculateEncodedSize">
+      <summary>报告此标记的 BER 编码所需的字节数。</summary>
+      <returns>此标记的 BER 编码所需的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.Decode(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>读取从 <paramref name="source" /> 开始的 BER 编码标记。</summary>
+      <param name="source">开头为 BER 编码的标记的只读字节序列。</param>
+      <param name="bytesConsumed">当此方法返回时，包含构成编码标记的字节数。 该参数未经初始化即被处理。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">提供的数据无法解码为标记。</exception>
+      <returns>解码的标记。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.Encode(System.Span{System.Byte})">
+      <summary>将此标记的 BER 编码形式写入到 <paramref name="destination" />。</summary>
+      <param name="destination">应将编码标记写入到的位置的开头。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destination" />.<see cref="P:System.Span`1.Length" /> &lt; <see cref="M:System.Formats.Asn1.Asn1Tag.CalculateEncodedSize" />。</exception>
+      <returns>写入到 <paramref name="destination" /> 的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.Equals(System.Formats.Asn1.Asn1Tag)">
+      <summary>测试 <paramref name="other" /> 的编码是否与此标记相同。</summary>
+      <param name="other">要进行相等性测试的标记。</param>
+      <returns>如果 <paramref name="other" /> 具有相同的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" />、<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.Equals(System.Object)">
+      <summary>测试 <paramref name="obj" /> 是否是 <see cref="T:System.Formats.Asn1.Asn1Tag" /> 并且与此标记的编码相同。</summary>
+      <param name="obj">要进行值相等性测试的对象</param>
+      <returns>如果 <paramref name="obj" /> 不是 <see cref="T:System.Formats.Asn1.Asn1Tag" />，则为 <see langword="false" />；否则为 <see cref="M:System.Formats.Asn1.Asn1Tag.Equals(System.Formats.Asn1.Asn1Tag)" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.HasSameClassAndValue(System.Formats.Asn1.Asn1Tag)">
+      <summary>测试 <paramref name="other" /> 的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 和 <see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 值是否与此标记相同，不比较 <see cref="P:System.Formats.Asn1.Asn1Tag.IsConstructed" />。</summary>
+      <param name="other">要进行概念相等性测试的标记。</param>
+      <returns>如果 <paramref name="other" /> 的 <see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" />、<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 与此标记相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.op_Equality(System.Formats.Asn1.Asn1Tag,System.Formats.Asn1.Asn1Tag)">
+      <summary>测试两个 <see cref="T:System.Formats.Asn1.Asn1Tag" /> 值是否具有相同的 BER 编码。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 具有相同的 BER 编码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.op_Inequality(System.Formats.Asn1.Asn1Tag,System.Formats.Asn1.Asn1Tag)">
+      <summary>测试两个 <see cref="T:System.Formats.Asn1.Asn1Tag" /> 值是否具有不同的 BER 编码。</summary>
+      <param name="left">要比较的第一个值。</param>
+      <param name="right">要比较的第二个值。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 具有不同的 BER 编码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.ToString">
+      <summary>提供此标记的便于调试的文本表示形式。</summary>
+      <returns>此标记的便于调试的文本表示形式。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.TryDecode(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.Asn1Tag@,System.Int32@)">
+      <summary>尝试读取从 <paramref name="source" /> 开始的 BER 编码的标记。</summary>
+      <param name="source">开头为 BER 编码的标记的只读字节序列。</param>
+      <param name="tag">解码的标记。</param>
+      <param name="bytesConsumed">当此方法返回时，包含构成编码标记的字节数，失败时为 0。 该参数未经初始化即被处理。</param>
+      <returns>如果标记已正确解码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.Asn1Tag.TryEncode(System.Span{System.Byte},System.Int32@)">
+      <summary>尝试将此标记的 BER 编码形式写入到 <paramref name="destination" />。</summary>
+      <param name="destination">应将编码标记写入到的位置的开头。</param>
+      <param name="bytesWritten">成功时将收到 <see cref="M:System.Formats.Asn1.Asn1Tag.CalculateEncodedSize" /> 的值，失败时为 0。</param>
+      <returns>如果为以下值则为 <see langword="false" />：<paramref name="destination" />.<see cref="P:System.Span`1.Length" /> &lt; <see cref="M:System.Formats.Asn1.Asn1Tag.CalculateEncodedSize" />()，否则为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Formats.Asn1.Asn1Tag.IsConstructed">
+      <summary>指示标记表示结构化编码 (<see langword="true" />) 还是原始编码 (<see langword="false" />)。</summary>
+    </member>
+    <member name="P:System.Formats.Asn1.Asn1Tag.TagClass">
+      <summary>此标记所属于的标记类。</summary>
+    </member>
+    <member name="P:System.Formats.Asn1.Asn1Tag.TagValue">
+      <summary>此标记的数值。</summary>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnContentException">
+      <summary>无法成功解码已编码的 ASN.1 值时引发的异常。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnContentException.#ctor">
+      <summary>使用默认消息初始化 <see cref="T:System.Formats.Asn1.AsnContentException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnContentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Formats.Asn1.AsnContentException" /> 类的新实例。</summary>
+      <param name="info">承载序列化对象数据的对象。</param>
+      <param name="context">关于来源和目标的上下文信息</param>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnContentException.#ctor(System.String)">
+      <summary>使用提供的消息初始化 <see cref="T:System.Formats.Asn1.AsnContentException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnContentException.#ctor(System.String,System.Exception)">
+      <summary>使用提供的消息和引发此异常的异常初始化 <see cref="T:System.Formats.Asn1.AsnContentException" /> 类的新实例。</summary>
+      <param name="message">解释异常原因的错误消息。</param>
+      <param name="inner">导致当前异常的异常。</param>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnDecoder">
+      <summary>提供了一种无状态方法用于解码 BER、CER 或 DER 编码的 ASN.1 数据。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadBitString(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取位字符串值，以返回新数组内容。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>包含位字符串值内容的数组。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadBoolean(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取布尔值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 1）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadCharacterString(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.UniversalTagNumber,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记和编码类型的字符串值，以返回解码字符串。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="encodingType">枚举值之一，表示要处理的值类型。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。
+-或- <paramref name="encodingType" /> 不是已知的字符串类型。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 字符串未成功解码。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 与 <paramref name="encodingType" /> 不同。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadEncodedValue(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Int32@)">
+      <summary>使用指定的编码规则在 <paramref name="source" /> 缓冲区的开头查找编码值的内容范围。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="contentOffset">此方法返回时，为内容有效负载相对于 <paramref name="source" /> 起始位置的偏移量。
+该参数未经初始化即被处理。</param>
+      <param name="contentLength">此方法返回时，为内容有效负载中的字节数（可能为 0）。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">
+        <paramref name="source" /> 不表示在指定编码规则下编码的值。</exception>
+      <returns>标识内容的标记。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadEnumeratedBytes(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取枚举值，进而以缓冲区切片形式返回内容。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>缓冲区切片包含带符号的 Big Endian 格式的枚举值的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadEnumeratedValue(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Type,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取枚举，并将其转换为由 <paramref name="enumType" /> 指定的非 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="enumType">表示目标类型的类型对象。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <paramref name="enumType" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="enumType" /> 不是一个枚举类型。
+-或- <paramref name="enumType" /> 是使用 <see cref="T:System.FlagsAttribute" /> 声明的。
+-或- <paramref name="enumType" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="enumType" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="enumType" /> 为 <see langword="null" />。</exception>
+      <returns>转换为 <paramref name="enumType" /> 的枚举值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadEnumeratedValue``1(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取枚举，并将其转换为由 <typeparamref name="TEnum" /> 指定的非 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <typeparam name="TEnum">目标枚举类型</typeparam>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <typeparamref name="TEnum" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <typeparamref name="TEnum" /> 不是一个枚举类型。
+-或- <typeparamref name="TEnum" /> 是使用 <see cref="T:System.FlagsAttribute" /> 声明的。
+-或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>转换为 <typeparamref name="TEnum" /> 的枚举值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadGeneralizedTime(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 GeneralizedTime 值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 24）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadInteger(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取整数值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的数字值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadIntegerBytes(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取整数值，进而以缓冲区切片形式返回内容。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>缓冲区切片包含带符号的 Big Endian 格式的整数值的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadNamedBitList(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 NamedBitList。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>编码值的位数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadNamedBitListValue(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Type,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 NamedBitList，并将其转换为由 <paramref name="flagsEnumType" /> 指定的 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="flagsEnumType">表示目标类型的类型对象。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <paramref name="flagsEnumType" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="flagsEnumType" /> 不是一个枚举类型。
+-或- 未使用 <see cref="T:System.FlagsAttribute" /> -或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 声明 <paramref name="flagsEnumType" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="flagsEnumType" /> 为 <see langword="null" /></exception>
+      <returns>转换为 <paramref name="flagsEnumType" /> 的 NamedBitList 值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadNamedBitListValue``1(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 NamedBitList，并将其转换为由 <typeparamref name="TFlagsEnum" /> 指定的 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <typeparam name="TFlagsEnum">目标枚举类型</typeparam>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <typeparamref name="TFlagsEnum" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <typeparamref name="TFlagsEnum" /> 不是一个枚举类型。
+-或- 未使用 <see cref="T:System.FlagsAttribute" /> -或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 声明 <typeparamref name="TFlagsEnum" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>转换为 <typeparamref name="TFlagsEnum" /> 的 NamedBitList 值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadNull(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 <see langword="null" /> 值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 5）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadObjectIdentifier(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取对象标识符值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 6）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的对象标识符，采用点分十进制表示法。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadOctetString(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取八进制字符串值，以返回新数组内容。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 4）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>包含八进制字符串值内容的数组。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadSequence(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 Sequence 或 Sequence-Of 值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="contentOffset">此方法返回时，为内容有效负载相对于 <paramref name="source" /> 起始位置的偏移量。
+该参数未经初始化即被处理。</param>
+      <param name="contentLength">此方法返回时，为内容有效负载中的字节数（可能为 0）。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 16）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadSetOf(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Int32@,System.Boolean,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 Set-Of 值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="contentOffset">此方法返回时，为内容有效负载相对于 <paramref name="source" /> 起始位置的偏移量。
+该参数未经初始化即被处理。</param>
+      <param name="contentLength">此方法返回时，为内容有效负载中的字节数（可能为 0）。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="skipSortOrderValidation">如果为 <see langword="true" />，则始终按显示的顺序接受数据，如果为 <see langword="false" />，则验证在编码规则说明需要排序时是否正确地对数据进行排序（CER 和 DER）。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 17）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.ReadUtcTime(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取 UtcTime 值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="twoDigitYearMax">此值所表示的最大年份。
+默认值 2049 表示 x.509 证书的 1950-2049 范围。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 24）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。
+-或- <paramref name="twoDigitYearMax" /> 不在 [99, 9999] 的范围内。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadBitString(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中将位字符串值复制到 <paramref name="destination" />。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="bytesWritten">此方法返回时，为写入 <paramref name="destination" /> 的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="destination" /> 与 <paramref name="source" /> 重叠。</exception>
+      <returns>如果 <paramref name="destination" /> 足以接收位字符串的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadCharacterString(System.ReadOnlySpan{System.Byte},System.Span{System.Char},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.UniversalTagNumber,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中读取字符串值，进而将已解码的字符串复制到提供的目标缓冲区。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="encodingType">枚举值之一，表示要处理的值类型。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="charsWritten">此方法返回时，为写入 <paramref name="destination" /> 的字符数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。
+-或- <paramref name="encodingType" /> 不是已知的字符串类型。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 字符串未成功解码。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 与 <paramref name="encodingType" /> 不同。</exception>
+      <returns>如果 <paramref name="destination" /> 有足够的长度来接收值，则为 <see langword="true" /> 并推进读取器，否则为 <see langword="false" />，且读取器不会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadCharacterStringBytes(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.Asn1Tag,System.Int32@,System.Int32@)">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中读取字符串值，以将未处理的字节复制到所提供的目标缓冲区。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="bytesWritten">成功后，将收到已写入 <paramref name="destination" /> 的字节数。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 不是字符串标记类型。
+-或- <paramref name="destination" /> 与 <paramref name="source" /> 重叠。</exception>
+      <returns>如果 <paramref name="destination" /> 足以接收位未处理字符串的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadEncodedValue(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.Asn1Tag@,System.Int32@,System.Int32@,System.Int32@)">
+      <summary>尝试使用指定编码规则查找 <paramref name="source" /> 缓冲区开头编码值的内容范围。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="tag">此方法返回时，为标识内容的标记。
+该参数未经初始化即被处理。</param>
+      <param name="contentOffset">此方法返回时，为内容有效负载相对于 <paramref name="source" /> 起始位置的偏移量。
+该参数未经初始化即被处理。</param>
+      <param name="contentLength">此方法返回时，为内容有效负载中的字节数（可能为 0）。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <returns>如果 <paramref name="source" /> 表示指定编码规则的有效结构编码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadInt32(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中读取带符号的 32 位值形式的整数值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="value">成功时，将收到解释的数值。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果整数表示值介于 <see cref="F:System.Int32.MinValue" /> 和 <see cref="F:System.Int32.MaxValue" />（含）之间，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadInt64(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int64@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中读取带符号的 64 位值形式的整数值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="value">成功时，将收到解释的数值。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果整数表示值介于 <see cref="F:System.Int64.MinValue" /> 和 <see cref="F:System.Int64.MaxValue" />（含）之间，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadOctetString(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中获取八进制字符串值，以将值复制到所提供的目标缓冲区。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="bytesWritten">此方法返回时，为写入 <paramref name="destination" /> 的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 4）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="destination" /> 与 <paramref name="source" /> 重叠。</exception>
+      <returns>如果 <paramref name="destination" /> 足以接收八进制字符串的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadPrimitiveBitString(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Int32@,System.ReadOnlySpan{System.Byte}@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>如果值包含在单个（基元）编码中，则尝试在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中获取位字符串值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。
+该参数未经初始化即被处理。</param>
+      <param name="value">成功时，将接收与位字符串的值相对应的输入缓冲区的切片。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果位字符串值具有基元编码，并且所有报告为“未使用”的位均设置为 0，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadPrimitiveCharacterStringBytes(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.Asn1Tag,System.ReadOnlySpan{System.Byte}@,System.Int32@)">
+      <summary>如果值包含在单个（基元）编码中，则尝试在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中获取未处理的字符串值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <param name="value">成功时，将接收与位字符串的值相对应的输入缓冲区的切片。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 不是字符串标记类型。</exception>
+      <returns>如果该字符串值具有基元编码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadPrimitiveOctetString(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.ReadOnlySpan{System.Byte}@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>如果值包含在单个（基元）编码中，则尝试在指定编码规则下，从带有指定标记的 <paramref name="source" /> 中获取八进制字符串值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="value">成功时，将接收与八进制字符串的值相对应的输入缓冲区的切片。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 4）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果该八进制字符串值具有基元编码，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadUInt32(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.UInt32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中读取无符号 32 位值形式的整数值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="value">成功时，将收到解释的数值。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果整数表示值介于 <see cref="F:System.UInt32.MinValue" /> 和 <see cref="F:System.UInt32.MaxValue" />（含）之间，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnDecoder.TryReadUInt64(System.ReadOnlySpan{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.UInt64@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>在指定编码规则下，尝试从带有指定标记的 <paramref name="source" /> 中读取无符号 64 位值形式的整数值。</summary>
+      <param name="source">包含编码数据的缓冲区。</param>
+      <param name="ruleSet">解释数据时要使用的编码约束。</param>
+      <param name="value">成功时，将收到解释的数值。
+该参数未经初始化即被处理。</param>
+      <param name="bytesConsumed">此方法返回时，为编码值的字节总数。
+该参数未经初始化即被处理。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果整数表示值介于 <see cref="F:System.UInt64.MinValue" /> 和 <see cref="F:System.UInt64.MaxValue" />（含）之间，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnEncodingRules">
+      <summary>
+        <see cref="T:System.Formats.Asn1.AsnReader" /> 或 <see cref="T:System.Formats.Asn1.AsnWriter" /> 的编码规则集。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.AsnEncodingRules.BER">
+      <summary>ITU-T X.690 基本编码规则</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.AsnEncodingRules.CER">
+      <summary>ITU-T X.690 规范编码规则</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.AsnEncodingRules.DER">
+      <summary>ITU-T X.690 可辨别编码规则</summary>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnReader">
+      <summary>用于 BER 编码、CER 编码或 DER 编码的 ASN.1 数据的监控状态的只进读取器。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.#ctor(System.ReadOnlyMemory{System.Byte},System.Formats.Asn1.AsnEncodingRules,System.Formats.Asn1.AsnReaderOptions)">
+      <summary>使用给定的规则集对 <paramref name="data" /> 构造 <see cref="T:System.Formats.Asn1.AsnReader" />。</summary>
+      <param name="data">要读取的数据。</param>
+      <param name="ruleSet">对读取器的编码约束。</param>
+      <param name="options">读取器的附加选项。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.PeekContentBytes">
+      <summary>获取下一个编码值的内容八进制（字节）的 <see cref="T:System.ReadOnlyMemory`1" /> 视图（读取器不会前进）。</summary>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">读取器定位在当前编码规则下的标记或长度无效的点上。</exception>
+      <returns>下一个编码值的内容八进制字节。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.PeekEncodedValue">
+      <summary>获取下一个编码值的 <see cref="T:System.ReadOnlyMemory`1" /> 视图（读取器不会前进）。 对于不确定长度的编码，这包括内容结束标记。</summary>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">读取器定位在当前编码规则下的标记或长度无效的点上。</exception>
+      <returns>下一个编码值的字节。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.PeekTag">
+      <summary>读取下一个数据位置的编码标记（读取器不会前进）。</summary>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">不能在读取器的当前位置对标记进行解码。</exception>
+      <returns>已解码的标记值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadBitString(System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 BIT STRING 值，并以字节数组形式返回该值。</summary>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 1）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>一个新分配的、精确大小的数组中的值的副本。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadBoolean(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的布尔值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 1）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadCharacterString(System.Formats.Asn1.UniversalTagNumber,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记和编码类型的字符串值，并以字符串形式返回该解码值。</summary>
+      <param name="encodingType">枚举值之一，表示要处理的值类型。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="encodingType" /> 不是一个已知的字符串类型。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 字符串未成功解码。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 与 <paramref name="encodingType" /> 不同。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadEncodedValue">
+      <summary>获取下一个编码值的 <see cref="T:System.ReadOnlyMemory`1" /> 视图，并推进已超过的读取器。 对于不确定长度的编码，这包括内容结束标记。</summary>
+      <returns>下一个编码值的 <see cref="T:System.ReadOnlyMemory`1" /> 视图。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadEnumeratedBytes(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的枚举值，并以原始数据的 <see cref="T:System.ReadOnlyMemory`1" /> 形式返回内容。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>带符号的 Big Endian 格式的枚举值的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadEnumeratedValue(System.Type,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的枚举值，并将其转换为由 <paramref name="enumType" /> 指定的非 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="enumType">表示目标类型的类型对象。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <paramref name="enumType" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="enumType" /> 不是一个枚举类型。
+-或- <paramref name="enumType" /> 是使用 <see cref="T:System.FlagsAttribute" /> 声明的。
+-或- <paramref name="enumType" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="enumType" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="enumType" /> 为 <see langword="null" />。</exception>
+      <returns>转换为 <paramref name="enumType" /> 的枚举值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadEnumeratedValue``1(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的枚举值，并将其转换为由 <typeparamref name="TEnum" /> 指定的非 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 10）。</param>
+      <typeparam name="TEnum">目标枚举类型</typeparam>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <typeparamref name="TEnum" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <typeparamref name="TEnum" /> 不是一个枚举类型。
+-或- <typeparamref name="TEnum" /> 是使用 <see cref="T:System.FlagsAttribute" /> 声明的。
+-或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>转换为 <typeparamref name="TEnum" /> 的枚举值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadGeneralizedTime(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 GeneralizedTime 值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 24）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadInteger(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的整数值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadIntegerBytes(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的整数值，并以原始数据的 <see cref="T:System.ReadOnlyMemory`1" /> 的形式返回内容。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>带符号的 Big Endian 格式的整数值的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadNamedBitList(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 NamedBitList 值。</summary>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>编码值的位数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadNamedBitListValue(System.Type,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 NamedBitList 值，并将其转换为由 <paramref name="flagsEnumType" /> 指定的 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="flagsEnumType">表示目标类型的类型对象。</param>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <paramref name="flagsEnumType" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="flagsEnumType" /> 不是一个枚举类型。
+-或- 未使用 <see cref="T:System.FlagsAttribute" /> -或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 声明 <paramref name="flagsEnumType" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="flagsEnumType" /> 为 <see langword="null" /></exception>
+      <returns>转换为 <paramref name="flagsEnumType" /> 的 NamedBitList 值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadNamedBitListValue``1(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 NamedBitList 值，并将其转换为由 <typeparamref name="TFlagsEnum" /> 指定的 [<see cref="T:System.FlagsAttribute" />] 枚举。</summary>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <typeparam name="TFlagsEnum">目标枚举类型</typeparam>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 编码值太大，无法容纳 <typeparamref name="TFlagsEnum" /> 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <typeparamref name="TFlagsEnum" /> 不是一个枚举类型。
+-或- 未使用 <see cref="T:System.FlagsAttribute" /> -或- <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 声明 <typeparamref name="TFlagsEnum" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>转换为 <typeparamref name="TFlagsEnum" /> 的 NamedBitList 值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadNull(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 NULL 值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 5）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadObjectIdentifier(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 OBJECT IDENTIFIER 值，并以用点分隔的十进制格式字符串形式返回该值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 6）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>采用点分隔的十进制格式字符串形式的对象标识符。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadOctetString(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有通用 4 标记的 OCTET STRING 值，并以字节数组形式返回该值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 4）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>一个新分配的、精确大小的数组中的值的副本。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 SEQUENCE 或 SEQUENCE-OF 值，并将结果作为定位在序列中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的一个新读取器的形式返回。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 16）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>定位在序列中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的新的读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadSetOf(System.Boolean,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 SET-OF 值，并将结果作为定位在 set-of 中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的一个新读取器返回。</summary>
+      <param name="skipSortOrderValidation">如果为 <see langword="true" />，则始终按显示的顺序接受数据，如果为 <see langword="false" />，则验证在编码规则说明需要排序时是否正确地对数据进行排序（CER 和 DER）。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 17）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>定位在 set-of 中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的新的读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 SET-OF 值，并使用来自构造函数（默认为 <see langword="false" />）的 <see cref="P:System.Formats.Asn1.AsnReaderOptions.SkipSetSortOrderVerification" /> 值将结果作为定位在 set-of 中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的一个新读取器返回。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 17）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>定位在 set-of 中的第一个值处（或带有 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> == <see langword="false" />）的新的读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadUtcTime(System.Int32,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 UTCTime 值。</summary>
+      <param name="twoDigitYearMax">此值所表示的最大年份。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 23）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ReadUtcTime(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记并使用传递给构造函数的选项中的 <see cref="P:System.Formats.Asn1.AsnReaderOptions.UtcTimeTwoDigitYearMax" /> 值（默认值为 2049）的 UTCTime 值。</summary>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 23）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>已解码的值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.ThrowIfNotEmpty">
+      <summary>如果读取器包含剩余数据，则会引发标准化 <see cref="T:System.Formats.Asn1.AsnContentException" />，如果 <see cref="P:System.Formats.Asn1.AsnReader.HasData" /> 返回 <see langword="false" />，则不执行任何功能。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadBitString(System.Span{System.Byte},System.Int32@,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 BIT STRING 值，并将该值复制到所提供的目标缓冲区。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。</param>
+      <param name="bytesWritten">成功后，将收到已写入 <paramref name="destination" /> 的字节数。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 1）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果 <paramref name="destination" /> 有足够的长度来接收值，则为 <see langword="true" /> 并推进读取器，否则为 <see langword="false" />，且读取器不会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadCharacterString(System.Span{System.Char},System.Formats.Asn1.UniversalTagNumber,System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记和编码类型的字符串值，并将已解码的值复制到所提供的目标缓冲区。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="encodingType">枚举值之一，表示要处理的值类型。</param>
+      <param name="charsWritten">成功后，将收到已写入 <paramref name="destination" /> 的字符数。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="encodingType" /> 不是一个已知的字符串类型。</exception>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。
+-或- 字符串未成功解码。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 与 <paramref name="encodingType" /> 不同。</exception>
+      <returns>如果 <paramref name="destination" /> 有足够的长度来接收值，则为 <see langword="true" /> 并推进读取器，否则为 <see langword="false" />，且读取器不会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadCharacterStringBytes(System.Span{System.Byte},System.Formats.Asn1.Asn1Tag,System.Int32@)">
+      <summary>读取下一个值，作为带有指定标记的字符串值，并将未处理的字节复制到所提供的目标缓冲区。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <param name="bytesWritten">成功后，将收到已写入 <paramref name="destination" /> 的字节数。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 不是字符串标记类型。</exception>
+      <returns>如果 <paramref name="destination" /> 有足够的长度来接收值，则为 <see langword="true" /> 并推进读取器，否则为 <see langword="false" />，且读取器不会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadInt32(System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>尝试读取下一个带有指定标记并作为有符号的 32 位值的整数值。</summary>
+      <param name="value">成功后，将收到解码后的值。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果值不在 <see cref="F:System.Int32.MinValue" /> 和 <see cref="F:System.Int32.MaxValue" />（含）之间，则为 <see langword="false" />，并且不会推进读取器；否则，将返回 <see langword="true" />，且读取器会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadInt64(System.Int64@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>尝试读取下一个带有指定标记并作为有符号的 64 位值的整数值。</summary>
+      <param name="value">成功后，将收到解码后的值。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果值不在 <see cref="F:System.Int64.MinValue" /> 和 <see cref="F:System.Int64.MaxValue" />（含）之间，则为 <see langword="false" />，并且不会推进读取器；否则，将返回 <see langword="true" />，且读取器会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadOctetString(System.Span{System.Byte},System.Int32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 OCTET STRING 值，并将该值复制到所提供的目标缓冲区。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="bytesWritten">成功后，将收到已写入 <paramref name="destination" /> 的字节数。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 4）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果 <paramref name="destination" /> 有足够的长度来接收值，则为 <see langword="true" /> 并推进读取器，否则为 <see langword="false" />，且读取器不会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadPrimitiveBitString(System.Int32@,System.ReadOnlyMemory{System.Byte}@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>读取下一个值，作为带有指定标记的 BIT STRING 值，并将结果作为原始数据的 <see cref="T:System.ReadOnlyMemory`1" /> 返回。</summary>
+      <param name="unusedBitCount">成功时，将接收由编写器报告为“未使用”的最后一个字节中的位数。</param>
+      <param name="value">成功后，将收到与 BIT STRING 的值相对应的原始数据的 <see cref="T:System.ReadOnlyMemory`1" />。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 1）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果 BIT STRING 值具有基元编码，则为 <see langword="true" />，并推进读取器，否则为 <see langword="false" />，并且在读取器具有构造编码的情况下，不会推进读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadPrimitiveCharacterStringBytes(System.Formats.Asn1.Asn1Tag,System.ReadOnlyMemory{System.Byte}@)">
+      <summary>读取下一个值，作为带有指定标记的字符值，并将结果作为原始数据的未处理 <see cref="T:System.ReadOnlyMemory`1" /> 返回。</summary>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <param name="contents">成功后，将收到与字符串值相对应的原始数据的 <see cref="T:System.ReadOnlyMemory`1" />。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 不是字符串标记类型。</exception>
+      <returns>如果字符串值具有基元编码，则为 <see langword="true" />，并推进读取器，否则为 <see langword="false" />，并且在读取器具有构造编码的情况下，不会推进读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadPrimitiveOctetString(System.ReadOnlyMemory{System.Byte}@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>尝试读取下一个带有指定标记，并返回原始数据的 <see cref="T:System.ReadOnlyMemory`1" /> 内容的 OCTET STRING 值。</summary>
+      <param name="contents">成功后，将收到与 OCTET STRING 的值相对应的原始数据的 <see cref="T:System.ReadOnlyMemory`1" />。</param>
+      <param name="expectedTag">读取前要检查的标记。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果 OCTET STRING 值具有基元编码，则为 <see langword="true" />，并推进读取器，否则为 <see langword="false" />，并且在读取器具有构造编码的情况下，不会推进读取器。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadUInt32(System.UInt32@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>尝试读取下一个带有指定标记并作为无符号的 32 位值的整数值。</summary>
+      <param name="value">成功后，将收到解码后的值。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果值不在 <see cref="F:System.UInt32.MinValue" /> 和 <see cref="F:System.UInt32.MaxValue" />（含）之间，则为 <see langword="false" />，并且不会推进读取器；否则，将返回 <see langword="true" />，且读取器会前进。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnReader.TryReadUInt64(System.UInt64@,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>尝试读取下一个带有指定标记并作为无符号的 64 位值的整数值。</summary>
+      <param name="value">成功后，将收到解码后的值。</param>
+      <param name="expectedTag">读取前要检查的标记，或使用 <see langword="null" /> 作为默认标记（通用 2）。</param>
+      <exception cref="T:System.Formats.Asn1.AsnContentException">下一个值没有正确的标记。
+-或- 在当前编码规则下，长度编码无效。
+-或- 在当前编码规则下，内容无效。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="expectedTag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>如果值不在 <see cref="F:System.UInt64.MinValue" /> 和 <see cref="F:System.UInt64.MaxValue" />（含）之间，则为 <see langword="false" />，并且不会推进读取器；否则，将返回 <see langword="true" />，且读取器会前进。</returns>
+    </member>
+    <member name="P:System.Formats.Asn1.AsnReader.HasData">
+      <summary>获取有关读取器是否具有可供处理的剩余数据的指示。</summary>
+      <returns>
+        <see langword="true" /> 如果有更多数据可供读取器处理，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Formats.Asn1.AsnReader.RuleSet">
+      <summary>获取此读取器使用的编码规则。</summary>
+      <returns>此读取器使用的编码规则。</returns>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnReaderOptions">
+      <summary>指定修改 <see cref="T:System.Formats.Asn1.AsnReader" /> 的行为的选项。</summary>
+    </member>
+    <member name="P:System.Formats.Asn1.AsnReaderOptions.SkipSetSortOrderVerification">
+      <summary>获取或设置一个值，该值指示读取器是否应跳过对 Set 或 Set-Of 值的排序。</summary>
+      <returns>
+        <see langword="true" /> 如果读取器不应验证是否为当前编码规则正确地排序了集或值集，则为;否则为 <see langword="false" /> 。
+默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Formats.Asn1.AsnReaderOptions.UtcTimeTwoDigitYearMax">
+      <summary>获取或设置要用 UtcTime 值表示的最大年份。</summary>
+      <returns>用 UtcTime 值表示的最大年份。 默认值为2049。</returns>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnWriter">
+      <summary>用于 BER、CER 和 DER 编码的 ASN. 1 数据的编写器。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.#ctor(System.Formats.Asn1.AsnEncodingRules)">
+      <summary>使用一组给定的编码规则新建 <see cref="T:System.Formats.Asn1.AsnWriter" />。</summary>
+      <param name="ruleSet">编写器的编码约束。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未定义 <paramref name="ruleSet" />。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.CopyTo(System.Formats.Asn1.AsnWriter)">
+      <summary>将此编写器的值复制到另一个编写器。</summary>
+      <param name="destination">要接收值的编写器。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destination" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。
+-或- 此编写器为空。
+-或- 此编写器表示多个顶级值。
+-或- 此编写器值的编码方式与目标编写器的规则集不兼容。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.Encode">
+      <summary>返回包含编码值的新数组。</summary>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。</exception>
+      <returns>一个包含编码值的精确大小的数组。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.Encode(System.Span{System.Byte})">
+      <summary>将数据的已编码表示形式写入 <paramref name="destination" />。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。</exception>
+      <returns>写入到 <paramref name="destination" /> 的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.EncodedValueEquals(System.Formats.Asn1.AsnWriter)">
+      <summary>确定 <see cref="M:System.Formats.Asn1.AsnWriter.Encode" /> 是否生成与 <paramref name="other" /> 相同的输出。</summary>
+      <param name="other">编码值要比较的实例。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="other" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。</exception>
+      <returns>如果挂起的编码数据与 <paramref name="other" /> 相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.EncodedValueEquals(System.ReadOnlySpan{System.Byte})">
+      <summary>确定 <see cref="M:System.Formats.Asn1.AsnWriter.Encode" /> 是否生成与 <paramref name="other" /> 相同的输出。</summary>
+      <param name="other">要比较的编码值。</param>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。</exception>
+      <returns>如果挂起的编码数据与 <paramref name="other" /> 相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.GetEncodedLength">
+      <summary>获取将由 <see cref="M:System.Formats.Asn1.AsnWriter.TryEncode(System.Span{System.Byte},System.Int32@)" /> 写入的字节数。</summary>
+      <exception cref="T:System.InvalidOperationException">已调用 <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" />、<see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushOctetString(System.Nullable{System.Formats.Asn1.Asn1Tag})" />，但未使用相应的 Pop 方法。</exception>
+      <returns>将由 <see cref="M:System.Formats.Asn1.AsnWriter.TryEncode(System.Span{System.Byte},System.Int32@)" /> 写入的字节数。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PopOctetString(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>指示已关闭带有通用 4 标记的公开八进制字符串，以将编写器返回到父上下文。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 4）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.InvalidOperationException">编写器当前不在具有指定标记的八进制字符串中。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>指示已关闭带有特定标记的公开 Sequence，以将编写器返回到父上下文。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 16）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.InvalidOperationException">编写器当前不在具有指定标记的 Sequence 中。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>指示已关闭带有特定标记的公开 Set-Of，以将编写器返回到父上下文。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 17）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.InvalidOperationException">编写器当前不在具有指定标记的 Set-Of 中。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PushOctetString(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>开始写入带有指定标记的八进制字符串值。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 4）。</param>
+      <returns>将自动调用 <see cref="M:System.Formats.Asn1.AsnWriter.PopOctetString(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 的可释放值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>开始写入带有指定标记的 Sequence。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 16）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>将自动调用 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 的可释放值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>开始写入带有指定标记的 Set-Of。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 17）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <returns>将自动调用 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 的可释放值。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.Reset">
+      <summary>重置编写器使其不包含数据，且未释放资源。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.TryEncode(System.Span{System.Byte},System.Int32@)">
+      <summary>尝试将数据的已编码表示形式写入 <paramref name="destination" />。</summary>
+      <param name="destination">要写入的缓冲区。</param>
+      <param name="bytesWritten">成功后，将收到已写入 <paramref name="destination" /> 的字节数。</param>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Formats.Asn1.AsnWriter.PushSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PushSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 未通过 <see cref="M:System.Formats.Asn1.AsnWriter.PopSequence(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 或 <see cref="M:System.Formats.Asn1.AsnWriter.PopSetOf(System.Nullable{System.Formats.Asn1.Asn1Tag})" /> 关闭。</exception>
+      <returns>如果编码成功，则为 <see langword="true" />；如果 <paramref name="destination" /> 太小，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteBitString(System.ReadOnlySpan{System.Byte},System.Int32,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的位字符串值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="unusedBitCount">不具语义的尾随位数。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="value" /> 长度为 0 且 <paramref name="unusedBitCount" /> 不为 0 -或- <paramref name="value" /> 不为空，并且已设置 <paramref name="unusedBitCount" /> 标识的任何位。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="unusedBitCount" /> 不在范围 [0,7] 内。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteBoolean(System.Boolean,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的布尔值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 1）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于方法是不正确的</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteCharacterString(System.Formats.Asn1.UniversalTagNumber,System.ReadOnlySpan{System.Char},System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>使用指定的编码类型，以及与编码类型相对应的指定标记写入提供的字符串。</summary>
+      <param name="encodingType">枚举值之一，表示要使用的编码。</param>
+      <param name="str">要写入的字符串。</param>
+      <param name="tag">要写入的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="encodingType" /> 不是受限制的字符串编码类型。
+-或- <paramref name="encodingType" /> 是此方法当前不支持的受限制的字符串编码类型。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteCharacterString(System.Formats.Asn1.UniversalTagNumber,System.String,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>使用指定的编码类型，以及与编码类型相对应的指定标记写入提供的字符串。</summary>
+      <param name="encodingType">枚举值之一，表示要使用的编码。</param>
+      <param name="value">要写入的字符串。</param>
+      <param name="tag">要写入的标记，或使用 <see langword="null" /> 作为符合请求的编码类型的通用标记。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" /></exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="encodingType" /> 不是受限制的字符串编码类型。
+-或- <paramref name="encodingType" /> 是此方法当前不支持的受限制的字符串编码类型。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteEncodedValue(System.ReadOnlySpan{System.Byte})">
+      <summary>写入已编码的单个值。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.ArgumentException">无法在当前编码规则下读取 <paramref name="value" />。
+-或- <paramref name="value" /> 包含超出第一个值末尾的数据。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteEnumeratedValue(System.Enum,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将一个非 [<see cref="T:System.FlagsAttribute" />] 枚举值作为带“通用 10”标记的枚举写入。</summary>
+      <param name="value">要写入的装箱枚举值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 10）。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="value" /> 不是装箱枚举值。
+-或- 未装箱的 <paramref name="value" /> 类型被声明为 [<see cref="T:System.FlagsAttribute" />]。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteEnumeratedValue``1(``0,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将一个非 [<see cref="T:System.FlagsAttribute" />] 枚举值作为带“通用 10”标记的枚举写入。</summary>
+      <param name="value">要写入的装箱枚举值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 10）。</param>
+      <typeparam name="TEnum">要写入的非 [ <see cref="T:System.FlagsAttribute" /> ] 枚举类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <typeparamref name="TEnum" /> 不是枚举。
+-或- <typeparamref name="TEnum" /> 声明为 [<see cref="T:System.FlagsAttribute" />]。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteGeneralizedTime(System.DateTimeOffset,System.Boolean,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将提供的 <see cref="T:System.DateTimeOffset" /> 写入为带有指定的“通用 24”的 GeneralizedTime，可以选择排除秒的小数部分。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="omitFractionalSeconds">
+        <see langword="true" /> 可以将 <paramref name="value" /> 中秒的小数部分视为 0，即使存在非零值也是如此。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 24）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteInteger(System.Int64,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的整数值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteInteger(System.Numerics.BigInteger,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的整数值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteInteger(System.ReadOnlySpan{System.Byte},System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的整数值。</summary>
+      <param name="value">要以带符号 Big-Endian 顺序写入的整数值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentException">最多 9 个有效位设置完毕。
+-或- 最多 9 个有效位均未设置。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteInteger(System.UInt64,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的整数值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteIntegerUnsigned(System.ReadOnlySpan{System.Byte},System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的整数值。</summary>
+      <param name="value">要以无符号 Big-Endian 顺序写入的整数值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 2）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentException">最多 9 个有效位均未设置。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteNamedBitList(System.Collections.BitArray,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将位数组值作为带有指定标记的 NamedBitList 写入。</summary>
+      <param name="value">要写入的位</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteNamedBitList(System.Enum,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将 [<see cref="T:System.FlagsAttribute" />] 枚举值作为带有指定标记的 NamedBitList 写入。</summary>
+      <param name="value">要写入的装箱枚举值</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 3）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="value" /> 不是装箱枚举值。
+-或- 未装箱类型 <paramref name="value" /> 未声明为 [<see cref="T:System.FlagsAttribute" />]。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteNamedBitList``1(``0,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将 [<see cref="T:System.FlagsAttribute" />] 枚举值作为带有指定标记的 NamedBitList 写入。</summary>
+      <param name="value">要写入的枚举值</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 3）。</param>
+      <typeparam name="TEnum">
+        <see cref="T:System.FlagsAttribute" />要写入的 [] 枚举类型。</typeparam>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <typeparamref name="TEnum" /> 不是枚举值。
+-或- <typeparamref name="TEnum" /> 未声明为 [<see cref="T:System.FlagsAttribute" />]。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteNull(System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>使用指定标记写入 NULL。</summary>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 5）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteObjectIdentifier(System.ReadOnlySpan{System.Char},System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>使用指定标记写入对象标识符。</summary>
+      <param name="oidValue">要写入的对象标识符。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 6）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="oidValue" /> 不是有效的点分隔的十进制对象标识符。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteObjectIdentifier(System.String,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>使用指定标记写入对象标识符。</summary>
+      <param name="oidValue">要写入的对象标识符。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 6）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。
+-或- <paramref name="oidValue" /> 不是有效的点分隔的十进制对象标识符。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oidValue" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteOctetString(System.ReadOnlySpan{System.Byte},System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>写入带有指定标记的八进制字符串值。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 4）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteUtcTime(System.DateTimeOffset,System.Int32,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将提供的值作为带有指定标记的 UTCTime 写入，前提是该年份在允许范围内。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="twoDigitYearMax">在转换为 UTC 后 <paramref name="value" /> 的最大有效年份。
+对于 X.509 Time.utcTime 1950-2049 范围，则传递 <c>2049</c>。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 23）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="value" />.<see cref="P:System.DateTimeOffset.Year" /> （转换为 UTC 后）不在 (<paramref name="twoDigitYearMax" /> - 100, <paramref name="twoDigitYearMax" />) 范围内。</exception>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.WriteUtcTime(System.DateTimeOffset,System.Nullable{System.Formats.Asn1.Asn1Tag})">
+      <summary>将提供的值作为带有指定标记的 UTCTime 写入，接受两位数年份在上下文中有效。</summary>
+      <param name="value">要写入的值。</param>
+      <param name="tag">要写入的标记，或将 <see langword="null" /> 用作默认标记（通用 23）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagClass" /> 为 <see cref="F:System.Formats.Asn1.TagClass.Universal" />，但 <paramref name="tag" />.<see cref="P:System.Formats.Asn1.Asn1Tag.TagValue" /> 对于此方法而言是不正确的。</exception>
+    </member>
+    <member name="P:System.Formats.Asn1.AsnWriter.RuleSet">
+      <summary>获取此编写器使用的编码规则。</summary>
+      <returns>此编写器使用的编码规则。</returns>
+    </member>
+    <member name="T:System.Formats.Asn1.AsnWriter.Scope">
+      <summary>提供一个 <see cref="T:System.IDisposable" /> 目标，通过使用词法范围作为逻辑范围安全关闭打开的标记。</summary>
+    </member>
+    <member name="M:System.Formats.Asn1.AsnWriter.Scope.Dispose">
+      <summary>执行与释放或重置非托管资源关联的应用程序定义的任务。</summary>
+    </member>
+    <member name="T:System.Formats.Asn1.TagClass">
+      <summary>特定的 ASN 1 标记的标记类。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.TagClass.Application">
+      <summary>应用程序标记类</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.TagClass.ContextSpecific">
+      <summary>上下文特定的标记类</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.TagClass.Private">
+      <summary>私有标记类</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.TagClass.Universal">
+      <summary>通用标记类</summary>
+    </member>
+    <member name="T:System.Formats.Asn1.UniversalTagNumber">
+      <summary>ITU-T X.680 中通用类的标记分配。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.BitString">
+      <summary>Bit String 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.BMPString">
+      <summary>BMPString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Boolean">
+      <summary>Boolean 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Date">
+      <summary>Date 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.DateTime">
+      <summary>Date-Time 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Duration">
+      <summary>Duration 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Embedded">
+      <summary>Embedded-PDV 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.EndOfContents">
+      <summary>不定长度编码的内容结尾标记的保留标识符。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Enumerated">
+      <summary>Enumerated 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.External">
+      <summary>External 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.GeneralizedTime">
+      <summary>GeneralizedTime 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.GeneralString">
+      <summary>GeneralString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.GraphicString">
+      <summary>GraphicString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.IA5String">
+      <summary>IA5String 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.InstanceOf">
+      <summary>Instance-Of 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Integer">
+      <summary>Integer 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.ISO646String">
+      <summary>ISO646String (VisibleString) 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Null">
+      <summary>Null 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.NumericString">
+      <summary>NumericString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.ObjectDescriptor">
+      <summary>Object Descriptor 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.ObjectIdentifier">
+      <summary>Object Identifier 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.ObjectIdentifierIRI">
+      <summary>Object Identifier Internationalized Resource Identifier (IRI) 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.OctetString">
+      <summary>Octet String 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.PrintableString">
+      <summary>PrintableString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Real">
+      <summary>Real 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.RelativeObjectIdentifier">
+      <summary>Relative Object Identifier 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.RelativeObjectIdentifierIRI">
+      <summary>Relative Object Identifier Internationalized Resource Identifier (IRI) 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Sequence">
+      <summary>Sequence 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.SequenceOf">
+      <summary>Sequence-Of 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Set">
+      <summary>Set 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.SetOf">
+      <summary>Set-Of 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.T61String">
+      <summary>T61String (TeletexString) 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.TeletexString">
+      <summary>TeletexString (T61String) 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.Time">
+      <summary>Time 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.TimeOfDay">
+      <summary>Time-Of-Day 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.UniversalString">
+      <summary>UniversalString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.UnrestrictedCharacterString">
+      <summary>不受限制的字符串的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.UtcTime">
+      <summary>UTCTime 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.UTF8String">
+      <summary>UTF8String 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.VideotexString">
+      <summary>VideotexString 的通用类标记值。</summary>
+    </member>
+    <member name="F:System.Formats.Asn1.UniversalTagNumber.VisibleString">
+      <summary>VisibleString (ISO646String) 的通用类标记值。</summary>
+    </member>
+  </members>
+</doc>

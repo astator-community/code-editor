@@ -1,0 +1,1684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.NetworkInformation</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.NetworkInformation.DuplicateAddressDetectionState">
+      <summary>指定 IP 地址的当前状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.DuplicateAddressDetectionState.Deprecated">
+      <summary>此地址有效，但它的租约期限已快到期，应用程序不应使用它。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.DuplicateAddressDetectionState.Duplicate">
+      <summary>此地址不是唯一的。 此地址不应分配给网络接口。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.DuplicateAddressDetectionState.Invalid">
+      <summary>此地址无效。 无效的地址已过期，不再被分配给接口，应用程序不应将数据包发送到此地址。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.DuplicateAddressDetectionState.Preferred">
+      <summary>此地址有效而且它的使用是无限制的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.DuplicateAddressDetectionState.Tentative">
+      <summary>此地址的重复地址检测过程评估没有成功完成。 应用程序不应使用此地址，因为此地址已无效，发送给它的数据包将被丢弃。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.GatewayIPAddressInformation">
+      <summary>表示网关的 IP 地址。 此类无法实例化。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformation.#ctor">
+      <summary>初始化此类的成员。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformation.Address">
+      <summary>获取网关的 IP 地址。</summary>
+      <returns>包含网关的 IP 地址的 <see cref="T:System.Net.IPAddress" /> 对象。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.GatewayIPAddressInformationCollection">
+      <summary>存储一组 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 类型。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformationCollection" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Add(System.Net.NetworkInformation.GatewayIPAddressInformation)">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="address">要添加到集合的对象。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Clear">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Contains(System.Net.NetworkInformation.GatewayIPAddressInformation)">
+      <summary>检查集合中是否包含指定的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 对象。</summary>
+      <param name="address">要在集合中搜索的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 对象。</param>
+      <returns>如果集合中存在 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.CopyTo(System.Net.NetworkInformation.GatewayIPAddressInformation[],System.Int32)">
+      <summary>将此集合中的元素复制到 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 类型的一维数组。</summary>
+      <param name="array">接收集合副本的一维数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，在此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+  
+- 或 - 
+此 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 中的元素数大于从 <paramref name="count" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+      <exception cref="T:System.InvalidCastException">此 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 中的元素无法自动转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Remove(System.Net.NetworkInformation.GatewayIPAddressInformation)">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="address">要移除的对象。</param>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Count">
+      <summary>获取此集合中的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 类型数。</summary>
+      <returns>一个包含此集合中 <see cref="T:System.Int32" /> 类型的数目的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.IsReadOnly">
+      <summary>获取一个值，该值指示对此集合的访问是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Item(System.Int32)">
+      <summary>获取集合中指定索引处的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" />。</summary>
+      <param name="index">相关索引。</param>
+      <returns>位于集合中指定索引处的 <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IcmpV4Statistics">
+      <summary>提供本地计算机的 Internet 控制消息协议 IPv4 (ICMPv4) 统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IcmpV4Statistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IcmpV4Statistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRepliesReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“地址掩码应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“地址掩码应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRepliesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“地址掩码应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的“地址掩码应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRequestsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“地址掩码请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“地址掩码请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRequestsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“地址掩码请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的“地址掩码请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.DestinationUnreachableMessagesReceived">
+      <summary>获取由于数据包的目标中存在无法访问的地址而接收到的 Internet 控制消息协议版本 4 (ICMPv4) 消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“无法到达目标”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.DestinationUnreachableMessagesSent">
+      <summary>获取由于数据包的目标中存在无法访问的地址而发送的 Internet 控制消息协议版本 4 (ICMPv4) 消息的数目。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的“无法到达目标”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRepliesReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“回送应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP“回送应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRepliesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“回送应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP“回送应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRequestsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“回送请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP“回送请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRequestsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“回送请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP“回送请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ErrorsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4) 错误消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP 错误信息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ErrorsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4) 错误消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP 错误信息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.MessagesReceived">
+      <summary>获取接收到的 Internet 控制消息协议消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMPv4 消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.MessagesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4) 消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMPv4 消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ParameterProblemsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“参数问题”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP“参数问题”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ParameterProblemsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“参数问题”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP“参数问题”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.RedirectsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4) 重定向消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP 重定向消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.RedirectsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4) 重定向消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP 重定向消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.SourceQuenchesReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“源抑制”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“源抑制”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.SourceQuenchesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“源抑制”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的“源抑制”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimeExceededMessagesReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“超时”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的 ICMP“超时”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimeExceededMessagesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“超时”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的 ICMP“超时”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRepliesReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“时间戳应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“时间戳应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRepliesSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“时间戳应答”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的“时间戳应答”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRequestsReceived">
+      <summary>获取接收到的 Internet 控制消息协议版本 4 (ICMPv4)“时间戳请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定接收到的“时间戳请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRequestsSent">
+      <summary>获取已发送的 Internet 控制消息协议版本 4 (ICMPv4)“时间戳请求”消息的数目。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定已发送的“时间戳请求”消息的总数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IcmpV6Statistics">
+      <summary>提供本地计算机的 Internet 协议版本 6 (ICMPv6) Internet 控制消息协议的统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IcmpV6Statistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IcmpV6Statistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.DestinationUnreachableMessagesReceived">
+      <summary>获取由于无法到达数据包的目标地址而接收的 Internet 控制消息协议版本 6 (ICMPv6) 消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的“无法到达目标”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.DestinationUnreachableMessagesSent">
+      <summary>获取由于无法到达数据包的目标地址而发送的 Internet 控制消息协议版本 6 (ICMPv6) 消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的“无法到达目标”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRepliesReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 回送答复消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的“ICMP 回送答复”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRepliesSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 回送答复消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定已发送的“ICMP 回送答复”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRequestsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 回送请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的“ICMP 回送请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRequestsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 回送请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定已发送的“ICMP 回送请求”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ErrorsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 错误信息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的 ICMP 错误信息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ErrorsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 错误信息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的 ICMP 错误信息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipQueriesReceived">
+      <summary>获取接收的 Internet 组管理协议 (IGMP) 组成员查询消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的组成员查询消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipQueriesSent">
+      <summary>获取发送的 Internet 组管理协议 (IGMP) 组成员查询消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的组成员查询消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReductionsReceived">
+      <summary>获取接收的 Internet 组管理协议 (IGMP) 成员减少消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的组成员减少消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReductionsSent">
+      <summary>获取发送的 Internet 组管理协议 (IGMP) 成员减少消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的组成员减少消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReportsReceived">
+      <summary>获取接收的 Internet 组管理协议 (IGMP) 成员报告消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的组成员报告消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReportsSent">
+      <summary>获取发送的 Internet 组管理协议 (IGMP) 组成员报告消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的组成员报告消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MessagesReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的 ICMPv6 消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MessagesSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的 ICMPv6 消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborAdvertisementsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 邻居广播消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的 ICMP 邻居广播消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborAdvertisementsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 邻居广播消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的邻居广播消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborSolicitsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 邻居请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的邻居请求消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborSolicitsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 邻居请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的邻居请求消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.PacketTooBigMessagesReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 数据包太大消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的 ICMP 数据包太大消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.PacketTooBigMessagesSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 数据包太大消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的 ICMP 数据包太大消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ParameterProblemsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 参数问题消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的“ICMP 参数问题”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ParameterProblemsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 参数问题消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定已发送的“ICMP 参数问题”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RedirectsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 重定向消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的“ICMP 重定向”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RedirectsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 重定向消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定已发送的“ICMP 重定向”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterAdvertisementsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 路由器广播消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的路由器广播消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterAdvertisementsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 路由器广播消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的路由器广播消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterSolicitsReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 路由器请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收的路由器请求消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterSolicitsSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 路由器请求消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的路由器请求消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.TimeExceededMessagesReceived">
+      <summary>获取接收的 Internet 控制消息协议版本 6 (ICMPv6) 超时消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的“ICMP 超时”消息的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.TimeExceededMessagesSent">
+      <summary>获取发送的 Internet 控制消息协议版本 6 (ICMPv6) 超时消息数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定已发送的“ICMP 超时”消息的总数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPAddressInformation">
+      <summary>提供有关网络接口地址的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformation.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformation.Address">
+      <summary>获取 Internet 协议 (IP) 地址。</summary>
+      <returns>
+        <see cref="T:System.Net.IPAddress" /> 实例，它包含接口的 IP 地址。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformation.IsDnsEligible">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示 Internet 协议 (IP) 地址出现在域名系统 (DNS) 服务器数据库中时是否有效。</summary>
+      <returns>如果地址可以出现在 DNS 数据库，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformation.IsTransient">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示 Internet 协议 (IP) 地址是否为瞬态（群集地址）。</summary>
+      <returns>如果该地址为瞬态，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPAddressInformationCollection">
+      <summary>存储一组 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 类型。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Add(System.Net.NetworkInformation.IPAddressInformation)">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="address">要添加到集合的对象。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Clear">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Contains(System.Net.NetworkInformation.IPAddressInformation)">
+      <summary>检查集合中是否包含指定的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 对象。</summary>
+      <param name="address">要在集合中搜索的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 对象。</param>
+      <returns>如果该集合中存在 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 对象，则为 <see langword="true" />；否则为  <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.CopyTo(System.Net.NetworkInformation.IPAddressInformation[],System.Int32)">
+      <summary>将该集合复制到指定的数组。</summary>
+      <param name="array">接收集合副本的一维数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，在此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+  
+- 或 - 
+此 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 中的元素数大于从 <paramref name="offset" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+      <exception cref="T:System.InvalidCastException">此 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 中的元素无法自动转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Remove(System.Net.NetworkInformation.IPAddressInformation)">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="address">要移除的对象。</param>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.Count">
+      <summary>获取此集合中的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 类型数。</summary>
+      <returns>一个包含此集合中 <see cref="T:System.Int32" /> 类型的数目的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.IsReadOnly">
+      <summary>获取一个值，该值指示对此集合的访问是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.Item(System.Int32)">
+      <summary>在集合中的指定索引处获取 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" />。</summary>
+      <param name="index">元素的从零开始的索引。</param>
+      <returns>位于指定位置的 <see cref="T:System.Net.NetworkInformation.IPAddressInformation" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPGlobalProperties">
+      <summary>提供有关本地计算机的网络连接的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPGlobalProperties" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.BeginGetUnicastAddresses(System.AsyncCallback,System.Object)">
+      <summary>开始一个异步请求，该请求用于检索本地计算机上稳定的单播 IP 地址表。</summary>
+      <param name="callback">
+        <see cref="T:System.AsyncCallback" /> 委托。</param>
+      <param name="state">一个对象，它包含此请求的状态信息。</param>
+      <exception cref="T:System.NotImplementedException">此方法未在平台上实现。 此方法使用 Windows Vista 和更高版本的操作系统支持的本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">调用本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数失败。</exception>
+      <returns>引用该异步请求的 <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.EndGetUnicastAddresses(System.IAsyncResult)">
+      <summary>结束挂起的异步请求，该请求用于检索本地计算机上稳定的单播 IP 地址表。</summary>
+      <param name="asyncResult">引用该异步请求的 <see cref="T:System.IAsyncResult" />。</param>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用本机 <see langword="GetAdaptersAddresses" /> 函数失败。</exception>
+      <exception cref="T:System.NotImplementedException">此方法未在平台上实现。 此方法使用 Windows Vista 和更高版本的操作系统支持的本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有必需的 <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> 权限。</exception>
+      <returns>
+        <see cref="T:System.IAsyncResult" />，它存储此异步操作的状态信息以及所有用户定义的数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpConnections">
+      <summary>返回有关本地计算机上的 Internet 协议版本 4 (IPv4) 和 IPv6 传输控制协议 (TCP) 连接的信息。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数 <see langword="GetTcpTable" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.TcpConnectionInformation" /> 数组，其中包含描述活动 TCP 连接的对象；如果没有检测到活动 TCP 连接，则为一个空数组。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpListeners">
+      <summary>返回有关本地计算机上的 Internet 协议版本 4 (IPv4) 和 IPv6 传输控制协议 (TCP) 侦听器的终结点信息。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数 <see langword="GetTcpTable" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.IPEndPoint" /> 数组，其中包含描述活动 TCP 侦听器的对象；如果没有检测到活动 TCP 侦听器，则为一个空数组。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveUdpListeners">
+      <summary>返回有关本地计算机上的 Internet 协议版本 4 (IPv4) 和 IPv6 用户数据报协议 (UDP) 侦听器的信息。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetUdpTable" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.IPEndPoint" /> 数组，其中包含描述 UDP 侦听器的对象；如果没有检测到 UDP 侦听器，则为一个空数组。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV4Statistics">
+      <summary>提供本地计算机的 Internet 控制消息协议 (ICMP) 版本 4 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数 <see langword="GetIcmpStatistics" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IcmpV4Statistics" /> 对象，提供本地计算机的 ICMP 版本 4 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV6Statistics">
+      <summary>提供本地计算机的 Internet 控制消息协议 (ICMP) 版本 6 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数 <see langword="GetIcmpStatisticsEx" /> 失败。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">本地计算机的操作系统不是 Windows XP 或更高版本。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IcmpV6Statistics" /> 对象，提供本地计算机的 ICMP 版本 6 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties">
+      <summary>获取一个对象，该对象提供有关本地计算机的网络连接和流量统计数据的信息。</summary>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IPGlobalProperties" /> 对象，该对象包含有关本地计算机的信息。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPv4GlobalStatistics">
+      <summary>提供本地计算机的 Internet 协议版本 4 (IPv4) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetIpStatistics" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> 对象，提供本地计算机的 IPv4 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPv6GlobalStatistics">
+      <summary>提供本地计算机的 Internet 协议版本 6 (IPv6) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetIpStatistics" /> 失败。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">本地计算机运行的操作系统不支持 IPv6。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> 对象，提供本地计算机的 IPv6 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetTcpIPv4Statistics">
+      <summary>提供本地计算机的传输控制协议/Internet 协议版本 4 (TCP/IPv4) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetTcpStatistics" /> 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> 对象，提供本地计算机的 TCP/IPv4 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetTcpIPv6Statistics">
+      <summary>提供本地计算机的传输控制协议/Internet 协议版本 6 (TCP/IPv6) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetTcpStatistics" /> 失败。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">本地计算机运行的操作系统不支持 IPv6。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> 对象，提供本地计算机的 TCP/IPv6 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUdpIPv4Statistics">
+      <summary>提供本地计算机的用户数据报协议/Internet 协议版本 4 (UDP/IPv4) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 GetUdpStatistics 失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> 对象，提供本地计算机的 UDP/IPv4 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUdpIPv6Statistics">
+      <summary>提供本地计算机的用户数据报协议/Internet 协议版本 6 (UDP/IPv6) 统计数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用 Win32 函数 <see langword="GetUdpStatistics" /> 失败。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">本地计算机运行的操作系统不支持 IPv6。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> 对象，提供本地计算机的 UDP/IPv6 流量统计数据。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUnicastAddresses">
+      <summary>在本地计算机上检索稳定的单播 IP 地址表。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用本机 <see langword="GetAdaptersAddresses" /> 函数失败。</exception>
+      <exception cref="T:System.NotImplementedException">此方法未在平台上实现。 此方法使用 Windows Vista 和更高版本的操作系统支持的本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有必需的 <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> 权限。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">调用本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" />，其中包含本地计算机上稳定的单播 IP 地址的列表。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUnicastAddressesAsync">
+      <summary>以一部操作检索本地计算机上稳定的单播 IP 地址表。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">调用本机 <see langword="GetAdaptersAddresses" /> 函数失败。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有必需的 <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> 权限。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">调用本机 <see langword="NotifyStableUnicastIpAddressTable" /> 函数失败。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DhcpScopeName">
+      <summary>获取动态主机配置协议 (DHCP) 范围名。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数调用失败。</exception>
+      <returns>包含计算机的 DHCP 范围名称的 <see cref="T:System.String" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DomainName">
+      <summary>获取在其中注册本地计算机的域。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数调用失败。</exception>
+      <returns>包含计算机域名的 <see cref="T:System.String" /> 实例。 如果计算机不属于域，则返回 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.HostName">
+      <summary>获取本地计算机的主机名。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数调用失败。</exception>
+      <returns>包含计算机的 NetBIOS 名称的 <see cref="T:System.String" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.IsWinsProxy">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指定本地计算机是否充当 Windows Internet 名称服务 (WINS) 代理。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数调用失败。</exception>
+      <returns>如果本地计算机是 WINS 代理，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.NodeType">
+      <summary>获取本地计算机的网络基本输入/输出系统 (NetBIOS) 节点类型。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Win32 函数调用失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.NetBiosNodeType" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPGlobalStatistics">
+      <summary>提供 Internet 协议 (IP) 统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPGlobalStatistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.DefaultTtl">
+      <summary>获取 Internet 协议 (IP) 数据包的默认生存时间 (TTL) 值。</summary>
+      <returns>指定 TTL 的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ForwardingEnabled">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指定是否启用 Internet 协议 (IP) 数据包转发。</summary>
+      <returns>指定是否启用数据包转发的 <see cref="T:System.Boolean" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfInterfaces">
+      <summary>获取网络接口数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它包含用于获取此 <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> 实例的地址族的网络接口数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfIPAddresses">
+      <summary>获取分配给本地计算机的 Internet 协议 (IP) 地址数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指示分配给由此对象描述的地址族（Internet 协议版本 4 或 Internet 协议版本 6）的 IP 地址数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfRoutes">
+      <summary>获取 Internet 协议 (IP) 路由表中的路由数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定路由表中的路由总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketRequests">
+      <summary>获取出站 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定出站数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketRoutingDiscards">
+      <summary>获取已从路由表中丢弃的路由数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定已丢弃的有效路由的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketsDiscarded">
+      <summary>获取已丢弃的已传输 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定已丢弃的外发数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketsWithNoRoute">
+      <summary>获取本地计算机未能确定其目标地址路由的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定由于未能找到路由而未能发送的数据包数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketFragmentFailures">
+      <summary>获取未能分段的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定需要分段但设置了“不要分段”(Don't Fragment) 位的数据包总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassembliesRequired">
+      <summary>获取需要重新组合的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定需要重新组合的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassemblyFailures">
+      <summary>获取没有成功重新组合的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定未能重新组合的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassemblyTimeout">
+      <summary>获取 Internet 协议 (IP) 数据包的所有段必须到达的最长时限。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定数据包的所有段必须到达以免被丢弃的最大毫秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketsFragmented">
+      <summary>获取分段的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定分段的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketsReassembled">
+      <summary>获取重新组合的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定已成功重新组合的分段数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPackets">
+      <summary>获取收到的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定收到的 IP 数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsDelivered">
+      <summary>获取传送的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定传送的 IP 数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsDiscarded">
+      <summary>获取已收到但被丢弃的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定已丢弃的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsForwarded">
+      <summary>获取转发的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定转发的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithAddressErrors">
+      <summary>获取收到的地址有错误的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定收到的、标头的地址部分有错误的 IP 数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithHeadersErrors">
+      <summary>获取收到的标头有错误的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定收到的但因标头中有错误而被丢弃的 IP 数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithUnknownProtocol">
+      <summary>获取在本地计算机上收到的、标头中有未知协议的 Internet 协议 (IP) 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指示收到的、协议未知的 IP 数据包的总数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPInterfaceProperties">
+      <summary>提供有关支持 Internet 协议版本 4 (IPv4) 或 Internet 协议版本 6 (IPv6) 的网络接口的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPInterfaceProperties" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv4Properties">
+      <summary>提供此网络接口的 Internet 协议版本 4 (IPv4) 配置数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">此接口不支持 IPv4 协议。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.IPv4InterfaceProperties" />包含 IPv4 配置数据的对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv6Properties">
+      <summary>提供此网络接口的 Internet 协议版本 6 (IPv6) 配置数据。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">此接口不支持 IPv6 协议。</exception>
+      <returns>包含 IPv6 配置数据的 <see cref="T:System.Net.NetworkInformation.IPv6InterfaceProperties" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.AnycastAddresses">
+      <summary>获取分配给此接口的任意广播 IP 地址。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.IPAddressInformationCollection" />，包含此接口的任意广播地址。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DhcpServerAddresses">
+      <summary>获取此接口的动态主机配置协议 (DHCP) 服务器的地址。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.IPAddressCollection" />，它包含 DHCP 服务器的地址信息，如果找不到服务器，则包含空数组。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DnsAddresses">
+      <summary>获取此接口的域名系统 (DNS) 服务器的地址。</summary>
+      <returns>一个包含 DNS 服务器地址的 <see cref="T:System.Net.NetworkInformation.IPAddressCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DnsSuffix">
+      <summary>获取与此接口关联的域名系统 (DNS) 后缀。</summary>
+      <returns>包含此接口的 DNS 后缀的 <see cref="T:System.String" />，如果此接口没有 DNS 后缀，则为 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.GatewayAddresses">
+      <summary>获取此接口的 IPv4 网关地址。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformationCollection" />，它包含网关的地址信息，如果找不到网关，则包含空数组。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.IsDnsEnabled">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示是否将 NetBt 配置为对此接口使用 DNS 名称解析。</summary>
+      <returns>如果将 NetBt 配置为对此接口使用 DNS 名称解析，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.IsDynamicDnsEnabled">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示此接口是否配置为自动向域名系统 (DNS) 注册其 IP 地址信息。</summary>
+      <returns>如果此接口被配置为自动注册其动态 IP 地址与静态域名之间的映射，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.MulticastAddresses">
+      <summary>获取分配给此接口的多播地址。</summary>
+      <returns>包含此接口的多路广播地址的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformationCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.UnicastAddresses">
+      <summary>获取分配给此接口的单播地址。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" />，它包含该接口的单播地址。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.WinsServersAddresses">
+      <summary>获取 Windows Internet 名称服务 (WINS) 服务器的地址。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.IPAddressCollection" />，它包含 WINS 服务器的地址信息，如果找不到服务器，则包含空数组。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPInterfaceStatistics">
+      <summary>提供针对本地计算机上的网络接口的 Internet 协议 (IP) 统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceStatistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPInterfaceStatistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.BytesReceived">
+      <summary>获取该接口上接收到的字节数。</summary>
+      <returns>该接口上接收的总字节数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.BytesSent">
+      <summary>获取该接口上发送的字节数。</summary>
+      <returns>该接口上发送的总字节数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingPacketsDiscarded">
+      <summary>获取丢弃的传入数据包个数。</summary>
+      <returns>已丢弃的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingPacketsWithErrors">
+      <summary>获取有错误的传入数据包数。</summary>
+      <returns>有错误的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingUnknownProtocolPackets">
+      <summary>获取在接口上接收的使用未知协议的传入数据包的数量。</summary>
+      <returns>该接口上接收的带有未知协议的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.NonUnicastPacketsReceived">
+      <summary>获取该接口上接收到的非单播数据包个数。</summary>
+      <returns>该接口上接收的传入非单播数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.NonUnicastPacketsSent">
+      <summary>获取该接口上发送的非单播数据包个数。</summary>
+      <returns>该接口上发送的非单播数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutgoingPacketsDiscarded">
+      <summary>获取丢弃的传出数据包数。</summary>
+      <returns>已丢弃的传出数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutgoingPacketsWithErrors">
+      <summary>获取有错误的传出数据包数。</summary>
+      <returns>有错误的传出数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutputQueueLength">
+      <summary>获取输出队列的长度。</summary>
+      <returns>输出队列中的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.UnicastPacketsReceived">
+      <summary>获取该接口上接收到的单播数据包个数。</summary>
+      <returns>该接口上接收的单播数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.UnicastPacketsSent">
+      <summary>获取该接口上发送的单播数据包个数。</summary>
+      <returns>该接口上发送的单播数据包的总数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPv4InterfaceProperties">
+      <summary>提供有关支持 Internet 协议版本 4 (IPv4) 的网络接口的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPv4InterfaceProperties.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPv4InterfaceProperties" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.Index">
+      <summary>获取 Internet 协议版本 4 (IPv4) 地址的网络接口的索引。</summary>
+      <returns>包含 IPv4 接口索引的 <see cref="T:System.Int32" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsAutomaticPrivateAddressingActive">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示此接口是否具有自动专用 IP 寻址 (APIPA) 地址。</summary>
+      <returns>如果此接口使用 APIPA 地址，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsAutomaticPrivateAddressingEnabled">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示此接口是否启用了自动专用 IP 寻址 (APIPA)。</summary>
+      <returns>如果此接口使用 APIPA，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsDhcpEnabled">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示此接口是否配置为使用动态主机配置协议 (DHCP) 服务器来获取 IP 地址。</summary>
+      <returns>如果此接口配置为从 DHCP 服务器获取 IP 地址，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsForwardingEnabled">
+      <summary>获取一个 <see cref="T:System.Boolean" /> 值，该值指示此接口是否可以转发（路由）数据包。</summary>
+      <returns>如果此接口可以路由数据包，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.Mtu">
+      <summary>获取此网络接口的最大传输单位 (MTU)。</summary>
+      <returns>用于指定 MTU 的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.UsesWins">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示接口是否使用 Windows Internet 名称服务 (WINS)。</summary>
+      <returns>如果接口使用 WINS，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPv4InterfaceStatistics">
+      <summary>提供本地计算机上的网络接口的统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPv4InterfaceStatistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPv4InterfaceStatistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.BytesReceived">
+      <summary>获取该接口上接收到的字节数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上接收到的总字节数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.BytesSent">
+      <summary>获取该接口上发送的字节数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上传输的总字节数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.IncomingPacketsDiscarded">
+      <summary>获取丢弃的传入数据包个数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定丢弃的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.IncomingPacketsWithErrors">
+      <summary>获取有错误的传入数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定有错误的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.IncomingUnknownProtocolPackets">
+      <summary>获取在接口上接收的使用未知协议的传入数据包的数量。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定协议未知的传入数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.NonUnicastPacketsReceived">
+      <summary>获取该接口上接收到的非单播数据包个数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上接收到的非单播数据包个数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.NonUnicastPacketsSent">
+      <summary>获取该接口上发送的非单播数据包个数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上发送的非单播数据包个数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.OutgoingPacketsDiscarded">
+      <summary>获取丢弃的传出数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定丢弃的传出数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.OutgoingPacketsWithErrors">
+      <summary>获取有错误的传出数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定有错误的传出数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.OutputQueueLength">
+      <summary>获取输出队列的长度。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定输出队列中的数据包的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.UnicastPacketsReceived">
+      <summary>获取该接口上接收到的单播数据包个数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上接收到的单播数据包个数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.UnicastPacketsSent">
+      <summary>获取该接口上发送的单播数据包个数。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定该接口上发送的单播数据包个数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.IPv6InterfaceProperties">
+      <summary>提供有关支持 Internet 协议版本 6 (IPv6) 的网络接口的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPv6InterfaceProperties.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.IPv6InterfaceProperties" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPv6InterfaceProperties.GetScopeId(System.Net.NetworkInformation.ScopeLevel)">
+      <summary>获取与 Internet 协议版本 6 (IPv6) 地址关联的网络接口的范围 ID。</summary>
+      <param name="scopeLevel">范围级别。</param>
+      <returns>与 IPv6 地址关联的网络接口的范围 ID。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv6InterfaceProperties.Index">
+      <summary>获取与 Internet 协议版本 6 (IPv6) 地址关联的网络接口的索引。</summary>
+      <returns>包含 IPv6 地址网络接口的索引的 <see cref="T:System.Int32" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPv6InterfaceProperties.Mtu">
+      <summary>获取此网络接口的最大传输单位 (MTU)。</summary>
+      <returns>用于指定 MTU 的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.MulticastIPAddressInformation">
+      <summary>提供网络接口的多路广播地址信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformation.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressPreferredLifetime">
+      <summary>获取此地址作为首选地址的剩余秒数。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定此地址保持首选的剩余秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressValidLifetime">
+      <summary>获取此地址保持有效的剩余秒数。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定此地址保持已分配的剩余秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DhcpLeaseLifetime">
+      <summary>指定此 IP 地址的动态主机配置协议 (DHCP) 租约的剩余时间量。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，包含计算机在必须释放 <see cref="T:System.Net.IPAddress" /> 实例之前剩余的秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DuplicateAddressDetectionState">
+      <summary>获取一个值，该值指示重复地址检测算法的状态。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> 值之一，指示在确定此 IP 地址的唯一性的过程中，该算法的进度。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.PrefixOrigin">
+      <summary>获取一个值，该值标识多路广播 Internet 协议 (IP) 地址前缀的源。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> 值之一，标识前缀信息是如何获取的。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.SuffixOrigin">
+      <summary>获取一个值，该值标识多路广播 Internet 协议 (IP) 地址后缀的源。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> 值之一，标识后缀信息是如何获取的。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.MulticastIPAddressInformationCollection">
+      <summary>存储一组 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 类型。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformationCollection" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Add(System.Net.NetworkInformation.MulticastIPAddressInformation)">
+      <summary>引发 <see cref="T:System.NotSupportedException" />，原因是该集合为只读，不能向其中添加元素。</summary>
+      <param name="address">要添加到集合的对象。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Clear">
+      <summary>引发 <see cref="T:System.NotSupportedException" />，因为该集合为只读，不能移除其中的元素。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Contains(System.Net.NetworkInformation.MulticastIPAddressInformation)">
+      <summary>检查集合中是否包含指定的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 对象。</summary>
+      <param name="address">要在集合中搜索的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 对象。</param>
+      <returns>如果集合中存在 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.CopyTo(System.Net.NetworkInformation.MulticastIPAddressInformation[],System.Int32)">
+      <summary>将此集合中的元素复制到 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 类型的一维数组。</summary>
+      <param name="array">接收集合副本的一维数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，在此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+  
+- 或 - 
+此 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 中的元素数大于从 <paramref name="count" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+      <exception cref="T:System.InvalidCastException">此 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 中的元素无法自动转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.MulticastIPAddressInformation)">
+      <summary>引发 <see cref="T:System.NotSupportedException" />，因为该集合为只读，不能移除其中的元素。</summary>
+      <param name="address">要移除的对象。</param>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Count">
+      <summary>获取此集合中的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 类型数。</summary>
+      <returns>一个包含此集合中 <see cref="T:System.Int32" /> 类型的数目的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.IsReadOnly">
+      <summary>获取一个值，该值指示对此集合的访问是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Item(System.Int32)">
+      <summary>获取集合中指定索引处的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" />。</summary>
+      <param name="index">相关索引。</param>
+      <returns>位于集合中指定索引处的 <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetBiosNodeType">
+      <summary>指定网络基本输入/输出系统 (NetBIOS) 节点类型。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetBiosNodeType.Broadcast">
+      <summary>广播节点。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetBiosNodeType.Hybrid">
+      <summary>Hybrid 混合节点。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetBiosNodeType.Mixed">
+      <summary>Mixed 混合节点。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetBiosNodeType.Peer2Peer">
+      <summary>对等节点。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetBiosNodeType.Unknown">
+      <summary>未知节点类型。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkAddressChangedEventHandler">
+      <summary>引用在网络接口地址更改时调用的一个或多个方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.EventArgs" /> 对象。</param>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkAvailabilityChangedEventHandler">
+      <summary>引用在网络可用性更改时调用的一个或多个方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.EventArgs" /> 对象。</param>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkAvailabilityEventArgs">
+      <summary>为 <see cref="E:System.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkAvailabilityEventArgs.IsAvailable">
+      <summary>获取网络连接的当前状态。</summary>
+      <returns>如果网络可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkChange">
+      <summary>允许应用程序在网络接口 Internet 协议 (IP) 地址（也称为网卡或适配器）更改时接收通知。</summary>
+    </member>
+    <member name="E:System.Net.NetworkInformation.NetworkChange.NetworkAddressChanged">
+      <summary>在网络接口的 IP 地址更改时发生。</summary>
+    </member>
+    <member name="E:System.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged">
+      <summary>在网络的可用性更改时发生。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkChange.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.NetworkChange" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkChange.RegisterNetworkChange(System.Net.NetworkInformation.NetworkChange)">
+      <summary>注册网络更改实例来接收网络更改事件。</summary>
+      <param name="nc">要注册的实例。</param>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkInformationException">
+      <summary>因检索网络信息时发生错误而引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInformationException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.NetworkInformationException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInformationException.#ctor(System.Int32)">
+      <summary>用指定的错误代码初始化 <see cref="T:System.Net.NetworkInformation.NetworkInformationException" /> 类的新实例。</summary>
+      <param name="errorCode">
+        <see langword="Win32" /> 错误代码。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInformationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化数据初始化 <see cref="T:System.Net.NetworkInformation.NetworkInformationException" /> 类的新实例。</summary>
+      <param name="serializationInfo">SerializationInfo 对象，包含序列化异常数据。</param>
+      <param name="streamingContext">StreamingContext，包含有关序列化异常的上下文信息。</param>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInformationException.ErrorCode">
+      <summary>获取此异常的 <see langword="Win32" /> 错误代码。</summary>
+      <returns>包含 <see langword="Win32" /> 错误代码的 <see cref="T:System.Int32" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkInterface">
+      <summary>提供网络接口的配置和统计信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces">
+      <summary>返回描述本地计算机上的网络接口的对象。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">Windows 系统函数调用失败。</exception>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> 数组，其中包含描述可用网络接口的对象，如果没有检测到接口，则为空数组。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPProperties">
+      <summary>返回描述此网络接口的配置的对象。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.IPInterfaceProperties" /> 对象，用于描述此网络接口。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPStatistics">
+      <summary>获取此 <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> 实例的 IP 统计信息。</summary>
+      <returns>IP 统计信息。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPv4Statistics">
+      <summary>获取此 <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> 实例的 IPv4 统计信息。</summary>
+      <returns>一个 <see cref="T:System.Net.NetworkInformation.IPv4InterfaceStatistics" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable">
+      <summary>指示是否有任何可用的网络连接。</summary>
+      <returns>如果网络连接可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.GetPhysicalAddress">
+      <summary>返回此适配器的媒体访问控制 (MAC) 或物理地址。</summary>
+      <returns>包含物理地址的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 对象。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.Supports(System.Net.NetworkInformation.NetworkInterfaceComponent)">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示接口是否支持指定的协议。</summary>
+      <param name="networkInterfaceComponent">一个 <see cref="T:System.Net.NetworkInformation.NetworkInterfaceComponent" /> 值。</param>
+      <returns>如果支持指定的协议，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.Description">
+      <summary>获取接口的描述。</summary>
+      <returns>
+        <see cref="T:System.String" />，用于描述此接口。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.Id">
+      <summary>获取网络适配器的标识符。</summary>
+      <returns>包含标识符的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.IPv6LoopbackInterfaceIndex">
+      <summary>获取 IPv6 环回接口的索引。</summary>
+      <returns>IPv6 环回接口的索引。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.IsReceiveOnly">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示网络接口是否设置为仅接收数据包。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>如果接口仅接收网络通信，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.LoopbackInterfaceIndex">
+      <summary>获取 IPv4 环回接口的索引。</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">此属性在仅运行 Ipv6 的计算机上无效。</exception>
+      <returns>一个包含 IPv4 环回接口的索引的 <see cref="T:System.Int32" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.Name">
+      <summary>获取网络适配器的名称。</summary>
+      <returns>包含网络适配器名称的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType">
+      <summary>获取接口类型。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.NetworkInterfaceType" /> 值，指定网络接口类型。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.OperationalStatus">
+      <summary>获取网络连接的当前操作状态。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.OperationalStatus" /> 值之一。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.Speed">
+      <summary>获取网络接口的速度。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定速度（每位/秒为单位）。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.SupportsMulticast">
+      <summary>获取 <see cref="T:System.Boolean" /> 值，该值指示是否启用网络接口以接收多播数据包。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>如果接口接收多路广播数据包，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkInterfaceComponent">
+      <summary>指定网络接口支持的 Internet 协议版本。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceComponent.IPv4">
+      <summary>Internet 协议版本 4。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceComponent.IPv6">
+      <summary>Internet 协议版本 6。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.NetworkInterfaceType">
+      <summary>指定网络接口的类型。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.AsymmetricDsl">
+      <summary>网络接口使用非对称数字用户线 (ADSL)。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Atm">
+      <summary>网络接口使用异步传输模式 (ATM) 进行数据传输。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.BasicIsdn">
+      <summary>网络接口使用基本速率接口综合业务数字网 (ISDN) 连接。 ISDN 是一套用于电话线路数据传输的标准。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Ethernet">
+      <summary>网络接口使用以太网连接。 以太网在 IEEE 802.3 标准中定义。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Ethernet3Megabit">
+      <summary>网络接口使用以太网 3 兆位/秒连接。 此版以太网在 IETF RFC 895 中定义。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.FastEthernetFx">
+      <summary>网络接口通过光纤使用快速以太网连接，并提供每秒 100 兆位的数据速率。 此类型的连接也称为 100Base-FX。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.FastEthernetT">
+      <summary>网络接口通过双绞线使用快速以太网连接，并提供每秒 100 兆位的数据速率。 此类型的连接也称为 100Base-T。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Fddi">
+      <summary>网络接口使用光纤分布式数据接口 (FDDI) 连接。 FDDI 是一套用于本地网络中光纤线路上的数据传输的标准。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.GenericModem">
+      <summary>网络接口使用调制解调器。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.GigabitEthernet">
+      <summary>网络接口使用千兆以太网连接，并提供 1,000 兆位/秒（每秒 1 千兆位）的数据速率。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.HighPerformanceSerialBus">
+      <summary>网络接口使用高性能串行总线。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.IPOverAtm">
+      <summary>网络接口将 Internet 协议 (IP) 与异步传输模式 (ATM) 结合使用进行数据传输。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Isdn">
+      <summary>网络接口使用为 ISDN 和 X.25 协议配置的连接。 X.25 允许公用网络上的计算机使用中间计算机进行通信。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Loopback">
+      <summary>该网络接口是环回适配器。 此类接口通常用于测试；不会通过线路发送任何流量。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.MultiRateSymmetricDsl">
+      <summary>网络接口使用多速率数字用户线。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Ppp">
+      <summary>网络接口使用点对点协议 (PPP) 连接。 PPP 是使用串行设备进行数据传输的协议。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.PrimaryIsdn">
+      <summary>网络接口使用主速率接口综合业务数字网 (ISDN) 连接。 ISDN 是一套用于电话线路数据传输的标准。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.RateAdaptDsl">
+      <summary>网络接口使用速率自适应数字用户线 (RADSL)。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Slip">
+      <summary>网络接口使用串行线路 Internet 协议 (SLIP) 连接。 SLIP 在 IETF RFC 1055 中定义。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.SymmetricDsl">
+      <summary>网络接口使用对称数字用户线 (SDSL)。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.TokenRing">
+      <summary>网络接口使用令牌环网连接。 令牌环网在 IEEE 802.5 标准中定义。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Tunnel">
+      <summary>网络接口使用隧道连接。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Unknown">
+      <summary>接口类型未知。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.VeryHighSpeedDsl">
+      <summary>网络接口使用超高速数字用户线 (VDSL)。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Wireless80211">
+      <summary>网络接口使用无线 LAN 连接（IEEE 802.11 标准）。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Wman">
+      <summary>网络接口为 WiMax 设备使用移动宽带接口。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Wwanpp">
+      <summary>网络接口为基于 GSM 的设备使用移动宽带接口。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.NetworkInterfaceType.Wwanpp2">
+      <summary>网络接口为基于 CDMA 的设备使用移动宽带接口。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.OperationalStatus">
+      <summary>指定网络接口的操作状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.Dormant">
+      <summary>网络接口不处于传输数据包的状态；它正等待外部事件。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.Down">
+      <summary>网络接口无法传输数据包。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.LowerLayerDown">
+      <summary>网络接口无法传输数据包，因为它运行在一个或多个其他接口之上，而这些“低层”接口中至少有一个已关闭。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.NotPresent">
+      <summary>由于缺少组件（通常为硬件组件），网络接口无法传输数据包。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.Testing">
+      <summary>网络接口正在运行测试。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.Unknown">
+      <summary>网络接口的状态未知。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.OperationalStatus.Up">
+      <summary>网络接口已运行，可以传输数据包。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PhysicalAddress">
+      <summary>提供网络接口（适配器）的媒体访问控制 (MAC) 地址。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PhysicalAddress.None">
+      <summary>返回一个具有零长度地址的新 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。 此字段为只读。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.#ctor(System.Byte[])">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 类的新实例。</summary>
+      <param name="address">包含地址的 <see cref="T:System.Byte" /> 数组。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.Equals(System.Object)">
+      <summary>比较两个 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。</summary>
+      <param name="comparand">要与当前实例进行比较的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" />。</param>
+      <returns>如果此实例和指定的实例包含相同的地址，则为 <see langword="true" />，否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.GetAddressBytes">
+      <summary>返回当前实例的地址。</summary>
+      <returns>包含地址的 <see cref="T:System.Byte" /> 数组。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.GetHashCode">
+      <summary>返回物理地址的哈希值。</summary>
+      <returns>整数哈希值。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.Parse(System.ReadOnlySpan{System.Char})">
+      <summary>分析指定的范围，并将其内容存储为由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 的地址字节。</summary>
+      <param name="address">一个范围，包含用于初始化由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例的地址。</param>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 包含非法硬件地址或包含格式不正确的字符串。</exception>
+      <returns>具有指定地址的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.Parse(System.String)">
+      <summary>分析指定的 <see cref="T:System.String" /> 并将其内容存储为由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 的地址字节。</summary>
+      <param name="address">一个 <see cref="T:System.String" />，包含用于初始化由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例的地址。</param>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 包含非法硬件地址或包含格式不正确的字符串。</exception>
+      <returns>具有指定地址的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.ToString">
+      <summary>返回此实例的地址的 <see cref="T:System.String" /> 表示形式。</summary>
+      <returns>一个 <see cref="T:System.String" />，其中包含此实例中所含的地址。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.TryParse(System.ReadOnlySpan{System.Char},System.Net.NetworkInformation.PhysicalAddress@)">
+      <summary>尝试将硬件地址的范围表示形式转换为 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。 一个指示转换是否成功的返回值。</summary>
+      <param name="address">一个范围，包含用于初始化由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例的地址。</param>
+      <param name="value">当此方法返回时，如果转换成功，则包含与 <paramref name="address" /> 中所包含的地址等效的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例；如果转换失败，则包含 <see langword="null" />。 此参数未经初始化即进行传递；最初在 <paramref name="result" /> 中提供的任何值都会被覆盖。</param>
+      <returns>如果 <see langword="true" /> 成功转换，则为 <paramref name="address" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.TryParse(System.String,System.Net.NetworkInformation.PhysicalAddress@)">
+      <summary>尝试将硬件地址的字符串表示形式转换为 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例。 一个指示转换是否成功的返回值。</summary>
+      <param name="address">一个字符串，包含用于初始化由此方法返回的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例的地址。</param>
+      <param name="value">当此方法返回时，如果转换成功，则包含与 <paramref name="address" /> 中所包含的地址等效的 <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> 实例；如果转换失败，则包含 <see langword="null" />。 如果 <paramref name="address" /> 是 <see langword="null" />，则它包含 <see cref="T:System.Net.NetworkInformation.PhysicalAddress.None" />。 此参数未经初始化即进行传递；最初在 <paramref name="result" /> 中提供的任何值都会被覆盖。</param>
+      <returns>如果 <see langword="true" /> 成功转换，则为 <paramref name="address" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.PrefixOrigin">
+      <summary>指定如何定位 IP 地址网络前缀。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PrefixOrigin.Dhcp">
+      <summary>前缀是由动态主机配置协议 (DHCP) 服务器提供的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PrefixOrigin.Manual">
+      <summary>前缀是手动配置的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PrefixOrigin.Other">
+      <summary>前缀是使用未指定的源定位的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PrefixOrigin.RouterAdvertisement">
+      <summary>前缀是通过路由器播发提供的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.PrefixOrigin.WellKnown">
+      <summary>前缀是已知的前缀。 已知前缀在标准跟踪请求注释 (RFC) 文档中指定并由 Internet 编号分配管理机构 (Iana) 或地址注册表分配。 这样的前缀是为特殊用途保留的。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.ScopeLevel">
+      <summary>IPv6 地址的范围级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Admin">
+      <summary>范围为管理级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Global">
+      <summary>范围为全局。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Interface">
+      <summary>范围为接口级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Link">
+      <summary>范围为链接级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.None">
+      <summary>未指定范围级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Organization">
+      <summary>范围为组织级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Site">
+      <summary>范围为站点级别。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.ScopeLevel.Subnet">
+      <summary>范围为子网级别。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.SuffixOrigin">
+      <summary>指定如何定位 IP 地址主机后缀。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.LinkLayerAddress">
+      <summary>后缀是链接本地后缀。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.Manual">
+      <summary>后缀是手动配置的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.OriginDhcp">
+      <summary>后缀是由动态主机配置协议 (DHCP) 服务器提供的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.Other">
+      <summary>后缀是用未指定的源定位的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.Random">
+      <summary>后缀是随机分配的。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.SuffixOrigin.WellKnown">
+      <summary>后缀是已知后缀。 已知后缀在标准跟踪请求注释 (RFC) 文档中指定并由 Internet 编号分配管理机构 (Iana) 或地址注册表分配。 这样的后缀是为特殊用途保留的。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.TcpConnectionInformation">
+      <summary>提供有关本地计算机上的传输控制协议 (TCP) 连接的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.TcpConnectionInformation.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.TcpConnectionInformation" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.LocalEndPoint">
+      <summary>获取传输控制协议 (TCP) 连接的本地终结点。</summary>
+      <returns>包含本地计算机上的 IP 地址和端口的 <see cref="T:System.Net.IPEndPoint" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.RemoteEndPoint">
+      <summary>获取传输控制协议 (TCP) 连接的远程终结点。</summary>
+      <returns>包含远程计算机上的 IP 地址和端口的 <see cref="T:System.Net.IPEndPoint" /> 实例。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.State">
+      <summary>获取此传输控制协议 (TCP) 连接的状态。</summary>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.TcpState" /> 枚举值之一。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.TcpState">
+      <summary>指定传输控制协议 (TCP) 连接的状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.Closed">
+      <summary>TCP 连接处于关闭状态。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.CloseWait">
+      <summary>TCP 连接的本地终结点正在等待来自本地用户的连接终止请求。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.Closing">
+      <summary>TCP 连接的本地终结点正在等待对先前发送的连接终止请求的确认。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.DeleteTcb">
+      <summary>正在删除 TCP 连接的传输控制缓冲区 (TCB)。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.Established">
+      <summary>TCP 握手完成。 已建立连接，可以发送数据。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.FinWait1">
+      <summary>TCP 连接的本地终结点正在等待来自远程终结点的连接终止请求或对先前发送的连接终止请求的确认。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.FinWait2">
+      <summary>TCP 连接的本地终结点正在等待来自远程终结点的连接终止请求。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.LastAck">
+      <summary>TCP 连接的本地终结点正在等待对先前发送的连接终止请求的最终确认。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.Listen">
+      <summary>TCP 连接的本地终结点正在侦听来自任何远程终结点的连接请求。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.SynReceived">
+      <summary>TCP 连接的本地终结点已发送并收到连接请求并且正在等待确认。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.SynSent">
+      <summary>TCP 连接的本地终结点已向远程终结点发送一个设置了同步 (SYN) 控制位的段标头并且正在等待匹配的连接请求。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.TimeWait">
+      <summary>TCP 连接的本地终结点正在等待足够的时间以便完成传递，以确保远程终结点收到了它的连接终止请求确认。</summary>
+    </member>
+    <member name="F:System.Net.NetworkInformation.TcpState.Unknown">
+      <summary>TCP 连接状态是未知的。</summary>
+    </member>
+    <member name="T:System.Net.NetworkInformation.TcpStatistics">
+      <summary>提供传输控制协议 (TCP) 统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.TcpStatistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.ConnectionsAccepted">
+      <summary>获取接受的传输控制协议 (TCP) 连接请求数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接受的 TCP 连接请求的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.ConnectionsInitiated">
+      <summary>获取由客户端发出的传输控制协议 (TCP) 连接请求数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定由客户端启动的 TCP 连接的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.CumulativeConnections">
+      <summary>指定建立的传输控制协议 (TCP) 连接的总数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定建立的连接的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.CurrentConnections">
+      <summary>获取当前传输控制协议 (TCP) 连接数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定当前 TCP 连接的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.ErrorsReceived">
+      <summary>获取收到的传输控制协议 (TCP) 错误数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定收到的 TCP 错误的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.FailedConnectionAttempts">
+      <summary>获取失败的传输控制协议 (TCP) 连接尝试数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定失败的 TCP 连接尝试的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.MaximumConnections">
+      <summary>获取支持的传输控制协议 (TCP) 连接的最大数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定可支持的 TCP 连接的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.MaximumTransmissionTimeout">
+      <summary>获取传输控制协议 (TCP) 段的最大重新传输超时值。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，指定 TCP 实现允许的重新传输超时值的最大毫秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.MinimumTransmissionTimeout">
+      <summary>获取传输控制协议 (TCP) 段的最小重新传输超时值。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，它指定重新传输超时值的 TCP 实现所允许的最小毫秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.ResetConnections">
+      <summary>获取传输控制协议 (TCP) 连接收到的 RST 数据包数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定重置 TCP 连接的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.ResetsSent">
+      <summary>获取发送时设置了重置标志的传输控制协议 (TCP) 段数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送时设置了重置标志的 TCP 段的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsReceived">
+      <summary>获取收到的传输控制协议 (TCP) 段数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定收到的 TCP 段的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsResent">
+      <summary>获取重新发送的传输控制协议 (TCP) 段数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定重新传输的 TCP 段的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsSent">
+      <summary>获取发送的传输控制协议 (TCP) 段数。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定发送的 TCP 段的总数。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.UdpStatistics">
+      <summary>提供用户数据报协议 (UDP) 统计数据。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UdpStatistics.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UdpStatistics.DatagramsReceived">
+      <summary>获取已接收的用户数据报协议 (UDP) 数据报的数量。</summary>
+      <returns>指定已发送到 UDP 用户的数据报总数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UdpStatistics.DatagramsSent">
+      <summary>获取已发送的用户数据报协议 (UDP) 数据报的数量。</summary>
+      <returns>指定已发送的数据报总数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UdpStatistics.IncomingDatagramsDiscarded">
+      <summary>获取已收到但因端口错误而放弃的用户数据报协议 (UDP) 数据报的数量。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的但由于目标端口上没有侦听应用程序而被丢弃的 UDP 数据报的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UdpStatistics.IncomingDatagramsWithErrors">
+      <summary>获取已收到但因错误端口信息以外的错误而放弃的用户数据报协议 (UDP) 数据报的数量。</summary>
+      <returns>
+        <see cref="T:System.Int64" /> 值，指定接收到的但由于目标端口上缺少应用程序以外的其他原因而未能传递的 UDP 数据报的总数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UdpStatistics.UdpListeners">
+      <summary>获取侦听用户数据报协议 (UDP) 数据报的本地终结点的数量。</summary>
+      <returns>指定正在侦听 UDP 数据报的套接字总数的 <see cref="T:System.Int64" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.UnicastIPAddressInformation">
+      <summary>提供有关网络接口的单播地址的信息。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformation.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressPreferredLifetime">
+      <summary>获取此地址作为首选地址的剩余秒数。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定此地址保持首选的剩余秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressValidLifetime">
+      <summary>获取此地址保持有效的剩余秒数。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Int64" /> 值，它指定此地址保持已分配的剩余秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DhcpLeaseLifetime">
+      <summary>指定此 IP 地址的动态主机配置协议 (DHCP) 租约的剩余时间量。</summary>
+      <returns>一个 <see cref="T:System.Int64" /> 值，包含计算机在必须释放 <see cref="T:System.Net.IPAddress" /> 实例之前剩余的秒数。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DuplicateAddressDetectionState">
+      <summary>获取一个值，该值指示重复地址检测算法的状态。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> 值之一，指示在确定此 IP 地址的唯一性的过程中，该算法的进度。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.IPv4Mask">
+      <summary>获取 IPv4 掩码。</summary>
+      <returns>包含 IPv4 掩码的 <see cref="T:System.Net.IPAddress" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.PrefixLength">
+      <summary>获取 IP 地址的前缀或网络部分的长度（以位为单位）。</summary>
+      <returns>IP 地址的前缀或网络部分的长度（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.PrefixOrigin">
+      <summary>获取一个值，该值标识单播 Internet 协议 (IP) 地址前缀的源。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> 值之一，标识前缀信息是如何获取的。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.SuffixOrigin">
+      <summary>获取一个值，该值标识单播 Internet 协议 (IP) 地址后缀的源。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此属性在运行早于 Windows XP 的操作系统的计算机上无效。</exception>
+      <returns>
+        <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> 值之一，标识后缀信息是如何获取的。</returns>
+    </member>
+    <member name="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection">
+      <summary>存储一组 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.#ctor">
+      <summary>初始化 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Add(System.Net.NetworkInformation.UnicastIPAddressInformation)">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="address">要添加到集合的对象。</param>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Clear">
+      <summary>由于该集合不支持此操作，因此引发 <see cref="T:System.NotSupportedException" />。</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Contains(System.Net.NetworkInformation.UnicastIPAddressInformation)">
+      <summary>检查集合中是否包含指定的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 对象。</summary>
+      <param name="address">要在集合中搜索的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 对象。</param>
+      <returns>如果集合中存在 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.CopyTo(System.Net.NetworkInformation.UnicastIPAddressInformation[],System.Int32)">
+      <summary>将此集合中的元素复制到 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的一维数组。</summary>
+      <param name="array">接收集合副本的一维数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的索引，在此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+  
+- 或 - 
+此 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> 中的元素数大于从 <paramref name="offset" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+      <exception cref="T:System.InvalidCastException">此 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> 中的元素无法自动转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.UnicastIPAddressInformation)">
+      <summary>引发 <see cref="T:System.NotSupportedException" />，因为该集合为只读，不能移除其中的元素。</summary>
+      <param name="address">要移除的对象。</param>
+      <returns>总是引发 <see cref="T:System.NotSupportedException" />。</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个可用于循环访问此集合的对象。</summary>
+      <returns>一个对象，它实现了 <see cref="T:System.Collections.IEnumerator" /> 接口，并提供对此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型的访问。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Count">
+      <summary>获取此集合中的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 类型数。</summary>
+      <returns>一个包含此集合中 <see cref="T:System.Int32" /> 类型的数目的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.IsReadOnly">
+      <summary>获取一个值，该值指示对此集合的访问是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Item(System.Int32)">
+      <summary>获取集合中指定索引位置处的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> 实例。</summary>
+      <param name="index">元素的从零开始的索引。</param>
+      <returns>位于指定位置的 <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" />。</returns>
+    </member>
+  </members>
+</doc>

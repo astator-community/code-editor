@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Runtime.InteropServices.RuntimeInformation</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.InteropServices.Architecture">
+      <summary>指示处理器体系结构。</summary>
+    </member>
+    <member name="F:System.Runtime.InteropServices.Architecture.Arm">
+      <summary>32 位 ARM 处理器体系结构。</summary>
+    </member>
+    <member name="F:System.Runtime.InteropServices.Architecture.Arm64">
+      <summary>64 位 ARM 处理器体系结构。</summary>
+    </member>
+    <member name="F:System.Runtime.InteropServices.Architecture.Wasm">
+      <summary>WebAssembly 平台。</summary>
+    </member>
+    <member name="F:System.Runtime.InteropServices.Architecture.X64">
+      <summary>基于 Intel 的 64 位处理器体系结构。</summary>
+    </member>
+    <member name="F:System.Runtime.InteropServices.Architecture.X86">
+      <summary>基于 Intel 的 32 位处理器体系结构。</summary>
+    </member>
+    <member name="T:System.Runtime.InteropServices.OSPlatform">
+      <summary>表示一种操作系统平台。</summary>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.Create(System.String)">
+      <summary>创建一个新的 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例。</summary>
+      <param name="osPlatform">此实例表示的平台的名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="osPlatform" /> 是一个空字符串。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="osPlatform" /> 为 <see langword="null" />。</exception>
+      <returns>表示 <paramref name="osPlatform" /> 操作系统的对象。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.Equals(System.Object)">
+      <summary>确定当前 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例是否与指定对象相等。</summary>
+      <param name="obj">如果 <paramref name="obj" /> 是一个 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例，且其名称与当前对象相同，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>如果 <paramref name="obj" /> 是一个 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例，且其名称与当前对象相同，则为 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.Equals(System.Runtime.InteropServices.OSPlatform)">
+      <summary>确定当前实例是否等同于指定的 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例。</summary>
+      <param name="other">要与当前实例进行比较的对象。</param>
+      <returns>如果当前实例与 <paramref name="other" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.GetHashCode">
+      <summary>返回此实例的哈希代码。</summary>
+      <returns>此实例的哈希代码。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.op_Equality(System.Runtime.InteropServices.OSPlatform,System.Runtime.InteropServices.OSPlatform)">
+      <summary>确定两个 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 对象是否相等。</summary>
+      <param name="left">要比较的第一个对象。</param>
+      <param name="right">要比较的第二个对象。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.op_Inequality(System.Runtime.InteropServices.OSPlatform,System.Runtime.InteropServices.OSPlatform)">
+      <summary>确定两个 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例是否不相等。</summary>
+      <param name="left">要比较的第一个对象。</param>
+      <param name="right">要比较的第二个对象。</param>
+      <returns>如果 <paramref name="left" /> 和 <paramref name="right" /> 不相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.InteropServices.OSPlatform.ToString">
+      <summary>返回此 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例的字符串表示形式。</summary>
+      <returns>一个表示此 <see cref="T:System.Runtime.InteropServices.OSPlatform" /> 实例的字符串。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.OSPlatform.FreeBSD">
+      <summary>获取表示 FreeBSD 操作系统的对象。</summary>
+      <returns>一个表示 FreeBSD 操作系统的对象。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.OSPlatform.Linux">
+      <summary>获取表示 Linux 操作系统的对象。</summary>
+      <returns>表示 Linux 操作系统的对象。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.OSPlatform.OSX">
+      <summary>获取表示 OSX 操作系统的对象。</summary>
+      <returns>表示 OSX 操作系统的对象。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.OSPlatform.Windows">
+      <summary>获取表示 Windows 操作系统的对象。</summary>
+      <returns>表示 Windows 操作系统的对象。</returns>
+    </member>
+    <member name="T:System.Runtime.InteropServices.RuntimeInformation">
+      <summary>提供有关 .NET 运行时安装的信息。</summary>
+    </member>
+    <member name="M:System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform)">
+      <summary>指示当前应用程序是否正在指定平台上运行。</summary>
+      <param name="osPlatform">一个平台。</param>
+      <returns>如果当前应用正在指定平台上运行，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription">
+      <summary>返回一个字符串，指示正在其上运行应用的 .NET 安装的名称。</summary>
+      <returns>正在其上运行应用的 .NET 安装的名称。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.RuntimeInformation.OSArchitecture">
+      <summary>获取正在其上运行当前应用的平台体系结构。</summary>
+      <returns>正在其上运行当前应用的平台体系结构。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.RuntimeInformation.OSDescription">
+      <summary>获取一个字符串，描述正在其上运行应用的操作系统。</summary>
+      <returns>运行应用的操作系统的说明。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture">
+      <summary>获取当前正在运行的应用的进程架构。</summary>
+      <returns>当前正在运行的应用的进程架构。</returns>
+    </member>
+    <member name="P:System.Runtime.InteropServices.RuntimeInformation.RuntimeIdentifier">
+      <summary>返回一个不透明的字符串，用于标识运行应用的平台。</summary>
+    </member>
+  </members>
+</doc>

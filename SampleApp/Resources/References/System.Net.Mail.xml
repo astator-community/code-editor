@@ -1,0 +1,1454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.Mail</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.Mail.AlternateView">
+      <summary>表示电子邮件的查看格式。</summary>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.IO.Stream)">
+      <summary>用指定的 <see cref="T:System.Net.Mail.AlternateView" /> 初始化 <see cref="T:System.IO.Stream" /> 的新实例。</summary>
+      <param name="contentStream">包含此视图的内容的流。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.IO.Stream,System.Net.Mime.ContentType)">
+      <summary>用指定的 <see cref="T:System.Net.Mail.AlternateView" /> 和 <see cref="T:System.IO.Stream" /> 初始化 <see cref="T:System.Net.Mime.ContentType" /> 的新实例。</summary>
+      <param name="contentStream">一个包含此附件的内容的流。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.IO.Stream,System.String)">
+      <summary>使用指定的 <see cref="T:System.Net.Mail.AlternateView" /> 和媒体类型初始化 <see cref="T:System.IO.Stream" /> 的新实例。</summary>
+      <param name="contentStream">一个包含此附件的内容的流。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.String)">
+      <summary>用指定的文件名初始化 <see cref="T:System.Net.Mail.AlternateView" /> 的新实例。</summary>
+      <param name="fileName">包含此可选视图内容的文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.IOException">发生 I/O 错误，如磁盘错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">对于指定的文件句柄，操作系统不允许所请求的访问，例如，当访问为 Write 或 ReadWrite 而文件句柄设置为只读访问时。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.String,System.Net.Mime.ContentType)">
+      <summary>用指定的文件名和内容类型初始化 <see cref="T:System.Net.Mail.AlternateView" /> 的新实例。</summary>
+      <param name="fileName">包含此可选视图内容的文件的名称。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.IOException">发生 I/O 错误，如磁盘错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">对于指定的文件句柄，操作系统不允许所请求的访问，例如，当访问为 Write 或 ReadWrite 而文件句柄设置为只读访问时。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.#ctor(System.String,System.String)">
+      <summary>用指定的文件名和媒体类型初始化 <see cref="T:System.Net.Mail.AlternateView" /> 的新实例。</summary>
+      <param name="fileName">包含此可选视图内容的文件的名称。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+      <exception cref="T:System.IO.IOException">发生 I/O 错误，如磁盘错误。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">对于指定的文件句柄，操作系统不允许所请求的访问，例如，当访问为 Write 或 ReadWrite 而文件句柄设置为只读访问时。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.CreateAlternateViewFromString(System.String)">
+      <summary>使用 <see cref="T:System.Net.Mail.AlternateView" /> 中指定的内容创建电子邮件的 <see cref="T:System.String" />。</summary>
+      <param name="content">包含电子邮件内容的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="content" /> 为 null。</exception>
+      <returns>
+        <see cref="T:System.Net.Mail.AlternateView" /> 对象，表示电子邮件的替代视图。</returns>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.CreateAlternateViewFromString(System.String,System.Net.Mime.ContentType)">
+      <summary>使用 <see cref="T:System.Net.Mail.AlternateView" /> 中指定的内容和内容的指定 MIME 媒体类型，创建电子邮件的 <see cref="T:System.String" />。</summary>
+      <param name="content">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="contentType">一个 <see cref="T:System.Net.Mime.ContentType" />，它描述 <paramref name="content" /> 中的数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="content" /> 为 null。</exception>
+      <returns>
+        <see cref="T:System.Net.Mail.AlternateView" /> 对象，表示电子邮件的替代视图。</returns>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.CreateAlternateViewFromString(System.String,System.Text.Encoding,System.String)">
+      <summary>使用 <see cref="T:System.Net.Mail.AlternateView" /> 中指定的内容、指定的文本编码和内容的 MIME 媒体类型，创建电子邮件的 <see cref="T:System.String" />。</summary>
+      <param name="content">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="contentEncoding">
+        <see cref="T:System.Text.Encoding" />。 此值可为 <see langword="null" />。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="content" /> 为 null。</exception>
+      <returns>
+        <see cref="T:System.Net.Mail.AlternateView" /> 对象，表示电子邮件的替代视图。</returns>
+    </member>
+    <member name="M:System.Net.Mail.AlternateView.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.Mail.AlternateView" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Net.Mail.AlternateView.BaseUri">
+      <summary>获取或设置用于解析 <see cref="T:System.Net.Mail.AlternateView" /> 中的相对 URI 的基 URI。</summary>
+      <returns>用于解析中的相对 Uri 的基 URI <see cref="T:System.Net.Mail.AlternateView" /> 。</returns>
+    </member>
+    <member name="P:System.Net.Mail.AlternateView.LinkedResources">
+      <summary>获取此附件引用的嵌入资源集。</summary>
+      <returns>一个 <see cref="T:System.Net.Mail.LinkedResourceCollection" /> 对象，该对象存储将作为电子邮件的一部分发送的链接资源的集合。</returns>
+    </member>
+    <member name="T:System.Net.Mail.AlternateViewCollection">
+      <summary>表示 <see cref="T:System.Net.Mail.AlternateView" /> 对象集合。</summary>
+    </member>
+    <member name="M:System.Net.Mail.AlternateViewCollection.Dispose">
+      <summary>释放由 <see cref="T:System.Net.Mail.AlternateViewCollection" /> 使用的所有资源。</summary>
+    </member>
+    <member name="T:System.Net.Mail.Attachment">
+      <summary>表示电子邮件的附件。</summary>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.IO.Stream,System.Net.Mime.ContentType)">
+      <summary>使用指定的流和内容类型初始化 <see cref="T:System.Net.Mail.Attachment" /> 类的新实例。</summary>
+      <param name="contentStream">一个包含附件内容的可读 <see cref="T:System.IO.Stream" />。</param>
+      <param name="contentType">一个 <see cref="T:System.Net.Mime.ContentType" />，它描述 <paramref name="contentStream" /> 中的数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentType" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.IO.Stream,System.String)">
+      <summary>使用指定的流和名称初始化 <see cref="T:System.Net.Mail.Attachment" /> 类的新实例。</summary>
+      <param name="contentStream">一个包含附件内容的可读 <see cref="T:System.IO.Stream" />。</param>
+      <param name="name">一个 <see cref="T:System.String" />，它包含与此附件关联的 <see cref="P:System.Net.Mime.ContentType.Name" /> 的 <see cref="T:System.Net.Mime.ContentType" /> 属性值。 此值可为 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.IO.Stream,System.String,System.String)">
+      <summary>使用指定的流、名称和 MIME 类型信息初始化 <see cref="T:System.Net.Mail.Attachment" /> 类的新实例。</summary>
+      <param name="contentStream">一个包含附件内容的可读 <see cref="T:System.IO.Stream" />。</param>
+      <param name="name">一个 <see cref="T:System.String" />，它包含与此附件关联的 <see cref="P:System.Net.Mime.ContentType.Name" /> 的 <see cref="T:System.Net.Mime.ContentType" /> 属性值。 此值可为 <see langword="null" />。</param>
+      <param name="mediaType">
+        <see cref="T:System.String" /> 包含此附件的 MIME 内容标头信息。 此值可为 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.String)">
+      <summary>使用指定的内容字符串初始化 <see cref="T:System.Net.Mail.Attachment" /> 类的新实例。</summary>
+      <param name="fileName">一个 <see cref="T:System.String" />，它包含用于创建此附件的文件路径。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="fileName" /> 为空。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.String,System.Net.Mime.ContentType)">
+      <summary>使用指定的内容字符串和 <see cref="T:System.Net.Mail.Attachment" /> 初始化 <see cref="T:System.Net.Mime.ContentType" /> 类的新实例。</summary>
+      <param name="fileName">一个 <see cref="T:System.String" />，它包含用于创建此附件的文件路径。</param>
+      <param name="contentType">一个 <see cref="T:System.Net.Mime.ContentType" />，它描述 <paramref name="fileName" /> 中的数据。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mediaType" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.#ctor(System.String,System.String)">
+      <summary>使用指定的内容字符串和 MIME 类型信息初始化 <see cref="T:System.Net.Mail.Attachment" /> 类的新实例。</summary>
+      <param name="fileName">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="mediaType">
+        <see cref="T:System.String" /> 包含此附件的 MIME 内容标头信息。 此值可为 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.CreateAttachmentFromString(System.String,System.Net.Mime.ContentType)">
+      <summary>使用指定字符串中的内容和指定的 <see cref="T:System.Net.Mime.ContentType" /> 创建邮件附件。</summary>
+      <param name="content">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="contentType">
+        <see cref="T:System.Net.Mime.ContentType" /> 对象，表示使用多用途 Internet 邮件交换 (MIME) 协议 Content-Type 标头。</param>
+      <returns>一个 <see cref="T:System.Net.Mail.Attachment" /> 类型的对象。</returns>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.CreateAttachmentFromString(System.String,System.String)">
+      <summary>使用指定字符串中的内容和指定的 MIME 内容类型名创建邮件附件。</summary>
+      <param name="content">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="name">与此附件关联的内容类型中的 MIME 内容类型名称值。</param>
+      <returns>一个 <see cref="T:System.Net.Mail.Attachment" /> 类型的对象。</returns>
+    </member>
+    <member name="M:System.Net.Mail.Attachment.CreateAttachmentFromString(System.String,System.String,System.Text.Encoding,System.String)">
+      <summary>使用指定字符串中的内容、指定的 MIME 内容类型名、字符编码和附件的 MIME 标头信息创建邮件附件。</summary>
+      <param name="content">一个包含附件内容的 <see cref="T:System.String" />。</param>
+      <param name="name">与此附件关联的内容类型中的 MIME 内容类型名称值。</param>
+      <param name="contentEncoding">
+        <see cref="T:System.Text.Encoding" />。 此值可为 <see langword="null" />。</param>
+      <param name="mediaType">
+        <see cref="T:System.String" /> 包含此附件的 MIME 内容标头信息。 此值可为 <see langword="null" />。</param>
+      <returns>一个 <see cref="T:System.Net.Mail.Attachment" /> 类型的对象。</returns>
+    </member>
+    <member name="P:System.Net.Mail.Attachment.ContentDisposition">
+      <summary>获取此附件的 MIME 内容处置。</summary>
+      <returns>
+        <see cref="T:System.Net.Mime.ContentDisposition" />，提供此附件的表示信息。</returns>
+    </member>
+    <member name="P:System.Net.Mail.Attachment.Name">
+      <summary>获取或设置与此附件关联的内容类型中的 MIME 内容类型名称值。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <returns>
+        <see cref="T:System.String" />，包含由 <see cref="P:System.Net.Mime.ContentType.Name" /> 属性表示的内容类型 <paramref name="name" /> 的值。</returns>
+    </member>
+    <member name="P:System.Net.Mail.Attachment.NameEncoding">
+      <summary>指定用于 <see cref="T:System.Net.Mail.Attachment" /><see cref="P:System.Net.Mail.Attachment.Name" /> 的编码。</summary>
+      <returns>一个 <see cref="T:System.Text.Encoding" /> 值，它指定名称编码的类型。 根据附件名称确定默认值。</returns>
+    </member>
+    <member name="T:System.Net.Mail.AttachmentBase">
+      <summary>表示电子邮件附件的基类。 <see cref="T:System.Net.Mail.Attachment" />、<see cref="T:System.Net.Mail.AlternateView" /> 和 <see cref="T:System.Net.Mail.LinkedResource" /> 类从此类派生。</summary>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.IO.Stream)">
+      <summary>用指定的 <see cref="T:System.Net.Mail.AttachmentBase" /> 实例化一个 <see cref="T:System.IO.Stream" />。</summary>
+      <param name="contentStream">一个包含此附件内容的流。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.IO.Stream,System.Net.Mime.ContentType)">
+      <summary>用指定的 <see cref="T:System.Net.Mail.AttachmentBase" /> 和 <see cref="T:System.IO.Stream" /> 实例化一个 <see cref="T:System.Net.Mime.ContentType" />。</summary>
+      <param name="contentStream">一个包含此附件内容的流。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.IO.Stream,System.String)">
+      <summary>用指定的 <see cref="T:System.Net.Mail.AttachmentBase" /> 和媒体类型实例化一个 <see cref="T:System.IO.Stream" />。</summary>
+      <param name="contentStream">一个包含此附件内容的流。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.String)">
+      <summary>用指定的文件名实例化一个 <see cref="T:System.Net.Mail.AttachmentBase" />。</summary>
+      <param name="fileName">保存此附件内容的文件的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.String,System.Net.Mime.ContentType)">
+      <summary>用指定的文件名和内容类型实例化一个 <see cref="T:System.Net.Mail.AttachmentBase" />。</summary>
+      <param name="fileName">保存此附件内容的文件的名称。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.#ctor(System.String,System.String)">
+      <summary>用指定的文件名和媒体类型实例化一个 <see cref="T:System.Net.Mail.AttachmentBase" />。</summary>
+      <param name="fileName">保存此附件内容的文件的名称。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.Dispose">
+      <summary>释放由 <see cref="T:System.Net.Mail.AttachmentBase" /> 占用的资源。</summary>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentBase.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.Mail.AttachmentBase" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Net.Mail.AttachmentBase.ContentId">
+      <summary>获取或设置此附件的 MIME 内容 ID。</summary>
+      <exception cref="T:System.ArgumentNullException">尝试将 <see cref="P:System.Net.Mail.AttachmentBase.ContentId" /> 设置为 <see langword="null" />。</exception>
+      <returns>保存内容 ID 的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.AttachmentBase.ContentStream">
+      <summary>获取此附件的内容流。</summary>
+      <returns>此附件的内容流。</returns>
+    </member>
+    <member name="P:System.Net.Mail.AttachmentBase.ContentType">
+      <summary>获取此附件的内容类型。</summary>
+      <returns>此附件的内容类型。</returns>
+    </member>
+    <member name="P:System.Net.Mail.AttachmentBase.TransferEncoding">
+      <summary>获取或设置此附件的编码。</summary>
+      <returns>此附件的编码。</returns>
+    </member>
+    <member name="T:System.Net.Mail.AttachmentCollection">
+      <summary>存储要作为电子邮件的一部分发送的附件。</summary>
+    </member>
+    <member name="M:System.Net.Mail.AttachmentCollection.Dispose">
+      <summary>释放由 <see cref="T:System.Net.Mail.AttachmentCollection" /> 使用的所有资源。</summary>
+    </member>
+    <member name="T:System.Net.Mail.DeliveryNotificationOptions">
+      <summary>描述电子邮件的送达通知选项。</summary>
+    </member>
+    <member name="F:System.Net.Mail.DeliveryNotificationOptions.Delay">
+      <summary>送达延迟时通知。</summary>
+    </member>
+    <member name="F:System.Net.Mail.DeliveryNotificationOptions.Never">
+      <summary>不应在任何情况下生成的通知。</summary>
+    </member>
+    <member name="F:System.Net.Mail.DeliveryNotificationOptions.None">
+      <summary>不会发送通知信息。 邮件服务器将利用其已配置的行为确定否应生成送达通知。</summary>
+    </member>
+    <member name="F:System.Net.Mail.DeliveryNotificationOptions.OnFailure">
+      <summary>未能送达时通知。</summary>
+    </member>
+    <member name="F:System.Net.Mail.DeliveryNotificationOptions.OnSuccess">
+      <summary>成功送达时通知。</summary>
+    </member>
+    <member name="T:System.Net.Mail.LinkedResource">
+      <summary>表示电子邮件附件中嵌入的外部资源，如 HTML 附件中的图像。</summary>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.IO.Stream)">
+      <summary>使用提供的 <see cref="T:System.Net.Mail.LinkedResource" /> 初始化 <see cref="T:System.IO.Stream" /> 的新实例。</summary>
+      <param name="contentStream">包含此嵌入资源的内容的流。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.IO.Stream,System.Net.Mime.ContentType)">
+      <summary>用 <see cref="T:System.Net.Mail.LinkedResource" /> 和 <see cref="T:System.IO.Stream" /> 提供的值初始化 <see cref="T:System.Net.Mime.ContentType" /> 的新实例。</summary>
+      <param name="contentStream">包含此嵌入资源的内容的流。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.IO.Stream,System.String)">
+      <summary>使用指定的 <see cref="T:System.Net.Mail.LinkedResource" /> 和媒体类型初始化 <see cref="T:System.IO.Stream" /> 的新实例。</summary>
+      <param name="contentStream">包含此嵌入资源的内容的流。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentStream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.String)">
+      <summary>使用指定的文件名初始化 <see cref="T:System.Net.Mail.LinkedResource" /> 的新实例。</summary>
+      <param name="fileName">包含此嵌入资源的内容的文件名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.String,System.Net.Mime.ContentType)">
+      <summary>用指定的文件名和内容类型初始化 <see cref="T:System.Net.Mail.LinkedResource" /> 的新实例。</summary>
+      <param name="fileName">包含此嵌入资源的内容的文件名。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.#ctor(System.String,System.String)">
+      <summary>用指定的文件名和媒体类型初始化 <see cref="T:System.Net.Mail.LinkedResource" /> 的新实例。</summary>
+      <param name="fileName">包含此嵌入资源的内容的文件名。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="mediaType" /> 不是有效值。</exception>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.CreateLinkedResourceFromString(System.String)">
+      <summary>用作为嵌入资源包含在电子邮件附件中的字符串创建 <see cref="T:System.Net.Mail.LinkedResource" /> 对象。 默认媒体类型是纯文本，默认内容类型是 ASCII。</summary>
+      <param name="content">包含嵌入资源的字符串，嵌入资源将包括在电子邮件附件中。</param>
+      <exception cref="T:System.ArgumentNullException">指定的内容字符串为空。</exception>
+      <returns>一个包含嵌入资源的 <see cref="T:System.Net.Mail.LinkedResource" /> 对象，嵌入资源将包括在电子邮件附件中。</returns>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.CreateLinkedResourceFromString(System.String,System.Net.Mime.ContentType)">
+      <summary>用作为嵌入资源包含在电子邮件附件中的字符串、指定的内容类型、纯文本媒体类型创建 <see cref="T:System.Net.Mail.LinkedResource" /> 对象。</summary>
+      <param name="content">包含嵌入资源的字符串，嵌入资源将包括在电子邮件附件中。</param>
+      <param name="contentType">内容的类型。</param>
+      <exception cref="T:System.ArgumentNullException">指定的内容字符串为空。</exception>
+      <returns>一个包含嵌入资源的 <see cref="T:System.Net.Mail.LinkedResource" /> 对象，嵌入资源将包括在电子邮件附件中。</returns>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResource.CreateLinkedResourceFromString(System.String,System.Text.Encoding,System.String)">
+      <summary>用作为嵌入资源包含在电子邮件附件中的字符串、指定的内容类型和媒体类型创建 <see cref="T:System.Net.Mail.LinkedResource" /> 对象。</summary>
+      <param name="content">包含嵌入资源的字符串，嵌入资源将包括在电子邮件附件中。</param>
+      <param name="contentEncoding">内容的类型。</param>
+      <param name="mediaType">内容的 MIME 媒体类型。</param>
+      <exception cref="T:System.ArgumentNullException">指定的内容字符串为空。</exception>
+      <returns>一个包含嵌入资源的 <see cref="T:System.Net.Mail.LinkedResource" /> 对象，嵌入资源将包括在电子邮件附件中。</returns>
+    </member>
+    <member name="P:System.Net.Mail.LinkedResource.ContentLink">
+      <summary>获取或设置资源必须匹配的 URI。</summary>
+      <returns>如果 <see cref="P:System.Net.Mail.LinkedResource.ContentLink" /> 是相对 URI，则邮件的收件人必须解析它。</returns>
+    </member>
+    <member name="T:System.Net.Mail.LinkedResourceCollection">
+      <summary>存储要作为邮件的一部分进行发送的链接资源。</summary>
+    </member>
+    <member name="M:System.Net.Mail.LinkedResourceCollection.Dispose">
+      <summary>释放由 <see cref="T:System.Net.Mail.LinkedResourceCollection" /> 使用的所有资源。</summary>
+    </member>
+    <member name="T:System.Net.Mail.MailAddress">
+      <summary>表示电子邮件发件人或收件人的地址。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.#ctor(System.String)">
+      <summary>使用指定的地址序列化 <see cref="T:System.Net.Mail.MailAddress" /> 类的新实例。</summary>
+      <param name="address">一个 <see cref="T:System.String" />，它包含一个电子邮件地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 的格式无法识别。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.#ctor(System.String,System.String)">
+      <summary>使用指定的地址和显示名称序列化 <see cref="T:System.Net.Mail.MailAddress" /> 类的新实例。</summary>
+      <param name="address">一个 <see cref="T:System.String" />，它包含一个电子邮件地址。</param>
+      <param name="displayName">一个 <see cref="T:System.String" />，它包含与 <paramref name="address" /> 相关联的显示名称。 此参数可以为 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 的格式无法识别。  
+  
+- 或 - 
+ <paramref name="address" /> 包含非 ASCII 字符。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.#ctor(System.String,System.String,System.Text.Encoding)">
+      <summary>使用指定的地址、显示名和编码初始化 <see cref="T:System.Net.Mail.MailAddress" /> 类的新实例。</summary>
+      <param name="address">一个 <see cref="T:System.String" />，它包含一个电子邮件地址。</param>
+      <param name="displayName">
+        <see cref="T:System.String" />，包含与 <paramref name="address" /> 关联的显示名。</param>
+      <param name="displayNameEncoding">
+        <see cref="T:System.Text.Encoding" />，定义用于 <paramref name="displayName" /> 的字符集。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="displayName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 为 <see cref="F:System.String.Empty" /> ("")。  
+  
+- 或 - 
+ <paramref name="displayName" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 的格式无法识别。  
+  
+- 或 - 
+ <paramref name="address" /> 包含非 ASCII 字符。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.Equals(System.Object)">
+      <summary>比较两个邮件地址。</summary>
+      <param name="value">与当前实例比较的 <see cref="T:System.Net.Mail.MailAddress" /> 实例。</param>
+      <returns>如果两个邮件地址相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.GetHashCode">
+      <summary>返回邮件地址的哈希值。</summary>
+      <returns>整数哈希值。</returns>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.ToString">
+      <summary>返回此实例的字符串表示形式。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含此 <see cref="T:System.Net.Mail.MailAddress" /> 的内容。</returns>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.TryCreate(System.String,System.Net.Mail.MailAddress@)">
+      <summary>创建一个新的 <see cref="T:System.Net.Mail.MailAddress" />。 如果无法创建对象，则不会引发异常。</summary>
+      <param name="address">电子邮件地址。</param>
+      <param name="result">此方法返回时，如果分析成功，则包含电子邮件地址对象。</param>
+      <returns>如果成功创建了 <see cref="T:System.Net.Mail.MailAddress" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.TryCreate(System.String,System.String,System.Net.Mail.MailAddress@)">
+      <summary>创建一个新的 <see cref="T:System.Net.Mail.MailAddress" />。 如果无法创建对象，则不会引发异常。</summary>
+      <param name="address">电子邮件地址。</param>
+      <param name="displayName">与该地址关联的显示名称。 此参数可以为 <see langword="null" />。</param>
+      <param name="result">此方法返回时，如果分析成功，则包含电子邮件地址对象。</param>
+      <returns>如果成功创建了 <see cref="T:System.Net.Mail.MailAddress" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.Mail.MailAddress.TryCreate(System.String,System.String,System.Text.Encoding,System.Net.Mail.MailAddress@)">
+      <summary>创建一个新的 <see cref="T:System.Net.Mail.MailAddress" />。 如果无法创建对象，则不会引发异常。</summary>
+      <param name="address">电子邮件地址。</param>
+      <param name="displayName">与地址关联的显示名称。 此参数可以为 <see langword="null" />。</param>
+      <param name="displayNameEncoding">定义用于 <paramref name="displayName" /> 的字符集的编码。</param>
+      <param name="result">此方法返回时，如果分析成功，则包含电子邮件地址对象。</param>
+      <returns>如果成功创建了 <see cref="T:System.Net.Mail.MailAddress" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailAddress.Address">
+      <summary>获取创建此实例时指定的电子邮件地址。</summary>
+      <returns>包含电子邮件地址的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailAddress.DisplayName">
+      <summary>获取由创建此实例时指定的显示名和地址信息构成的显示名。</summary>
+      <returns>包含显示名的 <see cref="T:System.String" />；如果创建此实例时没有指定显示名信息，则为 <see cref="F:System.String.Empty" /> ("")。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailAddress.Host">
+      <summary>获取创建此实例时指定的地址的主机部分。</summary>
+      <returns>一个 <see cref="T:System.String" /> ，其中包含为属性接受电子邮件的主计算机的名称 <see cref="P:System.Net.Mail.MailAddress.User" /> 。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailAddress.User">
+      <summary>获取创建此实例时指定的地址中的用户信息。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含 <see cref="P:System.Net.Mail.MailAddress.Address" /> 的用户名部分。</returns>
+    </member>
+    <member name="T:System.Net.Mail.MailAddressCollection">
+      <summary>存储与电子邮件关联的电子邮件地址。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailAddressCollection.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mail.MailAddressCollection" /> 类的空实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailAddressCollection.Add(System.String)">
+      <summary>向集合添加电子邮件地址列表。</summary>
+      <param name="addresses">要添加到 <see cref="T:System.Net.Mail.MailAddressCollection" /> 中的电子邮件地址。 多个电子邮件地址之间必须用逗号字符（“,”）分隔。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="addresses" /> 参数为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="addresses" /> 参数是空字符串。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="addresses" /> 参数包含无效或不受支持的电子邮件地址。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddressCollection.InsertItem(System.Int32,System.Net.Mail.MailAddress)">
+      <summary>将电子邮件地址插入到 <see cref="T:System.Net.Mail.MailAddressCollection" /> 中的指定位置。</summary>
+      <param name="index">将由 <paramref name="item" /> 指定的电子邮件地址插入到的位置。</param>
+      <param name="item">要插入到集合中的电子邮件地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="item" /> 参数为 null。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddressCollection.SetItem(System.Int32,System.Net.Mail.MailAddress)">
+      <summary>替换指定索引处的元素。</summary>
+      <param name="index">要替换的电子邮件地址元素的索引。</param>
+      <param name="item">用于替换集合中的元素的电子邮件地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="item" /> 参数为 null。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailAddressCollection.ToString">
+      <summary>返回该 <see cref="T:System.Net.Mail.MailAddressCollection" /> 对象中电子邮件地址的字符串表示形式。</summary>
+      <returns>包含此集合中的电子邮件地址的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="T:System.Net.Mail.MailMessage">
+      <summary>表示可以使用 <see cref="T:System.Net.Mail.SmtpClient" /> 类发送的电子邮件。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mail.MailMessage" /> 类的空实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.#ctor(System.Net.Mail.MailAddress,System.Net.Mail.MailAddress)">
+      <summary>使用指定的 <see cref="T:System.Net.Mail.MailAddress" /> 类对象初始化 <see cref="T:System.Net.Mail.MailMessage" /> 类的新实例。</summary>
+      <param name="from">
+        <see cref="T:System.Net.Mail.MailAddress" />，其中包含电子邮件发件人的地址。</param>
+      <param name="to">
+        <see cref="T:System.Net.Mail.MailAddress" />，其中包含电子邮件收件人的地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="to" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="from" /> 或 <paramref name="to" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.#ctor(System.String,System.String)">
+      <summary>使用指定的 <see cref="T:System.String" /> 类对象初始化 <see cref="T:System.Net.Mail.MailMessage" /> 类的新实例。</summary>
+      <param name="from">
+        <see cref="T:System.String" />，其中包含电子邮件发件人的地址。</param>
+      <param name="to">
+        <see cref="T:System.String" />，其中包含电子邮件收件人的地址。 多个电子邮件地址之间必须用逗号字符（“,”）分隔。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="to" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" /> ("")。  
+  
+- 或 - 
+ <paramref name="to" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="from" /> 或 <paramref name="to" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.#ctor(System.String,System.String,System.String,System.String)">
+      <summary>初始化 <see cref="T:System.Net.Mail.MailMessage" /> 类的新实例。</summary>
+      <param name="from">
+        <see cref="T:System.String" />，其中包含电子邮件发件人的地址。</param>
+      <param name="to">
+        <see cref="T:System.String" />，其中包含电子邮件收件人的地址。 多个电子邮件地址之间必须用逗号字符（“,”）分隔。</param>
+      <param name="subject">包含主题文本的 <see cref="T:System.String" />。</param>
+      <param name="body">一个包含邮件正文的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="to" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" /> ("")。  
+  
+- 或 - 
+ <paramref name="to" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="from" /> 或 <paramref name="to" /> 的格式不正确。</exception>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.Dispose">
+      <summary>释放由 <see cref="T:System.Net.Mail.MailMessage" /> 使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Net.Mail.MailMessage.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.Net.Mail.MailMessage" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.AlternateViews">
+      <summary>获取用于存储邮件正文的替代形式的附件集合。</summary>
+      <returns>可写的 <see cref="T:System.Net.Mail.AlternateViewCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Attachments">
+      <summary>获取用于存储附加到此电子邮件的数据的附件集合。</summary>
+      <returns>可写的 <see cref="T:System.Net.Mail.AttachmentCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Bcc">
+      <summary>获取包含此电子邮件密件抄送 (BCC) 收件人的地址集合。</summary>
+      <returns>可写的 <see cref="T:System.Net.Mail.MailAddressCollection" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Body">
+      <summary>获取或设置邮件正文。</summary>
+      <returns>包含正文的 <see cref="T:System.String" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.BodyEncoding">
+      <summary>获取或设置用于邮件正文的编码。</summary>
+      <returns>应用于 <see cref="T:System.Text.Encoding" /> 的内容的 <see cref="P:System.Net.Mail.MailMessage.Body" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.BodyTransferEncoding">
+      <summary>获取或设置用于邮件正文的传输编码。</summary>
+      <returns>应用于 <see cref="T:System.Net.Mime.TransferEncoding" /> 的内容的 <see cref="P:System.Net.Mail.MailMessage.Body" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.CC">
+      <summary>获取包含此电子邮件抄送 (CC) 收件人的地址集合。</summary>
+      <returns>可写的 <see cref="T:System.Net.Mail.MailAddressCollection" /> 对象。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.DeliveryNotificationOptions">
+      <summary>获取或设置此电子邮件的发送通知。</summary>
+      <returns>包含此邮件的发送通知的 <see cref="T:System.Net.Mail.DeliveryNotificationOptions" /> 值。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.From">
+      <summary>获取或设置此电子邮件的发件人地址。</summary>
+      <returns>包含发信人地址信息的 <see cref="T:System.Net.Mail.MailAddress" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Headers">
+      <summary>获取与此电子邮件一起传输的电子邮件标头。</summary>
+      <returns>
+        <see cref="T:System.Collections.Specialized.NameValueCollection" />包含电子邮件头的。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.HeadersEncoding">
+      <summary>获取或设置此电子邮件的用户自定义标头使用的编码。</summary>
+      <returns>此电子邮件的用户定义自定义标头使用的编码。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.IsBodyHtml">
+      <summary>获取或设置一个值，指示邮件正文是否为 HTML 格式。</summary>
+      <returns>
+        <see langword="true" /> 如果消息正文为 HTML 格式，则为; 否则为。else <see langword="false" /> 。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Priority">
+      <summary>获取或设置此电子邮件的优先级。</summary>
+      <returns>包含此邮件的优先级的 <see cref="T:System.Net.Mail.MailPriority" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.ReplyTo">
+      <summary>获取或设置邮件的回复地址。</summary>
+      <returns>指示 <see cref="P:System.Net.Mail.MailMessage.ReplyTo" /> 字段的值的 MailAddress。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.ReplyToList">
+      <summary>获取邮件的回复地址的列表。</summary>
+      <returns>邮件的回复地址的列表。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Sender">
+      <summary>获取或设置此电子邮件的发件人地址。</summary>
+      <returns>包含发件人地址信息的 <see cref="T:System.Net.Mail.MailAddress" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.Subject">
+      <summary>获取或设置此电子邮件的主题行。</summary>
+      <returns>包含主题内容的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.SubjectEncoding">
+      <summary>获取或设置用于此电子邮件主题内容的编码。</summary>
+      <returns>用于对 <see cref="T:System.Text.Encoding" /> 属性进行编码的 <see cref="P:System.Net.Mail.MailMessage.Subject" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.MailMessage.To">
+      <summary>获取包含此电子邮件收件人的地址集合。</summary>
+      <returns>可写的 <see cref="T:System.Net.Mail.MailAddressCollection" /> 对象。</returns>
+    </member>
+    <member name="T:System.Net.Mail.MailPriority">
+      <summary>指定 <see cref="T:System.Net.Mail.MailMessage" /> 的优先级。</summary>
+    </member>
+    <member name="F:System.Net.Mail.MailPriority.High">
+      <summary>此电子邮件具有高优先级。</summary>
+    </member>
+    <member name="F:System.Net.Mail.MailPriority.Low">
+      <summary>此电子邮件具有低优先级。</summary>
+    </member>
+    <member name="F:System.Net.Mail.MailPriority.Normal">
+      <summary>此电子邮件具有常规优先级。</summary>
+    </member>
+    <member name="T:System.Net.Mail.SendCompletedEventHandler">
+      <summary>表示用来处理 <see cref="E:System.Net.Mail.SmtpClient.SendCompleted" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.ComponentModel.AsyncCompletedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Net.Mail.SmtpClient">
+      <summary>允许应用程序使用简单邮件传输协议 (SMTP) 来发送电子邮件。 <c>SmtpClient</c> 类型现已过时。</summary>
+    </member>
+    <member name="E:System.Net.Mail.SmtpClient.SendCompleted">
+      <summary>在异步电子邮件发送操作完成时出现。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.#ctor">
+      <summary>使用配置文件设置来初始化 <see cref="T:System.Net.Mail.SmtpClient" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Net.Mail.SmtpClient" /> 类的新实例，该类使用指定的 SMTP 服务器发送电子邮件。</summary>
+      <param name="host">一个包含用于 SMTP 事务的主机名或主机 IP 地址的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.#ctor(System.String,System.Int32)">
+      <summary>初始化 <see cref="T:System.Net.Mail.SmtpClient" /> 类的新实例，该类使用指定的 SMTP 服务器和端口发送电子邮件。</summary>
+      <param name="host">一个包含用于 SMTP 事务的主机名或主机 IP 地址的 <see cref="T:System.String" />。</param>
+      <param name="port">大于 0 的 <see cref="T:System.Int32" />，包含要在 <paramref name="host" /> 上使用的端口。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="port" /> 不能小于零。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.Dispose">
+      <summary>向 SMTP 服务器发送一条 QUIT 消息，适当地结束 TCP 连接，并释放由 <see cref="T:System.Net.Mail.SmtpClient" /> 类的当前实例使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.Dispose(System.Boolean)">
+      <summary>向 SMTP 服务器发送一条 QUIT 消息，适当地结束 TCP 连接，释放由 <see cref="T:System.Net.Mail.SmtpClient" /> 类的当前实例使用的所有资源，并根据需要释放托管资源。</summary>
+      <param name="disposing">如果释放托管资源和非托管资源，则为 <see langword="true" />；如果仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.OnSendCompleted(System.ComponentModel.AsyncCompletedEventArgs)">
+      <summary>引发 <see cref="E:System.Net.Mail.SmtpClient.SendCompleted" /> 事件。</summary>
+      <param name="e">包含事件数据的 <see cref="T:System.ComponentModel.AsyncCompletedEventArgs" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.Send(System.Net.Mail.MailMessage)">
+      <summary>将指定的邮件发送到 SMTP 服务器以便传递。</summary>
+      <param name="message">一个包含要发送的邮件的 <see cref="T:System.Net.Mail.MailMessage" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="message" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Net.Mail.SmtpClient" /> 有一个 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 调用正在进行。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.MailMessage.From" /> 为 <see langword="null" />。  
+  
+- 或 - 
+<see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 和 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 属性中没有指定的收件人。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，且 <see cref="P:System.Net.Mail.SmtpClient.Host" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，<see cref="P:System.Net.Mail.SmtpClient.Host" /> 等于空字符串 ("")。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性被设为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" /> 且 <see cref="P:System.Net.Mail.SmtpClient.Port" /> 为零、负数或大于 65,535。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.Net.Mail.SmtpException">连接到 SMTP 服务器失败。  
+  
+- 或 - 
+身份验证失败。  
+  
+- 或 - 
+操作超时。 
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true" />，但 <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory" /> 或 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.PickupDirectoryFromIis" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true," />，但 SMTP 邮件服务器不在对 EHLO 命令的响应中播发 STARTTLS。</exception>
+      <exception cref="T:System.Net.Mail.SmtpFailedRecipientException">
+        <paramref name="message" /> 未能传递给 <see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 或 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 中的一个收件人。</exception>
+      <exception cref="T:System.Net.Mail.SmtpFailedRecipientsException">
+        <paramref name="message" /> 未能传递给 <see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 或 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 中的两个或多个收件人。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.Send(System.String,System.String,System.String,System.String)">
+      <summary>将指定的电子邮件发送到 SMTP 服务器以便传递。 使用 <see cref="T:System.String" /> 对象指定邮件的发件人、收件人、主题和邮件正文。</summary>
+      <param name="from">一个包含邮件发件人的地址信息的 <see cref="T:System.String" />。</param>
+      <param name="recipients">一个包含邮件收件人的地址的 <see cref="T:System.String" />。</param>
+      <param name="subject">一个包含邮件主题行的 <see cref="T:System.String" />。</param>
+      <param name="body">一个包含邮件正文的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Net.Mail.SmtpClient" /> 有一个 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 调用正在进行。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，且 <see cref="P:System.Net.Mail.SmtpClient.Host" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，<see cref="P:System.Net.Mail.SmtpClient.Host" /> 等于空字符串 ("")。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性被设为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" /> 且 <see cref="P:System.Net.Mail.SmtpClient.Port" /> 为零、负数或大于 65,535。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.Net.Mail.SmtpException">连接到 SMTP 服务器失败。  
+  
+- 或 - 
+身份验证失败。  
+  
+- 或 - 
+操作超时。 
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true" />，但 <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory" /> 或 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.PickupDirectoryFromIis" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true," />，但 SMTP 邮件服务器不在对 EHLO 命令的响应中播发 STARTTLS。</exception>
+      <exception cref="T:System.Net.Mail.SmtpFailedRecipientException">
+        <paramref name="message" /> 未能传递给 <see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 或 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 中的一个收件人。</exception>
+      <exception cref="T:System.Net.Mail.SmtpFailedRecipientsException">
+        <paramref name="message" /> 未能传递给 <see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 或 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 中的两个或多个收件人。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendAsync(System.Net.Mail.MailMessage,System.Object)">
+      <summary>将指定的电子邮件发送到 SMTP 服务器以便传递。 此方法不阻止调用线程，并允许调用方将对象传递给操作完成后调用的方法。</summary>
+      <param name="message">一个包含要发送的邮件的 <see cref="T:System.Net.Mail.MailMessage" />。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="message" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.MailMessage.From" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Net.Mail.SmtpClient" /> 有一个 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 调用正在进行。  
+  
+- 或 - 
+<see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 和 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 属性中没有指定的收件人。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，且 <see cref="P:System.Net.Mail.SmtpClient.Host" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，<see cref="P:System.Net.Mail.SmtpClient.Host" /> 等于空字符串 ("")。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性被设为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" /> 且 <see cref="P:System.Net.Mail.SmtpClient.Port" /> 为零、负数或大于 65,535。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.Net.Mail.SmtpException">连接到 SMTP 服务器失败。  
+  
+- 或 - 
+身份验证失败。  
+  
+- 或 - 
+操作超时。 
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true" />，但 <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory" /> 或 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.PickupDirectoryFromIis" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true," />，但 SMTP 邮件服务器不在对 EHLO 命令的响应中播发 STARTTLS。  
+  
+- 或 - 
+<paramref name="message" /> 未能传递给 <see cref="P:System.Net.Mail.MailMessage.To" />、<see cref="P:System.Net.Mail.MailMessage.CC" /> 或 <see cref="P:System.Net.Mail.MailMessage.Bcc" /> 中的一个或多个收件人。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendAsync(System.String,System.String,System.String,System.String,System.Object)">
+      <summary>将电子邮件发送到 SMTP 服务器以便传递。 使用 <see cref="T:System.String" /> 对象指定邮件的发件人、收件人、主题和邮件正文。 此方法不阻止调用线程，并允许调用方将对象传递给操作完成后调用的方法。</summary>
+      <param name="from">一个包含邮件发件人的地址信息的 <see cref="T:System.String" />。</param>
+      <param name="recipients">包含邮件收件人的地址的 <see cref="T:System.String" />。</param>
+      <param name="subject">一个包含邮件主题行的 <see cref="T:System.String" />。</param>
+      <param name="body">一个包含邮件正文的 <see cref="T:System.String" />。</param>
+      <param name="userToken">一个用户定义对象，此对象将传递给完成异步操作后所调用的方法。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="recipient" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+ <paramref name="recipient" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="T:System.Net.Mail.SmtpClient" /> 有一个 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 调用正在进行。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，且 <see cref="P:System.Net.Mail.SmtpClient.Host" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" />，<see cref="P:System.Net.Mail.SmtpClient.Host" /> 等于空字符串 ("")。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性被设为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.Network" /> 且 <see cref="P:System.Net.Mail.SmtpClient.Port" /> 为零、负数或大于 65,535。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+      <exception cref="T:System.Net.Mail.SmtpException">连接到 SMTP 服务器失败。  
+  
+- 或 - 
+身份验证失败。  
+  
+- 或 - 
+操作超时。 
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true" />，但 <see cref="P:System.Net.Mail.SmtpClient.DeliveryMethod" /> 属性设置为 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory" /> 或 <see cref="F:System.Net.Mail.SmtpDeliveryMethod.PickupDirectoryFromIis" />。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.EnableSsl" /> 设置为 <see langword="true," />，但 SMTP 邮件服务器不在对 EHLO 命令的响应中播发 STARTTLS。  
+  
+- 或 - 
+邮件未能传递给 <paramref name="recipients" /> 中的一个或多个收件人。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendAsyncCancel">
+      <summary>取消异步操作以发送电子邮件。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放此对象。</exception>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendMailAsync(System.Net.Mail.MailMessage)">
+      <summary>将指定的邮件以异步操作形式发送给 SMTP 服务器供传递。</summary>
+      <param name="message">一个包含要发送的邮件的 <see cref="T:System.Net.Mail.MailMessage" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="message" /> 为 <see langword="null" />。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendMailAsync(System.Net.Mail.MailMessage,System.Threading.CancellationToken)">
+      <summary>将指定的邮件以异步操作形式发送给 SMTP 服务器供传递。</summary>
+      <param name="message">要发送的消息。</param>
+      <param name="cancellationToken">用于取消操作的取消令牌。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="message" /> 为 <see langword="null" />。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendMailAsync(System.String,System.String,System.String,System.String)">
+      <summary>将指定的邮件以异步操作形式发送给 SMTP 服务器供传递。 使用 <see cref="T:System.String" /> 对象指定邮件的发件人、收件人、主题和邮件正文。</summary>
+      <param name="from">一个包含邮件发件人的地址信息的 <see cref="T:System.String" />。</param>
+      <param name="recipients">一个包含邮件收件人的地址的 <see cref="T:System.String" />。</param>
+      <param name="subject">一个包含邮件主题行的 <see cref="T:System.String" />。</param>
+      <param name="body">一个包含邮件正文的 <see cref="T:System.String" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="M:System.Net.Mail.SmtpClient.SendMailAsync(System.String,System.String,System.String,System.String,System.Threading.CancellationToken)">
+      <summary>使用指定的发件人、收件人、主题和正文字符串，将指定的消息作为异步操作发送到 SMTP 服务器。</summary>
+      <param name="from">邮件发件人的地址信息。</param>
+      <param name="recipients">邮件收件人的地址。</param>
+      <param name="subject">消息的主题行。</param>
+      <param name="body">消息正文。</param>
+      <param name="cancellationToken">用于取消操作的取消令牌。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="from" /> 为 <see langword="null" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="from" /> 为 <see cref="F:System.String.Empty" />。  
+  
+- 或 - 
+ <paramref name="recipients" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <returns>表示异步操作的任务对象。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.ClientCertificates">
+      <summary>指定应该使用哪些证书来建立安全套接字层 (SSL) 连接。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" />，包含一个或多个客户端证书。 默认值从配置文件中的邮件配置特性导出。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.Credentials">
+      <summary>获取或设置用于验证发件人身份的凭据。</summary>
+      <exception cref="T:System.InvalidOperationException">发送电子邮件时无法更改此属性的值。</exception>
+      <returns>表示用于身份验证的凭据的 <see cref="T:System.Net.ICredentialsByHost" />，如果没有指定凭据，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.DeliveryFormat">
+      <summary>获取或设置 <see cref="T:System.Net.Mail.SmtpClient" /> 用于发送电子邮件的传递格式。</summary>
+      <returns>
+        <see cref="T:System.Net.Mail.SmtpClient" /> 使用的配送格式。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.DeliveryMethod">
+      <summary>指定处理发出的电子邮件的方法。</summary>
+      <returns>
+        <see cref="T:System.Net.Mail.SmtpDeliveryMethod" />，它指示如何传递电子邮件。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.EnableSsl">
+      <summary>指定 <see cref="T:System.Net.Mail.SmtpClient" /> 是否使用安全套接字层 (SSL) 加密连接。</summary>
+      <returns>如果 <see cref="T:System.Net.Mail.SmtpClient" /> 使用 SSL，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.Host">
+      <summary>获取或设置用于 SMTP 事务的主机名或主机 IP 地址。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值等于 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.InvalidOperationException">发送电子邮件时无法更改此属性的值。</exception>
+      <returns>
+        <see cref="T:System.String" />，包含用于 SMTP 事务的计算机的名称或 IP 地址。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.PickupDirectoryLocation">
+      <summary>获取或设置文件夹，应用程序在该文件夹中保存电子邮件供本地 SMTP 服务器处理。</summary>
+      <returns>
+        <see cref="T:System.String" />，它指定邮件的拾取目录。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.Port">
+      <summary>获取或设置用于 SMTP 事务的端口。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">为设置操作指定的值小于或等于零。</exception>
+      <exception cref="T:System.InvalidOperationException">发送电子邮件时无法更改此属性的值。</exception>
+      <returns>
+        <see cref="T:System.Int32" />，包含 SMTP 主机上的端口号。 默认值为 25。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.ServicePoint">
+      <summary>获取用于传输电子邮件的网络连接。</summary>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="P:System.Net.Mail.SmtpClient.Host" /> 为 <see langword="null" /> 或为空字符串 ("")。  
+  
+- 或 - 
+ <see cref="P:System.Net.Mail.SmtpClient.Port" /> 为零。</exception>
+      <returns>连接到用于 SMTP 的 <see cref="T:System.Net.ServicePoint" /> 属性的 <see cref="P:System.Net.Mail.SmtpClient.Host" />。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.TargetName">
+      <summary>获取或设置在使用扩展保护时用于身份验证的服务提供程序名称 (SPN)。</summary>
+      <returns>一个 <see cref="T:System.String" />，它指定用于扩展保护的 SPN。 此 SPN 的默认值的格式为 "SMTPSVC/ &lt; host"， &gt; 其中 &lt; host &gt; 是 SMTP 邮件服务器的主机名。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.Timeout">
+      <summary>获取或设置一个值，该值指定同步 <see cref="Overload:System.Net.Mail.SmtpClient.Send" /> 调用超时后的时间。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">为设置操作指定的值小于 0。</exception>
+      <exception cref="T:System.InvalidOperationException">发送电子邮件时无法更改此属性的值。</exception>
+      <returns>指定超时值（以毫秒为单位）的 <see cref="T:System.Int32" />。 默认值为 100,000（100 秒）。</returns>
+    </member>
+    <member name="P:System.Net.Mail.SmtpClient.UseDefaultCredentials">
+      <summary>获取或设置 <see cref="T:System.Boolean" /> 值，该值控制 <see cref="P:System.Net.CredentialCache.DefaultCredentials" /> 是否随请求一起发送。</summary>
+      <exception cref="T:System.InvalidOperationException">发送电子邮件时无法更改此属性的值。</exception>
+      <returns>如果使用默认凭据，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值是 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Net.Mail.SmtpDeliveryFormat">
+      <summary>要用于使用简单邮件传输协议 (SMTP) 发送传出电子邮件的传递格式。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpDeliveryFormat.International">
+      <summary>一种传递格式，使用 UTF-8 字符对简单邮件传输协议 (SMTP) 中使用的信封和标头字段中的非 ASCII 字符进行编码。  
+  
+ 支持国际电子邮件的扩展在 IETF RFC 6530、6531 和 6532 中定义。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpDeliveryFormat.SevenBit">
+      <summary>使用 7 位 ASCII 的传递格式。  
+  
+ 简单邮件传输协议 (SMTP) 中用于邮件的传统传递格式。</summary>
+    </member>
+    <member name="T:System.Net.Mail.SmtpDeliveryMethod">
+      <summary>指定如何发送电子邮件。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpDeliveryMethod.Network">
+      <summary>电子邮件通过网络发送到 SMTP 服务器。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpDeliveryMethod.PickupDirectoryFromIis">
+      <summary>将电子邮件复制到拾取目录，然后通过本地 Internet 信息服务 (IIS) 传送。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpDeliveryMethod.SpecifiedPickupDirectory">
+      <summary>将电子邮件复制到 <see cref="P:System.Net.Mail.SmtpClient.PickupDirectoryLocation" /> 属性指定的目录，然后由外部应用程序传送。</summary>
+    </member>
+    <member name="T:System.Net.Mail.SmtpException">
+      <summary>表示当 <see cref="T:System.Net.Mail.SmtpClient" /> 无法完成 <see cref="Overload:System.Net.Mail.SmtpClient.Send" /> 或 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 操作时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor(System.Net.Mail.SmtpStatusCode)">
+      <summary>用指定的状态代码初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="statusCode">一个 <see cref="T:System.Net.Mail.SmtpStatusCode" /> 值。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor(System.Net.Mail.SmtpStatusCode,System.String)">
+      <summary>用指定的状态代码和错误信息初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="statusCode">一个 <see cref="T:System.Net.Mail.SmtpStatusCode" /> 值。</param>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.Mail.SmtpException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.Mail.SmtpException" /> 所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，包含与新实例关联的序列化流的源和目标。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor(System.String)">
+      <summary>使用指定的错误消息初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和内部异常初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+      <param name="innerException">导致当前异常的异常。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 所需的数据填充 <see cref="T:System.Net.Mail.SmtpException" /> 实例。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 所需的数据填充 <see cref="T:System.Net.Mail.SmtpException" /> 实例。</summary>
+      <param name="serializationInfo">一个 <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含 <see cref="T:System.Net.Mail.SmtpException" /> 的序列化数据。</param>
+      <param name="streamingContext">一个 <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.Mail.SmtpException" /> 关联的序列化流的目标。</param>
+    </member>
+    <member name="P:System.Net.Mail.SmtpException.StatusCode">
+      <summary>获取传输电子邮件时由 SMTP 服务器返回的状态代码。</summary>
+      <returns>指示所发生的错误的 <see cref="T:System.Net.Mail.SmtpStatusCode" /> 值。</returns>
+    </member>
+    <member name="T:System.Net.Mail.SmtpFailedRecipientException">
+      <summary>表示当 <see cref="T:System.Net.Mail.SmtpClient" /> 不能对特定收件人完成 <see cref="Overload:System.Net.Mail.SmtpClient.Send" /> 或 <see cref="Overload:System.Net.Mail.SmtpClient.SendAsync" /> 操作时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 类的空实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.Net.Mail.SmtpStatusCode,System.String)">
+      <summary>用指定的状态代码和电子邮件地址初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 类的新实例。</summary>
+      <param name="statusCode">一个 <see cref="T:System.Net.Mail.SmtpStatusCode" /> 值。</param>
+      <param name="failedRecipient">包含电子邮件地址的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.Net.Mail.SmtpStatusCode,System.String,System.String)">
+      <summary>用指定的状态代码、电子邮件地址和服务器响应初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 类的新实例。</summary>
+      <param name="statusCode">一个 <see cref="T:System.Net.Mail.SmtpStatusCode" /> 值。</param>
+      <param name="failedRecipient">包含电子邮件地址的 <see cref="T:System.String" />。</param>
+      <param name="serverResponse">包含服务器响应的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 所需的信息。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，包含与新实例关联的序列化流的源和目标。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.String)">
+      <summary>使用指定的错误消息初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 类的新实例。</summary>
+      <param name="message">包含错误消息的 <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和内部异常初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+      <param name="innerException">导致当前异常的异常。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.#ctor(System.String,System.String,System.Exception)">
+      <summary>用指定的错误信息、电子邮件地址和内部异常初始化 <see cref="T:System.Net.Mail.SmtpException" /> 类的新实例。</summary>
+      <param name="message">描述发生的错误的 <see cref="T:System.String" />。</param>
+      <param name="failedRecipient">包含电子邮件地址的 <see cref="T:System.String" />。</param>
+      <param name="innerException">导致当前异常的异常。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 所需的数据来填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例。</summary>
+      <param name="serializationInfo">要填充数据的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">用于指定该序列化的目标的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 所需的数据来填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例，它保存用于 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 的序列化数据。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 实例，它包含与新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 关联的序列化流的目标。</param>
+    </member>
+    <member name="P:System.Net.Mail.SmtpFailedRecipientException.FailedRecipient">
+      <summary>指示有发送困难的电子邮件地址。</summary>
+      <returns>包含电子邮件地址的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="T:System.Net.Mail.SmtpFailedRecipientsException">
+      <summary>当使用 <see cref="T:System.Net.Mail.SmtpClient" /> 发送的电子邮件无法传递给所有收件人时引发的异常。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 类的空实例。</summary>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>从 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 和 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 类的指定实例初始化 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类的新实例。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例，它包含序列化新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 实例所需的信息。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，包含与新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 实例关联的序列化流的源。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.#ctor(System.String)">
+      <summary>使用指定的 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 初始化 <see cref="T:System.String" /> 类的新实例。</summary>
+      <param name="message">异常消息。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的 <see cref="T:System.String" /> 和内部 <see cref="T:System.Exception" /> 初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 类的新实例。</summary>
+      <param name="message">异常消息。</param>
+      <param name="innerException">内部异常。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.#ctor(System.String,System.Net.Mail.SmtpFailedRecipientException[])">
+      <summary>使用指定的 <see cref="T:System.String" /> 和类型为 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 的数组初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 类的新实例。</summary>
+      <param name="message">异常消息。</param>
+      <param name="innerExceptions">存在传递错误的收件人数组。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>用序列化 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 所需的数据来填充 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 实例。</summary>
+      <param name="serializationInfo">要使用的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="streamingContext">要使用的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="M:System.Net.Mail.SmtpFailedRecipientsException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>根据指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 和 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 实例初始化 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 类的新实例。</summary>
+      <param name="serializationInfo">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含序列化新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 所需的信息。</param>
+      <param name="streamingContext">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，它包含与新的 <see cref="T:System.Net.Mail.SmtpFailedRecipientsException" /> 关联的序列化流的源。</param>
+    </member>
+    <member name="P:System.Net.Mail.SmtpFailedRecipientsException.InnerExceptions">
+      <summary>获取一个或多个 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" />，指示存在 SMTP 传递错误的电子邮件收件人。</summary>
+      <returns>列出存在发送错误的收件人的 <see cref="T:System.Net.Mail.SmtpFailedRecipientException" /> 类型的数组。</returns>
+    </member>
+    <member name="T:System.Net.Mail.SmtpStatusCode">
+      <summary>使用 <see cref="T:System.Net.Mail.SmtpClient" /> 类指定发送电子邮件的结果。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.BadCommandSequence">
+      <summary>发送命令的顺序不正确。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.CannotVerifyUserWillAttemptDelivery">
+      <summary>指定的用户不是本地用户，但接收 SMTP 服务接受了邮件并试图将其传送。 此状态码在 RFC 1123 中定义，可在 https://www.ietf.org 处获取。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.ClientNotPermitted">
+      <summary>客户端未经过身份验证或不允许使用指定的 SMTP 主机发送邮件。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.CommandNotImplemented">
+      <summary>SMTP 服务无法实现指定的命令。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.CommandParameterNotImplemented">
+      <summary>SMTP 服务无法实现指定的命令参数。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.CommandUnrecognized">
+      <summary>SMTP 服务无法识别指定的命令。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.ExceededStorageAllocation">
+      <summary>消息太大，无法存储在目标邮箱中。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.GeneralFailure">
+      <summary>事务无法发生。 找不到指定的 SMTP 主机时，会收到此错误提示信息。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.HelpMessage">
+      <summary>服务返回的帮助消息。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.InsufficientStorage">
+      <summary>SMTP 服务没有足够的存储空间来完成该请求。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.LocalErrorInProcessing">
+      <summary>SMTP 服务无法完成请求。 如果无法解析客户端的 IP 地址（即反向查找失败），则可能出现此错误。 如果客户端域已被标识为未经请求的电子邮件（垃圾邮件）的开放中继或开放源，也可能会收到此错误提示信息。 有关详细信息，请参阅 RFC 2505，可在 https://www.ietf.org 处获取。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.MailboxBusy">
+      <summary>目标邮箱正在使用中。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.MailboxNameNotAllowed">
+      <summary>用于指定目标邮箱的语法不正确。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.MailboxUnavailable">
+      <summary>目标邮箱找不到或无法访问。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.MustIssueStartTlsFirst">
+      <summary>SMTP 服务器配置为仅接受 TLS 连接，并且 SMTP 客户端正在尝试使用非 TLS 连接进行连接。 解决方案是让用户在 SMTP 客户端上设置 EnableSsl = true。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.Ok">
+      <summary>电子邮件已成功发送至 SMTP 服务。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.ServiceClosingTransmissionChannel">
+      <summary>SMTP 服务正在关闭传输通道。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.ServiceNotAvailable">
+      <summary>SMTP 服务不可用；服务器正在关闭传输通道。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.ServiceReady">
+      <summary>SMTP 服务已准备就绪。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.StartMailInput">
+      <summary>SMTP 服务已准备好接收电子邮件内容。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.SyntaxError">
+      <summary>用于指定命令或参数的语法不正确。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.SystemStatus">
+      <summary>系统状态或系统帮助回复。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.TransactionFailed">
+      <summary>事务失败。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.UserNotLocalTryAlternatePath">
+      <summary>用户邮箱不位于接收服务器上。 应使用提供的地址信息重新发送。</summary>
+    </member>
+    <member name="F:System.Net.Mail.SmtpStatusCode.UserNotLocalWillForward">
+      <summary>用户邮箱不在接收服务器上；服务器会转发该电子邮件。</summary>
+    </member>
+    <member name="T:System.Net.Mime.ContentDisposition">
+      <summary>表示 MIME 协议 Content-Disposition 标头。</summary>
+    </member>
+    <member name="M:System.Net.Mime.ContentDisposition.#ctor">
+      <summary>用 <see cref="F:System.Net.Mime.DispositionTypeNames.Attachment" /> 的 <see cref="P:System.Net.Mime.ContentDisposition.DispositionType" /> 初始化 <see cref="T:System.Net.Mime.ContentDisposition" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Net.Mime.ContentDisposition.#ctor(System.String)">
+      <summary>使用指定的处置信息初始化 <see cref="T:System.Net.Mime.ContentDisposition" /> 类的新实例。</summary>
+      <param name="disposition">包含处置方式的 <see cref="T:System.Net.Mime.DispositionTypeNames" /> 值。</param>
+      <exception cref="T:System.FormatException">
+        <paramref name="disposition" /> 为 <see langword="null" /> 或等于 <see cref="F:System.String.Empty" /> ("")。</exception>
+    </member>
+    <member name="M:System.Net.Mime.ContentDisposition.Equals(System.Object)">
+      <summary>确定指定 <see cref="T:System.Net.Mime.ContentDisposition" /> 对象的 Content-Disposition 标头是否等于此对象的 Content-Disposition 标头。</summary>
+      <param name="rparam">与此对象进行比较的 <see cref="T:System.Net.Mime.ContentDisposition" /> 对象。</param>
+      <returns>如果 Content-Disposition 标头相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.Mime.ContentDisposition.GetHashCode">
+      <summary>确定指定 <see cref="T:System.Net.Mime.ContentDisposition" /> 对象的哈希代码。</summary>
+      <returns>整数哈希值。</returns>
+    </member>
+    <member name="M:System.Net.Mime.ContentDisposition.ToString">
+      <summary>返回此实例的 <see cref="T:System.String" /> 表示形式。</summary>
+      <returns>一个 <see cref="T:System.String" />，包含此实例的属性值。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.CreationDate">
+      <summary>获取或设置文件附件的创建日期。</summary>
+      <returns>表示文件创建日期的 <see cref="T:System.DateTime" /> 值，如果没有指定日期，则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.DispositionType">
+      <summary>获取或设置电子邮件附件的处置类型。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值等于 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <returns>包含处置类型的 <see cref="T:System.String" />。 对于该值没有任何限制，但它一般是 <see cref="P:System.Net.Mime.ContentDisposition.DispositionType" /> 值之一。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.FileName">
+      <summary>获取或设置电子邮件附件的建议文件名称。</summary>
+      <returns>包含文件名的 <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.Inline">
+      <summary>获取或设置 <see cref="T:System.Boolean" /> 值，该值确定电子邮件附件的处置类型（内联或附件）。</summary>
+      <returns>
+        <see langword="true" /> 如果附件中的内容以内联方式显示为电子邮件正文的一部分，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.ModificationDate">
+      <summary>获取或设置文件附件的修改日期。</summary>
+      <returns>表示文件修改日期的 <see cref="T:System.DateTime" /> 值，如果没有指定日期，则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.Parameters">
+      <summary>获取由此实例表示的 Content-Disposition 标头中包括的参数。</summary>
+      <returns>可写的 <see cref="T:System.Collections.Specialized.StringDictionary" />，包含参数名/值对。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.ReadDate">
+      <summary>获取或设置文件附件的读取日期。</summary>
+      <returns>表示文件读取日期的 <see cref="T:System.DateTime" /> 值，如果没有指定日期，则为 <see cref="F:System.DateTime.MinValue" />。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentDisposition.Size">
+      <summary>获取或设置文件附件的大小。</summary>
+      <returns>
+        <see cref="T:System.Int32" />，指定文件附件中的字节数。 默认值为 -1，表示文件大小未知。</returns>
+    </member>
+    <member name="T:System.Net.Mime.ContentType">
+      <summary>表示 MIME 协议内容类型标题。</summary>
+    </member>
+    <member name="M:System.Net.Mime.ContentType.#ctor">
+      <summary>初始化 <see cref="T:System.Net.Mime.ContentType" /> 类的新默认实例。</summary>
+    </member>
+    <member name="M:System.Net.Mime.ContentType.#ctor(System.String)">
+      <summary>使用指定的字符串初始化 <see cref="T:System.Net.Mime.ContentType" /> 类的新实例。</summary>
+      <param name="contentType">一个 <see cref="T:System.String" />，例如，包含 MIME 媒体类型、子类型和可选参数的 <c>"text/plain; charset=us-ascii"</c>。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="contentType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="contentType" /> 为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="contentType" /> 所用的形式无法进行分析。</exception>
+    </member>
+    <member name="M:System.Net.Mime.ContentType.Equals(System.Object)">
+      <summary>确定指定 <see cref="T:System.Net.Mime.ContentType" /> 对象的 Content-Type 标头是否等于此对象的 Content-Type 标头。</summary>
+      <param name="rparam">与此对象进行比较的 <see cref="T:System.Net.Mime.ContentType" /> 对象。</param>
+      <returns>如果 Content-Type 标头相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Net.Mime.ContentType.GetHashCode">
+      <summary>确定指定 <see cref="T:System.Net.Mime.ContentType" /> 对象的哈希代码。</summary>
+      <returns>整数哈希值。</returns>
+    </member>
+    <member name="M:System.Net.Mime.ContentType.ToString">
+      <summary>返回此 <see cref="T:System.Net.Mime.ContentType" /> 对象的字符串表示形式。</summary>
+      <returns>一个 <see cref="T:System.String" />，其中包含此 <see cref="T:System.Net.Mime.ContentType" /> 的当前设置。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentType.Boundary">
+      <summary>获取或设置由此实例表示的 Content-Type 标头中包含的边界参数的值。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含与边界参数关联的值。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentType.CharSet">
+      <summary>获取或设置由此实例表示的 Content-Type 标头中包含的字符集参数的值。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含与字符集参数关联的值。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentType.MediaType">
+      <summary>获取或设置由此实例表示的 Content-Type 标头中包含的媒体类型值。</summary>
+      <exception cref="T:System.ArgumentNullException">为集运算指定的值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">为设置操作指定的值为 <see cref="F:System.String.Empty" /> ("")。</exception>
+      <exception cref="T:System.FormatException">为设置操作指定的值的格式是无法分析的。</exception>
+      <returns>包含媒体类型和子类型值的 <see cref="T:System.String" />。 在该值中，子类型后面没有分号 (;) 分隔符。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentType.Name">
+      <summary>获取或设置由此实例表示的 Content-Type 标头中包含的名称参数的值。</summary>
+      <returns>
+        <see cref="T:System.String" />，包含与名称参数关联的值。</returns>
+    </member>
+    <member name="P:System.Net.Mime.ContentType.Parameters">
+      <summary>获取包含由此实例表示的 Content-Type 标头中包含的参数的字典。</summary>
+      <returns>可写的 <see cref="T:System.Collections.Specialized.StringDictionary" />，包含名称和值。</returns>
+    </member>
+    <member name="T:System.Net.Mime.DispositionTypeNames">
+      <summary>提供用于指定电子邮件附件的处置类型的字符串。</summary>
+    </member>
+    <member name="F:System.Net.Mime.DispositionTypeNames.Attachment">
+      <summary>指定附件作为附加到电子邮件的文件显示。</summary>
+    </member>
+    <member name="F:System.Net.Mime.DispositionTypeNames.Inline">
+      <summary>指定附件作为电子邮件正文的一部分显示。</summary>
+    </member>
+    <member name="T:System.Net.Mime.MediaTypeNames">
+      <summary>指定电子邮件附件的媒体类型信息。</summary>
+    </member>
+    <member name="T:System.Net.Mime.MediaTypeNames.Application">
+      <summary>指定电子邮件附件中应用程序数据的类型。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Json">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据为 JSON 格式。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Octet">
+      <summary>指定不解释 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Pdf">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据为可移植文档格式 (PDF)。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Rtf">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据为 RTF 格式 (RTF)。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Soap">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据为 SOAP 文档。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Xml">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据为 XML 格式。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Application.Zip">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Application" /> 数据是压缩的。</summary>
+    </member>
+    <member name="T:System.Net.Mime.MediaTypeNames.Image">
+      <summary>指定电子邮件附件中的图像数据类型。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Image.Gif">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Image" /> 数据为图形交换格式 (GIF)。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Image.Jpeg">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Image" /> 数据为联合专家组 (JPEG) 格式。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Image.Tiff">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Image" /> 数据为标记图像文件格式 (TIFF)。</summary>
+    </member>
+    <member name="T:System.Net.Mime.MediaTypeNames.Text">
+      <summary>指定电子邮件附件中文本数据的类型。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Text.Html">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Text" /> 数据为 HTML 格式。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Text.Plain">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Text" /> 数据为纯文本格式。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Text.RichText">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Text" /> 数据为 RTF 格式 (RTF)。</summary>
+    </member>
+    <member name="F:System.Net.Mime.MediaTypeNames.Text.Xml">
+      <summary>指定 <see cref="T:System.Net.Mime.MediaTypeNames.Text" /> 数据为 XML 格式。</summary>
+    </member>
+    <member name="T:System.Net.Mime.TransferEncoding">
+      <summary>指定电子邮件附件的 Content-Transfer-Encoding 标头信息。</summary>
+    </member>
+    <member name="F:System.Net.Mime.TransferEncoding.Base64">
+      <summary>将基于流的数据编码。 请参见 RFC 2406 第 6.8 节。</summary>
+    </member>
+    <member name="F:System.Net.Mime.TransferEncoding.EightBit">
+      <summary>数据为可表示国际字符的 8 位字符，总行长不超过 1000 个字符。 更多关于 8 位 MIME 传送扩展的信息，请参见 IETF RFC 6152。</summary>
+    </member>
+    <member name="F:System.Net.Mime.TransferEncoding.QuotedPrintable">
+      <summary>将由 US-ASCII 字符集中可打印的字符组成的数据编码。 请参阅 RFC 2406 第 6.7 节。</summary>
+    </member>
+    <member name="F:System.Net.Mime.TransferEncoding.SevenBit">
+      <summary>用于不编码的数据。 数据为 7 位 US-ASCII 字符，总行长不超过 1000 个字符。 请参见 RFC2406 第 2.7 节。</summary>
+    </member>
+    <member name="F:System.Net.Mime.TransferEncoding.Unknown">
+      <summary>表示传输编码未知。</summary>
+    </member>
+  </members>
+</doc>

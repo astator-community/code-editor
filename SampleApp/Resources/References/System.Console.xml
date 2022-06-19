@@ -1,0 +1,1256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Console</name>
+  </assembly>
+  <members>
+    <member name="T:System.Console">
+      <summary>表示控制台应用程序的标准输入流、输出流和错误流。 此类不能被继承。</summary>
+    </member>
+    <member name="E:System.Console.CancelKeyPress">
+      <summary>当 <see cref="F:System.ConsoleModifiers.Control" /> 修改键 (Ctrl) 和 <see cref="F:System.ConsoleKey.C" /> console 键 (C) 或 Break 键同时按住（Ctrl+C 或 Ctrl+Break）时发生。</summary>
+    </member>
+    <member name="M:System.Console.Beep">
+      <summary>通过控制台扬声器播放提示音。</summary>
+      <exception cref="T:System.Security.HostProtectionException">在不允许访问用户界面的服务器（例如 SQL Server）上执行此方法。</exception>
+    </member>
+    <member name="M:System.Console.Beep(System.Int32,System.Int32)">
+      <summary>通过控制台扬声器播放具有指定频率和持续时间的提示音。</summary>
+      <param name="frequency">提示音的频率，介于 37 到 32767 赫兹之间。</param>
+      <param name="duration">提示音的持续时间，以毫秒为单位。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="frequency" /> 小于 37 或大于 32767 赫兹。  
+  
+或 
+ <paramref name="duration" /> 小于或等于零。</exception>
+      <exception cref="T:System.Security.HostProtectionException">在不允许访问控制台的服务器（例如 SQL Server）上执行此方法。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.Clear">
+      <summary>清除控制台缓冲区和相应的控制台窗口的显示信息。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.GetCursorPosition">
+      <summary>获取游标的位置。</summary>
+      <returns>光标的列和行位置。</returns>
+    </member>
+    <member name="M:System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary>将屏幕缓冲区的指定源区域复制到指定的目标区域。</summary>
+      <param name="sourceLeft">源区域最左边的列。</param>
+      <param name="sourceTop">源区域最顶部的行。</param>
+      <param name="sourceWidth">源区域中列的数目。</param>
+      <param name="sourceHeight">源区域中行的数目。</param>
+      <param name="targetLeft">目标区域最左边的列。</param>
+      <param name="targetTop">目标区域最顶部的行。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">一个或多个参数小于零。  
+  
+或 
+ <paramref name="sourceLeft" /> 或 <paramref name="targetLeft" /> 大于或等于 <see cref="P:System.Console.BufferWidth" />。  
+  
+或 
+ <paramref name="sourceTop" /> 或 <paramref name="targetTop" /> 大于或等于 <see cref="P:System.Console.BufferHeight" />。  
+  
+或 
+ <paramref name="sourceTop" /> + <paramref name="sourceHeight" /> 大于或等于 <see cref="P:System.Console.BufferHeight" />。  
+  
+或 
+ <paramref name="sourceLeft" /> + <paramref name="sourceWidth" /> 大于或等于 <see cref="P:System.Console.BufferWidth" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)">
+      <summary>将屏幕缓冲区的指定源区域复制到指定的目标区域。</summary>
+      <param name="sourceLeft">源区域最左边的列。</param>
+      <param name="sourceTop">源区域最顶部的行。</param>
+      <param name="sourceWidth">源区域中列的数目。</param>
+      <param name="sourceHeight">源区域中行的数目。</param>
+      <param name="targetLeft">目标区域最左边的列。</param>
+      <param name="targetTop">目标区域最顶部的行。</param>
+      <param name="sourceChar">用于填充源区域的字符。</param>
+      <param name="sourceForeColor">用于填充源区域的前景色。</param>
+      <param name="sourceBackColor">用于填充源区域的背景色。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">一个或多个参数小于零。  
+  
+或 
+ <paramref name="sourceLeft" /> 或 <paramref name="targetLeft" /> 大于或等于 <see cref="P:System.Console.BufferWidth" />。  
+  
+或 
+ <paramref name="sourceTop" /> 或 <paramref name="targetTop" /> 大于或等于 <see cref="P:System.Console.BufferHeight" />。  
+  
+或 
+ <paramref name="sourceTop" /> + <paramref name="sourceHeight" /> 大于或等于 <see cref="P:System.Console.BufferHeight" />。  
+  
+或 
+ <paramref name="sourceLeft" /> + <paramref name="sourceWidth" /> 大于或等于 <see cref="P:System.Console.BufferWidth" />。</exception>
+      <exception cref="T:System.ArgumentException">一个或两个颜色参数不是 <see cref="T:System.ConsoleColor" /> 枚举的成员。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.OpenStandardError">
+      <summary>获取标准错误流。</summary>
+      <returns>标准错误流。</returns>
+    </member>
+    <member name="M:System.Console.OpenStandardError(System.Int32)">
+      <summary>获取设置为指定缓冲区大小的标准错误流。</summary>
+      <param name="bufferSize">内部流缓冲区大小。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="bufferSize" /> 小于或等于零。</exception>
+      <returns>标准错误流。</returns>
+    </member>
+    <member name="M:System.Console.OpenStandardInput">
+      <summary>获取标准输入流。</summary>
+      <returns>标准输入流。</returns>
+    </member>
+    <member name="M:System.Console.OpenStandardInput(System.Int32)">
+      <summary>获取设置为指定缓冲区大小的标准输入流。</summary>
+      <param name="bufferSize">内部流缓冲区大小。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="bufferSize" /> 小于或等于零。</exception>
+      <returns>标准输入流。</returns>
+    </member>
+    <member name="M:System.Console.OpenStandardOutput">
+      <summary>获取标准输出流。</summary>
+      <returns>标准输出流。</returns>
+    </member>
+    <member name="M:System.Console.OpenStandardOutput(System.Int32)">
+      <summary>获取设置为指定缓冲区大小的标准输出流。</summary>
+      <param name="bufferSize">内部流缓冲区大小。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="bufferSize" /> 小于或等于零。</exception>
+      <returns>标准输出流。</returns>
+    </member>
+    <member name="M:System.Console.Read">
+      <summary>从标准输入流读取下一个字符。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <returns>输入流中的下一个字符；如果当前没有更多的字符可供读取，则为负一 (-1)。</returns>
+    </member>
+    <member name="M:System.Console.ReadKey">
+      <summary>获取用户按下的下一个字符或功能键。 按下的键显示在控制台窗口中。</summary>
+      <exception cref="T:System.InvalidOperationException">从控制台以外的某个流重定向 <see cref="P:System.Console.In" /> 属性。</exception>
+      <returns>一个对象，描述 <see cref="T:System.ConsoleKey" /> 常数和对应于按下的控制台键的 Unicode 字符（如果存在这样的字符）。 <see cref="T:System.ConsoleKeyInfo" /> 对象还在 <see cref="T:System.ConsoleModifiers" /> 值的按位组合中描述是否在按下控制台键的同时按下了一个或多个 Shift、Alt 和 Ctrl 修改键。</returns>
+    </member>
+    <member name="M:System.Console.ReadKey(System.Boolean)">
+      <summary>获取用户按下的下一个字符或功能键。 按下的键可以选择显示在控制台窗口中。</summary>
+      <param name="intercept">确定是否在控制台窗口中显示按下的键。 如果为 <see langword="true" />，则不显示按下的键；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.InvalidOperationException">从控制台以外的某个流重定向 <see cref="P:System.Console.In" /> 属性。</exception>
+      <returns>一个对象，描述 <see cref="T:System.ConsoleKey" /> 常数和对应于按下的控制台键的 Unicode 字符（如果存在这样的字符）。 <see cref="T:System.ConsoleKeyInfo" /> 对象还在 <see cref="T:System.ConsoleModifiers" /> 值的按位组合中描述是否在按下控制台键的同时按下了一个或多个 Shift、Alt 和 Ctrl 修改键。</returns>
+    </member>
+    <member name="M:System.Console.ReadLine">
+      <summary>从标准输入流读取下一行字符。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.OutOfMemoryException">没有足够的内存来为返回的字符串分配缓冲区。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">下一行中的字符的字符数大于 <see cref="F:System.Int32.MaxValue" />。</exception>
+      <returns>输入流中的下一行字符；如果没有更多的可用行，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Console.ResetColor">
+      <summary>将控制台的前景色和背景色设置为默认值。</summary>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.SetBufferSize(System.Int32,System.Int32)">
+      <summary>将屏幕缓冲区的高度和宽度设置为指定值。</summary>
+      <param name="width">缓冲区的宽度，以列为单位。</param>
+      <param name="height">缓冲区的高度，以行为单位。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="height" /> 或 <paramref name="width" /> 小于或等于零。  
+  
+或 
+ <paramref name="height" /> 或 <paramref name="width" /> 大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+ <paramref name="width" /> 小于 <see cref="P:System.Console.WindowLeft" /> + <see cref="P:System.Console.WindowWidth" />。  
+  
+或 
+ <paramref name="height" /> 小于 <see cref="P:System.Console.WindowTop" /> + <see cref="P:System.Console.WindowHeight" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.SetCursorPosition(System.Int32,System.Int32)">
+      <summary>设置光标位置。</summary>
+      <param name="left">光标的列位置。 将从 0 开始从左到右对列进行编号。</param>
+      <param name="top">光标的行位置。 从上到下，从 0 开始为行编号。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="left" /> 或 <paramref name="top" /> 小于零。  
+  
+或 
+ <paramref name="left" /> 大于或等于 <see cref="P:System.Console.BufferWidth" />。  
+  
+或 
+ <paramref name="top" /> 大于或等于 <see cref="P:System.Console.BufferHeight" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.SetError(System.IO.TextWriter)">
+      <summary>将 <see cref="P:System.Console.Error" /> 属性设置为指定的 <see cref="T:System.IO.TextWriter" /> 对象。</summary>
+      <param name="newError">一个流，它是新的标准错误输出。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="newError" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.Console.SetIn(System.IO.TextReader)">
+      <summary>将 <see cref="P:System.Console.In" /> 属性设置为指定的 <see cref="T:System.IO.TextReader" /> 对象。</summary>
+      <param name="newIn">一个流，它是新的标准输入。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="newIn" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.Console.SetOut(System.IO.TextWriter)">
+      <summary>将 <see cref="P:System.Console.Out" /> 属性设置为面向 <see cref="T:System.IO.TextWriter" /> 对象。</summary>
+      <param name="newOut">要用作新的标准输出的文本编写器。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="newOut" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">调用方没有所要求的权限。</exception>
+    </member>
+    <member name="M:System.Console.SetWindowPosition(System.Int32,System.Int32)">
+      <summary>设置控制台窗口相对于屏幕缓冲区的位置。</summary>
+      <param name="left">控制台窗口左上角的列位置。</param>
+      <param name="top">控制台窗口左上角的行位置。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="left" /> 或 <paramref name="top" /> 小于零。  
+  
+或 
+ <paramref name="left" /> + <see cref="P:System.Console.WindowWidth" /> 大于 <see cref="P:System.Console.BufferWidth" />。  
+  
+或 
+ <paramref name="top" /> + <see cref="P:System.Console.WindowHeight" /> 大于 <see cref="P:System.Console.BufferHeight" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.SetWindowSize(System.Int32,System.Int32)">
+      <summary>将控制台窗口的高度和宽度设置为指定值。</summary>
+      <param name="width">控制台窗口的宽度，以列为单位。</param>
+      <param name="height">控制台窗口的高度，以行为单位。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="width" /> 或 <paramref name="height" /> 小于或等于零。  
+  
+或 
+ <paramref name="width" /> 加 <see cref="P:System.Console.WindowLeft" /> 或 <paramref name="height" /> 加 <see cref="P:System.Console.WindowTop" /> 大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+ <paramref name="width" /> 或 <paramref name="height" /> 的值大于当前屏幕分辨率和控制台字体的最大可能的窗口宽度或高度。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">当前操作系统不是 Windows。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Boolean)">
+      <summary>将指定的布尔值的文本表示形式写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Char)">
+      <summary>将指定的 Unicode 字符值写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Char[])">
+      <summary>将指定的 Unicode 字符数组写入标准输出流。</summary>
+      <param name="buffer">Unicode 字符数组。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Char[],System.Int32,System.Int32)">
+      <summary>将指定的 Unicode 字符子数组写入标准输出流。</summary>
+      <param name="buffer">Unicode 字符的数组。</param>
+      <param name="index">
+        <paramref name="buffer" /> 中的起始位置。</param>
+      <param name="count">要写入的字符数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 或 <paramref name="count" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="index" /> 加 <paramref name="count" /> 指定不在 <paramref name="buffer" /> 内的位置。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Decimal)">
+      <summary>将指定的 <see cref="T:System.Decimal" /> 值的文本表示形式写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Double)">
+      <summary>将指定的双精度浮点值的文本表示形式写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Int32)">
+      <summary>将指定的 32 位有符号整数值的文本表示写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Int64)">
+      <summary>将指定的 64 位有符号整数值的文本表示写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Object)">
+      <summary>将指定对象的文本表示形式写入标准输出流。</summary>
+      <param name="value">要写入的值，或者为 <see langword="null" />。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.Single)">
+      <summary>将指定的单精度浮点值的文本表示形式写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.String)">
+      <summary>将指定的字符串值写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.String,System.Object)">
+      <summary>使用指定的格式信息将指定对象的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.String,System.Object,System.Object)">
+      <summary>使用指定的格式信息将指定对象的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的第一个对象。</param>
+      <param name="arg1">要使用 <paramref name="format" /> 写入的第二个对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.String,System.Object,System.Object,System.Object)">
+      <summary>使用指定的格式信息将指定对象的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的第一个对象。</param>
+      <param name="arg1">要使用 <paramref name="format" /> 写入的第二个对象。</param>
+      <param name="arg2">要使用 <paramref name="format" /> 写入的第三个对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.String,System.Object[])">
+      <summary>使用指定的格式信息将指定的对象数组的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg">要使用 <paramref name="format" /> 写入的对象的数组。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 或 <paramref name="arg" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.UInt32)">
+      <summary>将指定的 32 位无符号整数值的文本表示写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.Write(System.UInt64)">
+      <summary>将指定的 64 位无符号整数值的文本表示写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine">
+      <summary>将当前行终止符写入标准输出流。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Boolean)">
+      <summary>将指定布尔值的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char)">
+      <summary>将指定的 Unicode 字符值（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char[])">
+      <summary>将指定的 Unicode 字符数组（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="buffer">Unicode 字符数组。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Char[],System.Int32,System.Int32)">
+      <summary>将指定的 Unicode 字符子数组（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="buffer">Unicode 字符的数组。</param>
+      <param name="index">
+        <paramref name="buffer" /> 中的起始位置。</param>
+      <param name="count">要写入的字符数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 或 <paramref name="count" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="index" /> 加 <paramref name="count" /> 指定不在 <paramref name="buffer" /> 内的位置。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Decimal)">
+      <summary>将指定的 <see cref="T:System.Decimal" /> 值的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Double)">
+      <summary>将指定的双精度浮点值的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Int32)">
+      <summary>将指定的 32 位有符号整数值的文本表示（后跟当前行的结束符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Int64)">
+      <summary>将指定的 64 位有符号整数值的文本表示（后跟当前行的结束符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Object)">
+      <summary>将指定对象的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.Single)">
+      <summary>将指定的单精度浮点值的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String)">
+      <summary>将指定的字符串值（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object)">
+      <summary>使用指定的格式信息，将指定对象（后跟当前行终止符）的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object,System.Object)">
+      <summary>使用指定的格式信息，将指定对象的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的第一个对象。</param>
+      <param name="arg1">要使用 <paramref name="format" /> 写入的第二个对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)">
+      <summary>使用指定的格式信息，将指定对象的文本表示形式（后跟当前行终止符）写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg0">要使用 <paramref name="format" /> 写入的第一个对象。</param>
+      <param name="arg1">要使用 <paramref name="format" /> 写入的第二个对象。</param>
+      <param name="arg2">要使用 <paramref name="format" /> 写入的第三个对象。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 上声明的默认值为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.String,System.Object[])">
+      <summary>使用指定的格式信息，将指定的对象数组（后跟当前行终止符）的文本表示形式写入标准输出流。</summary>
+      <param name="format">复合格式字符串。</param>
+      <param name="arg">要使用 <paramref name="format" /> 写入的对象的数组。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 或 <paramref name="arg" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> 中的格式规范无效。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.UInt32)">
+      <summary>将指定的 32 位无符号的整数值的文本表示（后跟当前行的结束符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="M:System.Console.WriteLine(System.UInt64)">
+      <summary>将指定的 64 位无符号的整数值的文本表示（后跟当前行的结束符）写入标准输出流。</summary>
+      <param name="value">要写入的值。</param>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+    </member>
+    <member name="P:System.Console.BackgroundColor">
+      <summary>获取或设置控制台的背景色。</summary>
+      <exception cref="T:System.ArgumentException">设置操作中指定的颜色不是 <see cref="T:System.ConsoleColor" /> 的有效成员。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <returns>一个值，指定控制台的背景色；也就是显示在每个字符后面的颜色。 默认为黑色。</returns>
+    </member>
+    <member name="P:System.Console.BufferHeight">
+      <summary>获取或设置缓冲区的高度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">Set 操作中的值小于或等于零。  
+  
+或 
+集运算中的值大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+Set 操作中的值小于 <see cref="P:System.Console.WindowTop" /> + <see cref="P:System.Console.WindowHeight" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>缓冲区的当前高度，以行为单位。</returns>
+    </member>
+    <member name="P:System.Console.BufferWidth">
+      <summary>获取或设置缓冲区的宽度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">Set 操作中的值小于或等于零。  
+  
+或 
+集运算中的值大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+Set 操作中的值小于 <see cref="P:System.Console.WindowLeft" /> + <see cref="P:System.Console.WindowWidth" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>缓冲区的当前宽度，以列为单位。</returns>
+    </member>
+    <member name="P:System.Console.CapsLock">
+      <summary>获取一个值，该值指示 Caps Lock 键盘切换键是打开的还是关闭的。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">get 操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>如果 Caps Lock 是打开的，则为 <see langword="true" />；如果 Caps Lock 是关闭的，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.CursorLeft">
+      <summary>获取或设置光标在缓冲区中的列位置。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">集运算中的值小于零。  
+  
+或 
+集运算中的值大于或等于 <see cref="P:System.Console.BufferWidth" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <returns>光标的当前位置，以列为单位。</returns>
+    </member>
+    <member name="P:System.Console.CursorSize">
+      <summary>获取或设置光标在字符单元格中的高度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">集运算中指定的值小于 1 或大于 100.</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>光标的大小，以字符单元格高度的百分比表示。 属性值的范围为 1 到 100。</returns>
+    </member>
+    <member name="P:System.Console.CursorTop">
+      <summary>获取或设置光标在缓冲区中的行位置。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">集运算中的值小于零。  
+  
+或 
+集运算中的值大于或等于 <see cref="P:System.Console.BufferHeight" />。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <returns>光标的当前位置，以行为单位。</returns>
+    </member>
+    <member name="P:System.Console.CursorVisible">
+      <summary>获取或设置一个值，用以指示光标是否可见。</summary>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">get 操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>如果光标可见，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.Error">
+      <summary>获取标准错误输出流。</summary>
+      <returns>表示标准错误输出流的 <see cref="T:System.IO.TextWriter" />。</returns>
+    </member>
+    <member name="P:System.Console.ForegroundColor">
+      <summary>获取或设置控制台的前景色。</summary>
+      <exception cref="T:System.ArgumentException">设置操作中指定的颜色不是 <see cref="T:System.ConsoleColor" /> 的有效成员。</exception>
+      <exception cref="T:System.Security.SecurityException">用户没有执行此操作的权限。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <returns>一个 <see cref="T:System.ConsoleColor" />，指定控制台的前景色；也就是显示的每个字符的颜色。 默认为灰色。</returns>
+    </member>
+    <member name="P:System.Console.In">
+      <summary>获取标准输入流。</summary>
+      <returns>表示标准输入流的 <see cref="T:System.IO.TextReader" />。</returns>
+    </member>
+    <member name="P:System.Console.InputEncoding">
+      <summary>获取或设置控制台用于读取输入的编码。</summary>
+      <exception cref="T:System.ArgumentNullException">集运算中的属性值为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.IOException">执行此操作期间出错。</exception>
+      <exception cref="T:System.Security.SecurityException">你的应用程序没有执行此操作的权限。</exception>
+      <returns>用于读取控制台输入的编码。</returns>
+    </member>
+    <member name="P:System.Console.IsErrorRedirected">
+      <summary>获取指示错误输出流是否已经从标准错误流被再定位的值。</summary>
+      <returns>如果重定向错误，则为<see langword="true" /> ；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.IsInputRedirected">
+      <summary>获取指示输入是否已从标准输入流中重定向的值。</summary>
+      <returns>如果重定向输入，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.IsOutputRedirected">
+      <summary>获取指示输出是否已从标准输入流中重定向的值。</summary>
+      <returns>如果重定向输出，则为<see langword="true" /> ；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.KeyAvailable">
+      <summary>获取一个值，该值指示按键操作在输入流中是否可用。</summary>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.InvalidOperationException">标准输入重定向到文件而不是键盘。</exception>
+      <returns>如果按键操作可用，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.LargestWindowHeight">
+      <summary>根据当前字体和屏幕分辨率获取控制台窗口可能具有的最大行数。</summary>
+      <returns>控制台窗口可能具有的最大高度，以行为单位。</returns>
+    </member>
+    <member name="P:System.Console.LargestWindowWidth">
+      <summary>根据当前字体和屏幕分辨率获取控制台窗口可能具有的最大列数。</summary>
+      <returns>控制台窗口可能具有的最大宽度，以列为单位。</returns>
+    </member>
+    <member name="P:System.Console.NumberLock">
+      <summary>获取一个值，该值指示 Num Lock 键盘切换键是打开的还是关闭的。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">get 操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>如果 Num Lock 是打开的，则为 <see langword="true" />；如果 Num Lock 是关闭的，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.Out">
+      <summary>获取标准输出流。</summary>
+      <returns>表示标准输出流的 <see cref="T:System.IO.TextWriter" />。</returns>
+    </member>
+    <member name="P:System.Console.OutputEncoding">
+      <summary>获取或设置控制台用于写入输出的编码。</summary>
+      <exception cref="T:System.ArgumentNullException">集运算中的属性值为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.IOException">执行此操作期间出错。</exception>
+      <exception cref="T:System.Security.SecurityException">你的应用程序没有执行此操作的权限。</exception>
+      <returns>用于写入控制台输出的编码。</returns>
+    </member>
+    <member name="P:System.Console.Title">
+      <summary>获取或设置要显示在控制台标题栏中的标题。</summary>
+      <exception cref="T:System.InvalidOperationException">在获取操作中，检索到的标题长度超过 24500 个字符。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">在集运算中，指定的标题长度超过 24500 个字符。</exception>
+      <exception cref="T:System.ArgumentNullException">在集运算中，指定的标题是 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.IOException">出现 I/O 错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">get 操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>要在控制台的标题栏中显示的字符串。 标题字符串的最大长度是 24500 个字符。</returns>
+    </member>
+    <member name="P:System.Console.TreatControlCAsInput">
+      <summary>获取或设置一个值，该值指示是将修改键 <see cref="F:System.ConsoleModifiers.Control" /> 和控制台键 <see cref="F:System.ConsoleKey.C" /> 的组合 (Ctrl+C) 视为普通输入，还是视为由操作系统处理的中断。</summary>
+      <exception cref="T:System.IO.IOException">无法获取或设置控制台输入缓冲区的输入模式。</exception>
+      <returns>如果将 Ctrl+C 视为普通输入，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Console.WindowHeight">
+      <summary>获取或设置控制台窗口区域的高度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">属性 <see cref="P:System.Console.WindowWidth" /> 的值或属性 <see cref="P:System.Console.WindowHeight" /> 的值小于或等于零。  
+  
+或 
+属性 <see cref="P:System.Console.WindowHeight" /> 的值加上属性 <see cref="P:System.Console.WindowTop" /> 的值大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+<see cref="P:System.Console.WindowWidth" /> 属性的值或 <see cref="P:System.Console.WindowHeight" /> 属性的值大于当前屏幕分辨率和控制台字体的最大可能的窗口宽度或高度。</exception>
+      <exception cref="T:System.IO.IOException">读取或写入信息时发生错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>控制台窗口的高度，以行为单位。</returns>
+    </member>
+    <member name="P:System.Console.WindowLeft">
+      <summary>获取或设置控制台窗口区域的最左边相对于屏幕缓冲区的位置。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">在集运算中，要赋予的值小于零。  
+  
+或 
+赋值之后，<see cref="P:System.Console.WindowLeft" /> 加 <see cref="P:System.Console.WindowWidth" /> 将超过 <see cref="P:System.Console.BufferWidth" />。</exception>
+      <exception cref="T:System.IO.IOException">读取或写入信息时发生错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>控制台窗口的最左边的位置，以列为单位。</returns>
+    </member>
+    <member name="P:System.Console.WindowTop">
+      <summary>获取或设置控制台窗口区域的最顶部相对于屏幕缓冲区的位置。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">在集运算中，要赋予的值小于零。  
+  
+或 
+赋值之后，<see cref="P:System.Console.WindowTop" /> 加 <see cref="P:System.Console.WindowHeight" /> 将超过 <see cref="P:System.Console.BufferHeight" />。</exception>
+      <exception cref="T:System.IO.IOException">读取或写入信息时发生错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>控制台窗口最顶部的位置，以行为单位。</returns>
+    </member>
+    <member name="P:System.Console.WindowWidth">
+      <summary>获取或设置控制台窗口的宽度。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">属性 <see cref="P:System.Console.WindowWidth" /> 的值或属性 <see cref="P:System.Console.WindowHeight" /> 的值小于或等于零。  
+  
+或 
+属性 <see cref="P:System.Console.WindowHeight" /> 的值加上属性 <see cref="P:System.Console.WindowTop" /> 的值大于或等于 <see cref="F:System.Int16.MaxValue" />。  
+  
+或 
+<see cref="P:System.Console.WindowWidth" /> 属性的值或 <see cref="P:System.Console.WindowHeight" /> 属性的值大于当前屏幕分辨率和控制台字体的最大可能的窗口宽度或高度。</exception>
+      <exception cref="T:System.IO.IOException">读取或写入信息时发生错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">设置操作在 Windows 之外的操作系统上调用。</exception>
+      <returns>控制台窗口的宽度，以列为单位。</returns>
+    </member>
+    <member name="T:System.ConsoleCancelEventArgs">
+      <summary>为 <see cref="E:System.Console.CancelKeyPress" /> 事件提供数据。 此类不能被继承。</summary>
+    </member>
+    <member name="P:System.ConsoleCancelEventArgs.Cancel">
+      <summary>获取或设置一个值，该值指示同时按下 <see cref="F:System.ConsoleModifiers.Control" /> 修改键和 <see cref="F:System.ConsoleKey.C" /> 控制台键 (Ctrl+C) 或 Ctrl+Break 键是否会终止当前进程。 默认值为 <see langword="false" />，这将终止当前进程。</summary>
+      <returns>如果当前进程在事件处理程序结束时应继续，则为 <see langword="true" />；如果当前进程应终止，则为 <see langword="false" />。 默认值为 <see langword="false" />；当前进程将在事件处理程序返回时终止。 如果为 <see langword="true" />，当前进程将继续。</returns>
+    </member>
+    <member name="P:System.ConsoleCancelEventArgs.SpecialKey">
+      <summary>获取中断当前进程的修改键和控制台键的组合。</summary>
+      <returns>一个枚举值指定中断当前进程的组合键。 无默认值。</returns>
+    </member>
+    <member name="T:System.ConsoleCancelEventHandler">
+      <summary>表示将用来处理 <see cref="E:System.Console.CancelKeyPress" /> 的 <see cref="T:System.Console" /> 事件的方法。</summary>
+      <param name="sender">事件源。</param>
+      <param name="e">包含事件数据的 <see cref="T:System.ConsoleCancelEventArgs" /> 对象。</param>
+    </member>
+    <member name="T:System.ConsoleColor">
+      <summary>指定定义控制台前景色和背景色的常数。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Black">
+      <summary>黑色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Blue">
+      <summary>蓝色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Cyan">
+      <summary>青色（蓝绿色）。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkBlue">
+      <summary>藏蓝色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkCyan">
+      <summary>深紫色（深蓝绿色）。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkGray">
+      <summary>深灰色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkGreen">
+      <summary>深绿色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkMagenta">
+      <summary>深紫红色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkRed">
+      <summary>深红色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.DarkYellow">
+      <summary>深黄色（赭色）。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Gray">
+      <summary>灰色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Green">
+      <summary>绿色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Magenta">
+      <summary>紫红色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Red">
+      <summary>红色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.White">
+      <summary>白色。</summary>
+    </member>
+    <member name="F:System.ConsoleColor.Yellow">
+      <summary>黄色。</summary>
+    </member>
+    <member name="T:System.ConsoleKey">
+      <summary>指定控制台上的标准键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.A">
+      <summary>A 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Add">
+      <summary>加号键（数字键盘上的加号键）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Applications">
+      <summary>应用程序键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Attention">
+      <summary>ATTN 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.B">
+      <summary>B 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Backspace">
+      <summary>BACKSPACE 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserBack">
+      <summary>浏览器后退键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserFavorites">
+      <summary>浏览器收藏键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserForward">
+      <summary>浏览器前进键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserHome">
+      <summary>浏览器主页键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserRefresh">
+      <summary>浏览器刷新键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserSearch">
+      <summary>浏览器搜索键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.BrowserStop">
+      <summary>浏览器停止键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.C">
+      <summary>C 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Clear">
+      <summary>CLEAR 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.CrSel">
+      <summary>CRSEL（光标选择）键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D">
+      <summary>D 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D0">
+      <summary>0 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D1">
+      <summary>1 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D2">
+      <summary>2 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D3">
+      <summary>3 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D4">
+      <summary>4 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D5">
+      <summary>5 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D6">
+      <summary>6 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D7">
+      <summary>7 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D8">
+      <summary>8 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.D9">
+      <summary>9 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Decimal">
+      <summary>小数点键（数字键盘上的小数点键）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Delete">
+      <summary>DEL (DELETE) 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Divide">
+      <summary>除号键（数字键盘上的除号键）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.DownArrow">
+      <summary>DOWN ARROW 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.E">
+      <summary>E 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.End">
+      <summary>END 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Enter">
+      <summary>ENTER 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.EraseEndOfFile">
+      <summary>ERASE EOF 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Escape">
+      <summary>ESC (ESCAPE) 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Execute">
+      <summary>EXECUTE 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.ExSel">
+      <summary>EXSEL（扩展选择）键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F">
+      <summary>F 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F1">
+      <summary>F1 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F10">
+      <summary>F10 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F11">
+      <summary>F11 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F12">
+      <summary>F12 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F13">
+      <summary>F13 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F14">
+      <summary>F14 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F15">
+      <summary>F15 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F16">
+      <summary>F16 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F17">
+      <summary>F17 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F18">
+      <summary>F18 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F19">
+      <summary>F19 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F2">
+      <summary>F2 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F20">
+      <summary>F20 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F21">
+      <summary>F21 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F22">
+      <summary>F22 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F23">
+      <summary>F23 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F24">
+      <summary>F24 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F3">
+      <summary>F3 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F4">
+      <summary>F4 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F5">
+      <summary>F5 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F6">
+      <summary>F6 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F7">
+      <summary>F7 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F8">
+      <summary>F8 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.F9">
+      <summary>F9 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.G">
+      <summary>G 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.H">
+      <summary>H 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Help">
+      <summary>HELP 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Home">
+      <summary>HOME 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.I">
+      <summary>I 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Insert">
+      <summary>INS (INSERT) 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.J">
+      <summary>J 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.K">
+      <summary>K 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.L">
+      <summary>L 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchApp1">
+      <summary>启动应用程序 1 键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchApp2">
+      <summary>启动应用程序 2 键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchMail">
+      <summary>启动邮件键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LaunchMediaSelect">
+      <summary>选择媒体键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LeftArrow">
+      <summary>LEFT ARROW 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.LeftWindows">
+      <summary>左 Windows 徽标键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.M">
+      <summary>M 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaNext">
+      <summary>媒体下一曲目键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaPlay">
+      <summary>媒体播放/暂停键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaPrevious">
+      <summary>媒体上一曲目键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.MediaStop">
+      <summary>媒体停止键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Multiply">
+      <summary>乘号键（数字键盘上的乘号键）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.N">
+      <summary>N 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NoName">
+      <summary>留待将来使用的常数。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad0">
+      <summary>数字键盘上的 0 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad1">
+      <summary>数字键盘上的 1 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad2">
+      <summary>数字键盘上的 2 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad3">
+      <summary>数字键盘上的 3 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad4">
+      <summary>数字键盘上的 4 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad5">
+      <summary>数字键盘上的 5 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad6">
+      <summary>数字键盘上的 6 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad7">
+      <summary>数字键盘上的 7 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad8">
+      <summary>数字键盘上的 8 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.NumPad9">
+      <summary>数字键盘上的 9 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.O">
+      <summary>O 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem1">
+      <summary>OEM 1 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem102">
+      <summary>OEM 102 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem2">
+      <summary>OEM 2 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem3">
+      <summary>OEM 3 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem4">
+      <summary>OEM 4 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem5">
+      <summary>OEM 5 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem6">
+      <summary>OEM 6 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem7">
+      <summary>OEM 7 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Oem8">
+      <summary>OEM 8 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemClear">
+      <summary>CLEAR 键（特定于 OEM）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemComma">
+      <summary>任何国家/地区键盘上的 OEM 逗号键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemMinus">
+      <summary>任何国家/地区键盘上的 OEM 减号键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemPeriod">
+      <summary>任何国家/地区键盘上的 OEM 句号键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.OemPlus">
+      <summary>任何国家/地区键盘上的 OEM 加号键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.P">
+      <summary>P 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Pa1">
+      <summary>PA1 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Packet">
+      <summary>PACKET 键（通过击键次数用于传递 Unicode 字符）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PageDown">
+      <summary>PAGE DOWN 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PageUp">
+      <summary>PAGE UP 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Pause">
+      <summary>PAUSE 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Play">
+      <summary>播放键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Print">
+      <summary>PRINT 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.PrintScreen">
+      <summary>PRINT SCREEN 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Process">
+      <summary>IME PROCESS 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Q">
+      <summary>Q 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.R">
+      <summary>R 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.RightArrow">
+      <summary>RIGHT ARROW 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.RightWindows">
+      <summary>右 Windows 徽标键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.S">
+      <summary>S 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Select">
+      <summary>SELECT 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Separator">
+      <summary>分隔符键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Sleep">
+      <summary>计算机休眠键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Spacebar">
+      <summary>SPACEBAR 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Subtract">
+      <summary>减号键（数字键盘上的减号键）。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.T">
+      <summary>T 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Tab">
+      <summary>TAB 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.U">
+      <summary>U 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.UpArrow">
+      <summary>UP ARROW 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.V">
+      <summary>V 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeDown">
+      <summary>调低音量键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeMute">
+      <summary>静音键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.VolumeUp">
+      <summary>调高音量键 (Microsoft Natural Keyboard)。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.W">
+      <summary>W 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.X">
+      <summary>X 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Y">
+      <summary>Y 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Z">
+      <summary>Z 键。</summary>
+    </member>
+    <member name="F:System.ConsoleKey.Zoom">
+      <summary>缩放键。</summary>
+    </member>
+    <member name="T:System.ConsoleKeyInfo">
+      <summary>描述按下的控制台键，包括控制台键表示的字符以及 Shift、Alt 和 Ctrl 修改键的状态。</summary>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.#ctor(System.Char,System.ConsoleKey,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>用指定的字符、控制台键和修改键初始化 <see cref="T:System.ConsoleKeyInfo" /> 结构的新实例。</summary>
+      <param name="keyChar">与 <paramref name="key" /> 参数对应的 Unicode 字符。</param>
+      <param name="key">与 <paramref name="keyChar" /> 参数对应的控制台键。</param>
+      <param name="shift">
+        <see langword="true" /> 指示按下了 Shift 键；否则为 <see langword="false" />。</param>
+      <param name="alt">
+        <see langword="true" /> 指示按下了 Alt 键；否则为 <see langword="false" />。</param>
+      <param name="control">
+        <see langword="true" /> 指示按下了 Ctrl 键；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="key" /> 参数的数值小于 0 或大于 255。</exception>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.Equals(System.ConsoleKeyInfo)">
+      <summary>获取一个值，该值指示指定的 <see cref="T:System.ConsoleKeyInfo" /> 对象是否等于当前 <see cref="T:System.ConsoleKeyInfo" /> 对象。</summary>
+      <param name="obj">要与当前 <see cref="T:System.ConsoleKeyInfo" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 等于当前 <see cref="T:System.ConsoleKeyInfo" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.Equals(System.Object)">
+      <summary>获取一个值，该值指示指定的对象是否等于当前的 <see cref="T:System.ConsoleKeyInfo" /> 对象。</summary>
+      <param name="value">要与当前 <see cref="T:System.ConsoleKeyInfo" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="value" /> 是 <see cref="T:System.ConsoleKeyInfo" /> 对象且等于当前 <see cref="T:System.ConsoleKeyInfo" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.GetHashCode">
+      <summary>返回当前 <see cref="T:System.ConsoleKeyInfo" /> 对象的哈希代码。</summary>
+      <returns>32 位有符号整数哈希代码。</returns>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.op_Equality(System.ConsoleKeyInfo,System.ConsoleKeyInfo)">
+      <summary>指示指定的 <see cref="T:System.ConsoleKeyInfo" /> 对象是否相等。</summary>
+      <param name="a">要比较的第一个对象。</param>
+      <param name="b">要比较的第二个对象。</param>
+      <returns>如果 <see langword="true" /> 等于 <paramref name="a" />，则为 <paramref name="b" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ConsoleKeyInfo.op_Inequality(System.ConsoleKeyInfo,System.ConsoleKeyInfo)">
+      <summary>指示指定的 <see cref="T:System.ConsoleKeyInfo" /> 对象是否不相等。</summary>
+      <param name="a">要比较的第一个对象。</param>
+      <param name="b">要比较的第二个对象。</param>
+      <returns>如果 <see langword="true" /> 不等于 <paramref name="a" />，则为 <paramref name="b" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.Key">
+      <summary>获取当前 <see cref="T:System.ConsoleKeyInfo" /> 对象表示的控制台键。</summary>
+      <returns>标识按下的控制台键的值。</returns>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.KeyChar">
+      <summary>获取当前 <see cref="T:System.ConsoleKeyInfo" /> 对象表示的 Unicode 字符。</summary>
+      <returns>与当前 <see cref="T:System.ConsoleKeyInfo" /> 对象表示的控制台键对应的对象。</returns>
+    </member>
+    <member name="P:System.ConsoleKeyInfo.Modifiers">
+      <summary>获取 <see cref="T:System.ConsoleModifiers" /> 值的一个按位组合，指定与控制台键同时按下的一个或多个修改键。</summary>
+      <returns>枚举值的按位组合。 无默认值。</returns>
+    </member>
+    <member name="T:System.ConsoleModifiers">
+      <summary>表示键盘上的 Shift、Alt 和 Ctrl 修改键。</summary>
+    </member>
+    <member name="F:System.ConsoleModifiers.Alt">
+      <summary>左侧或右侧的 Alt 修改键。</summary>
+    </member>
+    <member name="F:System.ConsoleModifiers.Control">
+      <summary>左侧或右侧的 Ctrl 修改键。</summary>
+    </member>
+    <member name="F:System.ConsoleModifiers.Shift">
+      <summary>左侧或右侧的 Shift 修改键。</summary>
+    </member>
+    <member name="T:System.ConsoleSpecialKey">
+      <summary>指定能够中断当前进程的修改键和控制台键的组合。</summary>
+    </member>
+    <member name="F:System.ConsoleSpecialKey.ControlBreak">
+      <summary>
+        <see cref="F:System.ConsoleModifiers.Control" /> 修改键加上 Break 控制台键。</summary>
+    </member>
+    <member name="F:System.ConsoleSpecialKey.ControlC">
+      <summary>
+        <see cref="F:System.ConsoleModifiers.Control" /> 修改键加 <see cref="F:System.ConsoleKey.C" /> 控制台键。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Xml.XPath</name>
+  </assembly>
+  <members>
+    <member name="T:System.Xml.XPath.XPathDocument">
+      <summary>使用 XPath 数据模型提供 XML 文档的快速、只读、内存表示形式。</summary>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.IO.Stream)">
+      <summary>使用指定的 <see cref="T:System.Xml.XPath.XPathDocument" /> 对象中的 XML 数据对 <see cref="T:System.IO.Stream" /> 类的新实例进行初始化。</summary>
+      <param name="stream">包含 XML 数据的 <see cref="T:System.IO.Stream" /> 对象。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">作为参数传递的 <see cref="T:System.IO.Stream" /> 对象为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.IO.TextReader)">
+      <summary>使用指定的 <see cref="T:System.Xml.XPath.XPathDocument" /> 对象中包含的 XML 数据对 <see cref="T:System.IO.TextReader" /> 类的新实例进行初始化。</summary>
+      <param name="textReader">包含 XML 数据的 <see cref="T:System.IO.TextReader" /> 对象。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">作为参数传递的 <see cref="T:System.IO.TextReader" /> 对象为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.String)">
+      <summary>使用指定文件中的 XML 数据对 <see cref="T:System.Xml.XPath.XPathDocument" /> 类的新实例进行初始化。</summary>
+      <param name="uri">包含 XML 数据的文件的路径。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">文件路径参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.String,System.Xml.XmlSpace)">
+      <summary>使用指定文件中的 XML 数据对 <see cref="T:System.Xml.XPath.XPathDocument" /> 类的新实例进行实例化，并采用指定的空白处理方法。</summary>
+      <param name="uri">包含 XML 数据的文件的路径。</param>
+      <param name="space">一个 <see cref="T:System.Xml.XmlSpace" /> 对象。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">文件路径参数或 <see cref="T:System.Xml.XmlSpace" /> 对象参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.Xml.XmlReader)">
+      <summary>使用指定的 <see cref="T:System.Xml.XPath.XPathDocument" /> 对象中包含的 XML 数据对 <see cref="T:System.Xml.XmlReader" /> 类的新实例进行初始化。</summary>
+      <param name="reader">包含 XML 数据的 <see cref="T:System.Xml.XmlReader" /> 对象。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">作为参数传递的 <see cref="T:System.Xml.XmlReader" /> 对象为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.#ctor(System.Xml.XmlReader,System.Xml.XmlSpace)">
+      <summary>使用指定的 <see cref="T:System.Xml.XPath.XPathDocument" /> 对象中包含的 XML 数据对 <see cref="T:System.Xml.XmlReader" /> 类的新实例进行初始化，并采用指定的空白处理方法。</summary>
+      <param name="reader">包含 XML 数据的 <see cref="T:System.Xml.XmlReader" /> 对象。</param>
+      <param name="space">一个 <see cref="T:System.Xml.XmlSpace" /> 对象。</param>
+      <exception cref="T:System.Xml.XmlException">XML 数据中出现错误。 <see cref="T:System.Xml.XPath.XPathDocument" /> 保持为空。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="T:System.Xml.XmlReader" /> 对象参数或 <see cref="T:System.Xml.XmlSpace" /> 对象参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Xml.XPath.XPathDocument.CreateNavigator">
+      <summary>初始化一个只读 <see cref="T:System.Xml.XPath.XPathNavigator" /> 对象，用于在此 <see cref="T:System.Xml.XPath.XPathDocument" /> 的节点中进行导航。</summary>
+      <returns>只读 <see cref="T:System.Xml.XPath.XPathNavigator" /> 对象。</returns>
+    </member>
+    <member name="T:System.Xml.XPath.XPathException">
+      <summary>提供在处理 XPath 表达式的过程中发生错误时所引发的异常。</summary>
+    </member>
+    <member name="M:System.Xml.XPath.XPathException.#ctor">
+      <summary>初始化 <see cref="T:System.Xml.XPath.XPathException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Xml.XPath.XPathException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 和 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象中的信息初始化 <see cref="T:System.Xml.XPath.XPathException" /> 类的新实例。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象，包含 <see cref="T:System.Xml.XPath.XPathException" /> 的所有属性。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象。</param>
+    </member>
+    <member name="M:System.Xml.XPath.XPathException.#ctor(System.String)">
+      <summary>使用指定的异常消息初始化 <see cref="T:System.Xml.XPath.XPathException" /> 类的新实例。</summary>
+      <param name="message">错误条件的说明。</param>
+    </member>
+    <member name="M:System.Xml.XPath.XPathException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的异常消息和 <see cref="T:System.Xml.XPath.XPathException" /> 对象初始化 <see cref="T:System.Exception" /> 类的新实例。</summary>
+      <param name="message">错误条件的说明。</param>
+      <param name="innerException">引发 <see cref="T:System.Exception" /> 的 <see cref="T:System.Xml.XPath.XPathException" />（如果有的话）。 此值可为 <see langword="null" />。</param>
+    </member>
+    <member name="M:System.Xml.XPath.XPathException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>对于给定的 <see cref="T:System.Xml.XPath.XPathException" />，将所有的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 属性流入 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 类。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 对象。</param>
+      <param name="context">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 对象。</param>
+    </member>
+    <member name="P:System.Xml.XPath.XPathException.Message">
+      <summary>获取此异常的错误条件的描述。</summary>
+      <returns>此异常的错误条件的 <see langword="string" /> 描述。</returns>
+    </member>
+  </members>
+</doc>

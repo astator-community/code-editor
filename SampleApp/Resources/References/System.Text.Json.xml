@@ -1,0 +1,2647 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Text.Json</name>
+  </assembly>
+  <members>
+    <member name="T:System.Text.Json.JsonCommentHandling">
+      <summary>定义 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构处理注释的方式。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonCommentHandling.Allow">
+      <summary>允许在 JSON 输入中使用注释，并将其视为有效标记。 读取项时，调用方可以访问注释值。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonCommentHandling.Disallow">
+      <summary>不允许在 JSON 输入中使用注释。 若找到注释，可将其视为 JSON，并且引发 <see cref="T:System.Text.Json.JsonException" />。 这是默认值。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonCommentHandling.Skip">
+      <summary>允许在 JSON 输入中使用注释并忽略它们。 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的行为方式假设不存在注释。</summary>
+    </member>
+    <member name="T:System.Text.Json.JsonDocument">
+      <summary>提供用于检查 JSON 值的结构内容，而不自动实例化数据值的机制。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Dispose">
+      <summary>释放该 <see cref="T:System.Text.Json.JsonDocument" /> 实例使用的资源。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Parse(System.Buffers.ReadOnlySequence{System.Byte},System.Text.Json.JsonDocumentOptions)">
+      <summary>将表示单个 JSON 字节值的 UTF-8 编码文本形式的序列分析为 JsonDocument。</summary>
+      <param name="utf8Json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="utf8Json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>JSON 值的 JsonDocument 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Parse(System.IO.Stream,System.Text.Json.JsonDocumentOptions)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码数据形式的 <see cref="T:System.IO.Stream" /> 分析为 JsonDocument。 数据流将被完整读取。</summary>
+      <param name="utf8Json">要分析的 JSON 数据。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="utf8Json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>JSON 值的 JsonDocument 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Byte},System.Text.Json.JsonDocumentOptions)">
+      <summary>将表示单个 JSON 字节值的 UTF-8 编码文本形式的内存分析为 JsonDocument。</summary>
+      <param name="utf8Json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="utf8Json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>JSON 值的 JsonDocument 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Parse(System.ReadOnlyMemory{System.Char},System.Text.Json.JsonDocumentOptions)">
+      <summary>将表示单个 JSON 字符值的文本分析为 JsonDocument。</summary>
+      <param name="json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>JSON 值的 JsonDocument 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.Parse(System.String,System.Text.Json.JsonDocumentOptions)">
+      <summary>将表示单个 JSON 字符串值的文本分析为 JsonDocument。</summary>
+      <param name="json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>JSON 值的 JsonDocument 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.ParseAsync(System.IO.Stream,System.Text.Json.JsonDocumentOptions,System.Threading.CancellationToken)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码数据形式的 <see cref="T:System.IO.Stream" /> 分析为 JsonDocument。 数据流将被完整读取。</summary>
+      <param name="utf8Json">要分析的 JSON 数据。</param>
+      <param name="options">分析期间用于控制读取器行为的选项。</param>
+      <param name="cancellationToken">要监视取消请求的标记。</param>
+      <exception cref="T:System.Text.Json.JsonException">
+        <paramref name="utf8Json" /> 不表示有效的单个 JSON 值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> 包含不受支持的选项。</exception>
+      <returns>用于生成 JSON 值的 JsonDocument 表示的任务。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.ParseValue(System.Text.Json.Utf8JsonReader@)">
+      <summary>通过提供的读取器分析一个 JSON 值（包括对象或数组）。</summary>
+      <param name="reader">要用于读取的读取器。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="reader" /> 包含不受支持的选项。
+
+- 或 -
+
+当前 <paramref name="reader" /> 令牌不启动或表示值。</exception>
+      <exception cref="T:System.Text.Json.JsonException">无法从读取器中读取值。</exception>
+      <returns>表示从读取器中读取的值（和嵌套值）的 JsonDocument。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.TryParseValue(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonDocument@)">
+      <summary>尝试通过提供的读取器分析一个 JSON 值（包括对象或数组）。</summary>
+      <param name="reader">要用于读取的读取器。</param>
+      <param name="document">方法返回时，包含已分析的文档。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="reader" /> 包含不受支持的选项。
+
+- 或 -
+
+当前 <paramref name="reader" /> 令牌不启动或表示值。</exception>
+      <exception cref="T:System.Text.Json.JsonException">无法从读取器中读取值。</exception>
+      <returns>如果读取了值并将其分析为 JsonDocument，则为 <see langword="true" />；如果读取器在分析时耗尽了数据，则为 <see langword="false" />。 所有其他情况都会导致引发异常。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonDocument.WriteTo(System.Text.Json.Utf8JsonWriter)">
+      <summary>将文档作为 JSON 值写入所提供的编写器。</summary>
+      <param name="writer">要将文档写入到的编写器。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此 <see cref="P:System.Text.Json.JsonDocument.RootElement" /> 的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 会导致无效的 JSON。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonDocument.RootElement">
+      <summary>获取此 JSON 文档的根元素。</summary>
+      <returns>一个， <see cref="T:System.Text.Json.JsonElement" /> 它表示文档的值。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonDocumentOptions">
+      <summary>分析 JSON 以创建 <see cref="T:System.Text.Json.JsonDocument" /> 时，为用户提供定义自定义行为的功能。</summary>
+    </member>
+    <member name="P:System.Text.Json.JsonDocumentOptions.AllowTrailingCommas">
+      <summary>获取或设置一个值，该值指示要读取的 JSON 有效负载中是否允许（和忽略）对象或数组中 JSON 值的列表末尾多余的逗号。</summary>
+      <returns>
+        <see langword="true" /> 如果允许在对象或数组中的 JSON 值列表末尾使用额外逗号，则为; 否则为。否则为 <see langword="false" /> 。 默认为 <see langword="false" /></returns>
+    </member>
+    <member name="P:System.Text.Json.JsonDocumentOptions.CommentHandling">
+      <summary>获取或设置一个值，该值确定在读取 JSON 数据时，<see cref="T:System.Text.Json.JsonDocument" /> 处理注释的方式。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">注释处理枚举设置为不受支持的值（或不在 <see cref="T:System.Text.Json.JsonCommentHandling" /> 枚举范围内）。</exception>
+      <returns>枚举值之一，指示如何处理注释。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonDocumentOptions.MaxDepth">
+      <summary>获取或设置分析 JSON 数据时允许的最大深度，默认值（即 0）表示最大深度为 64。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">最大深度设置为负值。</exception>
+      <returns>分析 JSON 数据时允许的最大深度。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonElement">
+      <summary>表示 <see cref="T:System.Text.Json.JsonDocument" /> 中的特定 JSON 值。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.Clone">
+      <summary>获取可在超过原始 <see cref="T:System.Text.Json.JsonDocument" /> 的生存期安全存储的 JsonElement。</summary>
+      <returns>可在超过原始 <see cref="T:System.Text.Json.JsonDocument" /> 的生存期安全存储的 JsonElement。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.EnumerateArray">
+      <summary>获取一个枚举器，它用于枚举由该 JsonElement 表示的 JSON 数组中的值。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Array" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>一个枚举器，它用于枚举由该 JsonElement 表示的 JSON 数组中的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.EnumerateObject">
+      <summary>获取一个枚举器，它用于枚举由该 JsonElement 表示的 JSON 对象中的属性。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>一个枚举器，它用于枚举由该 JsonElement 表示的 JSON 对象中的属性。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetArrayLength">
+      <summary>获取当前数组值中包含的值的数量。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Array" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前数组值中包含的值的数量。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetBoolean">
+      <summary>获取元素的值（<see cref="T:System.Boolean" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 既不是 <see cref="F:System.Text.Json.JsonValueKind.True" />，也不是 <see cref="F:System.Text.Json.JsonValueKind.False" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>元素的值（<see cref="T:System.Boolean" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetByte">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Byte" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Byte" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Byte" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetBytesFromBase64">
+      <summary>获取作为字节数组的元素的值。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.FormatException">值未编码为 base 64 文本，因此无法解码为字节。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>编码为字节数组的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetDateTime">
+      <summary>获取元素的值（<see cref="T:System.DateTime" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.FormatException">此值不可作为 <see cref="T:System.DateTime" /> 读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>元素的值（<see cref="T:System.DateTime" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetDateTimeOffset">
+      <summary>获取元素的值（<see cref="T:System.DateTimeOffset" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.FormatException">此值不可作为 <see cref="T:System.DateTimeOffset" /> 读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>元素的值（<see cref="T:System.DateTimeOffset" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetDecimal">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Decimal" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Decimal" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Decimal" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetDouble">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Double" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Double" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Double" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetGuid">
+      <summary>获取元素的值（<see cref="T:System.Guid" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Guid" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>元素的值（<see cref="T:System.Guid" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetInt16">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Int16" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Int16" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Int16" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetInt32">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Int32" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Int32" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Int32" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetInt64">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Int64" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Int64" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Int64" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetProperty(System.ReadOnlySpan{System.Byte})">
+      <summary>获取一个 <see cref="T:System.Text.Json.JsonElement" />，它表示由 <paramref name="utf8PropertyName" /> 标识的所需属性的值。</summary>
+      <param name="utf8PropertyName">要返回的属性名称的 UTF-8 表示形式（没有字节顺序标记 (BOM)）。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">找不到带有所请求名称的属性。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>一个 <see cref="T:System.Text.Json.JsonElement" />，它表示所需属性的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetProperty(System.ReadOnlySpan{System.Char})">
+      <summary>获取一个 <see cref="T:System.Text.Json.JsonElement" />，它表示由 <paramref name="propertyName" /> 标识的所需属性的值。</summary>
+      <param name="propertyName">要返回其值的属性的名称。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">找不到带有所请求名称的属性。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>一个 <see cref="T:System.Text.Json.JsonElement" />，它表示所需属性的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetProperty(System.String)">
+      <summary>获取一个 <see cref="T:System.Text.Json.JsonElement" />，它表示由 <paramref name="propertyName" /> 标识的所需属性的值。</summary>
+      <param name="propertyName">要返回其值的属性的名称。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">找不到带有所请求名称的属性。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>一个 <see cref="T:System.Text.Json.JsonElement" />，它表示所需属性的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetRawText">
+      <summary>获取一个字符串，它表示支持该值的原始输入数据。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>支持该值的原始输入数据。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetSByte">
+      <summary>获取当前 JSON 数字（<see cref="T:System.SByte" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.SByte" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.SByte" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetSingle">
+      <summary>获取当前 JSON 数字（<see cref="T:System.Single" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.Single" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.Single" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetString">
+      <summary>获取元素的值（<see cref="T:System.String" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 既不是 <see cref="F:System.Text.Json.JsonValueKind.String" />，也不是 <see cref="F:System.Text.Json.JsonValueKind.Null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>元素的值（<see cref="T:System.String" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetUInt16">
+      <summary>获取当前 JSON 数字（<see cref="T:System.UInt16" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.UInt16" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.UInt16" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetUInt32">
+      <summary>获取当前 JSON 数字（<see cref="T:System.UInt32" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.UInt32" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.UInt32" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.GetUInt64">
+      <summary>获取当前 JSON 数字（<see cref="T:System.UInt64" /> 形式）。</summary>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.FormatException">此值不能以 <see cref="T:System.UInt64" /> 形式表示。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 数字（<see cref="T:System.UInt64" /> 形式）。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ToString">
+      <summary>获取适合于值类型的当前值的字符串表示形式。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>适合于值类型的当前值的字符串表示形式。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetByte(System.Byte@)">
+      <summary>尝试以 <see cref="T:System.Byte" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">该方法返回时，如果转换成功，则包含与当前 JSON 数字等效的字节。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Byte" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetBytesFromBase64(System.Byte[]@)">
+      <summary>尝试将当前 JSON 字符串表示为字节数组（假定它是 Base64 编码）。</summary>
+      <param name="value">如果方法成功，则包含 Base64 文本的已解码二进制表示形式。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果整个标记值编码为有效 base 64 文本并且可以成功解码为字节，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetDateTime(System.DateTime@)">
+      <summary>尝试以 <see cref="T:System.DateTime" /> 形式表示当前 JSON 字符串。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 字符串等效的日期和时间值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.DateTime" /> 形式表示字符串，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetDateTimeOffset(System.DateTimeOffset@)">
+      <summary>尝试以 <see cref="T:System.DateTimeOffset" /> 形式表示当前 JSON 字符串。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 字符串等效的日期和时间。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.DateTimeOffset" /> 形式表示字符串，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetDecimal(System.Decimal@)">
+      <summary>尝试以 <see cref="T:System.Decimal" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含当前 JSON 数字的十进制等效值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Decimal" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetDouble(System.Double@)">
+      <summary>尝试以 <see cref="T:System.Double" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的双精度浮点值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Double" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetGuid(System.Guid@)">
+      <summary>尝试以 <see cref="T:System.Guid" /> 形式表示当前 JSON 字符串。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 字符串等效的 GUID。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Guid" /> 形式表示字符串，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetInt16(System.Int16@)">
+      <summary>尝试以 <see cref="T:System.Int16" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">该方法返回时，如果转换成功，则包含与当前 JSON 数字等效的 16 位整数。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Int16" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetInt32(System.Int32@)">
+      <summary>尝试以 <see cref="T:System.Int32" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的 32 位整数值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Int32" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetInt64(System.Int64@)">
+      <summary>尝试以 <see cref="T:System.Int64" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的 64 位整数值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Int64" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetProperty(System.ReadOnlySpan{System.Byte},System.Text.Json.JsonElement@)">
+      <summary>查找当前对象中名为 <paramref name="utf8PropertyName" /> 的属性，返回一个指示此类属性是否存在的值。 如果此属性存在，该方法会将其值分配给 <paramref name="value" /> 参数。</summary>
+      <param name="utf8PropertyName">要返回的属性名称的 UTF-8 表示形式（没有字节顺序标记 (BOM)）。</param>
+      <param name="value">接收已找到的属性的值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果找到该属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetProperty(System.ReadOnlySpan{System.Char},System.Text.Json.JsonElement@)">
+      <summary>查找当前对象中名为 <paramref name="propertyName" /> 的属性，返回一个指示此类属性是否存在的值。 如果此属性存在，该方法会将其值分配给 <paramref name="value" /> 参数。</summary>
+      <param name="propertyName">要查找的属性的名称。</param>
+      <param name="value">此方法返回时，包含指定属性的值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果找到该属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetProperty(System.String,System.Text.Json.JsonElement@)">
+      <summary>查找当前对象中名为 <paramref name="propertyName" /> 的属性，返回一个指示此类属性是否存在的值。 如果此属性存在，会将其值分配给 <paramref name="value" /> 参数。</summary>
+      <param name="propertyName">要查找的属性的名称。</param>
+      <param name="value">此方法返回时，包含指定属性的值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Object" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果找到该属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetSByte(System.SByte@)">
+      <summary>尝试以 <see cref="T:System.SByte" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">该方法返回时，如果转换成功，则包含与当前 JSON 数字等效的有符号字节。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.SByte" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetSingle(System.Single@)">
+      <summary>尝试以 <see cref="T:System.Single" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的单精度浮点值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.Single" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetUInt16(System.UInt16@)">
+      <summary>尝试以 <see cref="T:System.UInt16" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">该方法返回时，如果转换成功，则包含与当前 JSON 数字等效的无符号 16 位整数。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.UInt16" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetUInt32(System.UInt32@)">
+      <summary>尝试以 <see cref="T:System.UInt32" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的 32 位无符号整数值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.UInt32" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.TryGetUInt64(System.UInt64@)">
+      <summary>尝试以 <see cref="T:System.UInt64" /> 形式表示当前 JSON 数字。</summary>
+      <param name="value">此方法返回时，包含与当前 JSON 数字等效的 64 位无符号整数值。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Number" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>如果可以 <see cref="T:System.UInt64" /> 形式表示数字，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ValueEquals(System.ReadOnlySpan{System.Byte})">
+      <summary>将由 UTF8 编码的字节范围表示的文本与此元素的字符串值进行比较。</summary>
+      <param name="utf8Text">要进行比较的 UTF-8 编码文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <returns>如果此元素的字符串值的 UTF-8 编码与 <paramref name="utf8Text" /> 相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ValueEquals(System.ReadOnlySpan{System.Char})">
+      <summary>将指定只读字符范围与此元素的字符串值进行比较。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <returns>如果此元素的字符串值与 <paramref name="text" /> 匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ValueEquals(System.String)">
+      <summary>将指定字符串与此元素的字符串值进行比较。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.String" />。</exception>
+      <returns>如果此元素的字符串值与 <paramref name="text" /> 匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.WriteTo(System.Text.Json.Utf8JsonWriter)">
+      <summary>将元素作为 JSON 值写入指定的编写器。</summary>
+      <param name="writer">要将元素写入到的编写器。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 为 <see cref="F:System.Text.Json.JsonValueKind.Undefined" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.Item(System.Int32)">
+      <summary>获取当前值为 <see cref="F:System.Text.Json.JsonValueKind.Array" /> 时指定索引处的值。</summary>
+      <param name="index">项索引。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 不是 <see cref="F:System.Text.Json.JsonValueKind.Array" />。</exception>
+      <exception cref="T:System.IndexOutOfRangeException">
+        <paramref name="index" /> 不在范围 [0, <see cref="M:System.Text.Json.JsonElement.GetArrayLength" />()) 内。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>位于指定索引处的值。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.ValueKind">
+      <summary>获取当前 JSON 值的类型。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+      <returns>当前 JSON 值的类型。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonElement.ArrayEnumerator">
+      <summary>表示一个针对 JSON 数组内容的枚举器。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.Dispose">
+      <summary>释放该 <see cref="T:System.Text.Json.JsonElement.ArrayEnumerator" /> 实例使用的资源。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>一个可用于循环访问数组的枚举器。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.MoveNext">
+      <summary>将枚举数推进到集合的下一个元素。</summary>
+      <returns>如果枚举数已成功地推进到下一个元素，则为 <see langword="true" />；如果枚举数传递到集合的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.Reset">
+      <summary>将枚举数设置为其初始位置，该位置位于集合中第一个元素之前。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.System#Collections#Generic#IEnumerable{System#Text#Json#JsonElement}#GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>一系列 <see cref="T:System.Text.Json.JsonElement" /> 的枚举器，可用于循环访问集合。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ArrayEnumerator.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.ArrayEnumerator.Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.ArrayEnumerator.System#Collections#IEnumerator#Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonElement.ObjectEnumerator">
+      <summary>表示一个针对 JSON 对象属性的枚举器。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.Dispose">
+      <summary>释放该 <see cref="T:System.Text.Json.JsonElement.ObjectEnumerator" /> 实例使用的资源。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.GetEnumerator">
+      <summary>返回循环访问对象属性的枚举器。</summary>
+      <returns>一个可用于循环访问对象的枚举器。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.MoveNext">
+      <summary>将枚举数推进到集合的下一个元素。</summary>
+      <returns>如果枚举数已成功地推进到下一个元素，则为 <see langword="true" />；如果枚举数传递到集合的末尾，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.Reset">
+      <summary>将枚举数设置为其初始位置，该位置位于集合中第一个元素之前。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.System#Collections#Generic#IEnumerable{System#Text#Json#JsonProperty}#GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>
+        <see cref="T:System.Text.Json.JsonProperty" /> 对象的枚举器，可用于循环访问集合。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonElement.ObjectEnumerator.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.ObjectEnumerator.Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonElement.ObjectEnumerator.System#Collections#IEnumerator#Current">
+      <summary>获取集合中位于枚举数当前位置的元素。</summary>
+      <returns>集合中位于枚举数当前位置的元素。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonEncodedText">
+      <summary>提供将 UTF-8 或 UTF-16 编码文本转换为适用于 JSON 的表单的方法。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.Encode(System.ReadOnlySpan{System.Byte},System.Text.Encodings.Web.JavaScriptEncoder)">
+      <summary>将 UTF-8 文本值编码为 JSON 字符串。</summary>
+      <param name="utf8Value">要转换为 JSON 编码文本的 UTF-8 编码文本。</param>
+      <param name="encoder">要在转义字符串时使用的编码器，或为 <see langword="null" />（要使用默认编码器的话）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="utf8Value" /> 太大。
+
+- 或 -
+
+<paramref name="utf8Value" /> 包含无效的 UTF-8 字节。</exception>
+      <returns>编码的 JSON 文本。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.Encode(System.ReadOnlySpan{System.Char},System.Text.Encodings.Web.JavaScriptEncoder)">
+      <summary>将指定文本值编码为 JSON 字符串。</summary>
+      <param name="value">要转换为 JSON 编码文本的值。</param>
+      <param name="encoder">要在转义字符串时使用的编码器，或为 <see langword="null" />（要使用默认编码器的话）。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="value" /> 太大。
+
+- 或 -
+
+<paramref name="value" /> 包含无效的 UTF-16 字符。</exception>
+      <returns>编码的 JSON 文本。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.Encode(System.String,System.Text.Encodings.Web.JavaScriptEncoder)">
+      <summary>将字符串文本值编码为 JSON 字符串。</summary>
+      <param name="value">要转换为 JSON 编码文本的值。</param>
+      <param name="encoder">要在转义字符串时使用的编码器，或为 <see langword="null" />（要使用默认编码器的话）。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="value" /> 太大。
+
+- 或 -
+
+<paramref name="value" /> 包含无效的 UTF-16 字符。</exception>
+      <returns>编码的 JSON 文本。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.Equals(System.Object)">
+      <summary>确定此实例是否与指定的对象（也必须是 <see cref="T:System.Text.Json.JsonEncodedText" /> 实例）具有相同的值。</summary>
+      <param name="obj">要与此实例进行比较的对象。</param>
+      <returns>如果当前实例与 <paramref name="obj" /> 相等，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.Equals(System.Text.Json.JsonEncodedText)">
+      <summary>确定此实例是否与另一个指定的 <see cref="T:System.Text.Json.JsonEncodedText" /> 实例具有相同的值。</summary>
+      <param name="other">要与此实例进行比较的对象。</param>
+      <returns>如果此实例与 <paramref name="other" /> 具有相同的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.GetHashCode">
+      <summary>返回此 <see cref="T:System.Text.Json.JsonEncodedText" /> 的哈希代码。</summary>
+      <returns>此实例的哈希代码。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonEncodedText.ToString">
+      <summary>将此实例的值转换为 <see cref="T:System.String" />。</summary>
+      <returns>基础 UTF-16 编码字符串。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonEncodedText.EncodedUtf8Bytes">
+      <summary>获取预编码 JSON 文本的 UTF-8 编码表示形式。</summary>
+      <returns>预先编码的 JSON 文本的 UTF-8 编码表示形式。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonException">
+      <summary>定义一个自定义异常对象，当遇到无效 JSON 文本、传递已定义的最大深度或 JSON 文本与对象上的属性类型不兼容时，则引发该异常对象。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.JsonException" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化数据创建新的异常对象。</summary>
+      <param name="info">有关引发的异常的序列化对象数据。</param>
+      <param name="context">一个包含有关源或目标的上下文信息的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="info" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor(System.String)">
+      <summary>用指定的错误消息初始化 <see cref="T:System.Text.Json.JsonException" /> 类的新实例。</summary>
+      <param name="message">上下文特定的错误消息。</param>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的错误消息和对作为此异常原因的内部异常的引用来初始化 <see cref="T:System.Text.Json.JsonException" /> 类的新实例。</summary>
+      <param name="message">上下文特定的错误消息。</param>
+      <param name="innerException">引发当前异常的异常。</param>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+      <summary>创建新的异常对象，将错误信息传递给用户。</summary>
+      <param name="message">上下文特定的错误消息。</param>
+      <param name="path">遇到无效的 JSON 路径。</param>
+      <param name="lineNumber">反序列化时遇到无效 JSON 时所在的行号（从 0 开始）。</param>
+      <param name="bytePositionInLine">遇到无效 JSON 的当前行（从 0 开始）中的字节计数。</param>
+    </member>
+    <member name="M:System.Text.Json.JsonException.#ctor(System.String,System.String,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Exception)">
+      <summary>创建新的异常对象，以将错误信息传递给包含指定内部异常的用户。</summary>
+      <param name="message">上下文特定的错误消息。</param>
+      <param name="path">遇到无效的 JSON 路径。</param>
+      <param name="lineNumber">反序列化时遇到无效 JSON 时所在的行号（从 0 开始）。</param>
+      <param name="bytePositionInLine">遇到无效 JSON 时所在当前行中的字节计数（从 0 开始）。</param>
+      <param name="innerException">引发当前异常的异常。</param>
+    </member>
+    <member name="M:System.Text.Json.JsonException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用关于异常的信息设置 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="info">有关引发的异常的序列化对象数据。</param>
+      <param name="context">一个包含有关源或目标的上下文信息的对象。</param>
+    </member>
+    <member name="P:System.Text.Json.JsonException.BytePositionInLine">
+      <summary>获取异常出现之前在当前行读取的从零开始的字节数。</summary>
+      <returns>在异常之前从零开始的字节数（从零开始）。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonException.LineNumber">
+      <summary>获取异常出现之前读取的从零开始的行数。</summary>
+      <returns>在异常之前读取的从零开始的行数。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonException.Message">
+      <summary>获取描述当前异常的消息。</summary>
+      <returns>描述当前异常的错误消息。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonException.Path">
+      <summary>获取 JSON 中遇到异常的路径。</summary>
+      <returns>JSON 中遇到异常的路径。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonNamingPolicy">
+      <summary>确定用于将基于字符串的名称转换为其他格式（如 camel 大小写格式）的命名策略。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonNamingPolicy.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.JsonNamingPolicy" /> 的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonNamingPolicy.ConvertName(System.String)">
+      <summary>在派生类中重写时，根据策略转换指定名称。</summary>
+      <param name="name">要转换的名称。</param>
+      <returns>转换后的名称。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonNamingPolicy.CamelCase">
+      <summary>获取 camel 大小写的命名策略。</summary>
+      <returns>大小写大小的命名策略。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonProperty">
+      <summary>表示 JSON 对象的单个属性。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonProperty.NameEquals(System.ReadOnlySpan{System.Byte})">
+      <summary>将指定 UTF-8 编码文本与此属性的名称进行比较。</summary>
+      <param name="utf8Text">要进行比较的 UTF-8 编码文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="T:System.Type" /> 不是 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />。</exception>
+      <returns>如果此属性的名称的 UTF-8 编码与 <paramref name="utf8Text" /> 相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonProperty.NameEquals(System.ReadOnlySpan{System.Char})">
+      <summary>将指定文本作为字符范围与此属性的名称进行比较。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="T:System.Type" /> 不是 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />。</exception>
+      <returns>如果此属性的名称与 <paramref name="text" /> 匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonProperty.NameEquals(System.String)">
+      <summary>将指定字符串与此属性的名称进行比较。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">此值的 <see cref="T:System.Type" /> 不是 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />。</exception>
+      <returns>如果此属性的名称与 <paramref name="text" /> 匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonProperty.ToString">
+      <summary>出于调试目的，提供属性的字符串表示形式。</summary>
+      <returns>一个包含属性的未解释的值的字符串，它以声明左引号开头，以值中的最后一个字符结尾。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonProperty.WriteTo(System.Text.Json.Utf8JsonWriter)">
+      <summary>将属性作为命名的 JSON 对象属性写入提供的编写器。</summary>
+      <param name="writer">要将属性写入到的编写器。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.Text.Json.JsonProperty.Name" /> 太大，无法转换为 JSON 对象属性。</exception>
+      <exception cref="T:System.InvalidOperationException">此 JSON 属性的 <see cref="P:System.Text.Json.JsonProperty.Value" /> 的 <see cref="P:System.Text.Json.JsonElement.ValueKind" /> 会导致无效的 JSON。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放父级 <see cref="T:System.Text.Json.JsonDocument" />。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonProperty.Name">
+      <summary>获取此属性的名称。</summary>
+      <returns>此属性的名称。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonProperty.Value">
+      <summary>获取此属性的值。</summary>
+      <returns>此属性的值。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonReaderOptions">
+      <summary>读取 JSON 时，为用户提供定义自定义行为的功能。</summary>
+    </member>
+    <member name="P:System.Text.Json.JsonReaderOptions.AllowTrailingCommas">
+      <summary>获取或设置一个值，该值定义要读取的 JSON 有效负载中是否允许（和忽略）对象或数组中 JSON 值的列表末尾多余的逗号。</summary>
+      <returns>
+        <see langword="true" /> 如果允许使用额外逗号，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonReaderOptions.CommentHandling">
+      <summary>获取或设置一个值，该值确定在读取 JSON 数据时，<see cref="T:System.Text.Json.Utf8JsonReader" /> 处理注释的方式。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">该属性被设置为不是 <see cref="T:System.Text.Json.JsonCommentHandling" /> 枚举的成员的值。</exception>
+      <returns>枚举值之一，指示如何处理注释。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonReaderOptions.MaxDepth">
+      <summary>获取或设置读取 JSON 时允许的最大深度，默认值（即 0）表示最大深度为 64。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">最大深度设置为负值。</exception>
+      <returns>读取 JSON 时所允许的最大深度。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonReaderState">
+      <summary>定义一个不透明类型，用于保留和保存所有相关的状态信息，这些信息必须提供给 <see cref="T:System.Text.Json.Utf8JsonReader" />，以便在处理不完整的数据后继续进行读取。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonReaderState.#ctor(System.Text.Json.JsonReaderOptions)">
+      <summary>构造新的 <see cref="T:System.Text.Json.JsonReaderState" /> 实例。</summary>
+      <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的自定义行为，它不同于 JSON RFC（例如，处理注释的方式，或读取时允许的最大深度）。 默认情况下，<see cref="T:System.Text.Json.Utf8JsonReader" /> 严格遵循 JSON RFC（JSON 中的注释无效）且读取的最大深度为 64。</param>
+      <exception cref="T:System.ArgumentException">最大深度设为非正值 (&lt; 0)。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonReaderState.Options">
+      <summary>获取使用 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构读取 JSON 数据时要使用的自定义行为，该结构可能会偏离严格遵守 JSON 规范的要求（这是默认行为）。</summary>
+      <returns>读取 JSON 数据时要使用的自定义行为。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonSerializer">
+      <summary>提供将对象或值类型序列化为 JSON 以及将 JSON 反序列化为对象或值类型的功能。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize(System.ReadOnlySpan{System.Byte},System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码文本分析为指定类型的实例。</summary>
+      <param name="utf8Json">要分析的 JSON 文本。</param>
+      <param name="returnType">要转换为并返回的对象的类型。</param>
+      <param name="options">分析期间用于控制行为的选项。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="returnType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="returnType" /> 与 JSON 不兼容。
+
+- 或 -
+
+单个 JSON 值以外的跨度中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <paramref name="returnType" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize(System.String,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>将表示单个 JSON 值的文本分析为指定类型的实例。</summary>
+      <param name="json">要分析的 JSON 文本。</param>
+      <param name="returnType">要转换为并返回的对象的类型。</param>
+      <param name="options">分析期间用于控制行为的选项。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="json" /> 或 <paramref name="returnType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+          
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+单个 JSON 值以外的字符串中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <paramref name="returnType" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>从提供的读取器读取一个 JSON 值（包括对象或数组）并将它转换为指定类型的实例。</summary>
+      <param name="reader">要从中读取 JSON 的读取器。</param>
+      <param name="returnType">要转换为并返回的对象的类型。</param>
+      <param name="options">读取期间用于控制序列化程序行为的选项。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="returnType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+          
+- 或 -
+
+<typeparamref name="returnType" /> 与 JSON 不兼容。
+
+- 或 -
+
+无法从读取器中读取值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="reader" /> 使用的是不受支持的选项。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <paramref name="returnType" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize``1(System.ReadOnlySpan{System.Byte},System.Text.Json.JsonSerializerOptions)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码文本分析为泛型类型参数指定的类型的实例。</summary>
+      <param name="utf8Json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制行为的选项。</param>
+      <typeparam name="TValue">UTF-8 编码文本的目标类型。</typeparam>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+单个 JSON 值以外的跨度中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <typeparamref name="TValue" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize``1(System.String,System.Text.Json.JsonSerializerOptions)">
+      <summary>将表示单个 JSON 值的文本分析为泛型类型参数指定的类型的实例。</summary>
+      <param name="json">要分析的 JSON 文本。</param>
+      <param name="options">分析期间用于控制行为的选项。</param>
+      <typeparam name="TValue">JSON 值的目标类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="json" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+单个 JSON 值以外的字符串中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <typeparamref name="TValue" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Deserialize``1(System.Text.Json.Utf8JsonReader@,System.Text.Json.JsonSerializerOptions)">
+      <summary>将一个 JSON 值（包括对象或数组）从提供的读取器读取到泛型类型参数指定的类型的实例中。</summary>
+      <param name="reader">要从中读取 JSON 的读取器。</param>
+      <param name="options">读取期间用于控制序列化程序行为的选项。</param>
+      <typeparam name="TValue">JSON 值的目标类型。</typeparam>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+无法从读取器中读取值。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="reader" /> 不受支持的选项。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <typeparamref name="TValue" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.DeserializeAsync(System.IO.Stream,System.Type,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码文本异步读取到指定类型的实例中。 流会被完整读取。</summary>
+      <param name="utf8Json">要分析的 JSON 数据。</param>
+      <param name="returnType">要转换为并返回的对象的类型。</param>
+      <param name="options">读取期间用于控制行为的选项。</param>
+      <param name="cancellationToken">可能用于取消读取操作的取消标记。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 或 <paramref name="returnType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+流中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="returnType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>JSON 值的 <paramref name="returnType" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.DeserializeAsync``1(System.IO.Stream,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将表示单个 JSON 值的 UTF-8 编码文本异步读取到泛型类型参数指定的类型的实例中。 流会被完整读取。</summary>
+      <param name="utf8Json">要分析的 JSON 数据。</param>
+      <param name="options">读取期间用于控制行为的选项。</param>
+      <param name="cancellationToken">可能用于取消读取操作的标记。</param>
+      <typeparam name="TValue">JSON 值的目标类型。</typeparam>
+      <exception cref="T:System.Text.Json.JsonException">JSON 无效。
+
+- 或 -
+
+<typeparamref name="TValue" /> 与 JSON 不兼容。
+
+- 或 -
+
+流中存在剩余数据。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
+      <returns>JSON 值的 <typeparamref name="TValue" /> 表示。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Serialize(System.Object,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>将指定类型的值转换为 JSON 字符串。</summary>
+      <param name="value">要转换的值。</param>
+      <param name="inputType">要转换的 <paramref name="value" /> 的类型。</param>
+      <param name="options">用于控制转换行为的选项。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputType" /> 与 <paramref name="value" /> 不兼容。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="inputType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>值的 JSON 字符串表示形式。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Serialize(System.Text.Json.Utf8JsonWriter,System.Object,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>将指定类型的 JSON 表示形式写入提供的编写器。</summary>
+      <param name="writer">要写入到的 JSON 编写器。</param>
+      <param name="value">要转换并写入的值。</param>
+      <param name="inputType">要转换的 <paramref name="value" /> 的类型。</param>
+      <param name="options">用于控制序列化行为的选项。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputType" /> 与 <paramref name="value" /> 不兼容</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> 或 <paramref name="inputType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="inputType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Serialize``1(``0,System.Text.Json.JsonSerializerOptions)">
+      <summary>将泛型类型参数指定的类型的值转换为 JSON 字符串。</summary>
+      <param name="value">要转换的值。</param>
+      <param name="options">用于控制序列化行为的选项。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>值的 JSON 字符串表示形式。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.Serialize``1(System.Text.Json.Utf8JsonWriter,``0,System.Text.Json.JsonSerializerOptions)">
+      <summary>将泛型类型参数指定的类型的 JSON 表示形式写入提供的编写器。</summary>
+      <param name="writer">要写入到的 JSON 编写器。</param>
+      <param name="value">要转换并写入的值。</param>
+      <param name="options">用于控制序列化行为的选项。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.SerializeAsync(System.IO.Stream,System.Object,System.Type,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将指定类型的值异步转换为 UTF-8 编码的 JSON 文本并将它写入指定流。</summary>
+      <param name="utf8Json">要写入的 UTF-8 流。</param>
+      <param name="value">要转换的值。</param>
+      <param name="inputType">要转换的 <paramref name="value" /> 的类型。</param>
+      <param name="options">用于控制序列化行为的选项。</param>
+      <param name="cancellationToken">可能用于取消写入操作的标记。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputType" /> 与 <paramref name="value" /> 不兼容。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 或 <paramref name="inputType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="inputType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.SerializeAsync``1(System.IO.Stream,``0,System.Text.Json.JsonSerializerOptions,System.Threading.CancellationToken)">
+      <summary>将泛型类型参数指定的类型的值异步转换为 UTF-8 编码的 JSON 文本并将它写入流。</summary>
+      <param name="utf8Json">要写入的 UTF-8 流。</param>
+      <param name="value">要转换的值。</param>
+      <param name="options">用于控制序列化行为的选项。</param>
+      <param name="cancellationToken">可能用于取消写入操作的标记。</param>
+      <typeparam name="TValue">要序列化的值的类型。</typeparam>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(System.Object,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>将指定类型的值转换为编码为 UTF-8 字节的 JSON 字符串。</summary>
+      <param name="value">要转换的值。</param>
+      <param name="inputType">要转换的 <paramref name="value" /> 的类型。</param>
+      <param name="options">用于控制转换行为的选项。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputType" /> 与 <paramref name="value" /> 不兼容。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputType" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="inputType" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>值的 JSON 字符串表示形式，编码为 UTF-8 字节。</returns>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializer.SerializeToUtf8Bytes``1(``0,System.Text.Json.JsonSerializerOptions)">
+      <summary>将泛型类型参数指定的类型的值转换为编码为 UTF-8 字节的 JSON 字符串。</summary>
+      <param name="value">要转换的值。</param>
+      <param name="options">用于控制转换行为的选项。</param>
+      <typeparam name="TValue">值的类型。</typeparam>
+      <exception cref="T:System.NotSupportedException">
+        <typeparamref name="TValue" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>值的 JSON 字符串表示形式，编码为 UTF-8 字节。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonSerializerDefaults">
+      <summary>指定 <see cref="T:System.Text.Json.JsonSerializerOptions" /> 使用的默认选项。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonSerializerDefaults.General">
+      <summary>指定应使用通用值。 这些设置与未指定 <see cref="T:System.Text.Json.JsonSerializerDefaults" /> 时应用的设置相同。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonSerializerDefaults.Web">
+      <summary>指定应使用更适合于基于 Web 的场景的值。</summary>
+    </member>
+    <member name="T:System.Text.Json.JsonSerializerOptions">
+      <summary>提供与 <see cref="T:System.Text.Json.JsonSerializer" /> 一起使用的选项。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializerOptions.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.JsonSerializerOptions" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializerOptions.#ctor(System.Text.Json.JsonSerializerDefaults)">
+      <summary>使用由指定的 <see cref="T:System.Text.Json.JsonSerializerDefaults" /> 确定的一组预定义选项构造新的 <see cref="T:System.Text.Json.JsonSerializerOptions" /> 实例。</summary>
+      <param name="defaults">要考虑原因的 <see cref="T:System.Text.Json.JsonSerializerDefaults" />。</param>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializerOptions.#ctor(System.Text.Json.JsonSerializerOptions)">
+      <summary>将 <see cref="T:System.Text.Json.JsonSerializerOptions" /> 实例的选项复制到新实例。</summary>
+      <param name="options">要从中复制选项的选项实例。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="options" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.JsonSerializerOptions.GetConverter(System.Type)">
+      <summary>返回指定类型的转换器。</summary>
+      <param name="typeToConvert">要为其返回转换器的类型。</param>
+      <exception cref="T:System.InvalidOperationException">为 <paramref name="typeToConvert" /> 配置的 <see cref="System.Text.Json.Serialization.JsonConverter" /> 返回了无效的转换器。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="typeToConvert" /> 或其可序列化成员没有兼容的 <see cref="System.Text.Json.Serialization.JsonConverter" />。</exception>
+      <returns>支持给定类型的第一个转换器，如果没有转换器，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.AllowTrailingCommas">
+      <summary>获取或设置一个值，该值指示要反序列化的 JSON 有效负载中是否允许（和忽略）对象或数组中 JSON 值的列表末尾多余的逗号。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <returns>
+        <see langword="true" /> 如果允许在对象或数组中的 JSON 值列表末尾使用额外逗号，则 (并忽略) ; <see langword="false" /> 否则为。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.Converters">
+      <summary>获取已注册的用户定义的转换器的列表。</summary>
+      <returns>自定义转换器的列表。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.DefaultBufferSize">
+      <summary>获取或设置创建临时缓冲区时要使用的默认缓冲区大小（以字节为单位）。</summary>
+      <exception cref="T:System.ArgumentException">缓冲区大小小于 1。</exception>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <returns>默认缓冲区大小（以字节为单位）。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition">
+      <summary>指定一个条件，用于确定何时在序列化或反序列化过程中忽略具有默认值的属性。
+默认值为 <see cref="F:System.Text.Json.Serialization.JsonIgnoreCondition.Never" />。</summary>
+      <exception cref="T:System.ArgumentException">此属性设置为 <see cref="F:System.Text.Json.Serialization.JsonIgnoreCondition.Always" />。</exception>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化后设置。
+
+- 或 -
+
+<see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreNullValues" /> 已设置为 <see langword="true" />。 这些属性不能一起使用。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.DictionaryKeyPolicy">
+      <summary>获取或设置用于将 <see cref="T:System.Collections.IDictionary" /> 密钥名称转换为其他格式（如 camel 大小写）的策略。</summary>
+      <returns>用于将 <see cref="T:System.Collections.IDictionary" /> 密钥名称转换为另一种格式的策略。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.Encoder">
+      <summary>获取或设置要在转义字符串时使用的编码器，或为 <see langword="null" />（要使用默认编码器的话）。</summary>
+      <returns>JavaScript 字符编码。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.IgnoreNullValues">
+      <summary>获取或设置一个值，该值确定序列化和反序列化过程中是否忽略 <see langword="null" /> 值。 默认值为 <see langword="false" />。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。
+
+- 或 -
+
+<see cref="P:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition" /> 已设置为非默认值。 这些属性不能一起使用。</exception>
+      <returns>
+        <see langword="true" /> 若为，则在序列化和反序列化期间忽略 null 值;否则，请参阅 langword = "false"/ &gt; 。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyFields">
+      <summary>确定序列化过程中是否忽略只读字段。 如果属性未用 <see langword="readonly" /> 关键字进行标记，则该属性为只读。 默认值为 <see langword="false" />。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化后设置。</exception>
+      <returns>
+        <see langword="true" /> 如果在序列化过程中应忽略只读字段，则为; <see langword="false" /> 否则为。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties">
+      <summary>获取一个值，该值确定序列化过程中是否忽略只读属性。 默认值为 <see langword="false" />。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <returns>
+        <see langword="true" /> 如果在序列化过程中忽略只读属性，则为;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.IncludeFields">
+      <summary>确定是否对字段进行序列化和反序列化处理。
+默认值为 <see langword="false" />。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化后设置。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.MaxDepth">
+      <summary>获取或设置序列化或反序列化 JSON 时允许的最大深度，默认值 0 表示最大深度为 64。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">最大深度设置为负值。</exception>
+      <returns>序列化或反序列化 JSON 时允许的最大深度。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.NumberHandling">
+      <summary>指定序列化或反序列化时应如何处理数字类型。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化后设置。</exception>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.PropertyNameCaseInsensitive">
+      <summary>获取或设置一个值，该值确定在反序列化过程中属性名称是否使用不区分大小写的比较。 默认值为 <see langword="false" />。</summary>
+      <returns>
+        <see langword="true" /> 使用不区分大小写的比较比较属性名称;否则为 <see langword="false" /> 。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.PropertyNamingPolicy">
+      <summary>获取或设置一个值，该值指定用于将对象的属性名称转换为其他格式（例如 camel 大小写）的策略；若为 <see langword="null" />，则保持属性名称不变。</summary>
+      <returns>属性命名策略，或 <see langword="null" /> 保留属性名称不变。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.ReadCommentHandling">
+      <summary>获取或设置一个值，该值定义反序列化过程中如何处理注释。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">注释处理枚举设置为不受支持的值（或不在 <see cref="T:System.Text.Json.JsonCommentHandling" /> 枚举范围内）。</exception>
+      <returns>一个值，该值指示是否允许、不允许或跳过注释。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.ReferenceHandler">
+      <summary>配置在读取和写入 JSON 时如何处理对象引用。</summary>
+    </member>
+    <member name="P:System.Text.Json.JsonSerializerOptions.WriteIndented">
+      <summary>获取或设置一个值，该值定义 JSON 是否应使用整齐打印。 默认情况下，不使用任何额外的空白来序列化 JSON。</summary>
+      <exception cref="T:System.InvalidOperationException">此属性在序列化或反序列化发生后设置。</exception>
+      <returns>
+        <see langword="true" /> 如果 JSON 应该在序列化时进行整齐打印，则为;否则为 <see langword="false" /> 。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Text.Json.JsonTokenType">
+      <summary>定义组成 JSON 文本的各种 JSON 令牌。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.Comment">
+      <summary>令牌类型为注释字符串。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.EndArray">
+      <summary>令牌类型是 JSON 数组的结尾。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.EndObject">
+      <summary>令牌类型是 JSON 对象的结尾。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.False">
+      <summary>令牌类型是 JSON 文本 false。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.None">
+      <summary>没有值（不同于 <see cref="F:System.Text.Json.JsonTokenType.Null" />）。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.Null">
+      <summary>令牌类型是 JSON 文本 null。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.Number">
+      <summary>令牌类型是 JSON 数字。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.PropertyName">
+      <summary>令牌类型是 JSON 属性名称。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.StartArray">
+      <summary>令牌类型是 JSON 数组的开头。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.StartObject">
+      <summary>令牌类型是 JSON 对象的开头。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.String">
+      <summary>令牌类型是 JSON 字符串。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonTokenType.True">
+      <summary>令牌类型是 JSON 文本 true。</summary>
+    </member>
+    <member name="T:System.Text.Json.JsonValueKind">
+      <summary>指定 JSON 值的数据类型。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.Array">
+      <summary>JSON 数组。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.False">
+      <summary>JSON 值 false。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.Null">
+      <summary>JSON 值 null。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.Number">
+      <summary>JSON 数字。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.Object">
+      <summary>JSON 对象。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.String">
+      <summary>JSON 字符串。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.True">
+      <summary>JSON 值 true。</summary>
+    </member>
+    <member name="F:System.Text.Json.JsonValueKind.Undefined">
+      <summary>没有值（不同于 <see cref="F:System.Text.Json.JsonValueKind.Null" />）。</summary>
+    </member>
+    <member name="T:System.Text.Json.JsonWriterOptions">
+      <summary>允许用户在使用 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 编写 JSON 时定义自定义行为。</summary>
+    </member>
+    <member name="P:System.Text.Json.JsonWriterOptions.Encoder">
+      <summary>获取或设置要在转义字符串时使用的编码器，或为 <see langword="null" />（要使用默认编码器的话）。</summary>
+      <returns>用于重写转义行为的 JavaScript 字符编码器。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonWriterOptions.Indented">
+      <summary>获取或设置一个值，该值指示 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 是否应对 JSON 输入进行格式设置，包括缩进嵌套的 JSON 令牌、添加新行以及在属性名称和值之间添加空格。</summary>
+      <returns>
+        <see langword="true" /> 设置 JSON 输出的格式; <see langword="false" /> 写入而不包含任何额外的空格。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Text.Json.JsonWriterOptions.SkipValidation">
+      <summary>获取或设置一个值，该值指示 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 是否应跳过结构验证并允许用户编写无效 JSON。</summary>
+      <returns>
+        <see langword="true" /> 若要跳过结构验证并允许无效的 JSON，则为;如果 <see langword="false" /><see cref="T:System.InvalidOperationException" /> 尝试编写无效的 JSON，则引发。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonAttribute">
+      <summary>提供序列化属性的基类。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonAttribute.#ctor">
+      <summary>创建 <see cref="T:System.Text.Json.Serialization.JsonAttribute" /> 的新实例。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonConstructorAttribute">
+      <summary>当放置在构造函数上时，指示应使用构造函数在反序列化时创建类型的实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConstructorAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.JsonConstructorAttribute" /> 的新实例。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonConverter">
+      <summary>将对象或值转换为 JSON，或是从 JSON 转换为对象或值。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverter.CanConvert(System.Type)">
+      <summary>在派生类中重写时，确定转换器实例是否可以转换指定的对象类型。</summary>
+      <param name="typeToConvert">要检查此转换器实例是否可以对其进行转换的对象类型。</param>
+      <returns>如果该实例可以转换指定的对象类型，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonConverter`1">
+      <summary>将对象或值转换为 JSON，或是从 JSON 转换为对象或值。</summary>
+      <typeparam name="T">转换器处理的对象或值的类型。</typeparam>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverter`1.#ctor">
+      <summary>初始化一个新 <see cref="T:System.Text.Json.Serialization.JsonConverter`1" /> 实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverter`1.CanConvert(System.Type)">
+      <summary>确定是否可以转换指定类型。</summary>
+      <param name="typeToConvert">要针对其进行比较的类型。</param>
+      <returns>如果可以转换类型，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>读取 JSON 并转换为类型 <typeparamref name="T" />。</summary>
+      <param name="reader">读取器。</param>
+      <param name="typeToConvert">要转换的类型。</param>
+      <param name="options">一个对象，指定要使用的序列化选项。</param>
+      <returns>转换后的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)">
+      <summary>将指定值作为 JSON 写入。</summary>
+      <param name="writer">要写入到的编写器。</param>
+      <param name="value">要转换为 JSON 的值。</param>
+      <param name="options">一个对象，指定要使用的序列化选项。</param>
+    </member>
+    <member name="P:System.Text.Json.Serialization.JsonConverter`1.HandleNull">
+      <summary>指示是否应在序列化时将 <see langword="null" /> 传递到转换器，以及是否应在反序列化时传递 <see cref="F:System.Text.Json.JsonTokenType.Null" />。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonConverterAttribute">
+      <summary>当放置在某一属性或类型上时，指定要使用的转换器类型。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverterAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.JsonConverterAttribute" /> 的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverterAttribute.#ctor(System.Type)">
+      <summary>使用指定的转换器类型初始化 <see cref="T:System.Text.Json.Serialization.JsonConverterAttribute" /> 的新实例。</summary>
+      <param name="converterType">转换器的类型。</param>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverterAttribute.CreateConverter(System.Type)">
+      <summary>在派生类中重写且 <see cref="P:System.Text.Json.Serialization.JsonConverterAttribute.ConverterType" /> 为 <see langword="null" /> 时，允许派生类创建 <see cref="T:System.Text.Json.Serialization.JsonConverter" /> 以传递附加状态。</summary>
+      <param name="typeToConvert">转换器的类型。</param>
+      <returns>自定义转换器。</returns>
+    </member>
+    <member name="P:System.Text.Json.Serialization.JsonConverterAttribute.ConverterType">
+      <summary>获取 <see cref="T:System.Text.Json.Serialization.JsonConverterAttribute" /> 的类型；如果它是在没有类型的情况下创建的，则为 <see langword="null" />。</summary>
+      <returns>的类型 <see cref="T:System.Text.Json.Serialization.JsonConverterAttribute" /> ; 或者， <see langword="null" /> 如果它是在没有类型的情况下创建的，则为。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonConverterFactory">
+      <summary>支持使用工厂模式转换多种类型。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverterFactory.#ctor">
+      <summary>在派生类中重写时，初始化 <see cref="T:System.Text.Json.Serialization.JsonConverterFactory" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonConverterFactory.CreateConverter(System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>创建指定类型的转换器。</summary>
+      <param name="typeToConvert">转换器处理的类型。</param>
+      <param name="options">要使用的序列化选项。</param>
+      <returns>
+        <typeparamref name="T" /> 与 <paramref name="typeToConvert" /> 兼容的转换器。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonExtensionDataAttribute">
+      <summary>当属性的类型为 <see cref="T:System.Collections.Generic.IDictionary`2" /> 时，没有匹配成员的任何属性都会在反序列化期间添加到该字典中，并在序列化期间中写入。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonExtensionDataAttribute.#ctor">
+      <summary>实例化 <see cref="T:System.Text.Json.Serialization.JsonExtensionDataAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonIgnoreAttribute">
+      <summary>阻止对属性进行序列化或反序列化。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonIgnoreAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.JsonIgnoreAttribute" /> 的新实例。</summary>
+    </member>
+    <member name="P:System.Text.Json.Serialization.JsonIgnoreAttribute.Condition">
+      <summary>指定将忽略属性之前必须满足的条件。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonIgnoreCondition">
+      <summary>控制 <see cref="T:System.Text.Json.Serialization.JsonIgnoreAttribute" /> 如何忽略序列化和反序列化时的属性。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonIgnoreCondition.Always">
+      <summary>属性将始终被忽略。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonIgnoreCondition.Never">
+      <summary>不管 <see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreNullValues" /> 配置如何，都将始终序列化和反序列化属性。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault">
+      <summary>仅当为 <see langword="null" /> 时才会忽略属性。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull">
+      <summary>如果值为 <see langword="null" />，则在序列化过程中将忽略该属性。 这仅适用于引用类型属性和字段。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonIncludeAttribute">
+      <summary>指示应包含成员以进行序列化和反序列化。</summary>
+      <exception cref="T:System.InvalidOperationException">特性应用于非公共属性。</exception>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonIncludeAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.JsonIncludeAttribute" /> 的新实例。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonNumberHandling">
+      <summary>确定在序列化和反序列化时 <see cref="T:System.Text.Json.JsonSerializer" /> 如何处理数字。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals">
+      <summary>“NaN”、“Infinity”和“-Infinity”<see cref="F:System.Text.Json.JsonTokenType.String" /> 标记可以读为浮点常量，并且这些常量的 <see cref="T:System.Single" /> 和 <see cref="T:System.Double" /> 值将写为其相应的 JSON 字符串表示形式。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString">
+      <summary>可以从 <see cref="F:System.Text.Json.JsonTokenType.String" /> 标记中读取数字。 不会阻止从 <see cref="F:System.Text.Json.JsonTokenType.Number" /> 标记中读取数字。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonNumberHandling.Strict">
+      <summary>数字仅将从 <see cref="F:System.Text.Json.JsonTokenType.Number" /> 标记中读取，并且仅写为 JSON 数字（不带引号）。</summary>
+    </member>
+    <member name="F:System.Text.Json.Serialization.JsonNumberHandling.WriteAsString">
+      <summary>数字将写为 JSON 字符串（带有引号），而不是 JSON 数字。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonNumberHandlingAttribute">
+      <summary>当放置在类型、属性或字段上时，指示在序列化或反序列化数字时应使用的 <see cref="T:System.Text.Json.Serialization.JsonNumberHandling" /> 设置。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonNumberHandlingAttribute.#ctor(System.Text.Json.Serialization.JsonNumberHandling)">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.JsonNumberHandlingAttribute" /> 的新实例。</summary>
+      <param name="handling">枚举值的按位组合，用于指定序列化或反序列化时应如何处理数字类型。</param>
+    </member>
+    <member name="P:System.Text.Json.Serialization.JsonNumberHandlingAttribute.Handling">
+      <summary>指示序列化或反序列化数字时应使用的设置。</summary>
+      <returns>一个对象，该对象确定数字序列化和反序列化设置。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonPropertyNameAttribute">
+      <summary>指定序列化和反序列化时 JSON 中存在的属性名称。 这将重写 <see cref="T:System.Text.Json.JsonNamingPolicy" /> 指定的任何命名策略。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonPropertyNameAttribute.#ctor(System.String)">
+      <summary>使用指定的属性名称初始化 <see cref="T:System.Text.Json.Serialization.JsonPropertyNameAttribute" /> 的新实例。</summary>
+      <param name="name">属性的名称。</param>
+    </member>
+    <member name="P:System.Text.Json.Serialization.JsonPropertyNameAttribute.Name">
+      <summary>获取属性的名称。</summary>
+      <returns>属性的名称。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.JsonStringEnumConverter">
+      <summary>将枚举值转换为字符串以及从字符串转换为枚举值。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonStringEnumConverter.#ctor">
+      <summary>使用允许整数值的默认命名策略初始化 <see cref="T:System.Text.Json.Serialization.JsonStringEnumConverter" /> 类的实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonStringEnumConverter.#ctor(System.Text.Json.JsonNamingPolicy,System.Boolean)">
+      <summary>使用指定命名策略以及指示是否允许未定义枚举值的值初始化 <see cref="T:System.Text.Json.Serialization.JsonStringEnumConverter" /> 类的实例。</summary>
+      <param name="namingPolicy">用于写入枚举值的可选命名策略。</param>
+      <param name="allowIntegerValues">
+        <see langword="true" /> 表示允许未定义的枚举值；否则为 <see langword="false" />。 为 <see langword="true" /> 时，如果未定义枚举值，则它将输出为数字而不是字符串。</param>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonStringEnumConverter.CanConvert(System.Type)">
+      <summary>确定是否可将指定类型转换为枚举。</summary>
+      <param name="typeToConvert">要检查的类型。</param>
+      <returns>如果可以转换类型，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Serialization.JsonStringEnumConverter.CreateConverter(System.Type,System.Text.Json.JsonSerializerOptions)">
+      <summary>创建指定类型的转换器。</summary>
+      <param name="typeToConvert">转换器处理的类型。</param>
+      <param name="options">要使用的序列化选项。</param>
+      <returns>
+        <typeparamref name="T" /> 与 <paramref name="typeToConvert" /> 兼容的转换器。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.ReferenceHandler">
+      <summary>此类定义 <see cref="T:System.Text.Json.JsonSerializer" /> 如何处理对序列化和反序列化的引用。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceHandler.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.ReferenceHandler" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceHandler.CreateResolver">
+      <summary>返回用于每个序列化调用的 <see cref="T:System.Text.Json.Serialization.ReferenceResolver" />。</summary>
+      <returns>用于序列化和反序列化的解析器。</returns>
+    </member>
+    <member name="P:System.Text.Json.Serialization.ReferenceHandler.Preserve">
+      <summary>将 JSON 对象和数组反序列化为引用类型时，元数据属性将有效，并在序列化引用类型时写入。 这对于从包含循环或重复引用的对象创建往返 JSON 是必需的。</summary>
+    </member>
+    <member name="T:System.Text.Json.Serialization.ReferenceHandler`1">
+      <summary>此类定义 <see cref="T:System.Text.Json.JsonSerializer" /> 如何处理对序列化和反序列化的引用。</summary>
+      <typeparam name="T">
+        <see cref="T:System.Text.Json.Serialization.ReferenceResolver" />要对每个序列化或反序列化调用创建的的类型。</typeparam>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceHandler`1.#ctor">
+      <summary>初始化可创建指定的 <see cref="T:System.Text.Json.Serialization.ReferenceResolver" /> 实例的 <see cref="T:System.Text.Json.Serialization.ReferenceHandler`1" /> 泛型类的新实例 <typeparam name="T" />。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceHandler`1.CreateResolver">
+      <summary>创建用于每个序列化调用的新的 <typeparamref name="T" /> 类型的 <see cref="T:System.Text.Json.Serialization.ReferenceResolver" />。</summary>
+      <returns>用于序列化和反序列化的新解析器。</returns>
+    </member>
+    <member name="T:System.Text.Json.Serialization.ReferenceResolver">
+      <summary>此类定义 <see cref="T:System.Text.Json.JsonSerializer" /> 如何处理对序列化和反序列化的引用。
+定义在序列化和反序列化过程中保留引用的核心行为。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceResolver.#ctor">
+      <summary>初始化 <see cref="T:System.Text.Json.Serialization.ReferenceResolver" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceResolver.AddReference(System.String,System.Object)">
+      <summary>使用指定的 ID 和值向引用包中添加一个项。
+从 JSON 对象中读取 $id 元数据属性时，将调用此方法。</summary>
+      <param name="referenceId">JSON 对象或数组的标识符。</param>
+      <param name="value">通过分析 JSON 对象生成的 CLR 引用类型对象的值。</param>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceResolver.GetReference(System.Object,System.Boolean@)">
+      <summary>获取指定值的引用标识符（如果存在）；否则，将分配一个新 ID。
+在编写 CLR 对象之前调用此方法，便于我们决定是写入 $id 并枚举其属性的其余部分，还是写入 $ref 并单步执行下一个对象。</summary>
+      <param name="value">要获取其 ID 的 CLR 引用类型对象的值。</param>
+      <param name="alreadyExists">此方法返回时，如果对值的引用已存在，则为 <see langword="true" />，否则为 <see langword="false" />。</param>
+      <returns>指定对象的引用 ID。</returns>
+    </member>
+    <member name="M:System.Text.Json.Serialization.ReferenceResolver.ResolveReference(System.String)">
+      <summary>返回与指定的引用 ID 相关的 CLR 引用类型对象。当读取 $ref 元数据属性时，将调用此方法。</summary>
+      <param name="referenceId">与返回的对象相关的引用 ID。</param>
+      <returns>与指定的引用 ID 相关的引用类型对象。</returns>
+    </member>
+    <member name="T:System.Text.Json.Utf8JsonReader">
+      <summary>提供高性能的 API，以便提供对 UTF-8 编码 JSON 文本的只进和只读访问权限。</summary>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.#ctor(System.Buffers.ReadOnlySequence{System.Byte},System.Boolean,System.Text.Json.JsonReaderState)">
+      <summary>初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构的新实例，该实例用于处理 UTF-8 编码文本的只读序列，并指示输入是否包含要处理的所有文本。</summary>
+      <param name="jsonData">要处理的 UTF-8 编码 JSON 文本。</param>
+      <param name="isFinalBlock">
+        <see langword="true" /> 用于表示输入序列包含要处理的全部数据；<see langword="false" /> 用于表示输入范围包含部分数据，随后还有更多数据。</param>
+      <param name="state">包含读取器状态的对象。 如果这是构造函数的第一次调用，则传递默认状态；否则，请从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例中传递 <see cref="P:System.Text.Json.Utf8JsonReader.CurrentState" /> 属性的值。</param>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.#ctor(System.Buffers.ReadOnlySequence{System.Byte},System.Text.Json.JsonReaderOptions)">
+      <summary>初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构的新实例，该实例使用指定选项处理 UTF-8 编码文本的只读序列。</summary>
+      <param name="jsonData">要处理的 UTF-8 编码 JSON 文本。</param>
+      <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的自定义行为，它不同于 JSON RFC（例如，处理注释的方式，或读取时允许的最大深度）。 默认情况下，<see cref="T:System.Text.Json.Utf8JsonReader" /> 严格遵循 JSON RFC（JSON 中的注释无效）且最大深度为 64。</param>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.#ctor(System.ReadOnlySpan{System.Byte},System.Boolean,System.Text.Json.JsonReaderState)">
+      <summary>初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构的新实例，该实例用于处理 UTF-8 编码文本的只读范围，并指示输入是否包含要处理的所有文本。</summary>
+      <param name="jsonData">要处理的 UTF-8 编码 JSON 文本。</param>
+      <param name="isFinalBlock">
+        <see langword="true" /> 用于表示输入序列包含要处理的全部数据；<see langword="false" /> 用于表示输入范围包含部分数据，随后还有更多数据。</param>
+      <param name="state">包含读取器状态的对象。 如果这是构造函数的第一次调用，则传递默认状态；否则，请从 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的上一个实例中传递 <see cref="P:System.Text.Json.Utf8JsonReader.CurrentState" /> 属性的值。</param>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.#ctor(System.ReadOnlySpan{System.Byte},System.Text.Json.JsonReaderOptions)">
+      <summary>初始化 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构的新实例，该实例使用指定选项处理 UTF-8 编码文本的只读范围。</summary>
+      <param name="jsonData">要处理的 UTF-8 编码 JSON 文本。</param>
+      <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的自定义行为，它不同于 JSON RFC（例如，处理注释的方式，或读取时允许的最大深度）。 默认情况下，<see cref="T:System.Text.Json.Utf8JsonReader" /> 严格遵循 JSON RFC（JSON 中的注释无效）且最大深度为 64。</param>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetBoolean">
+      <summary>从源中将下一个 JSON 令牌值读取为 <see cref="T:System.Boolean" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是布尔值（即 <see cref="F:System.Text.Json.JsonTokenType.True" /> 或 <see cref="F:System.Text.Json.JsonTokenType.False" />）。</exception>
+      <returns>如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.True" />，则为 <see langword="true" />；如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.False" />，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetByte">
+      <summary>将源中的当前 JSON 令牌值分析为 <see cref="T:System.Byte" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
+          
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.Byte.MinValue" /> 或大于 <see cref="F:System.Byte.MaxValue" /> 的数字。</exception>
+      <returns>UTF-8 编码令牌的值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetBytesFromBase64">
+      <summary>分析源中的当前 JSON 令牌值并将 Base64 编码的 JSON 字符串解码为字节数组。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的类型不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <exception cref="T:System.FormatException">值未编码为 base 64 文本，因此无法解码为字节。
+
+- 或 -
+
+值包含无效或两个以上的填充字符。
+
+- 或 -
+
+值未完成。 也就是说，JSON 字符串长度不是 4 的倍数。</exception>
+      <returns>表示当前 JSON 令牌值的字节数组。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetComment">
+      <summary>将源中的当前 JSON 令牌值分析为注释，将其转码为 <see cref="T:System.String" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌不是注释。</exception>
+      <returns>表示当前 JSON 令牌值的注释。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetDateTime">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTime" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值不可作为 <see cref="T:System.DateTime" /> 读取。
+        
+- 或 - 
+无法将整个 UTF-8 编码令牌值解析为 <see cref="T:System.DateTime" /> 值。
+
+- 或 -
+
+JSON 令牌值的格式不受支持。</exception>
+      <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetDateTimeOffset">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.DateTimeOffset" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值不可作为 <see cref="T:System.DateTimeOffset" /> 读取。
+
+- 或 - 
+无法将整个 UTF-8 编码令牌值解析为 <see cref="T:System.DateTimeOffset" /> 值。
+
+- 或 -
+
+JSON 令牌值的格式不受支持。</exception>
+      <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为日期和时间偏移。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetDecimal">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Decimal" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Decimal.MinValue" /> 或大于 <see cref="F:System.Decimal.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Decimal" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetDouble">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Double" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Double.MinValue" /> 或大于 <see cref="F:System.Double.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Double" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetGuid">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Guid" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <exception cref="T:System.FormatException">Guid 不支持 JSON 令牌值的格式。
+        
+- 或 -
+
+无法将整个 UTF-8 编码令牌值解析为 <see cref="T:System.Guid" /> 值。</exception>
+      <returns>如果可成功解析整个 UTF-8 编码的令牌值，则为 GUID 值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetInt16">
+      <summary>将源中的当前 JSON 令牌值分析为 <see cref="T:System.Int16" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
+          
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.Int16.MinValue" /> 或大于 <see cref="F:System.Int16.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Int16" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetInt32">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int32" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+            
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Int32" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetInt64">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Int64" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+            
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.Int64.MinValue" /> 或大于 <see cref="F:System.Int64.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Int64" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetSByte">
+      <summary>将源中的当前 JSON 令牌值分析为 <see cref="T:System.SByte" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
+          
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.SByte.MinValue" /> 或大于 <see cref="F:System.SByte.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.SByte" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetSingle">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.Single" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值表示小于 <see cref="F:System.Single.MinValue" /> 或大于 <see cref="F:System.Single.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.Single" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetString">
+      <summary>从源中读取下一个 JSON 令牌值，并作为字符串进行反转义和转码。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是字符串（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /><see cref="F:System.Text.Json.JsonTokenType.PropertyName" /> 或 <see cref="F:System.Text.Json.JsonTokenType.Null" />）。
+
+- 或 -
+
+JSON 字符串包含无效的 UTF-8 字节或无效的 UTF-16 替代项。</exception>
+      <returns>令牌值分析为字符串，如果 <see cref="P:System.Text.Json.Utf8JsonReader.TokenType" /> 为 <see cref="F:System.Text.Json.JsonTokenType.Null" />，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetUInt16">
+      <summary>将源中的当前 JSON 令牌值分析为 <see cref="T:System.UInt16" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数字格式不正确（例如，它包含小数值或使用科学记数法编写）。
+          
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.UInt16.MinValue" /> 或大于 <see cref="F:System.UInt16.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.UInt16" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetUInt32">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt32" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.UInt32.MinValue" /> 或大于 <see cref="F:System.UInt32.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.UInt32" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.GetUInt64">
+      <summary>从源中读取下一个 JSON 令牌值，并将该值解析为 <see cref="T:System.UInt64" />。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <exception cref="T:System.FormatException">JSON 令牌值的数值格式不正确。 例如，它包含小数或采用科学记数法编写。
+            
+- 或 -
+
+JSON 令牌值表示小于 <see cref="F:System.UInt64.MinValue" /> 或大于 <see cref="F:System.UInt64.MaxValue" /> 的数字。</exception>
+      <returns>解析为 <see cref="T:System.UInt64" /> 的 UTF-8 编码令牌值。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.Read">
+      <summary>从输入源中读取下一个 JSON 令牌。</summary>
+      <exception cref="T:System.Text.Json.JsonException">根据 JSON RFC，遇到无效的 JSON 令牌。
+        
+- 或 -
+
+当前深度超过由最大深度决定的递归限值。</exception>
+      <returns>如果已成功读取下一令牌，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.Skip">
+      <summary>跳过当前 JSON 令牌的子级。</summary>
+      <exception cref="T:System.InvalidOperationException">已向读取器提供了部分数据，随后会提供更多数据（即 <see cref="P:System.Text.Json.Utf8JsonReader.IsFinalBlock" /> 为 <see langword="false" />）。</exception>
+      <exception cref="T:System.Text.Json.JsonException">根据 JSON RFC，跳过时出现无效 JSON 令牌。
+
+- 或 -
+
+当前深度超过由最大深度决定的递归限值。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetByte(System.Byte@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Byte" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Byte" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetBytesFromBase64(System.Byte[]@)">
+      <summary>尝试分析源中的当前 JSON 令牌值，将 Base64 编码 JSON 字符串解码为字节数组，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">如果该方法返回，则包含 base 64 文本的已解码二进制表示形式。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <returns>如果整个标记值编码为有效 base 64 文本并且可以成功解码为字节，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetDateTime(System.DateTime@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.DateTime" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTime" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetDateTimeOffset(System.DateTimeOffset@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.DateTimeOffset" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.DateTimeOffset" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetDecimal(System.Decimal@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Decimal" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Decimal" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetDouble(System.Double@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Double" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Double" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetGuid(System.Guid@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Guid" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌的值不是 <see cref="F:System.Text.Json.JsonTokenType.String" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Guid" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetInt16(System.Int16@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Int16" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int16" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetInt32(System.Int32@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Int32" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetInt64(System.Int64@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Int64" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Int64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetSByte(System.SByte@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.SByte" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.SByte" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetSingle(System.Single@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.Single" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.Single" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetUInt16(System.UInt16@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.UInt16" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt16" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetUInt32(System.UInt32@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.UInt32" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt32" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TryGetUInt64(System.UInt64@)">
+      <summary>尝试将源中的当前 JSON 令牌值分析为 <see cref="T:System.UInt64" />，并返回一个指示操作是否成功的值。</summary>
+      <param name="value">在此方法返回时，包含已解析的值。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌值不是 <see cref="F:System.Text.Json.JsonTokenType.Number" />。</exception>
+      <returns>如果可以将整个 UTF-8 编码令牌值成功解析为 <see cref="T:System.UInt64" /> 值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.TrySkip">
+      <summary>尝试跳过当前 JSON 令牌的子级。</summary>
+      <exception cref="T:System.Text.Json.JsonException">根据 JSON RFC，跳过时出现无效 JSON 令牌。
+          
+- 或 -
+
+当前深度超过由最大深度决定的递归限值。</exception>
+      <returns>如果已成功跳过子项的足够数据，则为 <see langword="true" />否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.ReadOnlySpan{System.Byte})">
+      <summary>比较只读字节范围中 UTF-8 编码文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
+      <param name="utf8Text">要进行比较的 UTF-8 编码文本。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌不是 JSON 字符串（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
+      <returns>如果源中的 JSON 令牌值与 UTF-8 编码查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.ReadOnlySpan{System.Char})">
+      <summary>比较只读字符范围中文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌不是 JSON 字符串（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
+      <returns>如果源中的 JSON 令牌值与查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonReader.ValueTextEquals(System.String)">
+      <summary>比较字符串文本与源中未转义的 JSON 令牌值，返回指示其是否匹配的值。</summary>
+      <param name="text">要针对其进行比较的文本。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 令牌不是 JSON 字符串（即不是 <see cref="F:System.Text.Json.JsonTokenType.String" /> 或 <see cref="F:System.Text.Json.JsonTokenType.PropertyName" />）。</exception>
+      <returns>如果源中的 JSON 令牌值与查找文本匹配，则 <see langword="true" />；否则 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.BytesConsumed">
+      <summary>获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的此实例到目前为止使用的总字节数。</summary>
+      <returns>迄今为止使用的总字节数。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.CurrentDepth">
+      <summary>获取当前标记的深度。</summary>
+      <returns>当前标记的深度。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.CurrentState">
+      <summary>获取当前 <see cref="T:System.Text.Json.Utf8JsonReader" /> 状态，将更多数据传递到 <see cref="T:System.Text.Json.Utf8JsonReader" /> 构造函数。</summary>
+      <returns>当前读取器状态。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.HasValueSequence">
+      <summary>获取值，该值指示要使用哪个 <c>Value</c> 属性来获取令牌值。</summary>
+      <returns>
+        <see langword="true" /> 如果 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSequence" /> 应使用获取令牌值，则为; <see langword="false" /> 如果 <see cref="P:System.Text.Json.Utf8JsonReader.ValueSpan" /> 应使用，则为。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.IsFinalBlock">
+      <summary>获取 <see cref="T:System.Text.Json.Utf8JsonReader" /> 的此实例的模式，它指示是已提供了所有 JSON 数据，还是随后会提供更多的数据。</summary>
+      <returns>
+        <see langword="true" /> 如果读取器是用输入跨距构造的，或者是包含要处理的整个 JSON 数据的序列，则为; <see langword="false" /> 如果读取器是使用输入范围或序列构造的，则该输入范围或序列可能包含部分 JSON 数据，并具有更多数据。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.Position">
+      <summary>如果 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构使用 ReadOnlySpan&lt;byte&gt; 构造，则获取所提供的 UTF-8 编码输入 ReadOnlySequence&lt;byte&gt; 内的当前 <see cref="T:System.SequencePosition" /> 或默认的 <see cref="T:System.SequencePosition" />。</summary>
+      <returns>在 <see cref="T:System.SequencePosition" /> 提供的 utf-8 编码输入 ReadOnlySequence 字节内的当前 &lt; 值，或者， &gt; <see cref="T:System.SequencePosition" /> 如果 <see cref="T:System.Text.Json.Utf8JsonReader" /> 结构是使用 ReadOnlySpan 字节构造 &lt; &gt; 的，则为默认值。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.TokenStartIndex">
+      <summary>获取上次处理的 JSON 令牌开始处的索引（在给定的 UTF-8 编码输入文本中），跳过所有空白。</summary>
+      <returns>给定 UTF-8 编码输入文本中最后处理的 JSON 标记的起始索引。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.TokenType">
+      <summary>获取 UTF-8 编码 JSON 文本中最后一个处理的 JSON 令牌的类型。</summary>
+      <returns>上次处理的 JSON 令牌的类型。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.ValueSequence">
+      <summary>仅当令牌包含在多个段内时，获取上次处理的令牌的原始值作为输入有效负载的 ReadOnlySequence&lt;byte&gt; 切片。</summary>
+      <returns>一个字节的只读序列。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonReader.ValueSpan">
+      <summary>如果令牌适合单个段，或者如果读取器是使用 ReadOnlySpan&lt;byte&gt; 中包含的 JSON 有效负载构造的，则获取上次处理的令牌的原始值作为输入有效负载的 ReadOnlySpan&lt;byte&gt; 切片。</summary>
+      <returns>字节的只读范围。</returns>
+    </member>
+    <member name="T:System.Text.Json.Utf8JsonWriter">
+      <summary>提供高性能的 API，以便提供 UTF-8 编码 JSON 文本的只进和非缓存编写权限。</summary>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.#ctor(System.Buffers.IBufferWriter{System.Byte},System.Text.Json.JsonWriterOptions)">
+      <summary>使用要写入输出的指定 <see cref="T:System.Buffers.IBufferWriter`1" /> 和自定义选项初始化 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 类的新实例。</summary>
+      <param name="bufferWriter">用于编写 JSON 文本的目标。</param>
+      <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 的自定义行为。 默认情况下，它会编写最小化的 JSON（不含额外空格）并根据 JSON RFC 验证正在编写的 JSON 在结构上是否有效。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bufferWriter" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.#ctor(System.IO.Stream,System.Text.Json.JsonWriterOptions)">
+      <summary>使用要写入输出的指定流和自定义选项初始化 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 类的新实例。</summary>
+      <param name="utf8Json">用于编写 JSON 文本的目标。</param>
+      <param name="options">定义 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 的自定义行为。 默认情况下，它会编写最小化的 JSON（不含额外空格）并根据 JSON RFC 验证正在编写的 JSON 在结构上是否有效。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.Dispose">
+      <summary>提交尚未刷新的所有剩余 JSON 文本，并释放当前实例使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.DisposeAsync">
+      <summary>异步提交尚未刷新的所有剩余 JSON 文本，并释放当前实例使用的所有资源。</summary>
+      <returns>表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.Flush">
+      <summary>提交目前为止编写的 JSON 文本，使其对输出目标可见。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步提交目前为止编写的 JSON 文本，使其对输出目标可见。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.Reset">
+      <summary>重置此实例的内部状态，以便可以重复使用它。</summary>
+      <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.Reset(System.Buffers.IBufferWriter{System.Byte})">
+      <summary>重置此实例的内部状态，以便可以结合 <see cref="T:System.Buffers.IBufferWriter`1" /> 的新实例重复使用它。</summary>
+      <param name="bufferWriter">用于编写 JSON 文本的目标。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bufferWriter" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.Reset(System.IO.Stream)">
+      <summary>重置此实例的内部状态，以便可以结合 <see cref="T:System.IO.Stream" /> 的新实例重复使用它。</summary>
+      <param name="utf8Json">用于编写 JSON 文本的目标。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="utf8Json" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此实例。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBase64String(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+      <summary>将属性名称和原始字节值（作为 Base 64 编码的 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="utf8PropertyName">要写入的属性的 UTF-8 编码名称。</param>
+      <param name="bytes">要编写为 Base64 编码文本的二进制数据。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBase64String(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte})">
+      <summary>将属性名称和原始字节值（作为 Base 64 编码的 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <param name="bytes">要编写为 Base64 编码文本的二进制数据。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBase64String(System.String,System.ReadOnlySpan{System.Byte})">
+      <summary>将属性名称和原始字节值（作为 Base 64 编码的 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <param name="bytes">要编写为 Base64 编码文本的二进制数据。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBase64String(System.Text.Json.JsonEncodedText,System.ReadOnlySpan{System.Byte})">
+      <summary>将预编码属性名称和原始字节值（作为 Base64 编码的 JSON 字符串）编写为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要写入的属性的 JSON 编码名称。</param>
+      <param name="bytes">要编写为 Base64 编码文本的二进制数据。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBase64StringValue(System.ReadOnlySpan{System.Byte})">
+      <summary>将原始字节值以 Base64 编码的 JSON 字符串形式编写为 JSON 数组的元素。</summary>
+      <param name="bytes">要编写为某个 JSON 数组的 Base 64 编码的 JSON 字符串元素的二进制数据。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBoolean(System.ReadOnlySpan{System.Byte},System.Boolean)">
+      <summary>写入指定为一个字节的只读范围的属性名，并将 <see cref="T:System.Boolean" /> 值 (为 json 文本 true 或 false) 作为 json 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要作为 JSON 文本 true 或 false 写入名称/值对的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBoolean(System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>写入指定为只读字符跨度的属性名称，并将 <see cref="T:System.Boolean" /> (为 json 文本 true 或 FALSE 的值作为 json 对象的名称/值对的一部分) 。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要作为 JSON 文本 true 或 false 写入名称/值对的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBoolean(System.String,System.Boolean)">
+      <summary>写入指定为字符串的属性名称，并将 <see cref="T:System.Boolean" /> (为 json 文本 true 或 false 的值作为 json 对象的名称/值对的一部分) 。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要作为 JSON 文本 true 或 false 写入名称/值对的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBoolean(System.Text.Json.JsonEncodedText,System.Boolean)">
+      <summary>将预编码属性名称和一个 <see cref="T:System.Boolean" /> 值（作为 JSON 文本 true 或 false）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要作为 JSON 文本 true 或 false 写入名称/值对的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteBooleanValue(System.Boolean)">
+      <summary>作为 json <see cref="T:System.Boolean" /> 数组的元素，写入作为 json 文本 true 或 false (的值) 。</summary>
+      <param name="value">要以 JSON 文本 true 或 false 的形式写入 JSON 数组元素的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteCommentValue(System.ReadOnlySpan{System.Byte})">
+      <summary>将 UTF-8 文本值编写为 JSON 注释。</summary>
+      <param name="utf8Value">要作为 JSON 注释写入<c> / *..* / 到中的</c>utf-8 编码值</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="utf8Value" /> 包含注释分隔符 (， <c>*/</c>) 。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteCommentValue(System.ReadOnlySpan{System.Char})">
+      <summary>将 UTF-16 文本值编写为 JSON 注释。</summary>
+      <param name="value">要以 UTF-8 转码 JSON 注释形式写入<c> / *..* / 到其中的</c>utf-16 编码值</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="value" /> 包含注释分隔符 (， <c>*/</c>) 。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteCommentValue(System.String)">
+      <summary>将字符串文本值编写为 JSON 注释。</summary>
+      <param name="value">要以 UTF-8 转码 JSON 注释形式写入<c> / *..* / 到其中的</c>utf-16 编码值</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。
+        
+- 或 -
+
+<paramref name="value" /> 包含注释分隔符 (， <c>*/</c>) 。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteEndArray">
+      <summary>编写 JSON 数组的结尾。</summary>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteEndObject">
+      <summary>编写 JSON 对象的结尾。</summary>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNull(System.ReadOnlySpan{System.Byte})">
+      <summary>写入指定为字节的只读范围的属性名，并将 JSON 文本 null 作为 json 对象的名称/值对的一部分写入。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNull(System.ReadOnlySpan{System.Char})">
+      <summary>写入指定为只读字符跨度的属性名称，并将 JSON 文本 null 作为 json 对象的名称/值对的一部分写入。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNull(System.String)">
+      <summary>写入指定为字符串的属性名称，并将 JSON 文本 null 作为 json 对象的名称/值对的一部分写入。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNull(System.Text.Json.JsonEncodedText)">
+      <summary>将预编码的属性名称和 JSON 文本 null 写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNullValue">
+      <summary>将 JSON 文本 null 写为 JSON 数组的元素。</summary>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.Decimal)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.Double)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.Int32)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.Int64)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.Single)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.UInt32)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Byte},System.UInt64)">
+      <summary>编写指定为字节只读范围的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.Decimal)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.Double)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.Int32)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.Int64)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.Single)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.UInt32)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.ReadOnlySpan{System.Char},System.UInt64)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.Decimal)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.Double)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.Int32)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.Int64)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.Single)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.UInt32)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.String,System.UInt64)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.Decimal)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Decimal" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.Double)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Double" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.Int32)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Int32" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.Int64)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Int64" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.Single)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Single" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.UInt32)">
+      <summary>将预编码的属性名称和 <see cref="T:System.UInt32" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumber(System.Text.Json.JsonEncodedText,System.UInt64)">
+      <summary>将预编码的属性名称和 <see cref="T:System.UInt64" /> 值（作为 JSON 数字）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 数字形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.Decimal)">
+      <summary>编写 <see cref="T:System.Decimal" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.Double)">
+      <summary>编写 <see cref="T:System.Double" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.Int32)">
+      <summary>编写 <see cref="T:System.Int32" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.Int64)">
+      <summary>编写 <see cref="T:System.Int64" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.Single)">
+      <summary>编写 <see cref="T:System.Single" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.UInt32)">
+      <summary>编写 <see cref="T:System.UInt32" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteNumberValue(System.UInt64)">
+      <summary>编写 <see cref="T:System.UInt64" /> 值（写为 JSON 数字）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 数字形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WritePropertyName(System.ReadOnlySpan{System.Byte})">
+      <summary>编写 UTF-8 属性名称（作为 JSON 字符串）作为 JSON 对象的名称/值对的第一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WritePropertyName(System.ReadOnlySpan{System.Char})">
+      <summary>编写属性名称（作为 JSON 字符串）作为 JSON 对象的名称/值对的第一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WritePropertyName(System.String)">
+      <summary>编写属性名称（作为 JSON 字符串）作为 JSON 对象的名称/值对的第一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WritePropertyName(System.Text.Json.JsonEncodedText)">
+      <summary>编写预编码属性名称（作为 JSON 字符串）作为 JSON 对象的名称/值对的第一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartArray">
+      <summary>编写 JSON 数组的开头。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+
+- 或 -
+
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartArray(System.ReadOnlySpan{System.Byte})">
+      <summary>编写 JSON 数组的开头，将指定为字节只读范围的属性名称作为键。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 数组的 UTF-8 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartArray(System.ReadOnlySpan{System.Char})">
+      <summary>编写 JSON 数组的开头，将指定为只读字符范围的属性名称作为键。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 数字的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartArray(System.String)">
+      <summary>编写 JSON 数组的开头，将指定为字符串的属性名称作为键。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 数字的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartArray(System.Text.Json.JsonEncodedText)">
+      <summary>编写将预编码属性名称作为键的 JSON 数组的开头。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 数字的 JSON 编码属性名称。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+    
+- 或 -
+
+系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartObject">
+      <summary>编写 JSON 对象的开头。</summary>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+
+- 或 -
+
+系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartObject(System.ReadOnlySpan{System.Byte})">
+      <summary>编写 JSON 对象的开头，将指定为字节只读范围的属性名称作为键。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。 
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartObject(System.ReadOnlySpan{System.Char})">
+      <summary>编写 JSON 对象的开头，将指定为只读字符范围的属性名称作为键。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。 
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartObject(System.String)">
+      <summary>编写 JSON 对象的开头，将指定为字符串的属性名称作为键。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。 
+
+- 或 -
+       
+系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStartObject(System.Text.Json.JsonEncodedText)">
+      <summary>编写将预编码属性名称作为键的 JSON 对象的开头。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <exception cref="T:System.InvalidOperationException">JSON 的深度超过最大深度 1,000。
+          
+- 或 -
+
+系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.DateTime)">
+      <summary>编写 UTF-8 属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.DateTimeOffset)">
+      <summary>编写 UTF-8 属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.Guid)">
+      <summary>编写 UTF-8 属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+      <summary>编写 UTF-8 属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Char})">
+      <summary>编写 UTF-8 属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.String)">
+      <summary>编写 UTF-8 属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Byte},System.Text.Json.JsonEncodedText)">
+      <summary>将 UTF-8 属性名称和预编码值（作为 JSON 字符串）写入 JSON 对象的名称/值对分。</summary>
+      <param name="utf8PropertyName">要编写的 JSON 对象的 UTF-8 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式写入名称/值对的 JSON 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，此方法将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.DateTime)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.DateTimeOffset)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.Guid)">
+      <summary>编写指定为只读字符范围的属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte})">
+      <summary>编写 UTF-16 属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>编写 UTF-16 属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.String)">
+      <summary>编写 UTF-16 属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.ReadOnlySpan{System.Char},System.Text.Json.JsonEncodedText)">
+      <summary>将属性名称和预编码值（作为 JSON 字符串）写入 JSON 对象的名称/值对分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式写入名称/值对的 JSON 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.DateTime)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.DateTimeOffset)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.Guid)">
+      <summary>编写指定为字符串的属性名称和 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.ReadOnlySpan{System.Byte})">
+      <summary>编写指定为字符串的属性名称和 UTF-8 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.ReadOnlySpan{System.Char})">
+      <summary>编写指定为字符串的属性名称和 UTF-16 文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.String)">
+      <summary>编写指定为字符串的属性名称和字符串文本值（写为 JSON 字符串）作为 JSON 对象的名称/值对的一部分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 UTF-16 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式作为名称/值对的一部分编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称或值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.String,System.Text.Json.JsonEncodedText)">
+      <summary>将属性名称和预编码值（作为 JSON 字符串）写入 JSON 对象的名称/值对分。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式写入名称/值对的 JSON 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的属性名称过长。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="propertyName" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.DateTime)">
+      <summary>将预编码的属性名称和 <see cref="T:System.DateTime" /> 值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.DateTimeOffset)">
+      <summary>将预编码的属性名称和 <see cref="T:System.DateTimeOffset" /> 值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.Guid)">
+      <summary>将预编码的属性名称和 <see cref="T:System.Guid" /> 值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 JSON 字符串形式作为名称/值对的一部分编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.ReadOnlySpan{System.Byte})">
+      <summary>将预编码的属性名称和 UTF-8 文本值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="utf8Value">要以 JSON 字符串形式作为名称/值对的一部分编写的 UTF-8 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.ReadOnlySpan{System.Char})">
+      <summary>将预编码的属性名称和文本值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要作为 UTF-8 转码的 JSON 字符串写入名称/值对的值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.String)">
+      <summary>将预编码的属性名称和字符串文本值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要作为 UTF-8 转码的 JSON 字符串写入名称/值对的值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteString(System.Text.Json.JsonEncodedText,System.Text.Json.JsonEncodedText)">
+      <summary>将预编码的属性名称和预编码的文本值（作为 JSON 字符串）写入 JSON 对象的名称/值对。</summary>
+      <param name="propertyName">要进行转码并写为 UTF-8 的 JSON 对象的 JSON 编码属性名称。</param>
+      <param name="value">要以 UTF-8 转码的 JSON 字符串形式写入名称/值对的 JSON 编码值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.DateTime)">
+      <summary>编写 <see cref="T:System.DateTime" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.DateTimeOffset)">
+      <summary>编写 <see cref="T:System.DateTimeOffset" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.Guid)">
+      <summary>编写 <see cref="T:System.Guid" /> 值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="value">要以 JSON 字符串形式作为 JSON 数组的元素编写的值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该操作将导致编写无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.ReadOnlySpan{System.Byte})">
+      <summary>编写 UTF-8 文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="utf8Value">要编写为 JSON 数组的 JSON 字符串元素的 UTF-8 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.ReadOnlySpan{System.Char})">
+      <summary>编写 UTF-16 文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="value">作为 JSON 数组的 UTF-8 转码的 JSON 字符串元素编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.String)">
+      <summary>编写字符串文本值（写为 JSON 字符串）作为 JSON 数组的元素。</summary>
+      <param name="value">作为 JSON 数组的 UTF-8 转码的 JSON 字符串元素编写的 UTF-16 编码值。</param>
+      <exception cref="T:System.ArgumentException">指定的值太大。</exception>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="M:System.Text.Json.Utf8JsonWriter.WriteStringValue(System.Text.Json.JsonEncodedText)">
+      <summary>将预编码的文本值（作为 JSON 字符串）写为 JSON 数组的元素。</summary>
+      <param name="value">要写为 JSON 数组的 UTF-8 转码的 JSON 字符串元素的 JSON 编码值。</param>
+      <exception cref="T:System.InvalidOperationException">系统已启用验证，该编写操作将生成无效的 JSON。</exception>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonWriter.BytesCommitted">
+      <summary>获取目前为止当前实例提交到输出的字节总数。</summary>
+      <returns>迄今为止提交给输出的总字节数 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonWriter.BytesPending">
+      <summary>获取目前为止由 <see cref="T:System.Text.Json.Utf8JsonWriter" /> 编写但尚未刷新到输出并提交的字节数。</summary>
+      <returns>到目前为止 <see cref="T:System.Text.Json.Utf8JsonWriter" /> ，尚未刷新到输出并提交的字节数。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonWriter.CurrentDepth">
+      <summary>获取当前标记的深度。</summary>
+      <returns>当前标记的深度。</returns>
+    </member>
+    <member name="P:System.Text.Json.Utf8JsonWriter.Options">
+      <summary>获取使用此实例编写 JSON 时的自定义行为，以指示在编写时是否格式化输出，是否跳过结构化 JSON 验证以及要转义哪些字符。</summary>
+      <returns>此编写器实例的自定义行为，用于设置格式、验证和转义。</returns>
+    </member>
+  </members>
+</doc>

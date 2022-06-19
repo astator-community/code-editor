@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.Compression</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Compression.CompressionLevel">
+      <summary>指定用来指示压缩操作是强调速度还是强调压缩大小的值。</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.Fastest">
+      <summary>即使结果文件未可选择性地压缩，压缩操作也应尽快完成。</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.NoCompression">
+      <summary>该文件不应执行压缩。</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionLevel.Optimal">
+      <summary>即使操作要用更长的时间来完成，也应该可选性地压缩压缩操作。</summary>
+    </member>
+    <member name="T:System.IO.Compression.CompressionMode">
+      <summary>指定对基础流进行压缩还是解压缩。</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionMode.Compress">
+      <summary>压缩基础流。</summary>
+    </member>
+    <member name="F:System.IO.Compression.CompressionMode.Decompress">
+      <summary>解压缩基础流。</summary>
+    </member>
+    <member name="T:System.IO.Compression.DeflateStream">
+      <summary>提供使用 Deflate 算法压缩和解压缩流的方法和属性。</summary>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <summary>用指定的流和压缩级别初始化 <see cref="T:System.IO.Compression.DeflateStream" /> 类的新实例。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">流不支持写入操作，如压缩。 （流对象上的 <see cref="P:System.IO.Stream.CanWrite" /> 属性是 <see langword="false" />。）</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary>使用指定的流和压缩级别，初始化 <see cref="T:System.IO.Compression.DeflateStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.DeflateStream" /> 对象之后打开流对象，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">流不支持写入操作，如压缩。 （流对象上的 <see cref="P:System.IO.Stream.CanWrite" /> 属性是 <see langword="false" />。）</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <summary>用指定的流和压缩模式初始化 <see cref="T:System.IO.Compression.DeflateStream" /> 类的新实例。</summary>
+      <param name="stream">要压缩或解压缩的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 不是有效的 <see cref="T:System.IO.Compression.CompressionMode" /> 值。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Compress" />，而 <see cref="P:System.IO.Stream.CanWrite" /> 为 <see langword="false" />。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Decompress" />，而 <see cref="P:System.IO.Stream.CanRead" /> 为 <see langword="false" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <summary>使用指定的流和压缩模式，初始化 <see cref="T:System.IO.Compression.DeflateStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要压缩或解压缩的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.DeflateStream" /> 对象之后打开流，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 不是有效的 <see cref="T:System.IO.Compression.CompressionMode" /> 值。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Compress" />，而 <see cref="P:System.IO.Stream.CanWrite" /> 为 <see langword="false" />。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Decompress" />，而 <see cref="P:System.IO.Stream.CanRead" /> 为 <see langword="false" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步读操作。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="buffer">将数据读入的字节数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始读取流中的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成读取操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步读取请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试异步读取超过了流的结尾，或者发生了磁盘错误。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see cref="T:System.IO.Compression.DeflateStream" /> 实现不支持读取操作。</exception>
+      <exception cref="T:System.InvalidOperationException">无法完成此调用。</exception>
+      <returns>表示异步读取操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步写操作。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="array">从中写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中的字节偏移量，从此处开始写入。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成写入操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步写入请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试异步写入超过流的结尾的方法或发生错误的磁盘。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see cref="T:System.IO.Compression.DeflateStream" /> 实现不支持写入操作。</exception>
+      <exception cref="T:System.InvalidOperationException">由于流已关闭，因此无法执行写入操作。</exception>
+      <returns>表示异步写入操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.CopyTo(System.IO.Stream,System.Int32)">
+      <summary>使用指定的缓冲区大小，从当前 Deflate 流中读取字节并将其写入到另一流中。</summary>
+      <param name="destination">向其中复制当前 Deflate 流的内容的流。</param>
+      <param name="bufferSize">缓冲区的大小。 此值必须大于零。 默认大小为 81920。</param>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)">
+      <summary>使用指定的缓冲区大小，从当前 Deflate 流中异步读取字节并将其写入到另一流中。</summary>
+      <param name="destination">向其中复制当前 Deflate 流的内容的流。</param>
+      <param name="bufferSize">缓冲区的大小（以字节为单位）。 此值必须大于零。 默认大小为 81920。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步复制操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.IO.Compression.DeflateStream" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.DisposeAsync">
+      <summary>异步释放 <see cref="T:System.IO.Compression.DeflateStream" /> 使用的非托管资源。</summary>
+      <returns>一个表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.EndRead(System.IAsyncResult)">
+      <summary>等待挂起的异步读取完成。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">对要完成的挂起异步请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.IO.Compression.DeflateStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.SystemException">在调用 <see cref="M:System.Threading.WaitHandle.WaitOne" /> 期间引发了异常。</exception>
+      <exception cref="T:System.InvalidOperationException">结束调用无效，原因是该流的异步读取操作尚未完成。
+
+- 或 -
+
+此流为 <see langword="null" />。</exception>
+      <returns>从流中读取的字节数，介于 0（零）和你请求的字节数之间。 <see cref="T:System.IO.Compression.DeflateStream" /> 仅在流的末尾返回零 (0)；否则将一直阻塞，只到至少有一个字节可用。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.EndWrite(System.IAsyncResult)">
+      <summary>结束异步写操作。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">对未完成的异步 I/O 请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.IO.Compression.DeflateStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.Exception">在调用 <see cref="M:System.Threading.WaitHandle.WaitOne" /> 期间引发了异常。</exception>
+      <exception cref="T:System.InvalidOperationException">此流为 <see langword="null" />。
+
+- 或 -
+
+结束写入调用无效。</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Flush">
+      <summary>此方法的当前实现没有任何功能。</summary>
+      <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步清理此 Deflate 流的所有缓冲区，并使所有缓冲数据写入基础设备，并且监控取消请求。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>将若干解压缩的字节读入指定的字节数组。</summary>
+      <param name="array">用于存储解压缩的字节的数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，将在此处放置读取的字节。</param>
+      <param name="count">最多要读取的解压缩字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">创建对象时 <see cref="T:System.IO.Compression.CompressionMode" /> 值是 <see langword="Compress" />。  
+  
+- 或 - 
+基础流不支持读取。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小于零。  
+  
+- 或 - 
+ <paramref name="array" /> 长度减去索引起始点小于 <paramref name="count" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException">数据的格式无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+      <returns>已读入到字节数组中的字节数。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Read(System.Span{System.Byte})">
+      <summary>将当前 Deflate 流中的一个字节序列读取到某字节范围，并按读取的字节数向前移动 Deflate 流中的位置。</summary>
+      <param name="buffer">内存的区域。 当此方法返回时，此区域的内容将替换为从当前源读取的字节。</param>
+      <returns>读入缓冲区中的总字节数。 如果很多字节当前不可用，则这可小于在缓冲区中分配的字节数；如果已到达流结尾，则为零 (0)。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从当前 Deflate 流异步读取字节的序列，将其写入字节数组，按读取的字节数向前移动 Deflate 流中的位置，并监视取消请求。</summary>
+      <param name="array">要写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始写入从 Deflate 流中读取的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到 <paramref name="array" /> 中的任务。 如果当前可用字节数少于所请求的字节数，则该结果值可小于所请求的字节数；如果已到达 Deflate 流结尾时，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从当前 Deflate 流异步读取字节的序列，将其写入字节内存范围，按读取的字节数向前移动 Deflate 流中的位置，并监视取消请求。</summary>
+      <param name="buffer">要将数据写入的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到缓冲区中的任务。 如果很多字节当前不可用，则结果值可小于在缓冲区中分配的字节数；如果已到达 Deflate 流结尾，则结果值可以为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.ReadByte">
+      <summary>从 Deflate 流中读取一个字节，并将流内的位置向前提升一个字节，或者如果已到达 Deflate 流结尾，则返回 -1。</summary>
+      <returns>强制转换为 <see cref="T:System.Int32" /> 的无符号字节，如果到达流的末尾，则为 -1。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>此操作不受支持，它总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="offset">流中的位置。</param>
+      <param name="origin">
+        <see cref="T:System.IO.SeekOrigin" /> 值之一。</param>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.SetLength(System.Int64)">
+      <summary>此操作不受支持，它总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="value">流的长度。</param>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>从指定的字节数组中将压缩的字节写入基础流。</summary>
+      <param name="array">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，将在此处读取字节。</param>
+      <param name="count">最多写入的字节数。</param>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.Write(System.ReadOnlySpan{System.Byte})">
+      <summary>将字节序列写入当前 Deflate 流，并按写入的字节数将 Deflate 流内的当前位置向前移动。</summary>
+      <param name="buffer">内存的区域。 此方法将此区域的内容复制到当前 Deflate 流。</param>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从指定的字节数组中，将压缩的字节异步写入基础 Deflate 流。</summary>
+      <param name="array">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中从零开始的字节偏移量，从该偏移量开始将字节复制到 Deflate 流。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.DeflateStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从指定的只读内存区域中，将压缩的字节异步写入基础 Deflate 流。</summary>
+      <param name="buffer">从中写入数据的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.BaseStream">
+      <summary>获取对基础流的引用。</summary>
+      <exception cref="T:System.ObjectDisposedException">基础流已关闭。</exception>
+      <returns>表示基础流的流对象。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.CanRead">
+      <summary>获取一个值，该值指示流是否支持在解压缩文件的过程中读取文件。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Decompress" /> 而且基础流已打开并支持读取，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.CanSeek">
+      <summary>获取一个值，该值指示流是否支持查找。</summary>
+      <returns>在所有情况下均为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.CanWrite">
+      <summary>获取一个值，该值指示流是否支持写入。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Compress" /> 而且基础流未关闭并支持写入，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.Length">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="P:System.IO.Compression.DeflateStream.Position">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="T:System.IO.Compression.GZipStream">
+      <summary>使用 GZip 数据格式规范提供用于压缩和解压缩流的方法和属性。</summary>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel)">
+      <summary>用指定的流和压缩级别初始化 <see cref="T:System.IO.Compression.GZipStream" /> 类的新实例。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">流不支持写入操作，如压缩。 （流对象上的 <see cref="P:System.IO.Stream.CanWrite" /> 属性是 <see langword="false" />。）</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary>使用指定的流和压缩级别，初始化 <see cref="T:System.IO.Compression.GZipStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要将压缩数据写入到其中的流。</param>
+      <param name="compressionLevel">压缩流时，指示是否要强调速度或压缩效率的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.GZipStream" /> 对象之后打开流对象，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">流不支持写入操作，如压缩。 （流对象上的 <see cref="P:System.IO.Stream.CanWrite" /> 属性是 <see langword="false" />。）</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode)">
+      <summary>用指定的流和压缩模式初始化 <see cref="T:System.IO.Compression.GZipStream" /> 类的新实例。</summary>
+      <param name="stream">压缩或解压缩后的数据被写入的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 不是有效的 <see cref="T:System.IO.Compression.CompressionMode" /> 枚举值。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Compress" />，而 <see cref="P:System.IO.Stream.CanWrite" /> 为 <see langword="false" />。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Decompress" />，而 <see cref="P:System.IO.Stream.CanRead" /> 为 <see langword="false" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.#ctor(System.IO.Stream,System.IO.Compression.CompressionMode,System.Boolean)">
+      <summary>使用指定的流和压缩模式，初始化 <see cref="T:System.IO.Compression.GZipStream" /> 类的新实例，有选择性的打开流。</summary>
+      <param name="stream">要压缩的流。</param>
+      <param name="mode">指示是要压缩还是解压缩流的枚举值之一。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.GZipStream" /> 对象之后打开流，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 不是有效的 <see cref="T:System.IO.Compression.CompressionMode" /> 值。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Compress" />，而 <see cref="P:System.IO.Stream.CanWrite" /> 为 <see langword="false" />。  
+  
+- 或 - 
+ <see cref="T:System.IO.Compression.CompressionMode" /> 为 <see cref="F:System.IO.Compression.CompressionMode.Decompress" />，而 <see cref="P:System.IO.Stream.CanRead" /> 为 <see langword="false" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步读操作。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="array">将数据读入的字节数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始读取流中的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成读取操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步读取请求与其他请求区别开来。</param>
+      <exception cref="T:System.IO.IOException">尝试异步读取超过了流的结尾，或者发生了磁盘错误。</exception>
+      <exception cref="T:System.ArgumentException">一个或多个自变量无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+      <exception cref="T:System.NotSupportedException">当前 <see cref="T:System.IO.Compression.GZipStream" /> 实现不支持读取操作。</exception>
+      <exception cref="T:System.InvalidOperationException">由于流已关闭，因此无法执行读取操作。</exception>
+      <returns>表示异步读取操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>开始异步写操作。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="array">包含要写入当前流的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从此处开始写入。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="asyncCallback">可选的异步回调，在完成写入操作时调用。</param>
+      <param name="asyncState">一个用户提供的对象，它将该特定的异步写入请求与其他请求区别开来。</param>
+      <exception cref="T:System.InvalidOperationException">此基础流为 <see langword="null" />。  
+  
+- 或 - 
+基础流已关闭。</exception>
+      <returns>表示异步写入操作（可能仍处于挂起状态）的对象。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.CopyTo(System.IO.Stream,System.Int32)">
+      <summary>使用指定的缓冲区大小，从当前 GZip 流中读取字节并将其写入到另一流中。</summary>
+      <param name="destination">向其中复制当前 GZip 流的内容的流。</param>
+      <param name="bufferSize">缓冲区的大小。 此值必须大于零。 默认大小为 81920。</param>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)">
+      <summary>使用指定的缓冲区大小，从当前 GZip 流中异步读取字节并将其写入到另一流中。</summary>
+      <param name="destination">向其中复制当前 GZip 流的内容的流。</param>
+      <param name="bufferSize">缓冲区的大小（以字节为单位）。 此值必须大于零。 默认大小为 81920。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步复制操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Dispose(System.Boolean)">
+      <summary>释放由 <see cref="T:System.IO.Compression.GZipStream" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing">若要释放托管资源和非托管资源，则为 <see langword="true" />；若仅释放非托管资源，则为 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.DisposeAsync">
+      <summary>异步释放 <see cref="T:System.IO.Compression.GZipStream" /> 使用的非托管资源。</summary>
+      <returns>一个表示异步释放操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.EndRead(System.IAsyncResult)">
+      <summary>等待挂起的异步读取完成。 （请考虑改用 <see cref="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">对要完成的挂起异步请求的引用。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> 不源于当前流的 <see cref="M:System.IO.Compression.GZipStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.InvalidOperationException">由于流已关闭，因此无法执行结束操作。</exception>
+      <returns>从流中读取的字节数，介于 0（零）和你请求的字节数之间。 <see cref="T:System.IO.Compression.GZipStream" /> 仅在流的末尾返回零 (0)；否则将一直阻塞，只到至少有一个字节可用。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.EndWrite(System.IAsyncResult)">
+      <summary>处理异步写入操作的结束。 （请考虑改用 <see cref="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" /> 方法。）</summary>
+      <param name="asyncResult">表示异步调用的对象。</param>
+      <exception cref="T:System.InvalidOperationException">此基础流为 <see langword="null" />。  
+  
+- 或 - 
+基础流已关闭。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Flush">
+      <summary>刷新内部缓冲区。</summary>
+      <exception cref="T:System.ObjectDisposedException">基础流已关闭。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>异步清理此 GZip 流的所有缓冲区，使所有缓冲数据写入基础设备，并监控取消请求。</summary>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步刷新操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>将若干解压缩的字节读入指定的字节数组。</summary>
+      <param name="array">用于存储解压缩字节的数组。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，将在此处放置读取的字节。</param>
+      <param name="count">最多要读取的解压缩字节数。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.InvalidOperationException">创建对象时 <see cref="T:System.IO.Compression.CompressionMode" /> 值是 <see langword="Compress" />。  
+  
+- 或 - 
+基础流不支持读取。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小于零。  
+  
+- 或 - 
+ <paramref name="array" /> 长度减去索引起始点小于 <paramref name="count" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException">数据的格式无效。</exception>
+      <exception cref="T:System.ObjectDisposedException">流已关闭。</exception>
+      <returns>解压缩到字节数组中的字节数。 如果已到达流的末尾，则返回 0 或已读取的字节数。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Read(System.Span{System.Byte})">
+      <summary>将当前 GZip 流中的一个字节序列读取到某字节范围，并按读取的字节数向前移动 GZip 流中的位置。</summary>
+      <param name="buffer">内存的区域。 当此方法返回时，此区域的内容将替换为从当前源读取的字节。</param>
+      <returns>读入缓冲区中的总字节数。 如果很多字节当前不可用，则这可小于在缓冲区中分配的字节数；如果已到达流结尾，则为零 (0)。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从当前 GZip 流将字节的序列异步读取到一个字节数组中，按读取的字节数向前移动 GZip 流中的位置，并监视取消请求。</summary>
+      <param name="array">要写入数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，从该偏移量开始写入从 GZip 流中读取的数据。</param>
+      <param name="count">最多读取的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到 <paramref name="array" /> 中的任务。 如果当前可用字节数少于所请求的字节数，则该结果值可小于所请求的字节数；如果已到达 GZip 流结尾时，则为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从当前 GZip 流将字节的序列异步读取到一个字节内存区域中，按读取的字节数向前移动 GZip 流中的位置，并监视取消请求。</summary>
+      <param name="buffer">要将数据写入的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>一个表示异步读取操作并将读取的总字节数包装到缓冲区中的任务。 如果很多字节当前不可用，则结果值可小于在缓冲区中分配的字节数；如果已到达 GZip 流结尾，则结果值可以为 0（零）。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.ReadByte">
+      <summary>从 GZip 流中读取一个字节，并将流内的位置向前提升一个字节，或者如果已到达 GZip 流结尾，则返回 -1。</summary>
+      <returns>强制转换为 <see cref="T:System.Int32" /> 的无符号字节，如果到达流的末尾，则为 -1。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="offset">流中的位置。</param>
+      <param name="origin">
+        <see cref="T:System.IO.SeekOrigin" /> 值之一。</param>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.SetLength(System.Int64)">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <param name="value">流的长度。</param>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>从指定的字节数组中将压缩的字节写入基础 GZip 流。</summary>
+      <param name="array">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的字节偏移量，将在此处读取字节。</param>
+      <param name="count">最多写入的字节数。</param>
+      <exception cref="T:System.ObjectDisposedException">由于流已关闭，因此无法执行写入操作。</exception>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.Write(System.ReadOnlySpan{System.Byte})">
+      <summary>从一个只读字节范围将字节的序列写入当前 GZip 流，并按写入的字节数向前移动此 GZip 流中的当前位置。</summary>
+      <param name="buffer">内存的区域。 此方法将此区域的内容复制到当前 GZip 流。</param>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>从指定的字节数组中将压缩的字节异步写入基础 GZip 流。</summary>
+      <param name="array">包含要压缩的数据的缓冲区。</param>
+      <param name="offset">
+        <paramref name="array" /> 中的从零开始的字节偏移量，从此处开始将字节复制到该 GZip 流。</param>
+      <param name="count">最多写入的字节数。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="M:System.IO.Compression.GZipStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
+      <summary>从指定的只读字节内存区域中，将压缩的字节异步写入基础 GZip 流。</summary>
+      <param name="buffer">从中写入数据的内存区域。</param>
+      <param name="cancellationToken">要监视取消请求的标记。 默认值是 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示异步写入操作的任务。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.BaseStream">
+      <summary>获取对基础流的引用。</summary>
+      <exception cref="T:System.ObjectDisposedException">基础流已关闭。</exception>
+      <returns>表示基础流的流对象。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.CanRead">
+      <summary>获取一个值，该值指示流是否支持在解压缩文件的过程中读取文件。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Decompress," /> 而且基础流未关闭并支持读取，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.CanSeek">
+      <summary>获取一个值，该值指示流是否支持查找。</summary>
+      <returns>在所有情况下均为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.CanWrite">
+      <summary>获取一个值，该值指示流是否支持写入。</summary>
+      <returns>如果 <see cref="T:System.IO.Compression.CompressionMode" /> 值为 <see langword="Compress" /> 而且基础流未关闭并支持写入，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.Length">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="P:System.IO.Compression.GZipStream.Position">
+      <summary>此属性不受支持，并且总是引发 <see cref="T:System.NotSupportedException" />。</summary>
+      <exception cref="T:System.NotSupportedException">此流中不支持此属性。</exception>
+      <returns>一个长值。</returns>
+    </member>
+    <member name="T:System.IO.Compression.ZipArchive">
+      <summary>表示 Zip 存档格式中的一个压缩文件包。</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream)">
+      <summary>从指定的流初始化 <see cref="T:System.IO.Compression.ZipArchive" /> 类的新实例。</summary>
+      <param name="stream">包含待读取的存档的流。</param>
+      <exception cref="T:System.ArgumentException">该流已关闭或不支持读取。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException">流的内容不是 zip 存档格式。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode)">
+      <summary>从指定的流并使用指定的模式初始化 <see cref="T:System.IO.Compression.ZipArchive" /> 类的新实例。</summary>
+      <param name="stream">输入流或输出流。</param>
+      <param name="mode">一个枚举值指示 zip 存档是否用于读取、创建或更新使用。</param>
+      <exception cref="T:System.ArgumentException">流已关闭，或流的功能与模式不相匹配。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 为无效值。</exception>
+      <exception cref="T:System.IO.InvalidDataException">流的内容无法被解释为 zip 存档。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但存档中缺少项，或者项已损坏且无法读取。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但项太大，无法装入内存。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean)">
+      <summary>对于指定的模式，初始化指定流上的 <see cref="T:System.IO.Compression.ZipArchive" /> 类的新实例，并选择性地使流保持打开状态。</summary>
+      <param name="stream">输入流或输出流。</param>
+      <param name="mode">一个枚举值指示 zip 存档是否用于读取、创建或更新使用。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.ZipArchive" /> 对象后保持流处于打开状态，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">流已关闭，或流的功能与模式不相匹配。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 为无效值。</exception>
+      <exception cref="T:System.IO.InvalidDataException">流的内容无法被解释为 zip 存档。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但存档中缺少项，或者项已损坏且无法读取。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但项太大，无法装入内存。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.#ctor(System.IO.Stream,System.IO.Compression.ZipArchiveMode,System.Boolean,System.Text.Encoding)">
+      <summary>对于指定的模式，初始化指定流上的 <see cref="T:System.IO.Compression.ZipArchive" /> 类的新实例，使用项名的指定编码，并选择性地使流保持打开状态。</summary>
+      <param name="stream">输入流或输出流。</param>
+      <param name="mode">一个枚举值指示 zip 存档是否用于读取、创建或更新使用。</param>
+      <param name="leaveOpen">如果在释放 <see cref="T:System.IO.Compression.ZipArchive" /> 对象后保持流处于打开状态，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="entryNameEncoding">在存档中读取或写入项名时使用的编码。 仅当需要针对具有不支持项名的 UTF-8 编码的 zip 归档工具和库的互操作性进行编码时，为此参数指定一个值。</param>
+      <exception cref="T:System.ArgumentException">流已关闭，或流的功能与模式不相匹配。
+
+- 或 -
+
+为 <paramref name="entryNameEncoding" /> 指定除 UTF-8 之外的编码。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="stream" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 为无效值。</exception>
+      <exception cref="T:System.IO.InvalidDataException">流的内容无法被解释为 zip 存档。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但存档中缺少项，或者项已损坏且无法读取。  
+  
+- 或 - 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但项太大，无法装入内存。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.CreateEntry(System.String)">
+      <summary>创建在 zip 存档中有指定路径和项名的空项。</summary>
+      <param name="entryName">相对于存档的根的路径指定了要创建项目的名称。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">zip 存档不支持写入。</exception>
+      <exception cref="T:System.ObjectDisposedException">zip 存档已释放。</exception>
+      <returns>在 zip 存档中的空项。</returns>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.CreateEntry(System.String,System.IO.Compression.CompressionLevel)">
+      <summary>创建在 zip 存档中有指定项名和压缩级别的空项。</summary>
+      <param name="entryName">相对于存档的根的路径指定了要创建项目的名称。</param>
+      <param name="compressionLevel">指示创建项时是否强调速度或压缩有效性的枚举值之一。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">zip 存档不支持写入。</exception>
+      <exception cref="T:System.ObjectDisposedException">zip 存档已释放。</exception>
+      <returns>在 zip 存档中的空项。</returns>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.Dispose">
+      <summary>释放 <see cref="T:System.IO.Compression.ZipArchive" /> 类的当前实例使用的资源。</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.Dispose(System.Boolean)">
+      <summary>由 <see cref="M:System.IO.Compression.ZipArchive.Dispose" /> 和 <see cref="M:System.Object.Finalize" /> 方法调用，以释放 <see cref="T:System.IO.Compression.ZipArchive" /> 类的当前实例使用的未托管资源，并选择性地完成存档的写入和释放托管资源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示完成存档的写入并释放未托管和托管资源；<see langword="false" /> 则仅释放未托管资源。</param>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchive.GetEntry(System.String)">
+      <summary>在 zip 存档中检索指定项的包装。</summary>
+      <param name="entryName">相对于存档的根的路径标识了项目检索。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="entryName" /> 为 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="entryName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">zip 存档不支持读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">zip 存档已释放。</exception>
+      <exception cref="T:System.IO.InvalidDataException">zip 存档已损坏，不能检索其项。</exception>
+      <returns>存档中指定项的包装器；如果存档中不存在此项，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchive.Entries">
+      <summary>获取 zip 存档中当前存在的项的集合。</summary>
+      <exception cref="T:System.NotSupportedException">zip 存档不支持读取。</exception>
+      <exception cref="T:System.ObjectDisposedException">zip 存档已释放。</exception>
+      <exception cref="T:System.IO.InvalidDataException">zip 存档已损坏，不能检索其项。</exception>
+      <returns>在 zip 存档中当前存在的项的集合。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchive.Mode">
+      <summary>获取描述 Zip 存档操作类型在实体上执行的值。</summary>
+      <returns>描述 zip 存档可在项上执行的操作类型（读取、创建或更新）的一个枚举值。</returns>
+    </member>
+    <member name="T:System.IO.Compression.ZipArchiveEntry">
+      <summary>表示 zip 档案中的压缩文件。</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.Delete">
+      <summary>删除 zip 存档中的项。</summary>
+      <exception cref="T:System.IO.IOException">已打开用于读取或写入的项。</exception>
+      <exception cref="T:System.NotSupportedException">除 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" /> 之外，此项的 zip 存档已通过一种模式中打开。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此项的 zip 存档。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.Open">
+      <summary>打开 zip 存档中的项。</summary>
+      <exception cref="T:System.IO.IOException">当前已打开用于写入的项。  
+  
+- 或 - 
+该条目已从存档中删除。  
+  
+- 或 - 
+已使用 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" /> 模式打开此项的存档，并且该项已写入到该存档中。</exception>
+      <exception cref="T:System.IO.InvalidDataException">存档中缺少该条目，或者该条目已损坏且无法读取。  
+  
+ - 或 -  
+  
+ 已经通过使用一种不受支持的压缩方法压缩该条目。</exception>
+      <exception cref="T:System.ObjectDisposedException">已释放此项的 zip 存档。</exception>
+      <returns>表示项的内容的流。</returns>
+    </member>
+    <member name="M:System.IO.Compression.ZipArchiveEntry.ToString">
+      <summary>检索 zip 存档中项的相对路径。</summary>
+      <returns>项的相对路径，即存储在 <see cref="P:System.IO.Compression.ZipArchiveEntry.FullName" /> 属性中的值。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Archive">
+      <summary>获取该项所属的 zip 存档。</summary>
+      <returns>项 zip 归档该项属于或 <see langword="null" />，如果该项已删除。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.CompressedLength">
+      <summary>获取在 zip 存档中的项的压缩大小。</summary>
+      <exception cref="T:System.InvalidOperationException">由于项已修改，属性的值不可用。</exception>
+      <returns>在 zip 存档中的项的压缩大小。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Crc32">
+      <summary>32 位循环冗余检查。</summary>
+      <returns>一个无符号整数， (4 个字节) 表示 CRC-32 字段。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.ExternalAttributes">
+      <summary>操作系统和应用程序特定的文件属性。</summary>
+      <returns>编写此输入时由应用程序编写的外部属性。 这同时依赖于主机操作系统和应用程序。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.FullName">
+      <summary>获取 zip 存档中的项的相对路径。</summary>
+      <returns>在 zip 存档中的项的相对路径。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.LastWriteTime">
+      <summary>获取或设置最近一次更改 zip 存档中的项的时间。</summary>
+      <exception cref="T:System.NotSupportedException">尝试设置此属性失败，因为该项的 zip 存档处于 <see cref="F:System.IO.Compression.ZipArchiveMode.Read" /> 模式。</exception>
+      <exception cref="T:System.IO.IOException">将存档模式设置为 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />。  
+  
+- 或 - 
+存档模式已设置为 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" /> ，并且已打开该项。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">已尝试将此属性的值设置为早于 1980 年 1 月 1 日 0:00:00（午夜）或晚于 2107 年 12 月 31 日 23:59:58 (午夜的前一秒钟)。</exception>
+      <returns>最近一次更改 zip 存档中的项的时间。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Length">
+      <summary>获取 zip 存档中的项的未压缩大小。</summary>
+      <exception cref="T:System.InvalidOperationException">由于项已修改，属性的值不可用。</exception>
+      <returns>在 zip 存档中的项的未压缩大小。</returns>
+    </member>
+    <member name="P:System.IO.Compression.ZipArchiveEntry.Name">
+      <summary>获取在 zip 存档中的项的文件名。</summary>
+      <returns>在 zip 存档中的项的文件名。</returns>
+    </member>
+    <member name="T:System.IO.Compression.ZipArchiveMode">
+      <summary>指定用来与 zip 存档条目进行交互的值。</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Create">
+      <summary>只允许创建新的存档项。</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Read">
+      <summary>只允许读取存档项。</summary>
+    </member>
+    <member name="F:System.IO.Compression.ZipArchiveMode.Update">
+      <summary>允许对存档项执行读取和写入操作。</summary>
+    </member>
+  </members>
+</doc>

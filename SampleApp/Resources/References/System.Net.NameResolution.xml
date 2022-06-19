@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.NameResolution</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.Dns">
+      <summary>提供简单的域名解析功能。</summary>
+    </member>
+    <member name="M:System.Net.Dns.BeginGetHostAddresses(System.String,System.AsyncCallback,System.Object)">
+      <summary>异步返回指定主机的 Internet 协议 (IP) 地址。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="state">一个用户定义对象，其中包含操作的相关信息。 当操作完成时，此对象会被传递给 <paramref name="requestCallback" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 是无效的 IP 地址。</exception>
+      <returns>引用异步请求的 <see cref="T:System.IAsyncResult" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object)">
+      <summary>开始异步请求关于指定 DNS 主机名的 <see cref="T:System.Net.IPHostEntry" /> 信息。</summary>
+      <param name="hostName">主机的 DNS 名称。</param>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="stateObject">一个用户定义对象，其中包含操作的相关信息。 当操作完成时，此对象会被传递给 <paramref name="requestCallback" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">执行 DNS 查询时遇到错误。</exception>
+      <returns>引用异步请求的 <see cref="T:System.IAsyncResult" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.BeginGetHostEntry(System.Net.IPAddress,System.AsyncCallback,System.Object)">
+      <summary>将 IP 地址异步解析为 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="address">要解析的 IP 地址。</param>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="stateObject">一个用户定义对象，其中包含操作的相关信息。 当操作完成时，此对象会被传递给 <paramref name="requestCallback" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="address" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 是无效的 IP 地址。</exception>
+      <returns>引用异步请求的 <see cref="T:System.IAsyncResult" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.BeginGetHostEntry(System.String,System.AsyncCallback,System.Object)">
+      <summary>将主机名或 IP 地址异步解析为 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="stateObject">一个用户定义对象，其中包含操作的相关信息。 当操作完成时，此对象会被传递给 <paramref name="requestCallback" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 是无效的 IP 地址。</exception>
+      <returns>引用异步请求的 <see cref="T:System.IAsyncResult" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object)">
+      <summary>开始异步请求将 DNS 主机名或 IP 地址解析为 <see cref="T:System.Net.IPAddress" /> 实例。</summary>
+      <param name="hostName">主机的 DNS 名称。</param>
+      <param name="requestCallback">一个 <see cref="T:System.AsyncCallback" /> 委托，它引用操作完成时要调用的方法。</param>
+      <param name="stateObject">一个用户定义对象，其中包含操作的相关信息。 当操作完成时，此对象会被传递给 <paramref name="requestCallback" /> 委托。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">调用方没有访问 DNS 信息的权限。</exception>
+      <returns>引用异步请求的 <see cref="T:System.IAsyncResult" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.EndGetHostAddresses(System.IAsyncResult)">
+      <summary>结束对 DNS 信息的异步请求。</summary>
+      <param name="asyncResult">一个 <see cref="T:System.IAsyncResult" /> 实例，该实例通过调用 <see cref="M:System.Net.Dns.BeginGetHostAddresses(System.String,System.AsyncCallback,System.Object)" /> 方法返回。</param>
+      <returns>一个 <see cref="T:System.Net.IPAddress" /> 类型的数组，用于保存由 <see cref="M:System.Net.Dns.BeginGetHostAddresses(System.String,System.AsyncCallback,System.Object)" /> 的 <paramref name="hostNameOrAddress" /> 参数指定的主机的 IP 地址。</returns>
+    </member>
+    <member name="M:System.Net.Dns.EndGetHostByName(System.IAsyncResult)">
+      <summary>结束对 DNS 信息的异步请求。</summary>
+      <param name="asyncResult">一个 <see cref="T:System.IAsyncResult" /> 实例，该实例通过调用 <see cref="M:System.Net.Dns.BeginGetHostByName(System.String,System.AsyncCallback,System.Object)" /> 方法返回。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 对象，该对象包含一个主机的 DNS 信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.EndGetHostEntry(System.IAsyncResult)">
+      <summary>结束对 DNS 信息的异步请求。</summary>
+      <param name="asyncResult">一个 <see cref="T:System.IAsyncResult" /> 实例，该实例通过调用 <see cref="Overload:System.Net.Dns.BeginGetHostEntry" /> 方法返回。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例，其中包含有关主机的地址信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.EndResolve(System.IAsyncResult)">
+      <summary>结束对 DNS 信息的异步请求。</summary>
+      <param name="asyncResult">一个 <see cref="T:System.IAsyncResult" /> 实例，该实例通过调用 <see cref="M:System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object)" /> 方法返回。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 为 <see langword="null" />。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 对象，该对象包含一个主机的 DNS 信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostAddresses(System.String)">
+      <summary>返回指定主机的 Internet 协议 (IP) 地址。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 是无效的 IP 地址。</exception>
+      <returns>一个 <see cref="T:System.Net.IPAddress" /> 类型的数组，用于保存由 <paramref name="hostNameOrAddress" /> 参数指定的主机的 IP 地址。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostAddressesAsync(System.String)">
+      <summary>返回指定主机的 Internet 协议 (IP) 地址以作为异步操作。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 是无效的 IP 地址。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回类型为 <see cref="T:System.Net.IPAddress" /> 的数组，该类型包含 <paramref name="hostNameOrAddress" /> 参数指定的主机的 IP 地址。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostByAddress(System.Net.IPAddress)">
+      <summary>根据指定的 <see cref="T:System.Net.IPAddress" /> 创建 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="address">
+        <see cref="T:System.Net.IPAddress" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="address" /> 时遇到错误。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostByAddress(System.String)">
+      <summary>根据 IP 地址创建 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="address">IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="address" /> 时遇到错误。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> 不是有效的 IP 地址。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostByName(System.String)">
+      <summary>获取指定 DNS 主机名的 DNS 信息。</summary>
+      <param name="hostName">主机的 DNS 名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostName" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostName" /> 时遇到错误。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 对象，包含对应于 <paramref name="hostName" /> 中指定的地址的主机信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostEntry(System.Net.IPAddress)">
+      <summary>将 IP 地址解析为 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="address">IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="address" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 是无效的 IP 地址。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例，包含有关 <paramref name="address" /> 中指定的主机的地址信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostEntry(System.String)">
+      <summary>将主机名或 IP 地址解析为 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 参数的长度大于 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 参数时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 参数是无效的 IP 地址。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例，包含有关 <paramref name="hostNameOrAddress" /> 中指定的主机的地址信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostEntryAsync(System.Net.IPAddress)">
+      <summary>将 IP 地址解析为 <see cref="T:System.Net.IPHostEntry" /> 实例以作为异步操作。</summary>
+      <param name="address">IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="address" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="address" /> 时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> 是无效的 IP 地址。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回 <see cref="T:System.Net.IPHostEntry" /> 实例，该实例包含有关 <paramref name="address" /> 中指定的主机的地址信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostEntryAsync(System.String)">
+      <summary>将主机名或 IP 地址解析为 <see cref="T:System.Net.IPHostEntry" /> 实例以作为异步操作。</summary>
+      <param name="hostNameOrAddress">要解析的主机名或 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostNameOrAddress" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostNameOrAddress" /> 参数的长度大于 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostNameOrAddress" /> 参数时遇到错误。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hostNameOrAddress" /> 参数是无效的 IP 地址。</exception>
+      <returns>表示异步操作的任务对象。 任务对象上的 <see cref="P:System.Threading.Tasks.Task`1.Result" /> 属性返回 <see cref="T:System.Net.IPHostEntry" /> 实例，该实例包含有关 <paramref name="hostNameOrAddress" /> 中指定的主机的地址信息。</returns>
+    </member>
+    <member name="M:System.Net.Dns.GetHostName">
+      <summary>获取本地计算机的主机名。</summary>
+      <exception cref="T:System.Net.Sockets.SocketException">解析本地主机名时遇到错误。</exception>
+      <returns>包含本地计算机的 DNS 主机名的字符串。</returns>
+    </member>
+    <member name="M:System.Net.Dns.Resolve(System.String)">
+      <summary>将 DNS 主机名或 IP 地址解析为 <see cref="T:System.Net.IPHostEntry" /> 实例。</summary>
+      <param name="hostName">DNS 样式的主机名或 IP 地址。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hostName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="hostName" /> 的长度超过 255 个字符。</exception>
+      <exception cref="T:System.Net.Sockets.SocketException">解析 <paramref name="hostName" /> 时遇到错误。</exception>
+      <returns>一个 <see cref="T:System.Net.IPHostEntry" /> 实例，包含有关 <paramref name="hostName" /> 中指定的主机的地址信息。</returns>
+    </member>
+    <member name="T:System.Net.IPHostEntry">
+      <summary>为 Internet 主机地址信息提供容器类。</summary>
+    </member>
+    <member name="M:System.Net.IPHostEntry.#ctor">
+      <summary>初始化 <see cref="T:System.Net.IPHostEntry" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Net.IPHostEntry.AddressList">
+      <summary>获取或设置与主机关联的 IP 地址列表。</summary>
+      <returns>一个 <see cref="T:System.Net.IPAddress" /> 类型的数组，包含解析为 <see cref="P:System.Net.IPHostEntry.Aliases" /> 属性中包含的主机名的 IP 地址。</returns>
+    </member>
+    <member name="P:System.Net.IPHostEntry.Aliases">
+      <summary>获取或设置与主机关联的别名列表。</summary>
+      <returns>一组字符串，包含解析为 <see cref="P:System.Net.IPHostEntry.AddressList" /> 属性中的 IP 地址的 DNS 名称。</returns>
+    </member>
+    <member name="P:System.Net.IPHostEntry.HostName">
+      <summary>获取或设置主机的 DNS 名称。</summary>
+      <returns>包含服务器的主要主机名的字符串。</returns>
+    </member>
+  </members>
+</doc>
