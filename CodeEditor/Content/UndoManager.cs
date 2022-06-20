@@ -18,7 +18,7 @@ public class UndoManager
     {
         if (this.changeCaches.Count > 0 && this.position >= 0)
         {
-            if (this.position >= this.changeCaches.Count) this.position = this.changeCaches.Count - 1;
+            this.position = Math.Min(this.position, this.changeCaches.Count - 1);
             var cache = this.changeCaches.ElementAt(this.position);
             this.position -= 1;
             return (cache.UndoChange, cache.UndoEditPosition);
@@ -28,10 +28,9 @@ public class UndoManager
 
     public (TextChange, int) GetRedoCache()
     {
-        if (this.changeCaches.Count > 0 && this.position < this.changeCaches.Count)
+        if (this.changeCaches.Count > 0 && this.position < this.changeCaches.Count - 1)
         {
-            if (this.position < 0) this.position = 0;
-            var cache = this.changeCaches.ElementAt(this.position);
+            var cache = this.changeCaches.ElementAt(this.position + 1);
             this.position += 1;
             return (cache.RedoChange, cache.RedoEditPosition);
         }
